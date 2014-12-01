@@ -1,0 +1,10 @@
+*.exe
+obj/
+[Rr]elease*/
+[Bb]in/
+[Tt]emp/
+[Rr]eportViews/
+[Uu]pload/
+[Pp]roperties/
+Web.Debug.config
+Web.Release.config

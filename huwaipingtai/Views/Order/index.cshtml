@@ -1,0 +1,360 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <style type="text/css">
+            @@font-face
+            {
+        	    font-family:icons;
+        	    src:url(../Scripts/qsm-mui/iconfont_141111.ttf) format('truetype');
+        	    font-weight:400;
+        	    font-style:normal;
+            }
+            *
+            {
+            	margin:0;
+            	padding:0;
+            }
+            a
+            {
+            	text-decoration:none;
+            }
+            body
+            {
+            	line-height: 1.25em;
+            	font-family: 'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;
+            }
+            .i-bh-header
+            {
+                position: relative;
+                height: 44px;
+                background: #e4393c;
+            }
+            .i-bh-header h2 
+            {
+                height: 44px;
+                line-height: 44px;
+                font-weight: normal;
+                font-size: 16px;
+                color: #fff;
+                text-align: center;
+            }
+            .i-a-back 
+            {
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 30px;
+                height: 32px;
+            }
+            .i-a-back span 
+            {
+                display: inline-block;
+                width: 10px;
+                height: 18px;
+                margin-top: 6px;
+                background: url(../Content/images/icon2b.png) -60px 0 no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-a-bh 
+            {
+                position: absolute;
+                top: 6px;
+                right: 12px;
+                width: 37px;
+                height: 30px;
+            }
+            .i-a-bh span 
+            {
+                display: inline-block;
+                width: 21px;
+                height: 21px;
+                margin: 5px 0 0 13px;
+                background: url(../Content/images/icon2b.png) -125px -24px no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-bh-tab
+            {
+                border-bottom: 1px solid #d0cece;
+                background-color: #fff;
+            }
+            .i-tbl-type 
+            {
+                display: table;
+                width: 100%;
+            }
+            .i-bh-tab .i-tbl-cell 
+            {
+                width: 25%;
+                padding: 9px 0;
+                font-size: 12px;
+                text-align: center;
+                display: table-cell;
+            }
+            .i-bh-tab .i-tbl-cell span
+            {
+            	background: url(../Content/images/icon2b.png) -60px -25px no-repeat;
+                background-size: 180px 180px;
+                vertical-align: text-top;
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                color:#6e6e6e;
+            }
+            
+            
+            
+            .new-ct 
+            {
+                min-height: 300px;
+                background-color: #fff;
+            }
+            .title 
+            {
+                padding: 13px 10px 7px;
+                border-bottom: 1px solid #c8c7cc;
+                background: #f1f1f5;
+                font-size: 14px;
+                color: #666;
+            }
+            .info 
+            {
+                position: relative;
+                border-bottom: 1px solid #c8c7cc;
+            }
+            .info a 
+            {
+                display: block;
+                padding: 13px 30px 12px 10px;
+                color: #000;
+                text-decoration: none;
+            }
+            .info a::after
+            {
+            	content:'\e62a';
+            	font-family:icons!important;
+                position:absolute;
+                top:30%;
+                right:10px;
+            }
+            .info .text 
+            {
+                display: block;
+                font-size: 16px;
+                color: #333;
+            }
+            .total 
+            {
+                padding: 15px 0;
+                font-size: 14px;
+                color: #333;
+            }
+            .bg-border 
+            {
+                display: block;
+                position: relative;
+                height: 2px;
+                background: url(../Content/images/bg_line2.png) 0 0 repeat-x;
+                background-size: 6px 1px;
+            }
+            .bg-border .bg-sz 
+            {
+                position: absolute;
+                top: -8px;
+                right: 10px;
+                width: 30px;
+                height: 20px;
+                background: url(../Content/images/icon_order.png) -17px 0 no-repeat;
+                background-size: 100px 100px;
+            }
+            .total-count 
+            {
+                padding: 10px 30px;
+            }
+            .tbl-type 
+            {
+                display: table;
+                width: 100%;
+            }
+            .tbl-cell 
+            {
+                display: table-cell;
+            }
+            .text-right 
+            {
+                text-align: right;
+            }
+            .bg-border2 
+            {
+                display: block;
+                height: 7px;
+                background: url(../Content/images/bg_line.png) 0 0 repeat-x;
+                background-size: 10px 7px;
+            }
+            .mgn 
+            {
+                margin: 15px 10px;
+            }
+            .new-abtn-type
+            {
+                display: block;
+                padding: 8px;
+                border-radius: 2px;
+                background-color: #c00;
+                font-size: 14px;
+                color: #fff;
+                text-align: center;
+            }
+            
+            
+            
+            .i-footer 
+            {
+                margin-top: 20px;
+                background-color: #f3f2f2;
+                font-size: 14px;
+                color: #6e6e6e;
+                text-align: center;
+            }
+            .i-footer .i-f-login 
+            {
+                /*position: relative;*/
+                padding: 0 12px;
+                background-color: #a8a8a8;
+                line-height: 27px;
+                color: #fff;
+                text-align: left;
+                heigth: 27px;
+            }
+            .i-footer .i-f-login a 
+            {
+                color: #fff;
+            }
+            .i-footer .i-f-login .i-bar2 
+            {
+                margin: 0 5px;
+            }
+            .i-footer .i-f-login .i-back-top 
+            {
+                position: absolute;
+                right: 12px;
+            }
+            .i-footer .i-f-section, .i-footer .i-f-section2 
+            {
+                padding: 10px 0;
+            }
+            .i-footer .i-f-section a:first-child 
+            {
+                margin-left: 0;
+            }
+            .i-footer .i-f-section a 
+            {
+                margin-left: 20px;
+                color: #6e6e6e;
+            }
+            .i-footer .i-f-section .on 
+            {
+                color: #c30202;
+            }
+        </style>
+    </head>
+    <body>
+        <a name="top"></a>
+        <header>
+            <div class='i-bh-header'>
+                <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
+                <h2>填写订单</h2>
+                <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
+            </div>
+            <div class='i-bh-tab'>
+                <div class='i-tbl-type'>
+                    <a href='#' class='i-tbl-cell'>
+                        <span></span>
+                        <p style='color:#6e6e6e;'>首页</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:26px;background-position:0 -25px;'></span>
+                        <p style='color:#6e6e6e;'>分类搜索</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:25px;background-position:-29px -25px'></span>
+                        <p style='color:#6e6e6e;'>购物车</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:22px;background-position:-85px -25px'></span>
+                        <p style='color:#6e6e6e;'>我的易购</p>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div class='i-bd' style='width:100%'>
+            <form>
+                <div class='new-ct' style='width:100%;height:100%;float:left;'>
+                    <div class='title'>收货人信息</div>
+                    <div class='info'>
+                        <a id='address'>
+                            <span class='text'>&nbsp;</span>
+                            <span class='text2'>&nbsp;</span>
+                        </a>
+                    </div>
+                    <div class='title'>支付信息</div>
+                    <div class='info'>
+                        <a id='address'>
+                            <span class='text'>货到付款</span>
+                        </a>
+                    </div>
+                    <div class='total'>
+                        <span class='bg-border'>
+                            <span class='bg-sz'></span>
+                        </span>
+                        <div class='total-count'>
+                            <div class='tbl-type'>
+                                <span class='tbl-cell'>商品金额</span>
+                                <span class='tbl-cell text-right'>￥198.00</span>
+                            </div>
+                            <div class='tbl-type'>
+                                <span class='tbl-cell'>运&nbsp;&nbsp;&nbsp;&nbsp;费</span>
+                                <span class='tbl-cell text-right'>￥8.00</span>
+                            </div>
+                            <div class='tbl-type'>
+                                <span class='tbl-cell'>应付金额</span>
+                                <span class='tbl-cell text-right' style='color: #c00;'>￥206.00</span>
+                            </div>
+                        </div>
+                        <span class='bg-border2'></span>
+                    </div>
+                    <span onclick="submitOrder()" id="submiOrder" class="new-abtn-type mgn">提交订单</span>
+                </div>
+            </form>
+        </div>
+        <footer>
+            <div class='i-footer'>
+                <div class='i-f-login'>
+                    <a rel="nofollow" href='#'>tyrone</a>
+                    <span class="i-bar2">|</span>
+                    <a rel="nofollow" href="#">退出</a>
+                    <span class="i-back-top">
+                        <a href="javascript:void(0);">反馈</a>
+                        <span class="i-bar2">|</span>
+                        <a href="#top">回到顶部</a>
+                    </span>
+                </div>
+                <div class="i-f-section">
+                    <a href="#">标准版</a>
+                    <a href="#" class="on">触屏版</a>
+                    <a href="#" id="toPcHome">电脑版</a>
+                </div>
+                <div class="i-f-section2">Copyright © 2014-2015 baoth.com 版权所有</div>
+            </div>
+        </footer>
+    </body>
+
+</html>

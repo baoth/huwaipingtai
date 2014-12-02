@@ -8,6 +8,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.i-a-bh').on('click', function () {
+                    var tg = $('.i-bh-tab');
+                    if (tg.hasClass('on')) {
+                        tg.removeClass('on');
+                    }
+                    else {
+                        tg.addClass('on');
+                    }
+                });
+            });
+        </script>
         <style type="text/css">
             @@font-face
             {
@@ -85,6 +102,11 @@
             {
                 border-bottom: 1px solid #d0cece;
                 background-color: #fff;
+                display:none;
+            }
+            .i-bh-tab.on
+            {
+            	display:block;
             }
             .i-tbl-type 
             {

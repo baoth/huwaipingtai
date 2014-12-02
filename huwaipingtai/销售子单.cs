@@ -41,7 +41,7 @@ namespace huwaipingtai
         ///<summary>
         /// 成交价
         /// </summary>
-        public decimal SellPrice { get; set; }
+       // public decimal SellPrice { get; set; }
 
         /// <summary>
         /// 运费

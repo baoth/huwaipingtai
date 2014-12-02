@@ -6,6 +6,12 @@ using System.Web;
 namespace huwaipingtai
 {
     //价格 销售价 吊牌价 进货价 成交价
+    public class 上架下架 
+    {
+        public int Id { get; set; }
+        public int ProductId { get; set; }
+        /**/
+    }
     public class 订单子单
     {
         public int Id { get; set; }
@@ -41,7 +47,7 @@ namespace huwaipingtai
         ///<summary>
         /// 成交价
         /// </summary>
-        public decimal SellPrice { get; set; }
+        public decimal Price { get; set; }
 
         /// <summary>
         /// 运费

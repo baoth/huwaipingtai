@@ -1,0 +1,356 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <style type="text/css">
+            @@font-face
+            {
+        	    font-family:icons;
+        	    src:url(../Scripts/qsm-mui/iconfont_141111.ttf) format('truetype');
+        	    font-weight:400;
+        	    font-style:normal;
+            }
+            *
+            {
+            	margin:0;
+            	padding:0;
+            }
+            a
+            {
+            	text-decoration:none;
+            }
+            body
+            {
+            	line-height: 1.25em;
+            	font-family: 'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;
+            }
+            .i-bh-header
+            {
+                position: relative;
+                height: 44px;
+                background: #e4393c;
+            }
+            .i-bh-header h2 
+            {
+                height: 44px;
+                line-height: 44px;
+                font-weight: normal;
+                font-size: 16px;
+                color: #fff;
+                text-align: center;
+            }
+            .i-a-back 
+            {
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 30px;
+                height: 32px;
+            }
+            .i-a-back span 
+            {
+                display: inline-block;
+                width: 10px;
+                height: 18px;
+                margin-top: 6px;
+                background: url(../Content/images/icon2b.png) -60px 0 no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-a-bh 
+            {
+                position: absolute;
+                top: 6px;
+                right: 12px;
+                width: 37px;
+                height: 30px;
+            }
+            .i-a-bh span 
+            {
+                display: inline-block;
+                width: 21px;
+                height: 21px;
+                margin: 5px 0 0 13px;
+                background: url(../Content/images/icon2b.png) -125px -24px no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-bh-tab
+            {
+                border-bottom: 1px solid #d0cece;
+                background-color: #fff;
+            }
+            .i-tbl-type 
+            {
+                display: table;
+                width: 100%;
+            }
+            .i-bh-tab .i-tbl-cell 
+            {
+                width: 25%;
+                padding: 9px 0;
+                font-size: 12px;
+                text-align: center;
+                display: table-cell;
+            }
+            .i-bh-tab .i-tbl-cell span
+            {
+            	background: url(../Content/images/icon2b.png) -60px -25px no-repeat;
+                background-size: 180px 180px;
+                vertical-align: text-top;
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                color:#6e6e6e;
+            }
+            
+            
+            
+            .new-ct 
+            {
+                min-height: 300px;
+                background-color: #fff;
+            }
+            .title 
+            {
+                padding: 13px 10px 7px;
+                border: 1px solid #c8c7cc;
+                background: #fff;
+                font-size: 17px;
+                color: red;
+                text-align:center;
+            }
+            .title::after
+            {
+            	content:'\e630';
+                font-family:icons!important;
+                font-size:16px;
+                color:#666;
+            }
+            .info 
+            {
+                /*padding: 15px 0;*/
+                font-size: 14px;
+                color: #333;
+                
+            }
+            .bg-border 
+            {
+                display: block;
+                position: relative;
+                height: 2px;
+                background: url(../Content/images/bg_line2.png) 0 0 repeat-x;
+                background-size: 6px 1px;
+            }
+            .bg-border .bg-sz 
+            {
+                position: absolute;
+                top: -8px;
+                right: 10px;
+                width: 30px;
+                height: 20px;
+                background: url(../Content/images/icon_order.png) -17px 0 no-repeat;
+                background-size: 100px 100px;
+            }
+            .info-d 
+            {
+                padding: 10px 30px;
+                border-left: 1px solid #c8c7cc;
+                border-right: 1px solid #c8c7cc;
+            }
+            .tbl-type 
+            {
+                width: 100%;
+            }
+            .text-left 
+            {
+                text-align: left;
+            }
+            .bg-border2 
+            {
+                display: block;
+                height: 7px;
+                background: url(../Content/images/bg_line.png) 0 0 repeat-x;
+                background-size: 10px 7px;
+            }
+            .mgn 
+            {
+                margin: 15px 10px;
+            }
+            .new-abtn-type
+            {
+                display: block;
+                padding: 8px;
+                border-radius: 2px;
+                background-color: #c00;
+                font-size: 14px;
+                color: #fff;
+                text-align: center;
+            }
+            
+            
+            
+            .i-footer 
+            {
+                margin-top: 20px;
+                background-color: #f3f2f2;
+                font-size: 14px;
+                color: #6e6e6e;
+                text-align: center;
+            }
+            .i-footer .i-f-login 
+            {
+                /*position: relative;*/
+                padding: 0 12px;
+                background-color: #a8a8a8;
+                line-height: 27px;
+                color: #fff;
+                text-align: left;
+                heigth: 27px;
+            }
+            .i-footer .i-f-login a 
+            {
+                color: #fff;
+            }
+            .i-footer .i-f-login .i-bar2 
+            {
+                margin: 0 5px;
+            }
+            .i-footer .i-f-login .i-back-top 
+            {
+                position: absolute;
+                right: 12px;
+            }
+            .i-footer .i-f-section, .i-footer .i-f-section2 
+            {
+                padding: 10px 0;
+            }
+            .i-footer .i-f-section a:first-child 
+            {
+                margin-left: 0;
+            }
+            .i-footer .i-f-section a 
+            {
+                margin-left: 20px;
+                color: #6e6e6e;
+            }
+            .i-footer .i-f-section .on 
+            {
+                color: #c30202;
+            }
+        </style>
+    </head>
+    <body>
+        <a name="top"></a>
+        <header>
+            <div class='i-bh-header'>
+                <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
+                <h2>订单支付</h2>
+                <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
+            </div>
+            <div class='i-bh-tab'>
+                <div class='i-tbl-type'>
+                    <a href='#' class='i-tbl-cell'>
+                        <span></span>
+                        <p style='color:#6e6e6e;'>首页</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:26px;background-position:0 -25px;'></span>
+                        <p style='color:#6e6e6e;'>分类搜索</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:25px;background-position:-29px -25px'></span>
+                        <p style='color:#6e6e6e;'>购物车</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:22px;background-position:-85px -25px'></span>
+                        <p style='color:#6e6e6e;'>我的易购</p>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div class='i-bd' style='width:100%'>
+            <div class='new-ct' style='width:100%;height:100%;float:left;'>
+                <div style='margin-left:1%;margin-right:1%;margin-top:1%;'>
+                    
+                    <div class='title'>支付信息</div>
+                    <div class='info'>
+                        <div class='info-d'>
+                            <div class="tbl-type">
+                                <span class="tbl-cell">亲，您的订单信息如下:</span>
+                                <span class="tbl-cell text-left"></span>
+                            </div>
+                            <div class="tbl-type">
+                                <span class="tbl-cell">订单号:</span>
+                                <span class="tbl-cell text-left">WS201406071901</span>
+                            </div>
+                            <div class="tbl-type">
+                                <span class="tbl-cell">门店:</span>
+                                <span class="tbl-cell text-left">落落试试店</span>
+                            </div>
+                            <div class="tbl-type">
+                                <span class="tbl-cell">商品:</span>
+                                <span class="tbl-cell text-left">户外登上鞋</span>
+                            </div>
+                            <div class="tbl-type">
+                                <span class="tbl-cell">颜色:</span>
+                                <span class="tbl-cell text-left">黑色</span>
+                            </div>
+                            <div class="tbl-type">
+                                <span class="tbl-cell">尺码:</span>
+                                <span class="tbl-cell text-left">2XL</span>
+                            </div>
+                            <div class="tbl-type">
+                                <span class="tbl-cell">数量:</span>
+                                <span class="tbl-cell text-left">1</span>
+                            </div>
+                            <div class="tbl-type">
+                                <span class="tbl-cell">金额:</span>
+                                <span class="tbl-cell text-left">￥888.00</span>
+                            </div>
+                            <div class="tbl-type">
+                                <span class="tbl-cell">电话:</span>
+                                <span class="tbl-cell text-left">15553212445</span>
+                            </div>
+                            <div class="tbl-type">
+                                <span class="tbl-cell">地址:</span>
+                                <span class="tbl-cell text-left">北京市朝阳区大望路SOHU现代城</span>
+                            </div>
+                        </div>
+
+                        <span class='bg-border2'></span>
+                        <span onclick="" id="a" class="new-abtn-type mgn">线下支付</span>
+                        <span onclick="" id="b" class="new-abtn-type mgn">马上支付</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class='i-footer'>
+                <div class='i-f-login'>
+                    <a rel="nofollow" href='#'>tyrone</a>
+                    <span class="i-bar2">|</span>
+                    <a rel="nofollow" href="#">退出</a>
+                    <span class="i-back-top">
+                        <a href="javascript:void(0);">反馈</a>
+                        <span class="i-bar2">|</span>
+                        <a href="#top">回到顶部</a>
+                    </span>
+                </div>
+                <div class="i-f-section">
+                    <a href="#">标准版</a>
+                    <a href="#" class="on">触屏版</a>
+                    <a href="#" id="toPcHome">电脑版</a>
+                </div>
+                <div class="i-f-section2">Copyright © 2014-2015 baoth.com 版权所有</div>
+            </div>
+        </footer>
+    </body>
+
+</html>

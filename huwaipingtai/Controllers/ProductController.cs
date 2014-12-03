@@ -6,26 +6,28 @@ using System.Web.Mvc;
 
 namespace huwaipingtai.Controllers
 {
-    public class OrderController : Controller
+    public class ProductController : Controller
     {
         //
-        // GET: /Order/
+        // GET: /Product/
 
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult pay()
+        public ActionResult Detail()
         {
-            return View("pay");
+            return View("Detail");
         }
-        public ActionResult delv()
+        public ActionResult List()
         {
-            return View("delv");
+            return View("List");
         }
-        public ActionResult Address()
+        public ActionResult Test()
         {
-            return View("address");
+            return View("Test");
         }
+
+
     }
 }

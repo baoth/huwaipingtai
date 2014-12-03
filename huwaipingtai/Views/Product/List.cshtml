@@ -1,0 +1,393 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />   
+    <link href="../../Scripts/qsm-mui/qsmart-mui.css" rel="stylesheet" type="text/css" />
+    
+    <title></title>
+    
+    
+    <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/qsmart-mui-tab-1.0.0.js" type="text/javascript"></script>
+    <script src="../../Scripts/numeralInput.js" type="text/javascript"></script>
+
+    <style type="text/css">
+        
+          
+        body {
+        min-width: 320px;
+        font-size: 1em;
+        font-family: 'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;
+        color: #000;
+        -webkit-text-size-adjust: none;
+        }
+        
+        .footer
+        {
+            height:50px;            
+            bottom: -1px;
+            padding-bottom: 1px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            position: fixed;
+            z-index: 1000;             
+            background-color:#CCCCCC;
+            border-color: #1b1b1b;
+            color: #fff;
+            text-shadow: 0 1px 0 #111;
+            font-weight: 700;
+            text-align:center;            
+        }
+        .header
+        {
+            height:35px;
+            top:-1px; 
+            padding-top:1px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            position: fixed;
+            z-index: 1000;             
+            background-color:#CCCCCC;/*#1d1d1d*/
+            border-color: #1b1b1b;
+            /*color: #fff;*/
+            text-shadow: 0 1px 0 #111;
+            font-weight: 700;
+            text-align:center; 
+            
+            
+        }
+        .content
+        {
+            margin: 36px 0px 0px -40px; 
+            text-align:left;  
+        }
+        ul
+        {
+           list-style-type:none;
+           left:3px;
+        }
+        li
+        {
+            width:100%;
+            text-align:left;
+        }
+        .product_image
+        {
+            text-align:center;
+        }
+                 
+        a {        
+        text-decoration: none;
+        }
+        
+       .footer a {
+        display: block;
+        height: 35px;
+        margin: 0 10px;
+        border-radius: 3px;
+        line-height: 35px;
+        color: #fff;
+        }
+        
+        .btn-buy {
+        background: #c00;
+        font-size:large;
+        }
+              
+       .btn-color
+       {
+        display: inline-block;
+        min-width: 75px;
+        height: 30px;
+        border: 1px solid #999;
+        border-radius: 3px;
+        background-color: #f5f4f4;
+        background: -webkit-gradient(linear,0 0,0 100%,from(#fffeff),to(#f5f4f4));
+        line-height: 29px;
+        font-size: 14px;
+        color: #333;       
+        text-align: center; 
+         margin-top:5px;
+       }
+       .btn-color.on {
+        border: 1px solid #e4393c;
+        background: #e4393c;
+        color: #fff;
+      }
+     
+      .btn-add,.btn-del {
+        float: left;
+        width: 33px;
+        height: 34px;
+        border-right: 1px solid #999;
+        border-radius: 3px 0 0 3px;
+        background-color: #f5f4f4;
+        background: -webkit-gradient(linear,0 0,0 100%,from(#fffeff),to(#f5f4f4));
+        text-align: center;
+        display: inline-block;
+        height: 34px;
+        border: 1px solid #999;
+        border-radius: 3px;
+        line-height: 34px;
+       }
+       .btn-add span,.btn-del span {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background: url(../../Content/image/icon_detail.png) -85px -15px no-repeat;
+        background-size: 100px 100px;
+        }
+        
+        .quantity-input {
+        float: left;
+        width: 33px;
+        height: 32px;
+        line-height: 34px;
+        font-size: 14px;
+        color: #333;
+        background-color: #f5f4f4;
+        background: -webkit-gradient(linear,0 0,0 100%,from(#fffeff),to(#f5f4f4));
+        display: inline-block;       
+        border: 1px solid #999;
+        border-radius: 3px;
+        line-height: 34px;
+        }
+        
+       .btn-del span {
+        background-position: -85px -34px;
+       }
+      
+       .btn
+       {
+        display: inline-block;
+        min-width: 75px;
+        height: 30px;
+        border: 1px solid #999;
+        border-radius: 3px;
+        background-color: #f5f4f4;
+        background: -webkit-gradient(linear,0 0,0 100%,from(#fffeff),to(#f5f4f4));
+        line-height: 29px;
+        font-size: 14px;
+        color: #333;       
+        text-align: center; 
+         margin-top:2px;
+       }
+       .btn_back
+       {
+           width:50px; height:30px; position:absolute;left: 5px; 
+       }
+       .btn_more
+       {
+         width:50px; height:30px;position:absolute;right: 5px;   
+       }
+      
+    </style>
+    <style type="text/css">
+        .module {
+        margin-right: 2%;
+        float: left;
+        background-color: #FFF;
+        padding: .7em .5em;
+        width: 42%;        
+        box-shadow: 0 1px 1px 0px rgba(0, 0, 0, .2);
+       }
+       ul, menu, dir {
+        display: block;
+        list-style-type:none;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 40px;
+      }
+      li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+     }
+     .imageLoad
+     {
+         width:119px;
+         height:119px;    
+     }
+     
+     .btn-more-show
+     {    
+         margin-top:5px;             
+         background:Gray;
+         font-size:large;  
+     }
+      .footerbtn
+       {
+        display: inline-block;
+        min-width: 75px;
+        height: 30px;       
+        border: 1px solid #999;        
+        background-color: #f5f4f4;
+        background: -webkit-gradient(linear,0 0,0 100%,from(#fffeff),to(#f5f4f4));        
+        text-align: center; 
+        color:Black;
+       }
+     .footer a
+     {
+         float:left;
+         color:Black;
+     }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Init();
+            BindEvent();
+        });
+        var Init = function () {
+           
+         }
+
+         var BindEvent = function () {             
+             
+             $("#btn_back").bind("click", function () {
+                 back();
+             })
+
+             $("#btn_more").bind("click", function () {
+                 more();
+             });
+            
+         }
+                 
+         //返回
+         var back = function () {
+             alert("暂时不能返回");
+         }
+         var more = function () {
+             alert("无更多数据");
+         }
+         
+    </script>
+</head>
+<body>
+       <div  class="header">
+            <span >宝贝详情</span>
+            <a title="返回" id="btn_back" href="javascript:void(0)" class="btn btn_back">返回</a>
+            <a title="更过" id="btn_more"  href="javascript:void(0)" class="btn btn_more">更多</a>
+           
+       </div>
+       <div class="content">
+            <ul class="JShop-m-two-column-t">
+             <li>
+                  <div id="tabpages">
+                   <div class='tab-scroller'>                       
+                        <div class='tab-item'><div class="c"><span id='Span1'></span></div></div>
+                        <div class='tab-item'><div class="c"><span id='Span2'></span></div></div>
+                        <div class='tab-item'><div class="c"><span id='Span3'></span></div></div>
+                        <div class='tab-item'><div class="c"><span id='Span4'></span></div></div>
+                        <ul><span id='Span5'></span></ul>
+                    </div>                
+                 </div>
+             </li>
+             <li>
+                <div class="module">
+                  <a href="Detail" class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
+                      <p class="img">                          
+                          <img class="imageLoad" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
+                      </p>
+                      <p class="g-title"> 兽王2014新款男鞋商务休闲鞋 男士真皮手工皮鞋 BN110256 黑色 40</p>
+                      <p class="g-price">￥<span class="jdNum" jshop="price">99.00</span></p>
+                  </a>
+              </div>
+                <div class="module">
+                  <a href="Detail" class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
+                      <p class="img">
+                          <img class="imageLoad" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
+                      </p>
+                      <p class="g-title"> 兽王2014新款男鞋商务休闲鞋 男士真皮手工皮鞋 BN110256 黑色 40</p>
+                      <p class="g-price">￥<span class="jdNum" jshop="price">99.00</span></p>
+                  </a>
+              </div>
+                <div class="module">
+                  <a href="Detail" class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
+                      <p class="img">                          
+                          <img class="imageLoad" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
+                      </p>
+                      <p class="g-title"> 兽王2014新款男鞋商务休闲鞋 男士真皮手工皮鞋 BN110256 黑色 40</p>
+                      <p class="g-price">￥<span class="jdNum" jshop="price">99.00</span></p>
+                  </a>
+               </div>
+                <div class="module">
+                  <a href="Detail" class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
+                      <p class="img">
+                          <img class="imageLoad" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
+                      </p>
+                      <p class="g-title"> 兽王2014新款男鞋商务休闲鞋 男士真皮手工皮鞋 BN110256 黑色 40</p>
+                      <p class="g-price">￥<span class="jdNum" jshop="price">99.00</span></p>
+                  </a>
+              </div>
+             </li>
+            </ul>
+           <ul style=" text-align:center; margin-top:5px">
+                <li><a id="btn_moreShow" class="btn-more-show" ><span></span>查看更多</a></li>
+           </ul>
+           <div style="height:30px">
+           
+           </div>           
+       </div>
+
+      <div  class="footer" style="z-index:1;  " >        
+         <a id="btn_home" class="footerbtn" ><span></span>店铺主页</a>
+         <a id="btn_center" class="footerbtn" ><span></span>会员中心</a>
+         <a id="btn_about" class="footerbtn" ><span></span>关于我们</a>
+         
+      </div>
+    
+</body>
+</html>
+
+<style type="text/css">
+        #tabpages
+        {
+        	width: 100%;            
+            height: 200px;           
+            background:#ccc;
+            text-align:center;
+        }
+        #tabpages span
+        {
+        	font-family:icons!important;
+        	font-size:100px;
+        }
+        .tab-scroller1
+        {
+        	height:100%;
+        }
+        .tab-item,#tabpages ul
+        {
+        	background:#fff;
+        }
+  </style>
+ <script type="text/javascript">
+     document.tab = new QsmartTab('tabpages', { 'callback': dd });
+    
+     function dd(a) {
+         console.log(a);
+     };
+     var kk = 0;
+     $('.ui-gotop').on('click', function () { document.tab.jump(kk); kk++; });
+
+     $('#Span1').html('<img src="../../ProductImage/001/00001.jpg" style="width:100%"/>');
+     $('#Span2').html('<img src="../../ProductImage/001/00002.jpg" style="width:100%"/>');
+     $('#Span3').html('<img src="../../ProductImage/001/00003.jpg" style="width:100%"/>');
+     $('#Span4').html('<img src="../../ProductImage/001/00004.jpg" style="width:100%"/>');
+     $('#Span5').html('<img src="../../ProductImage/001/00001.jpg" style="width:100%"/>');
+
+    </script>

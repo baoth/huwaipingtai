@@ -7,7 +7,7 @@ namespace huwaipingtai
 {
     public class 讨论过真实存在的类
     {
-        public class Dealer//经销商
+        public class Dealer            //经销商
         {
             public int Id { get; set; }
             public string DealerCode { get; set; }
@@ -25,7 +25,7 @@ namespace huwaipingtai
             public string License { get; set; }
             public string LegalPerson { get; set; }
         }
-        public class Seciton//门店信息
+        public class Seciton           //门店信息
         {
             public int Id { get; set; }
             public int DealerId { get; set; }
@@ -35,7 +35,7 @@ namespace huwaipingtai
             public string LinkMan { get; set; }
             public string Phone { get; set; }
         }
-        public class GoodsUpDownMain//上架下架 
+        public class GoodsUpDownMain   //上架下架 
         {
             public int Id { get; set; }
             public int GoodsId { get; set; }
@@ -74,28 +74,26 @@ namespace huwaipingtai
             /// </summary>
             public string SKU { get; set; }
         }
-        public class Account//账户
+        public class Consumer          //消费者
         {
             public int Id { get; set; }//Consumer
+            public string ConsumerCode { get; set; }
+            public string ConsumerName { get; set; }
+            public string Phone { get; set; }
+            public string Phone1 { get; set; }
             public string LoginName { get; set; }
-            public string Mobile { get; set; }
-            public string Email { get; set; }
+            public string NikeName { get; set; }
             public string Password { get; set; }
         }
-        public class Consignee//收货人信息 
+        public class ConsumerAddress   //消费者地址表 
         {
             public int Id { get; set; }
-            public int AccountId { get; set; }
-            public string Address { get; set; }
+            public int ConsumerId { get; set; }
+            public string DetailAddress { get; set; }
             public string City { get; set; }
             public string County { get; set; }
-            public string Mobile { get; set; }
-            public string Tel { get; set; }
-            public string Name { get; set; }
-            public string Email { get; set; }
-            public bool Default { get; set; }
         }
-        public class GoodsColor// 颜色
+        public class GoodsColor        //颜色
         {
             public int Id { get; set; }
             /// <summary>
@@ -112,7 +110,7 @@ namespace huwaipingtai
             public string ColorDescribe { get; set; }
             public int StoreId { get; set; }
         }
-        public class GoodsSize// 尺码
+        public class GoodsSize         //尺码
         {
             public int Id { get; set; }
             /// <summary>
@@ -132,7 +130,7 @@ namespace huwaipingtai
             /// </summary>
             public int DealerId { get; set; }
         }
-        public class GoodsSizeDetail// 货品尺码明细表 
+        public class GoodsSizeDetail   //货品尺码明细表 
         {
             public int Id { get; set; }
             /// <summary>
@@ -152,7 +150,7 @@ namespace huwaipingtai
             /// </summary>
             public string CustomSize { get; set; }
         }
-        public class GoodsColorDetail// 货品颜色明细表 
+        public class GoodsColorDetail  //货品颜色明细表 
         {
             public int Id { get; set; }
             /// <summary>
@@ -172,14 +170,14 @@ namespace huwaipingtai
             /// </summary>
             public string CustomColor { get; set; }
         }
-        public class GoodsType//货品分类
+        public class GoodsType         //货品分类
         {   //ProductType
             public int Id { get; set; }
             public int ParentId { get; set; }
             public string TypeCode { get; set; }
             public string TypeName { get; set; }
         }
-        public class Goods//货品
+        public class Goods             //货品
         {
             public int Id { get; set; }
             /// <summary>
@@ -205,19 +203,19 @@ namespace huwaipingtai
          
 
         }
-        public class Dic_FinalType// 结算方式 
+        public class Dic_FinalType     // 结算方式 
         {
             public int Id { get; set; }
             public string ItemCode { get; set; }
             public string ItemValue { get; set; }
         }
-        public class Dic_DespatchType//发货方式
+        public class Dic_DespatchType  //发货方式
         {
             public int Id { get; set; }
             public string ItemCode { get; set; }
             public string ItemValue { get; set; }
         }
-        public class OrderBillDetail//订单子单
+        public class OrderBillDetail   //订单子单
         {
             public int Id { get; set; }
             /// <summary>
@@ -353,6 +351,11 @@ namespace huwaipingtai
             /// 消费者Id
             /// </summary>
             public int ConsumerId { get; set; }
+            /// <summary>
+            /// 消费者地址Id
+            /// </summary>
+            public int ConsumerAddressId { get; set; }
+
             /// <summary>
             /// 门店Id
             /// </summary>

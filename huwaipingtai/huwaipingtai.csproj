@@ -171,7 +171,8 @@
     <None Include="Scripts\qsm-mui\iconfont_141111.ttf" />
     <Content Include="Views\Order\index.cshtml" />
     <Content Include="Views\Order\address.cshtml" />
-    <Content Include="Views\Order\orderpay.cshtml" />
+    <Content Include="Views\Order\pay.cshtml" />
+    <Content Include="Views\Order\delivery.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

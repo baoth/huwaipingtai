@@ -74,24 +74,26 @@ namespace huwaipingtai
             /// </summary>
             public string SKU { get; set; }
         }
-        public class Consumer//消费者
+        public class Account//账户
         {
             public int Id { get; set; }//Consumer
-            public string ConsumerCode { get; set; }
-            public string ConsumerName { get; set; }
-            public string Phone { get; set; }
-            public string Phone1 { get; set; }
             public string LoginName { get; set; }
-            public string NikeName { get; set; }
+            public string Mobile { get; set; }
+            public string Email { get; set; }
             public string Password { get; set; }
         }
-        public class ConsumerAddress//消费者地址表 
+        public class Consignee//收货人信息 
         {
             public int Id { get; set; }
-            public int ConsumerId { get; set; }
-            public string DetailAddress { get; set; }
+            public int AccountId { get; set; }
+            public string Address { get; set; }
             public string City { get; set; }
             public string County { get; set; }
+            public string Mobile { get; set; }
+            public string Tel { get; set; }
+            public string Name { get; set; }
+            public string Email { get; set; }
+            public bool Default { get; set; }
         }
         public class GoodsColor// 颜色
         {

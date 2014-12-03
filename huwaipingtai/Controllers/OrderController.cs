@@ -17,7 +17,11 @@ namespace huwaipingtai.Controllers
         }
         public ActionResult pay()
         {
-            return View("orderpay");
+            return View("pay");
+        }
+        public ActionResult delv()
+        {
+            return View("delv");
         }
     }
 }

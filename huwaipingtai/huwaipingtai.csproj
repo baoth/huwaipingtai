@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bin\QSmart.Core.dll" />
+    <Content Include="Content\image\icon_detail.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -99,6 +100,10 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
+    <Content Include="ProductImage\001\00001.jpg" />
+    <Content Include="ProductImage\001\00002.jpg" />
+    <Content Include="ProductImage\001\00003.jpg" />
+    <Content Include="ProductImage\001\00004.jpg" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -109,6 +114,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\numeralInput.js" />
     <Content Include="Scripts\qsm-mui\fx.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-combox-1.0.0.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-combox-2.0.0.js" />
@@ -123,6 +129,7 @@
     <Content Include="Scripts\qsm-mui\zepto-1.1.4.min.js" />
     <Content Include="Scripts\qsm-mui\zepto.selector.js" />
     <Content Include="Scripts\qsm-mui\zepto.touch.js" />
+    <Content Include="Views\qsmartcombox.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -19,5 +19,9 @@ namespace huwaipingtai.Controllers
         {
             return View("orderpay");
         }
+        public ActionResult Address()
+        {
+            return View("address");
+        }
     }
 }

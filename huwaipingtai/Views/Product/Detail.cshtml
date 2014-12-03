@@ -49,7 +49,7 @@
             font-weight: 700;
             text-align:center;            
         }
-        .header
+        /*.header
         {
             height:35px;
             top:-1px; 
@@ -60,14 +60,13 @@
             position: fixed;
             z-index: 1000;             
             background-color:#CCCCCC;/*#1d1d1d*/
-            border-color: #1b1b1b;
-            /*color: #fff;*/
+            border-color: #1b1b1b;        
             text-shadow: 0 1px 0 #111;
             font-weight: 700;
             text-align:center; 
             
             
-        }
+        }*/
         .content
         {
             margin: 36px 0px 0px -40px; 
@@ -86,6 +85,8 @@
         .product_image
         {
             text-align:center;
+            margin-left: -40px;
+            margin-right: 10px;
         }
                  
         a {        
@@ -153,7 +154,7 @@
         .quantity-input {
         float: left;
         width: 33px;
-        height: 32px;
+        height: 34px;
         line-height: 34px;
         font-size: 14px;
         color: #333;
@@ -163,6 +164,7 @@
         border: 1px solid #999;
         border-radius: 3px;
         line-height: 34px;
+        text-align:center;
         }
         
        .btn-del span {
@@ -192,6 +194,106 @@
        {
          width:50px; height:30px;position:absolute;right: 5px;   
        }
+    </style>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        a
+        {
+            text-decoration:none;
+        }
+        body
+        {
+            line-height: 1.25em;
+            font-family: 'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;
+        }
+         .i-bh-header
+        {
+            position: relative;
+            height: 44px;
+            background: #e4393c;
+        }
+        .i-bh-header h2 
+        {
+            height: 44px;
+            line-height: 44px;
+            font-weight: normal;
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
+        }
+       
+        .i-a-back 
+        {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            width: 30px;
+            height: 32px;
+        }
+        .i-a-back span 
+            {
+                display: inline-block;
+                width: 10px;
+                height: 18px;
+                margin-top: 6px;
+                background: url(../Content/images/icon2b.png) -60px 0 no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-a-bh 
+            {
+                position: absolute;
+                top: 6px;
+                right: 12px;
+                width: 37px;
+                height: 30px;
+            }
+            .i-a-bh span 
+            {
+                display: inline-block;
+                width: 21px;
+                height: 21px;
+                margin: 5px 0 0 13px;
+                background: url(../Content/images/icon2b.png) -125px -24px no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-bh-tab
+            {
+                border-bottom: 1px solid #d0cece;
+                background-color: #fff;
+                display:none;
+            }
+            .i-bh-tab.on
+            {
+            	display:block;
+            }
+            .i-tbl-type 
+            {
+                display: table;
+                width: 100%;
+            }
+            .i-bh-tab .i-tbl-cell 
+            {
+                width: 25%;
+                padding: 9px 0;
+                font-size: 12px;
+                text-align: center;
+                display: table-cell;
+            }
+            .i-bh-tab .i-tbl-cell span
+            {
+            	background: url(../Content/images/icon2b.png) -60px -25px no-repeat;
+                background-size: 180px 180px;
+                vertical-align: text-top;
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                color:#6e6e6e;
+            }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -281,15 +383,55 @@
              alert("立即购买");
          }
     </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.i-a-bh').on('click', function () {
+                var tg = $('.i-bh-tab');
+                if (tg.hasClass('on')) {
+                    tg.removeClass('on');
+                }
+                else {
+                    tg.addClass('on');
+                }
+            });
+        });
+     </script>
 </head>
 <body>
-       <div  class="header">
+      @* <div  class="header">
             <span >商品</span>
             <a title="返回" id="btn_back" href="javascript:void(0)" class="btn btn_back">返回</a>
             <a title="更过" id="btn_more"  href="javascript:void(0)" class="btn btn_more">更多</a>
-            @*<input  type="button"  style="color:Red; " value="<"/>
-            <input  type="button"  style="color:Red; " value="..."/>*@
-       </div>
+           
+       </div>*@
+       <header>
+            <div class='i-bh-header'>
+                <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
+                <h2>商品详细</h2>
+                <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
+            </div>
+            <div class='i-bh-tab'>
+                <div class='i-tbl-type'>
+                    <a href='#' class='i-tbl-cell'>
+                        <span></span>
+                        <p style='color:#6e6e6e;'>首页</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:26px;background-position:0 -25px;'></span>
+                        <p style='color:#6e6e6e;'>分类搜索</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:25px;background-position:-29px -25px'></span>
+                        <p style='color:#6e6e6e;'>购物车</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:22px;background-position:-85px -25px'></span>
+                        <p style='color:#6e6e6e;'>我的易购</p>
+                    </a>
+                </div>
+            </div>
+        </header>
+
        <div class="content">
             <ul>
              <li>
@@ -303,28 +445,27 @@
                     </div>                
                  </div>
              </li>
-             <li>
-                <div id="detail_discription">加棉衣服</div>
+             <li style=" text-align:center;">
+                <div id="detail_discription" style=" font-size:large">加棉衣服</div>
+                <div style=" color:Red;font-size:large;">￥88.88</div>
+                 <hr />
              </li>
-             <li>
-                <div style=" color:Red">￥88.88</div>
-                <hr />
-             </li>
-             <li>
+             
+             @*  <li>
                 <div>                    
                     <span id="product_quantity">库存100件</span>
                     
-                   @* <span>
+                  <span>
                         购买数量    
                        
                       <input id="btn_quantityCut"  value="-" type="button" style="text-align:center"/>
                         <input id="txt_quantity" type="text" style="width:18px; height:18px"/>
                         <input id="btn_quantityAdd"  value="+" type="button" style=" text-align:center"/>
-                    </span>*@
+                    </span>
                 </div>
                
                 <hr />
-             </li>
+             </li>*@
              <li>
                 <div>
                     颜色
@@ -356,7 +497,8 @@
                 <a class="btn-add" id="btn_quantityCut"><span></span></a>
                  <input id="txt_quantity" type="text" class="quantity-input" value="1"/>
                 <a class="btn-del"  id="btn_quantityAdd"><span></span></a>
-                </span>   
+                </span>  
+                <span id="product_quantity" style=" position:absolute; right:5px">库存100件</span> 
              </li>
              <li>
                 <div id="product_image" class="product_image">

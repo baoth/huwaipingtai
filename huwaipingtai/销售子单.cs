@@ -6,6 +6,15 @@ using System.Web;
 namespace huwaipingtai
 {
     //价格 销售价 吊牌价 进货价 成交价
+    public class 上架下架 
+    {
+        public int Id { get; set; }
+        public int GoodsId { get; set; }
+        public string  GoodsDescribe { get; set; }
+        public string UpDate { get; set; }
+        public string DownDate { get; set; }
+        /**/
+    }
     public class 订单子单
     {
         public int Id { get; set; }
@@ -41,7 +50,7 @@ namespace huwaipingtai
         ///<summary>
         /// 成交价
         /// </summary>
-       // public decimal SellPrice { get; set; }
+        public decimal Price { get; set; }
 
         /// <summary>
         /// 运费
@@ -293,6 +302,79 @@ namespace huwaipingtai
     }
     public class 操作员 
     {
+
+    }
+    public class 发货信息 
+    {
+        //shipperInfo
+        public int Id { get; set; }
+        /// <summary>
+        /// 订单Id
+        /// </summary>
+        public int OrderId { get; set; }
+        /// <summary>
+        /// 客户名称
+        /// </summary>
+        public string CustomerName { get; set; }
+        /// <summary>
+        /// 电话
+        /// </summary>
+        public string Phone { get; set; }
+        /// <summary>
+        /// 详细地址
+        /// </summary>
+        public string AddressDetail { get; set; }
+        /// <summary>
+        /// 城市
+        /// </summary>
+        public string City { get; set; }
+        /// <summary>
+        /// 区县
+        /// </summary>
+        public string County { get; set; }
+        /// <summary>
+        /// 邮编
+        /// </summary>
+        public string PostCode { get; set; }
+        /// <summary>
+        /// 客户名称
+        /// </summary>
+        public string Customer { get; set; }
+        /// <summary>
+        /// 门店Id
+        /// </summary>
+        public string StoreId { get; set; }
+        /// <summary>
+        /// 发货状态
+        /// </summary>
+        public string FHState { get; set; }
+
+    }
+    public class 出入库主表 
+    {
+
+    }
+    public class 出入库子表 
+    {
+    }
+    public class 存量表主表 //
+    {
+        public int Id { get; set; }
+        public int GoodsId { get; set; }
+        public int ColorId { get; set; }
+        public int SizeId { get; set; }
+        public int StoreCount { get; set; }
+
+    }
+    public class 存量表子表
+    {
+        public int Id { get; set; }
+        public int StockId { get; set; }
+        public int GoodsId { get; set; }
+        public DateTime InStockDate { get; set; }
+        public DateTime OutStockDate { get; set; }
+        public decimal InStockPrice { get; set; }
+        public decimal OutStockPrice { get; set; }
 
     }
 

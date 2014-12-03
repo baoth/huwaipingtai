@@ -1,1 +1,426 @@
-﻿
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.i-a-bh').on('click', function () {
+                    var tg = $('.i-bh-tab');
+                    if (tg.hasClass('on')) {
+                        tg.removeClass('on');
+                    }
+                    else {
+                        tg.addClass('on');
+                    }
+                });
+            });
+        </script>
+        <style type="text/css">
+            @@font-face
+            {
+        	    font-family:icons;
+        	    src:url(../Scripts/qsm-mui/iconfont_141111.ttf) format('truetype');
+        	    font-weight:400;
+        	    font-style:normal;
+            }
+            *
+            {
+            	margin:0;
+            	padding:0;
+            }
+            a
+            {
+            	text-decoration:none;
+            }
+            body
+            {
+            	line-height: 1.25em;
+            	font-family: 'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;
+            }
+            .i-bh-header
+            {
+                position: relative;
+                height: 44px;
+                background: #e4393c;
+            }
+            .i-bh-header h2 
+            {
+                height: 44px;
+                line-height: 44px;
+                font-weight: normal;
+                font-size: 16px;
+                color: #fff;
+                text-align: center;
+            }
+            .i-a-back 
+            {
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 30px;
+                height: 32px;
+            }
+            .i-a-back span 
+            {
+                display: inline-block;
+                width: 10px;
+                height: 18px;
+                margin-top: 6px;
+                background: url(../Content/images/icon2b.png) -60px 0 no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-a-bh 
+            {
+                position: absolute;
+                top: 6px;
+                right: 12px;
+                width: 37px;
+                height: 30px;
+            }
+            .i-a-bh span 
+            {
+                display: inline-block;
+                width: 21px;
+                height: 21px;
+                margin: 5px 0 0 13px;
+                background: url(../Content/images/icon2b.png) -125px -24px no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-bh-tab
+            {
+                border-bottom: 1px solid #d0cece;
+                background-color: #fff;
+                display:none;
+            }
+            .i-bh-tab.on
+            {
+            	display:block;
+            }
+            .i-tbl-type 
+            {
+                display: table;
+                width: 100%;
+            }
+            .i-bh-tab .i-tbl-cell 
+            {
+                width: 25%;
+                padding: 9px 0;
+                font-size: 12px;
+                text-align: center;
+                display: table-cell;
+            }
+            .i-bh-tab .i-tbl-cell span
+            {
+            	background: url(../Content/images/icon2b.png) -60px -25px no-repeat;
+                background-size: 180px 180px;
+                vertical-align: text-top;
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                color:#6e6e6e;
+            }
+            /**********头结束****************************************************/
+            
+            
+          
+            
+            
+            /**********尾开始****************************************************/
+            .i-footer 
+            {
+                margin-top: 20px;
+                background-color: #f3f2f2;
+                font-size: 14px;
+                color: #6e6e6e;
+                text-align: center;
+            }
+            .i-footer .i-f-login 
+            {
+                /*position: relative;*/
+                padding: 0 12px;
+                background-color: #a8a8a8;
+                line-height: 27px;
+                color: #fff;
+                text-align: left;
+                heigth: 27px;
+            }
+            .i-footer .i-f-login a 
+            {
+                color: #fff;
+            }
+            .i-footer .i-f-login .i-bar2 
+            {
+                margin: 0 5px;
+            }
+            .i-footer .i-f-login .i-back-top 
+            {
+                position: absolute;
+                right: 12px;
+            }
+            .i-footer .i-f-section, .i-footer .i-f-section2 
+            {
+                padding: 10px 0;
+            }
+            .i-footer .i-f-section a:first-child 
+            {
+                margin-left: 0;
+            }
+            .i-footer .i-f-section a 
+            {
+                margin-left: 20px;
+                color: #6e6e6e;
+            }
+            .i-footer .i-f-section .on 
+            {
+                color: #c30202;
+            }
+        </style>
+    </head>
+    <body>
+        <a name="top"></a>
+        <header>
+            <div class='i-bh-header'>
+                <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
+                <h2>收货地址</h2>
+                <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
+            </div>
+            <div class='i-bh-tab'>
+                <div class='i-tbl-type'>
+                    <a href='#' class='i-tbl-cell'>
+                        <span></span>
+                        <p style='color:#6e6e6e;'>首页</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:26px;background-position:0 -25px;'></span>
+                        <p style='color:#6e6e6e;'>分类搜索</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:25px;background-position:-29px -25px'></span>
+                        <p style='color:#6e6e6e;'>购物车</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:22px;background-position:-85px -25px'></span>
+                        <p style='color:#6e6e6e;'>我的易购</p>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div class='i-bd' style='width:100%'>
+           <slidercontent>
+<div class="err_msg" id="errorMessage" style="display:block;color:red;margin-top:0.5em;margin-left:0.5em"></div>	
+<div class="new-ct">
+    <form action="updateOrderAddressTouch.action?sid=59a911e7b31fa670739df288cdf5715e" method="post" id="addressForm">
+    	
+    	<div class="addr-add">
+        	<a href="editAddress.action?vtuanOrder=false&amp;addressId=0&amp;sid=59a911e7b31fa670739df288cdf5715e" class="btn-addr">+添加收货地址</a>
+        </div>
+    	
+    	<div class="err_msg" id="errorMessage" style="display:block;color:red;margin-bottom:0.5em;margin-top:0.5em;"></div>	
+            	<div class="addr-info">
+        	<div class="addr-border">
+            	<div class="pd-tb10">
+                    <p>韩雨兴<span>&nbsp; 13552349852</span></p>
+                    <p class="text-f14-c6">北京朝阳区三环到四环之间北京市朝阳区建外街道sohu现代城5号楼1907室</p>
+                </div>
+                <div class="bg-border3"></div>
+                <div class="addr-btn">
+                	<span class="tbl-type">
+                    	<span class="tbl-cell" onmousedown="keyDown(-1)">
+                        	<!-- [D] 被选中状态时加 on -->
+                        	<a href="javascript:void(0)" class="btn-chk on" name="selSpan" id="selSpan-1" style="width:100%"><span></span>送到这里去</a>
+                        </span>
+                        <span class="tbl-cell text-right">
+                        	<a href="/norder/editAddress.action?vtuanOrder=false&amp;addressId=-1&amp;sid=59a911e7b31fa670739df288cdf5715e" class="btn-update"><span></span>修改</a>
+                            </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    	    	                        <div class="addr-info">
+            	<div class="addr-border">
+                	<div class="pd-tb10">
+                        <p>韩雨兴 <span>&nbsp; 13552349852</span>  </p>
+                        <p class="text-f14-c6">北京房山区长阳镇金地朗悦2期13号楼4单元201室</p>
+                    </div>
+                    <div class="bg-border3"></div>
+                    <div class="addr-btn">
+                    	<span class="tbl-type">
+                        	<span class="tbl-cell" onclick="selectAddress('137631592')" onmousedown="keyDown(137631592)">
+                            	<!-- [D] 被选中状态时加 on -->
+                            	<a href="javascript:void(0)" name="selSpan" id="selSpan137631592" class="btn-chk" style="width:100%"><span></span>送到这里去</a>
+                            </span>
+                            <span class="tbl-cell text-right">
+                            	<a href="/norder/editAddress.action?vtuanOrder=false&amp;addressId=137631592&amp;sid=59a911e7b31fa670739df288cdf5715e" class="btn-update"><span></span>修改</a>
+    							                                <a href='javascript:confirmDel("137631592")' class="btn-del"><span></span>删除</a>
+                                <a id="delHref137631592" href="/norder/delAddress.action?addressId=137631592&amp;sid=59a911e7b31fa670739df288cdf5715e" style="display:none"></a>
+    							                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        	            <div class="addr-info">
+            	<div class="addr-border">
+                	<div class="pd-tb10">
+                        <p>王彩丽 <span>&nbsp; 13552349677</span>  </p>
+                        <p class="text-f14-c6">北京西城区二环到三环车公庄大街21号新大都饭店3号楼3310室</p>
+                    </div>
+                    <div class="bg-border3"></div>
+                    <div class="addr-btn">
+                    	<span class="tbl-type">
+                        	<span class="tbl-cell" onclick="selectAddress('79933644')" onmousedown="keyDown(79933644)">
+                            	<!-- [D] 被选中状态时加 on -->
+                            	<a href="javascript:void(0)" name="selSpan" id="selSpan79933644" class="btn-chk" style="width:100%"><span></span>送到这里去</a>
+                            </span>
+                            <span class="tbl-cell text-right">
+                            	<a href="/norder/editAddress.action?vtuanOrder=false&amp;addressId=79933644&amp;sid=59a911e7b31fa670739df288cdf5715e" class="btn-update"><span></span>修改</a>
+    							                                <a href='javascript:confirmDel("79933644")' class="btn-del"><span></span>删除</a>
+                                <a id="delHref79933644" href="/norder/delAddress.action?addressId=79933644&amp;sid=59a911e7b31fa670739df288cdf5715e" style="display:none"></a>
+    							                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        	            <div class="addr-info">
+            	<div class="addr-border">
+                	<div class="pd-tb10">
+                        <p>郭强 <span>&nbsp; 13039526749</span>  </p>
+                        <p class="text-f14-c6">内蒙古赤峰市敖汉旗新惠镇蒙中街惠泽小区3号楼4单元201室</p>
+                    </div>
+                    <div class="bg-border3"></div>
+                    <div class="addr-btn">
+                    	<span class="tbl-type">
+                        	<span class="tbl-cell" onclick="selectAddress('77835220')" onmousedown="keyDown(77835220)">
+                            	<!-- [D] 被选中状态时加 on -->
+                            	<a href="javascript:void(0)" name="selSpan" id="selSpan77835220" class="btn-chk" style="width:100%"><span></span>送到这里去</a>
+                            </span>
+                            <span class="tbl-cell text-right">
+                            	<a href="/norder/editAddress.action?vtuanOrder=false&amp;addressId=77835220&amp;sid=59a911e7b31fa670739df288cdf5715e" class="btn-update"><span></span>修改</a>
+    							                                <a href='javascript:confirmDel("77835220")' class="btn-del"><span></span>删除</a>
+                                <a id="delHref77835220" href="/norder/delAddress.action?addressId=77835220&amp;sid=59a911e7b31fa670739df288cdf5715e" style="display:none"></a>
+    							                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        	            <div class="addr-info">
+            	<div class="addr-border">
+                	<div class="pd-tb10">
+                        <p>王国林 <span>&nbsp; 13015358302</span>  </p>
+                        <p class="text-f14-c6">山西 晋城市 城 区 西上庄西上庄办事处岗头村121号</p>
+                    </div>
+                    <div class="bg-border3"></div>
+                    <div class="addr-btn">
+                    	<span class="tbl-type">
+                        	<span class="tbl-cell" onclick="selectAddress('15158951')" onmousedown="keyDown(15158951)">
+                            	<!-- [D] 被选中状态时加 on -->
+                            	<a href="javascript:void(0)" name="selSpan" id="selSpan15158951" class="btn-chk" style="width:100%"><span></span>送到这里去</a>
+                            </span>
+                            <span class="tbl-cell text-right">
+                            	<a href="/norder/editAddress.action?vtuanOrder=false&amp;addressId=15158951&amp;sid=59a911e7b31fa670739df288cdf5715e" class="btn-update"><span></span>修改</a>
+    							                                <a href='javascript:confirmDel("15158951")' class="btn-del"><span></span>删除</a>
+                                <a id="delHref15158951" href="/norder/delAddress.action?addressId=15158951&amp;sid=59a911e7b31fa670739df288cdf5715e" style="display:none"></a>
+    							                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        	            <div class="addr-info">
+            	<div class="addr-border">
+                	<div class="pd-tb10">
+                        <p>韩雨兴 <span>&nbsp; 13552349852</span>  </p>
+                        <p class="text-f14-c6">北京海淀区四环到五环之间北四环西路大地科技大厦10层1012室</p>
+                    </div>
+                    <div class="bg-border3"></div>
+                    <div class="addr-btn">
+                    	<span class="tbl-type">
+                        	<span class="tbl-cell" onclick="selectAddress('10323012')" onmousedown="keyDown(10323012)">
+                            	<!-- [D] 被选中状态时加 on -->
+                            	<a href="javascript:void(0)" name="selSpan" id="selSpan10323012" class="btn-chk" style="width:100%"><span></span>送到这里去</a>
+                            </span>
+                            <span class="tbl-cell text-right">
+                            	<a href="/norder/editAddress.action?vtuanOrder=false&amp;addressId=10323012&amp;sid=59a911e7b31fa670739df288cdf5715e" class="btn-update"><span></span>修改</a>
+    							                                <a href='javascript:confirmDel("10323012")' class="btn-del"><span></span>删除</a>
+                                <a id="delHref10323012" href="/norder/delAddress.action?addressId=10323012&amp;sid=59a911e7b31fa670739df288cdf5715e" style="display:none"></a>
+    							                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        	            <div class="addr-info">
+            	<div class="addr-border">
+                	<div class="pd-tb10">
+                        <p>韩雨兴 <span>&nbsp; 13552349852</span>  </p>
+                        <p class="text-f14-c6">北京房山区长阳镇长阳镇联合社区10号楼2单元402室</p>
+                    </div>
+                    <div class="bg-border3"></div>
+                    <div class="addr-btn">
+                    	<span class="tbl-type">
+                        	<span class="tbl-cell" onclick="selectAddress('3108618')" onmousedown="keyDown(3108618)">
+                            	<!-- [D] 被选中状态时加 on -->
+                            	<a href="javascript:void(0)" name="selSpan" id="selSpan3108618" class="btn-chk" style="width:100%"><span></span>送到这里去</a>
+                            </span>
+                            <span class="tbl-cell text-right">
+                            	<a href="/norder/editAddress.action?vtuanOrder=false&amp;addressId=3108618&amp;sid=59a911e7b31fa670739df288cdf5715e" class="btn-update"><span></span>修改</a>
+    							                                <a href='javascript:confirmDel("3108618")' class="btn-del"><span></span>删除</a>
+                                <a id="delHref3108618" href="/norder/delAddress.action?addressId=3108618&amp;sid=59a911e7b31fa670739df288cdf5715e" style="display:none"></a>
+    							                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        	    <input type="hidden" name="vtuanOrder" value="false">
+                <input type="hidden" id="addressId" name="addressId" value="">
+    </form>
+</div>
+
+            <footer>
+    	<div class="new-footer" id="footer">
+            	<div class="new-f-login">
+    				                    	<a rel="nofollow" href="/user/home.action?sid=59a911e7b31fa670739df288cdf5715e">
+    						            					hanyuxin..
+            				    					</a>
+        				<span class="new-bar2">|</span>
+    					    						<a rel="nofollow" href="https://passport.m.jd.com/user/logout.action?sid=59a911e7b31fa670739df288cdf5715e">退出</a>
+    					    				    				<span class="new-back-top"><a href="/showvote.html?sid=59a911e7b31fa670739df288cdf5715e">反馈</a><span class="new-bar2">|</span><a href="#top">回到顶部</a></span>
+                </div>
+            	<div class="new-f-section"><a href="http://wap.jd.com/index.html?v=w&amp;sid=59a911e7b31fa670739df288cdf5715e">标准版</a><a href="javascript:void(0)" class="on">触屏版</a><a href="http://www.jd.com/#m" id="toPcHome">电脑版</a></div>
+                <div class="new-f-section2">Copyright © 2012-2014 m.jd.com 版权所有</div>
+            </div>
+        </footer>
+	</slidercontent>
+        </div>
+        <footer>
+            <div class='i-footer'>
+                <div class='i-f-login'>
+                    <a rel="nofollow" href='#'>tyrone</a>
+                    <span class="i-bar2">|</span>
+                    <a rel="nofollow" href="#">退出</a>
+                    <span class="i-back-top">
+                        <a href="javascript:void(0);">反馈</a>
+                        <span class="i-bar2">|</span>
+                        <a href="#top">回到顶部</a>
+                    </span>
+                </div>
+                <div class="i-f-section">
+                    <a href="#">标准版</a>
+                    <a href="#" class="on">触屏版</a>
+                    <a href="#" id="toPcHome">电脑版</a>
+                </div>
+                <div class="i-f-section2">Copyright © 2014-2015 baoth.com 版权所有</div>
+            </div>
+        </footer>
+    </body>
+
+</html>

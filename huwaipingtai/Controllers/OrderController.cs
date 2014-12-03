@@ -19,9 +19,17 @@ namespace huwaipingtai.Controllers
         {
             return View("pay");
         }
-        public ActionResult delv()
+        public ActionResult delivery()
         {
-            return View("delv");
+            return View("delivery");
+        }
+        public ActionResult invoice()
+        {
+            return View("invoice");
+        }
+        public ActionResult courier()
+        {
+            return View("courier");
         }
         public ActionResult Address()
         {

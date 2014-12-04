@@ -88,9 +88,11 @@
     <Content Include="Content\bin\QSmart.Core.dll" />
     <Content Include="Content\images\bg_line.png" />
     <Content Include="Content\images\bg_line2.png" />
+    <Content Include="Content\images\bg_line3.png" />
     <Content Include="Content\images\icon2b.png" />
     <Content Include="Content\images\icon_order.png" />
     <Content Include="Content\mobile\order.css" />
+    <Content Include="Content\mobile\base.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -129,6 +131,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\Order\addresss\address.js" />
     <Content Include="Scripts\qsm-mui\fx.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-combox-1.0.0.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-combox-2.0.0.js" />
@@ -179,6 +182,7 @@
     <Content Include="Views\Order\index.cshtml" />
     <Content Include="Views\Order\address.cshtml" />
     <Content Include="Views\Order\orderpay.cshtml" />
+    <Content Include="Views\Order\editAddress.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

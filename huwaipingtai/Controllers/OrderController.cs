@@ -23,5 +23,9 @@ namespace huwaipingtai.Controllers
         {
             return View("address");
         }
+        public ActionResult EditAddress()
+        {
+            return View("editAddress");
+        }
     }
 }

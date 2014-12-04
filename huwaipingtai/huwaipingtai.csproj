@@ -39,7 +39,10 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 3\Assemblies\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -75,9 +78,11 @@
     <Content Include="Content\bin\QSmart.Core.dll" />
     <Content Include="Content\images\bg_line.png" />
     <Content Include="Content\images\bg_line2.png" />
+    <Content Include="Content\images\bg_line3.png" />
     <Content Include="Content\images\icon2b.png" />
     <Content Include="Content\images\icon_detail.png" />
     <Content Include="Content\images\icon_order.png" />
+    <Content Include="Content\mobile\base.css" />
     <Content Include="Content\mobile\order.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -122,6 +127,7 @@
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\numeralInput.js" />
+    <Content Include="Scripts\Order\addresss\address.js" />
     <Content Include="Scripts\qsm-mui\fx.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-combox-1.0.0.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-combox-2.0.0.js" />
@@ -175,6 +181,11 @@
     <Content Include="Views\Order\address.cshtml" />
     <Content Include="Views\Order\index.cshtml" />
     <Content Include="Views\Order\orderpay.cshtml" />
+    <Content Include="Views\Order\courier.cshtml" />
+    <Content Include="Views\Order\delivery.cshtml" />
+    <Content Include="Views\Order\editAddress.cshtml" />
+    <Content Include="Views\Order\invoice.cshtml" />
+    <Content Include="Views\Order\pay.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

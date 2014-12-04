@@ -4,11 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data;
+using BusinessOrder.CustomerAddress;
+using DataModel.Order;
 
 namespace huwaipingtai.Controllers
 {
     public class OrderController : Controller
     {
+         //业务接口导入
+        IOPCustomerAddress iopcustomeraddress;
+        public OrderController(IOPCustomerAddress iopcustomeraddress)
+         {
+             this.iopcustomeraddress = iopcustomeraddress;
+         }
         //
         // GET: /Order/
 
@@ -49,6 +57,13 @@ namespace huwaipingtai.Controllers
             /*3、跳转到订单界面 假定叫Order*/
             return View("Order");
         }
+        public ActionResult SaveAddress() 
+        {
+            var caddress = new ConsumerAddress();
+            iopcustomeraddress.Add(caddress);
+            return View("");
+        }
+
         //编辑地址
         public ActionResult EditAddress()
         {

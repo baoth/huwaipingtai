@@ -9,6 +9,7 @@ namespace Tools
 {
     public class  ConfigBusinessTemplate
     {
+        /*注册业务模版 与接口对应关系*/
         public static void SetupResolveRules(ContainerBuilder builder)
         {
             builder.RegisterType<OPCustomerAddress>().As<IOPCustomerAddress>();

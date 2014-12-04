@@ -19,6 +19,16 @@ namespace huwaipingtai.Controllers
         {
             return View("Detail");
         }
+        public ActionResult List()
+        {
+            return View("List");
+        }
+        public ActionResult Test()
+        {
+            return View("Test");
+        }
+
 
     }
+
 }

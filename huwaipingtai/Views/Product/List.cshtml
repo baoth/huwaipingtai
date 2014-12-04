@@ -1,29 +1,37 @@
 ﻿@{
     Layout = null;
 }
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
-        <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
-        <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
-        <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('.i-a-bh').on('click', function () {
-                    var tg = $('.i-bh-tab');
-                    if (tg.hasClass('on')) {
-                        tg.removeClass('on');
-                    }
-                    else {
-                        tg.addClass('on');
-                    }
-                });
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />   
+    <link href="../../Scripts/qsm-mui/qsmart-mui.css" rel="stylesheet" type="text/css" />
+    
+    <title></title>
+    
+    
+    <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/qsmart-mui-tab-1.0.0.js" type="text/javascript"></script>
+    <script src="../../Scripts/numeralInput.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.i-a-bh').on('click', function () {
+                var tg = $('.i-bh-tab');
+                if (tg.hasClass('on')) {
+                    tg.removeClass('on');
+                }
+                else {
+                    tg.addClass('on');
+                }
             });
+        });
         </script>
         <style type="text/css">
             @@font-face
@@ -173,22 +181,6 @@
                 font-size: 16px;
                 color: #333;
             }
-            .info .text2 
-            {
-                display: block;
-                overflow: hidden;
-                padding-top: 3px;
-                font-size: 14px;
-                color: #666;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-            }
-            .info .text3 
-            {
-                margin-left: 20px;
-                font-size: 14px;
-                color: #666;
-            }
             .total 
             {
                 padding: 15px 0;
@@ -303,13 +295,103 @@
                 color: #c30202;
             }
         </style>
-    </head>
-    <body>
-        <a name="top"></a>
-        <header>
+    <style type="text/css">       
+       
+        .content
+        {
+            margin: -10px 0px 0px -40px; 
+            text-align:left;  
+        }
+        ul
+        {
+           list-style-type:none;
+           left:3px;
+        }
+        li
+        {
+            width:100%;
+            text-align:left;
+        }
+          
+        a {        
+        text-decoration: none;
+        }
+        
+      
+      
+    </style>
+    <style type="text/css">
+        .module {
+        margin-right: 2%;
+        float: left;
+        background-color: #FFF;
+        padding: .7em .5em;
+        width: 42%;        
+        box-shadow: 0 1px 1px 0px rgba(0, 0, 0, .2);
+       }
+       ul, menu, dir {
+        display: block;
+        list-style-type:none;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 40px;
+      }
+      li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+     }
+     .imageLoad
+     {
+         width:119px;
+         height:119px;    
+     }
+     
+     .btn-more-show
+     {    
+         margin-top:5px;             
+         background:Gray;
+         font-size:large;  
+     }
+      
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Init();
+            BindEvent();
+        });
+        var Init = function () {
+           
+         }
+
+         var BindEvent = function () {             
+             
+             $("#btn_back").bind("click", function () {
+                 back();
+             })
+
+             $("#btn_more").bind("click", function () {
+                 more();
+             });
+            
+         }
+                 
+         //返回
+         var back = function () {
+             alert("暂时不能返回");
+         }
+         var more = function () {
+             alert("无更多数据");
+         }
+         
+    </script>
+</head>
+<body>
+       <header>
             <div class='i-bh-header'>
                 <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
-                <h2>填写订单</h2>
+                <h2>商品</h2>
                 <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
             </div>
             <div class='i-bh-tab'>
@@ -333,70 +415,70 @@
                 </div>
             </div>
         </header>
-        <div class='i-bd' style='width:100%'>
-            <form>
-                <div class='new-ct' style='width:100%;height:100%;float:left;'>
-                    <div class='title'>收货人信息</div>
-                    <div class='info'>
-                        <a id='address'>
-                            <span class='text'>李彬 <span class="phone-num" style="margin-left:5px;">18513603719</span></span>
-                            <span class='text2'>北京朝阳区三环到四环之间北京市朝阳区建外街道sohu现代城5号楼1907室</span>
-                        </a>
-                    </div>
-                    <div class='title'>支付方式</div>
-                    <div class='info'>
-                        <a id='address'>
-                            <span class='text'>线下支付</span>
-                        </a>
-                    </div>
-                    <div class='title'>发货方式</div>
-                    <div class='info'>
-                        <a id='address'>
-                            <span class='text'>门店自提</span>
-                        </a>
-                    </div>
-                    <div class='title'>配送方式</div>
-                    <div class='info'>
-                        <a id='address'>送货时间
-                            <span class='text3'>2014-12-4  (周四)  9:00-15:00</span>
-                        </a>
-                    </div>
-                    <div class='title'>发票信息</div>
-                    <div class='info'>
-                        <a id='address'>
-                            <span class='text'>普通发票</span>
-                        </a>
-                    </div>
-                    <div class='total'>
-                        <span class='bg-border'>
-                            <span class='bg-sz'></span>
-                        </span>
-                        <div class='total-count'>
-                            <div class='tbl-type'>
-                                <span class='tbl-cell'>商品金额</span>
-                                <span class='tbl-cell text-right'>￥198.00</span>
-                            </div>
-                            <div class='tbl-type'>
-                                <span class='tbl-cell'>运&nbsp;&nbsp;&nbsp;&nbsp;费</span>
-                                <span class='tbl-cell text-right'>￥8.00</span>
-                            </div>
-                            <div class='tbl-type'>
-                                <span class='tbl-cell'>应付金额</span>
-                                <span class='tbl-cell text-right' style='color: #c00;'>￥206.00</span>
-                            </div>
-                        </div>
-                        <span class='bg-border2'></span>
-                    </div>
-                    <span onclick="submitOrder()" id="submiOrder" class="new-abtn-type mgn">提交订单</span>
-                </div>
-            </form>
-        </div>
-        <footer>
+       <div class="content">
+            <ul class="JShop-m-two-column-t">
+             <li>
+                  <div id="tabpages">
+                   <div class='tab-scroller'>                       
+                        <div class='tab-item'><div class="c"><span id='Span1'></span></div></div>
+                        <div class='tab-item'><div class="c"><span id='Span2'></span></div></div>
+                        <div class='tab-item'><div class="c"><span id='Span3'></span></div></div>
+                        <div class='tab-item'><div class="c"><span id='Span4'></span></div></div>
+                        <ul><span id='Span5'></span></ul>
+                    </div>                
+                 </div>
+             </li>
+             <li>
+                <div class="module">
+                  <a href="Detail" class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
+                      <p class="img">                          
+                          <img class="imageLoad" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
+                      </p>
+                      <p class="g-title"> 兽王2014新款男鞋商务休闲鞋 男士真皮手工皮鞋 BN110256 黑色 40</p>
+                      <p class="g-price">￥<span class="jdNum" jshop="price">99.00</span></p>
+                  </a>
+              </div>
+                <div class="module">
+                  <a href="Detail" class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
+                      <p class="img">
+                          <img class="imageLoad" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
+                      </p>
+                      <p class="g-title"> 兽王2014新款男鞋商务休闲鞋 男士真皮手工皮鞋 BN110256 黑色 40</p>
+                      <p class="g-price">￥<span class="jdNum" jshop="price">99.00</span></p>
+                  </a>
+              </div>
+                <div class="module">
+                  <a href="Detail" class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
+                      <p class="img">                          
+                          <img class="imageLoad" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
+                      </p>
+                      <p class="g-title"> 兽王2014新款男鞋商务休闲鞋 男士真皮手工皮鞋 BN110256 黑色 40</p>
+                      <p class="g-price">￥<span class="jdNum" jshop="price">99.00</span></p>
+                  </a>
+               </div>
+                <div class="module">
+                  <a href="Detail" class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
+                      <p class="img">
+                          <img class="imageLoad" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
+                      </p>
+                      <p class="g-title"> 兽王2014新款男鞋商务休闲鞋 男士真皮手工皮鞋 BN110256 黑色 40</p>
+                      <p class="g-price">￥<span class="jdNum" jshop="price">99.00</span></p>
+                  </a>
+              </div>
+             </li>
+            </ul>
+           <ul style=" text-align:center; margin-top:5px">
+                <li><a id="btn_moreShow" class="btn-more-show" ><span></span>查看更多</a></li>
+           </ul>
+                   
+       </div>
+
+      <footer>
             <div class='i-footer'>
                 <div class='i-f-login'>
-                    <a rel="nofollow" href='#'>tyrone</a>
+                    <a rel="nofollow" href='#'>登陆</a>
                     <span class="i-bar2">|</span>
-                    <a rel="nofollow" href="#">退出</a>
+                    <a rel="nofollow" href="#">注册</a>
                     <span class="i-back-top">
                         <a href="javascript:void(0);">反馈</a>
                         <span class="i-bar2">|</span>
@@ -410,7 +492,46 @@
                 </div>
                 <div class="i-f-section2">Copyright © 2014-2015 baoth.com 版权所有</div>
             </div>
-        </footer>
-    </body>
-
+      </footer>
+    
+</body>
 </html>
+
+<style type="text/css">
+        #tabpages
+        {
+        	width: 100%;            
+            height: 200px;           
+            background:#ccc;
+            text-align:center;
+        }
+        #tabpages span
+        {
+        	font-family:icons!important;
+        	font-size:100px;
+        }
+        .tab-scroller1
+        {
+        	height:100%;
+        }
+        .tab-item,#tabpages ul
+        {
+        	background:#fff;
+        }
+  </style>
+ <script type="text/javascript">
+     document.tab = new QsmartTab('tabpages', { 'callback': dd });
+    
+     function dd(a) {
+         console.log(a);
+     };
+     var kk = 0;
+     $('.ui-gotop').on('click', function () { document.tab.jump(kk); kk++; });
+
+     $('#Span1').html('<img src="../../ProductImage/001/00001.jpg" style="width:100%"/>');
+     $('#Span2').html('<img src="../../ProductImage/001/00002.jpg" style="width:100%"/>');
+     $('#Span3').html('<img src="../../ProductImage/001/00003.jpg" style="width:100%"/>');
+     $('#Span4').html('<img src="../../ProductImage/001/00004.jpg" style="width:100%"/>');
+     $('#Span5').html('<img src="../../ProductImage/001/00001.jpg" style="width:100%"/>');
+
+    </script>

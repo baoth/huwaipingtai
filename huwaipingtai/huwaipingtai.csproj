@@ -210,7 +210,6 @@
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Order\address.cshtml" />
     <Content Include="Views\Order\index.cshtml" />
-    <Content Include="Views\Order\orderpay.cshtml" />
     <Content Include="Views\Order\courier.cshtml" />
     <Content Include="Views\Order\delivery.cshtml" />
     <Content Include="Views\Order\editAddress.cshtml" />

@@ -164,3 +164,28 @@ var validateSubmit = function () {
         return false
     }
 };
+
+/*选择地址*/
+function selectAddress(addressId) {
+    $("#addressId").val(addressId);
+    spinerShow();
+    $("#addressForm").submit();
+    spinerHide();
+}
+function confirmDel(id) {
+    if (confirm("确定删除吗")) {
+        spinerShow();
+        $("#delHref" + id).click();
+        spinerHide();
+    }
+}
+function keyDown(id) {
+    $("a[name='selSpan']").removeClass("on");
+    $("#selSpan" + id).addClass("on");
+}
+$(document).ready(function () {
+    $("#background").css("height", $("#body").css("height")); ;
+    if ($("#parent1").text() != "" && $("#parent1").text() != null) {
+        $("#backUrl").attr("href", "javascript:backListener('parent1')");
+    }
+});

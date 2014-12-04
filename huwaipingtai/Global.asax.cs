@@ -31,8 +31,8 @@ namespace huwaipingtai
 
         protected void Application_Start()
         {
+            CreateData.CreateTable();
             AreaRegistration.RegisterAllAreas();
-
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }

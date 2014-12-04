@@ -440,7 +440,7 @@
                 }
                 var defaultDate = new Date().StringToDate(window.sessionStorage.courierDate);
                 if (window.sessionStorage.courierTimeSect == undefined || window.sessionStorage.courierTimeSect == '') {
-                    window.sessionStorage.courierTimeSect = $('#timesect1').text;
+                    window.sessionStorage.courierTimeSect = $('#timesect1').text();
                 }
                 var defaultTimeSect = window.sessionStorage.courierTimeSect;
                 

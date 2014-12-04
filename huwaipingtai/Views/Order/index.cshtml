@@ -8,13 +8,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        
         <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('.i-a-bh').on('click', function () {
+                initCourier();
+                initInvoice();
+                initPay();
+                initDelivery();
+                $('.i-a-bh').on($.clickAction, function () {
                     var tg = $('.i-bh-tab');
                     if (tg.hasClass('on')) {
                         tg.removeClass('on');
@@ -23,7 +28,84 @@
                         tg.addClass('on');
                     }
                 });
+
             });
+            function initCourier() {
+                if (window.sessionStorage.courierDate == undefined || window.sessionStorage.courierDate == '') {
+                    window.sessionStorage.courierDate = new Date().DateAdd('d', 1).Format('YYYY-M-D');
+                }
+                var defaultDate = new Date().StringToDate(window.sessionStorage.courierDate);
+                if (window.sessionStorage.courierTimeSect == undefined || window.sessionStorage.courierTimeSect == '') {
+                    window.sessionStorage.courierTimeSect = '9:00-15:00';
+                }
+                var defaultTimeSect = window.sessionStorage.courierTimeSect;
+                var TimeIndex = window.sessionStorage.courierTimeType || 1;
+                var PhoneIndex = window.sessionStorage.courierPoneType || 1;
+                $('#courier').data('date', defaultDate.Format('YYYY-M-D')).data('tsect', defaultTimeSect)
+                             .data('phonetype', PhoneIndex).data('timetype', TimeIndex)
+                             .text(defaultDate.Format('YYYY-M-D (周W) ') + defaultTimeSect);
+                $('#courier').on($.clickAction, function () {
+                    window.sessionStorage.backurl = document.URL;
+                    window.sessionStorage.courierDate = $(this).data('date');
+                    window.sessionStorage.courierTimeSect = $(this).data('tsect');
+                    window.sessionStorage.courierPoneType = $(this).data('phonetype');
+                    window.sessionStorage.courierTimeType = $(this).data('timetype');
+                    $(this).parent('a').trigger($.clickAction);
+                });
+            };
+            function initInvoice() {
+                if (window.sessionStorage.invoiceTitle == undefined || window.sessionStorage.invoiceTitle == '') {
+                    window.sessionStorage.invoiceTitle = '1';
+                }
+                if (window.sessionStorage.invoiceContent == undefined || window.sessionStorage.invoiceContent == '') {
+                    window.sessionStorage.invoiceContent = '1';
+                }
+                if (window.sessionStorage.invoiceCompany == undefined) {
+                    window.sessionStorage.invoiceCompany = '';
+                }
+                $('#invoice').data('title', window.sessionStorage.invoiceTitle)
+                             .data('content', window.sessionStorage.invoiceContent)
+                             .text('普通发票');
+                $('#invoice').on($.clickAction, function () {
+                    window.sessionStorage.backurl = document.URL;
+                    window.sessionStorage.invoiceTitle = $(this).data('title');
+                    window.sessionStorage.invoiceContent = $(this).data('content');
+                    $(this).parent('a').trigger($.clickAction);
+                });
+            };
+            function initPay() {
+                if (window.sessionStorage.payType == undefined || window.sessionStorage.payType == '') {
+                    window.sessionStorage.payType = '1';
+                }
+                if (window.sessionStorage.payText == undefined || window.sessionStorage.payText == '') {
+                    window.sessionStorage.payText = '线下支付';
+                }
+                $('#pay').data('paytype', window.sessionStorage.payType)
+                         .text(window.sessionStorage.payText);
+                $('#pay').on($.clickAction, function () {
+                    window.sessionStorage.backurl = document.URL;
+                    window.sessionStorage.payType = $(this).data('paytype');
+                    window.sessionStorage.payText = $(this).text();
+                    $(this).parent('a').trigger($.clickAction);
+                });
+            };
+            function initDelivery() {
+                if (window.sessionStorage.DeliveryType == undefined || window.sessionStorage.DeliveryType == '') {
+                    window.sessionStorage.DeliveryType = '1';
+                }
+                if (window.sessionStorage.DeliveryText == undefined || window.sessionStorage.DeliveryText == '') {
+                    window.sessionStorage.DeliveryText = '门店自提';
+                }
+                
+                $('#delivery').data('deltype', window.sessionStorage.DeliveryType)
+                         .text(window.sessionStorage.DeliveryText);
+                $('#delivery').on($.clickAction, function () {
+                    window.sessionStorage.backurl = document.URL;
+                    window.sessionStorage.DeliveryType = $(this).data('deltype');
+                    window.sessionStorage.DeliveryText = $(this).text();
+                    $(this).parent('a').trigger($.clickAction);
+                });
+            };
         </script>
         <style type="text/css">
             @@font-face
@@ -345,26 +427,26 @@
                     </div>
                     <div class='title'>支付方式</div>
                     <div class='info'>
-                        <a id='address'>
-                            <span class='text'>线下支付</span>
+                        <a href='/order/pay'>
+                            <span id='pay' class='text' data-paytype=''></span>
                         </a>
                     </div>
                     <div class='title'>发货方式</div>
                     <div class='info'>
-                        <a id='address'>
-                            <span class='text'>门店自提</span>
+                        <a href='/order/delivery'>
+                            <span id='delivery' class='text' data-deltype=''></span>
                         </a>
                     </div>
                     <div class='title'>配送方式</div>
                     <div class='info'>
-                        <a id='address'>送货时间
-                            <span class='text3'>2014-12-4  (周四)  9:00-15:00</span>
+                        <a href='/order/courier'>送货时间
+                            <span id='courier' class='text3' data-date='' data-tsect='' data-timetype='' data-phonetype=''></span>
                         </a>
                     </div>
                     <div class='title'>发票信息</div>
                     <div class='info'>
-                        <a id='address'>
-                            <span class='text'>普通发票</span>
+                        <a href='/order/invoice'>
+                            <span id='invoice' class='text' data-title='' data-content=''></span>
                         </a>
                     </div>
                     <div class='total'>

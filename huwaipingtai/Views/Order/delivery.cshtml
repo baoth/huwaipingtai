@@ -15,7 +15,7 @@
         <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('.i-a-bh').on('click', function () {
+                $('.i-a-bh').on($.clickAction, function () {
                     var tg = $('.i-bh-tab');
                     if (tg.hasClass('on')) {
                         tg.removeClass('on');
@@ -24,7 +24,33 @@
                         tg.addClass('on');
                     }
                 });
+                $('.i-a-back').on($.clickAction, function () {
+                    window.location = window.sessionStorage.backurl;
+                });
+                $('.chooseDelvType').on($.clickAction, chooseDelvType);
+                initDelivery();
             });
+            function chooseDelvType() {
+                var index = $(this).data('index');
+                $("#iddelvType").val(index);
+                $("[name='delvlist']").removeClass("on");
+                $('#delvType' + index).addClass("on");
+            };
+            function initDelivery() {
+                if (window.sessionStorage.DeliveryType == undefined || window.sessionStorage.DeliveryType == '') {
+                    window.sessionStorage.DeliveryType = '1';
+                }
+                if (window.sessionStorage.DeliveryText == undefined || window.sessionStorage.DeliveryText == '') {
+                    window.sessionStorage.DeliveryText = '门店自提';
+                }
+                $('#delvType' + window.sessionStorage.DeliveryType).parent().trigger($.clickAction);
+            };
+            function submitForm() {
+                
+                window.sessionStorage.DeliveryType = $('#iddelvType').val();
+                window.sessionStorage.DeliveryText = $('#delvType' + window.sessionStorage.DeliveryType).next().text();
+                window.location = window.sessionStorage.backurl;
+            };
         </script>
         <style type="text/css">
             @@font-face
@@ -278,11 +304,11 @@
             <div class='new-ct' style='width:100%;height:100%;float:left;'>
                 <div class='title'>发货信息</div>
                 <div class="info-delv-t">
-			        <div class="info-delv" onclick="javascript:chooseDelvType('1');">
+			        <div class="info-delv chooseDelvType" data-index='1'>
                         <a name="delvlist" id="delvType1" class="btn-radio on"></a>
 					    <span>门店自提</span>
                     </div>
-				    <div class="info-delv b-b-n" onclick="javascript:chooseDelvType('2');">
+				    <div class="info-delv chooseDelvType b-b-n" data-index='2'>
                         <a name="delvlist" id="delvType2" class="btn-radio"></a>
 					    <span>送货上门</span>
                     </div>
@@ -291,13 +317,6 @@
                 <input type="hidden" name="iddelvType" id="iddelvType" value="1">
             </div>
         </div>
-        <script>
-            function chooseDelvType(idDelvType, obj) {
-                $("#iddelvType").val(idDelvType);
-                $("[name='delvlist']").removeClass("on");
-                $("#delvType" + idDelvType).addClass("on");
-            }
-        </script>
         <footer>
             <div class='i-footer'>
                 <div class='i-f-login'>

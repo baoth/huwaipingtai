@@ -185,6 +185,7 @@
     <Content Include="Views\Order\editAddress.cshtml" />
     <Content Include="Views\Order\invoice.cshtml" />
     <Content Include="Views\Order\pay.cshtml" />
+    <Content Include="Views\Order\goodlisting.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

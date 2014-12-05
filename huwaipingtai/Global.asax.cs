@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Autofac;
+using Autofac.Integration.Mvc;
+using System.Reflection;
 
 namespace huwaipingtai
 {
@@ -28,13 +31,36 @@ namespace huwaipingtai
             );
 
         }
-
+       
         protected void Application_Start()
         {
+            var builder = new ContainerBuilder();
+            Tools.ConfigBusinessTemplate.SetupResolveRules(builder);
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            IContainer container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+           // CreateData.CreateTable();
             AreaRegistration.RegisterAllAreas();
-
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+        }
+    }
+
+    public class CreateData
+    {
+        public static void CreateTable()
+        {
+            try
+            {
+                //var constring = System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString.ToString();
+                //var op = new QSmart.Core.DataBase.QSmartMySqlClient(constring);
+                //op.CreateTable<ConsumerAddress>();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
     }
 }

@@ -1,20 +1,29 @@
 ﻿@{
     Layout = null;
 }
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+       <link href="../../Content/mobile/order.css?r=1" rel="stylesheet" type="text/css" />
+        <link href="../../Content/mobile/base.css" rel="stylesheet" type="text/css" />
         <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
-        <link href="../../Content/mobile/order.css?r=1" rel="stylesheet" type="text/css" />
-        <link href="../../Content/mobile/base.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript"> window.jQuery = window.Zepto;</script>
+        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        <script src="../../Scripts/Order/addresss/address.js" type="text/javascript"></script>
         <script type="text/javascript">
+
+
+            var submitEditAddressForm = function () {
+                spinerShow();
+                $("#editAddressForm").submit();
+                spinerHide();
+            }
+
             $(document).ready(function () {
                 $('.i-a-bh').on('click', function () {
                     var tg = $('.i-bh-tab');
@@ -25,6 +34,26 @@
                         tg.addClass('on');
                     }
                 });
+                $("#editAddressForm").submit(validateSubmit);
+                $("#address_province").change(citychange);
+                $("#address_city").change(areachange);
+                $("#address_area").change(townchange);
+                $("#address_town").change(labelchange);
+                $("#address_name").blur(validateName);
+                $("#address_where").blur(validateWhere);
+                $("#address_mobile").blur(validateAddressMobile);
+
+                var type = $("#addresssType").val();
+                if (type == 0) {
+                    idprovince = 1;
+                    provinceData(idprovince);
+                } else if (type > 0 || type == -1) {
+                    getData(type, '', '', '', '', '', '1', '72', '2799', '0');
+                }
+
+                if ($("#parent1").text() != "" && $("#parent1").text() != null) {
+                    $("#backUrl").attr("href", "javascript:backListener('child1','parent1')");
+                }
             });
         </script>
     </head>
@@ -57,7 +86,7 @@
                 </div>
             </div>
         </header>
-      <form action="updateAddress.action?sid=39753ff7288e05a9e36ff9919d21a848" method="post" id="editAddressForm">
+      <form action="/order/SaveAddress?sid=39753ff7288e05a9e36ff9919d21a848" method="post" id="editAddressForm">
 					    <input type="hidden" name="address.id" id="addresssType" value="0">
 		<input type="hidden" name="sid" id="sid" value="39753ff7288e05a9e36ff9919d21a848">
 		<input type="hidden" name="address.zip" value="">

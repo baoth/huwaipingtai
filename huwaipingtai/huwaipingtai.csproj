@@ -216,6 +216,7 @@
     <Content Include="Views\Order\invoice.cshtml" />
     <Content Include="Views\Order\pay.cshtml" />
     <Content Include="Views\Order\goodlisting.cshtml" />
+    <Content Include="Views\Order\cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\DataModel.csproj">

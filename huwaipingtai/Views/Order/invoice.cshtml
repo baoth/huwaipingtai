@@ -15,7 +15,10 @@
         <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('.i-a-bh').on('click', function () {
+                $('.i-a-back').on($.clickAction, function () {
+                    window.location = window.sessionStorage.backurl;
+                });
+                $('.i-a-bh').on($.clickAction, function () {
                     var tg = $('.i-bh-tab');
                     if (tg.hasClass('on')) {
                         tg.removeClass('on');
@@ -24,7 +27,48 @@
                         tg.addClass('on');
                     }
                 });
+                $('.chooseContent').on($.clickAction, chooseContent);
+                $('.chooseTitle').on($.clickAction, chooseTitle);
+                initInvoice();
             });
+            function initInvoice() {
+                if (window.sessionStorage.invoiceTitle == undefined || window.sessionStorage.invoiceTitle == '') {
+                    window.sessionStorage.invoiceTitle = '1';
+                }
+                if (window.sessionStorage.invoiceContent == undefined || window.sessionStorage.invoiceContent == '') {
+                    window.sessionStorage.invoiceContent = '1';
+                }
+                if (window.sessionStorage.invoiceCompany == undefined) {
+                    window.sessionStorage.invoiceCompany = '';
+                }
+                $('#commonTitle' + window.sessionStorage.invoiceTitle).parent().trigger($.clickAction);
+                $('#commonContent' + window.sessionStorage.invoiceContent).parent().trigger($.clickAction);
+                $('#company').val(window.sessionStorage.invoiceCompany);
+            };
+            function chooseContent() {
+                var index = $(this).data('index');
+                $("#idcommonContent").val(index);
+                $("[name='ptlistContent']").removeClass("on");
+                $('#commonContent' + index).addClass("on");
+            };
+            function chooseTitle() {
+                var index = $(this).data('index');
+                $("#idcommonTitle").val(index);
+                $("[name='ptlistTitle']").removeClass("on");
+                $('#commonTitle' + index).addClass("on");
+                if (index == 2) {
+                    $('#company').addClass('on');
+                }
+                else {
+                    $('#company').removeClass('on');
+                }
+            };
+            function submitForm() {
+                window.sessionStorage.invoiceTitle = $('#idcommonTitle').val();
+                window.sessionStorage.invoiceContent = $('#idcommonContent').val();
+                window.sessionStorage.invoiceCompany = $('#company').val();
+                window.location = window.sessionStorage.backurl;
+            };
         </script>
         <style type="text/css">
             @@font-face
@@ -301,34 +345,31 @@
             <div class='new-ct' style='width:100%;height:100%;float:left;'>
                 <div class='title'>发票抬头</div>
                 <div class="info-pay-t">
-			        <div class="info-pay" onclick="javascript:chooseTitle('1');">
+			        <div class="info-pay chooseTitle" data-index='1'>
                         <a name="ptlistTitle" id="commonTitle1" class="btn-radio on"></a>
 					    <span>个人</span>
                     </div>
-				    <div class="info-pay b-b-n" onclick="javascript:chooseTitle('2');">
+				    <div class="info-pay chooseTitle b-b-n" data-index='2'>
                         <a name="ptlistTitle" id="commonTitle2" class="btn-radio"></a>
 					    <span>单位</span>
                         <input type="text" class="i-input" name="" value="" placeholder="请输入单位名称" id="company" autocomplete="off">
-                        @*<span id="invoiceCompany" style="line-height: 30px; -webkit-transform-origin: 0px 0px; opacity: 1; -webkit-transform: scale(1, 1);">
-                            <input type="text" class="i-input" name="" value="正信元科技（北京）有限公司" placeholder="请输入单位名称" id="validateCode" autocomplete="off">
-                        </span>*@
                     </div>
                 </div>
                 <div class='title'>发票内容</div>
                 <div class="info-pay-t">
-			        <div class="info-pay" onclick="javascript:chooseContent('1');">
+			        <div class="info-pay chooseContent" data-index='1'>
                         <a name="ptlistContent" id="commonContent1" class="btn-radio on"></a>
 					    <span>明细</span>
                     </div>
-				    <div class="info-pay" onclick="javascript:chooseContent('2');">
+				    <div class="info-pay chooseContent" data-index='2'>
                         <a name="ptlistContent" id="commonContent2" class="btn-radio"></a>
 					    <span>办公用品</span>
                     </div>
-                    <div class="info-pay" onclick="javascript:chooseContent('3');">
+                    <div class="info-pay chooseContent" data-index='3'>
                         <a name="ptlistContent" id="commonContent3" class="btn-radio"></a>
 					    <span>电脑配件</span>
                     </div>
-                    <div class="info-pay b-b-n" onclick="javascript:chooseContent('4');">
+                    <div class="info-pay chooseContent b-b-n" data-index='4'>
                         <a name="ptlistContent" id="commonContent4" class="btn-radio"></a>
 					    <span>耗材</span>
                     </div>
@@ -338,25 +379,6 @@
                 <input type="hidden" name="idcommonContent" id="idcommonContent" value="1">
             </div>
         </div>
-        <script>
-            function chooseContent(idcontent, obj) {
-                $("#idcommonContent").val(idcontent);
-                $("[name='ptlistContent']").removeClass("on");
-                $("#commonContent" + idcontent).addClass("on");
-            }
-            function chooseTitle(idtitle, obj) {
-                $("#idcommonTitle").val(idtitle);
-                $("[name='ptlistTitle']").removeClass("on");
-                $("#commonTitle" + idtitle).addClass("on");
-                if (idtitle == 2) {
-                    //正信元科技（北京）有限公司
-                    $('#company').addClass('on');
-                }
-                else {
-                    $('#company').removeClass('on');
-                }
-            }
-        </script>
         <footer>
             <div class='i-footer'>
                 <div class='i-f-login'>

@@ -74,7 +74,7 @@ namespace huwaipingtai
             /// </summary>
             public string SKU { get; set; }
         }
-        public class Consumer          //消费者
+        public class Customer          //客户
         {
             public int Id { get; set; }//Consumer
             public string ConsumerCode { get; set; }

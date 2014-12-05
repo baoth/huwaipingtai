@@ -1,0 +1,222 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+       <link href="../../Content/mobile/order.css?r=1" rel="stylesheet" type="text/css" />
+        <link href="../../Content/mobile/base.css" rel="stylesheet" type="text/css" />
+        <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+        <script type="text/javascript"> window.jQuery = window.Zepto;</script>
+        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        <script src="../../Scripts/Order/addresss/address.js" type="text/javascript"></script>
+        <script type="text/javascript">
+
+
+            var submitEditAddressForm = function () {
+                spinerShow();
+                $("#editAddressForm").submit();
+                spinerHide();
+            }
+
+            $(document).ready(function () {
+                $('.i-a-bh').on('click', function () {
+                    var tg = $('.i-bh-tab');
+                    if (tg.hasClass('on')) {
+                        tg.removeClass('on');
+                    }
+                    else {
+                        tg.addClass('on');
+                    }
+                });
+                $("#editAddressForm").submit(validateSubmit);
+                $("#address_province").change(citychange);
+                $("#address_city").change(areachange);
+                $("#address_area").change(townchange);
+                $("#address_town").change(labelchange);
+                $("#address_name").blur(validateName);
+                $("#address_where").blur(validateWhere);
+                $("#address_mobile").blur(validateAddressMobile);
+
+                var type = $("#addresssType").val();
+                if (type == 0) {
+                    idprovince = 1;
+                    provinceData(idprovince);
+                } else if (type > 0 || type == -1) {
+                    getData(type, '', '', '', '', '', '1', '72', '2799', '0');
+                }
+
+                if ($("#parent1").text() != "" && $("#parent1").text() != null) {
+                    $("#backUrl").attr("href", "javascript:backListener('child1','parent1')");
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <a name="top"></a>
+        <header>
+            <div class='i-bh-header'>
+                <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
+                <h2>收货地址</h2>
+                <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
+            </div>
+            <div class='i-bh-tab'>
+                <div class='i-tbl-type'>
+                    <a href='#' class='i-tbl-cell'>
+                        <span></span>
+                        <p style='color:#6e6e6e;'>首页</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:26px;background-position:0 -25px;'></span>
+                        <p style='color:#6e6e6e;'>分类搜索</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:25px;background-position:-29px -25px'></span>
+                        <p style='color:#6e6e6e;'>购物车</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:22px;background-position:-85px -25px'></span>
+                        <p style='color:#6e6e6e;'>我的易购</p>
+                    </a>
+                </div>
+            </div>
+        </header>
+      <form action="/order/SaveAddress?sid=39753ff7288e05a9e36ff9919d21a848" method="post" id="editAddressForm">
+					    <input type="hidden" name="address.id" id="addresssType" value="0">
+		<input type="hidden" name="sid" id="sid" value="39753ff7288e05a9e36ff9919d21a848">
+		<input type="hidden" name="address.zip" value="">
+        <input type="hidden" name="vtuanOrder" value="false">
+<div class="new-ct shouhuo">
+    <div class="title">收货人地址</div>
+    <div class="info-list">
+        <div class="info pd">
+        	<div class="tbl-type">
+            	<span class="tbl-cell w80"><span>收货人姓名：</span></span>
+                <span class="tbl-cell"><span><input type="text" maxlength="20" class="new-input" name="address.name" id="address_name" value="" style="width:100%;"></span></span>
+            </div>
+        </div>
+        <div class="info pd" style="display:none" id="nameErrorMsg">
+        	<div class="tbl-type">
+            	<span class="tbl-cell w80"><span style="color:red">收货人姓名不能为空</span></span>
+            </div>
+        </div>
+        <div class="info pd">
+        	<div class="tbl-type">
+            	<span class="tbl-cell w100"><span>收货人手机号：</span></span>
+                <span class="tbl-cell"><span><input type="text" maxlength="11" class="new-input" name="address.mobile" id="address_mobile" value="" style="width:100%;"></span></span>
+            </div>
+        </div>
+        <div class="info pd" id="mobileErrorMsgDiv" style="display:none">
+        	<div class="tbl-type">
+            	<span class="tbl-cell w80"><span style="color:red" id="mobileErrorMsg"></span></span>
+            </div>
+        </div>
+		<div class="info pd">
+        	<div class="tbl-type">
+            	<span class="tbl-cell w50"><span>省份：</span></span>
+                <span class="tbl-cell">                	
+                    <span class="new-input-span">
+                        <span class="new-sel-box new-p-re">
+                            <label id="province_label">北京</label>
+                            <select name="address.idProvince" id="address_province" class="new-select" style="width:200px;"><option selected="" id="option_add_1" value="1">北京</option><option id="option_add_2" value="2">上海</option><option id="option_add_3" value="3">天津</option><option id="option_add_4" value="4">重庆</option><option id="option_add_5" value="5">河北</option><option id="option_add_6" value="6">山西</option><option id="option_add_7" value="7">河南</option><option id="option_add_8" value="8">辽宁</option><option id="option_add_9" value="9">吉林</option><option id="option_add_10" value="10">黑龙江</option><option id="option_add_11" value="11">内蒙古</option><option id="option_add_12" value="12">江苏</option><option id="option_add_13" value="13">山东</option><option id="option_add_14" value="14">安徽</option><option id="option_add_15" value="15">浙江</option><option id="option_add_16" value="16">福建</option><option id="option_add_17" value="17">湖北</option><option id="option_add_18" value="18">湖南</option><option id="option_add_19" value="19">广东</option><option id="option_add_20" value="20">广西</option><option id="option_add_21" value="21">江西</option><option id="option_add_22" value="22">四川</option><option id="option_add_23" value="23">海南</option><option id="option_add_24" value="24">贵州</option><option id="option_add_25" value="25">云南</option><option id="option_add_26" value="26">西藏</option><option id="option_add_27" value="27">陕西</option><option id="option_add_28" value="28">甘肃</option><option id="option_add_29" value="29">青海</option><option id="option_add_30" value="30">宁夏</option><option id="option_add_31" value="31">新疆</option><option id="option_add_32" value="32">台湾</option><option id="option_add_42" value="42">香港</option><option id="option_add_43" value="43">澳门</option><option id="option_add_84" value="84">钓鱼岛</option></select>
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+        
+        <div class="info pd">
+        	<div class="tbl-type">
+            	<span class="tbl-cell w50"><span>城市：</span></span>
+                <span class="tbl-cell">
+                	<span class="new-input-span">
+                        <span class="new-sel-box new-p-re">
+                            <label id="city_label">朝阳区</label>
+                            <select name="address.idCity" id="address_city" class="new-select" style="width:200px;"><option id="option_add_72" value="72">朝阳区</option><option id="option_add_2800" value="2800">海淀区</option><option id="option_add_2801" value="2801">西城区</option><option id="option_add_2802" value="2802">东城区</option><option id="option_add_2803" value="2803">崇文区</option><option id="option_add_2804" value="2804">宣武区</option><option id="option_add_2805" value="2805">丰台区</option><option id="option_add_2806" value="2806">石景山区</option><option id="option_add_2807" value="2807">门头沟</option><option id="option_add_2808" value="2808">房山区</option><option id="option_add_2809" value="2809">通州区</option><option id="option_add_2810" value="2810">大兴区</option><option id="option_add_2812" value="2812">顺义区</option><option id="option_add_2814" value="2814">怀柔区</option><option id="option_add_2816" value="2816">密云区</option><option id="option_add_2901" value="2901">昌平区</option><option id="option_add_2953" value="2953">平谷区</option><option id="option_add_3065" value="3065">延庆县</option></select>
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+        
+        <div class="info pd">
+        	<div class="tbl-type">
+            	<span class="tbl-cell w50"><span>区县：</span></span>
+                <span class="tbl-cell">
+                	<span class="new-input-span">
+                        <span class="new-sel-box new-p-re">
+                            <label id="area_label">三环以内</label>
+                            <select class="new-select" name="address.idArea" id="address_area" style="width:200px;"><option id="option_add_2799" value="2799">三环以内</option><option id="option_add_2819" value="2819">三环到四环之间</option><option id="option_add_2839" value="2839">四环到五环之间</option><option id="option_add_2840" value="2840">五环到六环之间</option><option id="option_add_4137" value="4137">管庄</option><option id="option_add_4139" value="4139">北苑</option><option id="option_add_4211" value="4211">定福庄</option></select>
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+		
+        <div class="info pd" id="townaddress" style="display: none;">
+        	<div class="tbl-type">
+            	<span class="tbl-cell w50"><span>乡镇：</span></span>
+                <span class="tbl-cell">
+                	<span class="new-input-span">
+                        <span class="new-sel-box new-p-re">
+                            <label id="town_label"></label>
+                            <select class="new-select" name="address.idTown" id="address_town" style="width:200px;"></select>
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+        
+        <div class="info border-b-none pd">
+        	<div class="tbl-type">
+            	<span class="tbl-cell w70"><span>地址信息：</span></span>
+                <span class="tbl-cell"><span><label id="address_label"></label><textarea rows="2" style="height:auto;width:100%;" type="text" class="new-input" name="address.where" id="address_where"></textarea></span></span>
+            </div>
+        </div>
+    </div>
+			<div class="info pd" style="display:none" id="addressErrorMsg">
+        	<div class="tbl-type">
+            	<span class="tbl-cell w80"><span style="color:red">地址信息不能为空</span></span>
+            </div>
+        </div>
+    <!--[D] 默认时加  new-abtn-default 把a标签换成span-->
+    <a href="javascript:submitEditAddressForm()" class="new-abtn-type mgn">下一步</a>	
+</div>
+<script type="text/javascript">
+
+    var submitEditAddressForm = function () {
+        spinerShow();
+        $("#editAddressForm").submit();
+        spinerHide();
+    }
+
+    </script>
+</form>
+        <footer>
+            <div class='i-footer'>
+                <div class='i-f-login'>
+                    <a rel="nofollow" href='#'>tyrone</a>
+                    <span class="i-bar2">|</span>
+                    <a rel="nofollow" href="#">退出</a>
+                    <span class="i-back-top">
+                        <a href="javascript:void(0);">反馈</a>
+                        <span class="i-bar2">|</span>
+                        <a href="#top">回到顶部</a>
+                    </span>
+                </div>
+                <div class="i-f-section">
+                    <a href="#">标准版</a>
+                    <a href="#" class="on">触屏版</a>
+                    <a href="#" id="toPcHome">电脑版</a>
+                </div>
+                <div class="i-f-section2">Copyright © 2014-2015 baoth.com 版权所有</div>
+            </div>
+        </footer>
+    </body>
+
+</html>

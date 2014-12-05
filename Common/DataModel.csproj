@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Order\Cart.cs" />
     <Compile Include="Order\Customer.cs" />
     <Compile Include="Order\CustomerAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

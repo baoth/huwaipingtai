@@ -107,11 +107,18 @@
     <Content Include="Content\images\bg_line.png" />
     <Content Include="Content\images\bg_line2.png" />
     <Content Include="Content\images\bg_line3.png" />
+    <Content Include="Content\images\icon-shp-cart-remove.png" />
     <Content Include="Content\images\icon2b.png" />
     <Content Include="Content\images\icon_detail.png" />
     <Content Include="Content\images\icon_order.png" />
+    <Content Include="Content\images\shp-cart-icon-sprites.png" />
     <Content Include="Content\mobile\base.css" />
+    <Content Include="Content\mobile\checkbox.css" />
+    <Content Include="Content\mobile\spinner.css" />
+    <Content Include="Content\mobile\shopping-cart.css" />
+    <Content Include="Content\mobile\title-bar.css" />
     <Content Include="Content\mobile\order.css" />
+    <Content Include="Content\mobile\btn.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -144,6 +151,27 @@
     <Content Include="ProductImage\001\00002.jpg" />
     <Content Include="ProductImage\001\00003.jpg" />
     <Content Include="ProductImage\001\00004.jpg" />
+    <Content Include="ProductImage\1119896\111989601.jpg" />
+    <Content Include="Product\1000000011\00001.jpg" />
+    <Content Include="Product\1000000011\00002.jpg" />
+    <Content Include="Product\1000000011\00003.jpg" />
+    <Content Include="Product\1000000011\00004.jpg" />
+    <Content Include="Product\1000000011\index.html" />
+    <Content Include="Product\1000000012\00001.jpg" />
+    <Content Include="Product\1000000012\00002.jpg" />
+    <Content Include="Product\1000000012\00003.jpg" />
+    <Content Include="Product\1000000012\00004.jpg" />
+    <Content Include="Product\1000000012\index.html" />
+    <Content Include="Product\1000000021\00001.jpg" />
+    <Content Include="Product\1000000021\00002.jpg" />
+    <Content Include="Product\1000000021\00003.jpg" />
+    <Content Include="Product\1000000021\00004.jpg" />
+    <Content Include="Product\1000000021\index.html" />
+    <Content Include="Product\1000000022\00001.jpg" />
+    <Content Include="Product\1000000022\00002.jpg" />
+    <Content Include="Product\1000000022\00003.jpg" />
+    <Content Include="Product\1000000022\00004.jpg" />
+    <Content Include="Product\1000000022\index.html" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -157,7 +185,6 @@
     <Content Include="Scripts\numeralInput.js" />
     <Content Include="Scripts\Order\addresss\address.js" />
     <Content Include="Scripts\qsm-mui\fx.js" />
-    <Content Include="Scripts\qsm-mui\iscroll.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-combox-1.0.0.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-combox-2.0.0.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-detailpanel-1.0.0.js" />
@@ -217,7 +244,9 @@
     <Content Include="Views\Order\invoice.cshtml" />
     <Content Include="Views\Order\pay.cshtml" />
     <Content Include="Views\Order\goodlisting.cshtml" />
+    <Content Include="Views\OutputOrder\Detail.cshtml" />
     <Content Include="Views\Order\cart.cshtml" />
+    <Content Include="Views\Order\Copy of cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\DataModel.csproj">

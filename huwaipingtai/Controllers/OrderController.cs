@@ -40,6 +40,10 @@ namespace huwaipingtai.Controllers
         {
             return View("courier");
         }
+        public ActionResult cart()
+        {
+            return View("cart");
+        }
         #region 维护客户的发货人地址选择
         //选择发货人地址
         public ActionResult Address()

@@ -27,5 +27,6 @@ namespace DataModel.Order
           public string Shipper { get; set; }
           [StringMaxLength(20, VarCharType.nvarchar)]
           public string ShipperPhone { get; set; }
+          public bool Default { get; set; }
   }
 }

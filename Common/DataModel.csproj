@@ -52,6 +52,9 @@
     <Compile Include="Order\Cart.cs" />
     <Compile Include="Order\Customer.cs" />
     <Compile Include="Order\CustomerAddress.cs" />
+    <Compile Include="Goods\GoodsShelves.cs" />
+    <Compile Include="Order\Order.cs" />
+    <Compile Include="Order\OrderDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

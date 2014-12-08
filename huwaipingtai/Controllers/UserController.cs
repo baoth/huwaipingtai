@@ -20,8 +20,15 @@ namespace huwaipingtai.Controllers
         //选择发货人地址
         public ActionResult Address()
         {
-            List<CustomerAddress> listAddress = iopcustomeraddress.GetAll();
-            ViewData["listAddress"] = listAddress;
+            try
+            {
+                List<CustomerAddress> listAddress = iopcustomeraddress.GetAll();
+                ViewData["listAddress"] = listAddress;
+            }
+            catch (Exception ex)
+            {
+                
+            }
             return View("address");
         }
         //选中地址跳回到订单
@@ -38,13 +45,19 @@ namespace huwaipingtai.Controllers
         public ActionResult SaveAddress()
         {
             var entity = Request.CreateInstance<CustomerAddress>();
-            if (entity.Id == 0)
+            try
             {
-                iopcustomeraddress.Add(entity);
+                if (entity.Id == 0)
+                {
+                    iopcustomeraddress.Add(entity);
+                }
+                else 
+                {
+                    iopcustomeraddress.Update(entity);
+                }
             }
-            else 
+            catch (Exception ex)
             {
-                iopcustomeraddress.Update(entity);
             }
             return Redirect("Address"); 
         }
@@ -80,17 +93,6 @@ namespace huwaipingtai.Controllers
             return View("editAddress");
         }
         #endregion
-        /// <summary>
-        /// 地址信息
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetAddress()
-        {
-            var json = TestComFun.GetJson();
-            return Content(json);
-        }
-        //
-        // GET: /CustomerAddress/
 
         public ActionResult Logon()
         {

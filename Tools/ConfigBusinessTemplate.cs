@@ -14,6 +14,7 @@ namespace Tools
         public static void SetupResolveRules(ContainerBuilder builder)
         {
             builder.RegisterType<OPCustomerAddress>().As<IOPCustomerAddress>();
+            builder.RegisterType<BusinessOrder.Cart.OPCart>().As<IBusinessOrder.Cart.IOPCart>();
             //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
             //    .Where(t => t.Name.EndsWith("Repository"))
             //    .AsImplementedInterfaces();

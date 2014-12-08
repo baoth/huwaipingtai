@@ -291,7 +291,7 @@
                         <a name="ptlistTime" id="Time1" class="btn-radio on"></a>
 					    <a href="javascript:triggerDateTime()">
 							<span class="i-date">  
-                                <span id="i-sendTime" data-date='' data-tsect=''></span>
+                                <span id="i-sendTime" data-date='' data-tsect='' data-send=''></span>
 								<span class="i-btn-date"></span> 
 							</span>
 						</a>
@@ -463,7 +463,7 @@
                 $('#i-timer .new-ct .new-abtn-type').remove();
                 var myDate = new Date();
                 var section = '';
-                
+                var sendindex = 1;
                 for (var i = 1; i <= 7; i++) {
                     var cdate = myDate.DateAdd('d', i);
                     var cdatestr = cdate.Format('YYYY-M-D');
@@ -472,14 +472,17 @@
                     section += "<span class='tbl-cell info' style='width:25%' data-date='" + cdatestr +
                                "' data-week='" + cdate.Format('周W') + "'>" + cdate.Format('M-D 周W') + "</span>";
                     section += "<span class='tbl-cell' style='width:25%'>" +
-                               "<a id='t" + cdatestr + "1' href='javascript:void(0)' name='hours' class='i-send-time' data-time='timesect1'><span class='icon'></span></a>" +
+                               "<a id='t" + cdatestr + "1' href='javascript:void(0)' name='hours' class='i-send-time' data-time='timesect1' data-send='" + sendindex + "'><span class='icon'></span></a>" +
                                "</span>";
+                    sendindex++;
                     section += "<span class='tbl-cell' style='width:25%'>" +
-                               "<a id='t" + cdatestr + "2' href='javascript:void(0)' name='hours' class='i-send-time' data-time='timesect2'><span class='icon'></span></a>" +
+                               "<a id='t" + cdatestr + "2' href='javascript:void(0)' name='hours' class='i-send-time' data-time='timesect2' data-send='" + sendindex + "'><span class='icon'></span></a>" +
                                "</span>";
+                    sendindex++;
                     section += "<span class='tbl-cell' style='width:25%'>" +
-                               "<a id='t" + cdatestr + "3' href='javascript:void(0)' name='hours' class='i-send-time' data-time='timesect3'><span class='icon'></span></a>" +
+                               "<a id='t" + cdatestr + "3' href='javascript:void(0)' name='hours' class='i-send-time' data-time='timesect3' data-send='" + sendindex + "'><span class='icon'></span></a>" +
                                "</span>";
+                    sendindex++;
                     section += "</span></div>";
                 }
                 ct.append(section);
@@ -492,6 +495,7 @@
                 window.sessionStorage.courierTimeSect = $('#i-sendTime').data('tsect');
                 window.sessionStorage.courierTimeType = $('#idTime').val();
                 window.sessionStorage.courierPoneType = $('#idPhone').val();
+                window.sessionStorage.courierSend = $('#i-sendTime').data('send');
                 window.location = window.sessionStorage.backurl;
             };
             function selectTime() {
@@ -505,7 +509,7 @@
                 var date = infoobj.data('date');
                 var week = infoobj.data('week');
                 $('#i-sendTime').html(date + ' (' + week + ') ' + time);
-                $('#i-sendTime').data('date', date).data('tsect',time);
+                $('#i-sendTime').data('date', date).data('tsect', time).data('send', $(this).data('send'));
             };
             function triggerDateTime() {
                 var obj = $('#i-timer');

@@ -20,6 +20,8 @@ namespace huwaipingtai.Controllers
         //选择发货人地址
         public ActionResult Address()
         {
+            List<CustomerAddress> listAddress = iopcustomeraddress.GetAll();
+            ViewData["listAddress"] = listAddress;
             return View("address");
         }
         //选中地址跳回到订单
@@ -35,24 +37,31 @@ namespace huwaipingtai.Controllers
         }
         public ActionResult SaveAddress()
         {
-            var caddress = new CustomerAddress();
-            iopcustomeraddress.Add(caddress);
-            return View("");
+            var entity = Request.CreateInstance<CustomerAddress>();
+            if (entity.Id == 0)
+            {
+                iopcustomeraddress.Add(entity);
+            }
+            else 
+            {
+                iopcustomeraddress.Update(entity);
+            }
+            return Redirect("Address"); 
         }
 
         //编辑地址
         public ActionResult EditAddress()
         {
             /*1、得到地址Id*/
-            var entity= Request.CreateInstance<CustomerAddress>();
-            if (string.IsNullOrEmpty(entity.Id+""))
-            {//新增默认的用户id附上就行了 
-                iopcustomeraddress.Add(entity);
-            }
-            else
-            {
-                /*2如果有addressId 是编辑 给界面赋值*/
-            }
+          
+            //if (string.IsNullOrEmpty(entity.Id+""))
+            //{//新增默认的用户id附上就行了 
+            //    iopcustomeraddress.Add(entity);
+            //}
+            //else
+            //{
+            //    /*2如果有addressId 是编辑 给界面赋值*/
+            //}
             /*打开发货人修改界面*/
             return View("editAddress");
         }

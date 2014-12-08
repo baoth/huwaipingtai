@@ -19,9 +19,9 @@
 
 
             var submitEditAddressForm = function () {
-                spinerShow();
+//                spinerShow();
                 $("#editAddressForm").submit();
-                spinerHide();
+//                spinerHide();
             }
 
             $(document).ready(function () {
@@ -86,10 +86,8 @@
                 </div>
             </div>
         </header>
-      <form action="/order/SaveAddress" method="post" id="editAddressForm">
-					    <input type="hidden" name="address.id" id="addresssType" value="0">
-		<input type="hidden" name="sid" id="sid" value="39753ff7288e05a9e36ff9919d21a848">
-<div class="new-ct shouhuo">
+        <form action="/User/SaveAddress" method="post" id="editAddressForm">
+            <div class="new-ct shouhuo">
     <div class="title">收货人地址</div>
     <div class="info-list">
         <div class="info pd">
@@ -206,7 +204,7 @@
     <!--[D] 默认时加  new-abtn-default 把a标签换成span-->
     <a href="javascript:submitEditAddressForm()" class="new-abtn-type mgn">下一步</a>	
 </div>
-</form>
+        </form>
         <footer>
             <div class='i-footer'>
                 <div class='i-f-login'>

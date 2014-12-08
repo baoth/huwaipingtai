@@ -22,6 +22,15 @@ namespace huwaipingtai.Controllers
         //选择发货人地址
         public ActionResult Address()
         {
+            try
+            {
+                List<CustomerAddress> listAddress = iopcustomeraddress.GetAll();
+                ViewData["listAddress"] = listAddress;
+            }
+            catch (Exception ex)
+            {
+                
+            }
             return View("address");
         }
         //选中地址跳回到订单
@@ -37,39 +46,64 @@ namespace huwaipingtai.Controllers
         }
         public ActionResult SaveAddress()
         {
-            var caddress = new CustomerAddress();
-            iopcustomeraddress.Add(caddress);
-            return View("");
+            var entity = Request.CreateInstance<CustomerAddress>();
+            try
+            {
+                if (entity.Id == 0)
+                {
+                    iopcustomeraddress.Add(entity);
+                }
+                else 
+                {
+                    iopcustomeraddress.Update(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return Redirect("Address"); 
         }
-
         //编辑地址
         public ActionResult EditAddress()
         {
             /*1、得到地址Id*/
-            var entity= Request.CreateInstance<CustomerAddress>();
-            if (string.IsNullOrEmpty(entity.Id+""))
-            {//新增默认的用户id附上就行了 
-                iopcustomeraddress.Add(entity);
-            }
-            else
+            var id = Request["Id"];
+            if (!string.IsNullOrEmpty(id)&&id!="-1")
             {
-                /*2如果有addressId 是编辑 给界面赋值*/
+                var iid = int.Parse(id);
+                var customer = iopcustomeraddress.Select(iid);
+                ViewData["Province"] = customer.Province;
+                ViewData["City"] = customer.City;
+                ViewData["County"] = customer.County;
+                ViewData["CreateDate"] = customer.CreateDate;
+                ViewData["CustomerId"] = customer.CustomerId;
+                ViewData["Default"] = customer.Default;
+                ViewData["DetailAddress"] = customer.DetailAddress;
+                ViewData["Shipper"] = customer.Shipper;
+                ViewData["ShipperPhone"] = customer.ShipperPhone;
             }
+            //if (string.IsNullOrEmpty(entity.Id+""))
+            //{//新增默认的用户id附上就行了 
+            //    iopcustomeraddress.Add(entity);
+            //}
+            //else
+            //{
+            //    /*2如果有addressId 是编辑 给界面赋值*/
+            //}
             /*打开发货人修改界面*/
             return View("editAddress");
         }
-        #endregion
-        /// <summary>
-        /// 地址信息
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetAddress()
+
+        public ActionResult DelAddress() 
         {
-            var json = TestComFun.GetJson();
-            return Content(json);
+            var id = Request["Id"];
+            if (!string.IsNullOrEmpty(id) && id != "-1")
+            {
+                iopcustomeraddress.Delete(int.Parse(id));
+            }
+            return Redirect("Address"); 
         }
-        //
-        // GET: /CustomerAddress/
+        #endregion
 
         public ActionResult Logon()
         {

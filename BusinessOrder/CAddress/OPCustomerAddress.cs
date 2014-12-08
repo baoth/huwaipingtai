@@ -12,12 +12,13 @@ namespace BusinessOrder.CAddress
 
         public bool Add(CustomerAddress cusomerAddress)
         {
+            cusomerAddress.CreateDate = DateTime.Now;
             var dbSession = Common.DbFactory.CreateDbSession();
             dbSession.Context.InsertEntity(cusomerAddress.CreateQSmartObject());
             dbSession.Context.SaveChange();
             //实现业务逻辑和展现层 业务分离
             return true;
-        }
+        }//18000 10000 28000+4000 18000+14000 36000
 
         public bool Update(CustomerAddress cusomerAddress)
         {
@@ -40,6 +41,14 @@ namespace BusinessOrder.CAddress
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             return dbSession.Retrieve<CustomerAddress>("Id", Id);
+        }
+
+
+        public List<CustomerAddress> GetAll()
+        {
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var dt = dbSession.Context.QueryTable("select * from customeraddress order by CreateDate"); ;
+            return dbSession.Context.ConversionEntity<CustomerAddress>(dt);
         }
     }
 }

@@ -19,9 +19,9 @@
 
 
             var submitEditAddressForm = function () {
-                spinerShow();
+//                spinerShow();
                 $("#editAddressForm").submit();
-                spinerHide();
+//                spinerHide();
             }
 
             $(document).ready(function () {
@@ -86,16 +86,14 @@
                 </div>
             </div>
         </header>
-      <form action="/order/SaveAddress" method="post" id="editAddressForm">
-					    <input type="hidden" name="address.id" id="addresssType" value="0">
-		<input type="hidden" name="sid" id="sid" value="39753ff7288e05a9e36ff9919d21a848">
-<div class="new-ct shouhuo">
+        <form action="/User/SaveAddress" method="post" id="editAddressForm">
+            <div class="new-ct shouhuo">
     <div class="title">收货人地址</div>
     <div class="info-list">
         <div class="info pd">
         	<div class="tbl-type">
             	<span class="tbl-cell w80"><span>收货人姓名：</span></span>
-                <span class="tbl-cell"><span><input type="text" maxlength="20" class="new-input" name="Shipper" id="address_name" value="" style="width:100%;"></span></span>
+                <span class="tbl-cell"><span><input type="text" maxlength="20" class="new-input" name="Shipper" id="address_name" value="@ViewData["Shipper"]" style="width:100%;"></span></span>
             </div>
         </div>
         <div class="info pd" style="display:none" id="nameErrorMsg">
@@ -106,7 +104,7 @@
         <div class="info pd">
         	<div class="tbl-type">
             	<span class="tbl-cell w100"><span>收货人手机号：</span></span>
-                <span class="tbl-cell"><span><input type="text" maxlength="11" class="new-input" name="ShipperPhone" id="address_mobile" value="" style="width:100%;"></span></span>
+                <span class="tbl-cell"><span><input type="text" maxlength="11" class="new-input" name="ShipperPhone" id="address_mobile" value="@ViewData["ShipperPhone"]" style="width:100%;"></span></span>
             </div>
         </div>
         <div class="info pd" id="mobileErrorMsgDiv" style="display:none">
@@ -120,7 +118,7 @@
                 <span class="tbl-cell">                	
                     <span class="new-input-span">
                         <span class="new-sel-box new-p-re">
-                            <label id="province_label">北京</label>
+                            <label id="province_label">@ViewData["Province"]</label>
                             <select name="Province" id="address_province" class="new-select" style="width:200px;">
                             <option selected="" id="option_add_1" value="1">北京</option>
                             <option id="option_add_2" value="2">上海</option>
@@ -169,7 +167,7 @@
                 <span class="tbl-cell">
                 	<span class="new-input-span">
                         <span class="new-sel-box new-p-re">
-                            <label id="city_label">朝阳区</label>
+                            <label id="city_label">@ViewData["City"]</label>
                             <select name="City" id="address_city" class="new-select" style="width:200px;"><option id="option_add_72" value="72">朝阳区</option><option id="option_add_2800" value="2800">海淀区</option><option id="option_add_2801" value="2801">西城区</option><option id="option_add_2802" value="2802">东城区</option><option id="option_add_2803" value="2803">崇文区</option><option id="option_add_2804" value="2804">宣武区</option><option id="option_add_2805" value="2805">丰台区</option><option id="option_add_2806" value="2806">石景山区</option><option id="option_add_2807" value="2807">门头沟</option><option id="option_add_2808" value="2808">房山区</option><option id="option_add_2809" value="2809">通州区</option><option id="option_add_2810" value="2810">大兴区</option><option id="option_add_2812" value="2812">顺义区</option><option id="option_add_2814" value="2814">怀柔区</option><option id="option_add_2816" value="2816">密云区</option><option id="option_add_2901" value="2901">昌平区</option><option id="option_add_2953" value="2953">平谷区</option><option id="option_add_3065" value="3065">延庆县</option></select>
                         </span>
                     </span>
@@ -183,7 +181,7 @@
                 <span class="tbl-cell">
                 	<span class="new-input-span">
                         <span class="new-sel-box new-p-re">
-                            <label id="area_label">三环以内</label>
+                            <label id="area_label">@ViewData["County"]</label>
                             <select class="new-select" name="County" id="address_area" style="width:200px;"><option id="option_add_2799" value="2799">三环以内</option><option id="option_add_2819" value="2819">三环到四环之间</option><option id="option_add_2839" value="2839">四环到五环之间</option><option id="option_add_2840" value="2840">五环到六环之间</option><option id="option_add_4137" value="4137">管庄</option><option id="option_add_4139" value="4139">北苑</option><option id="option_add_4211" value="4211">定福庄</option></select>
                         </span>
                     </span>
@@ -194,7 +192,7 @@
         	<div class="tbl-type">
             	<span class="tbl-cell w70"><span>地址信息：</span></span>
                 <span class="tbl-cell"><span><label id="address_label"></label>
-                <textarea rows="2" style="height:auto;width:100%;" type="text" class="new-input" name="DetailAddress" id="address_where"></textarea></span></span>
+                <textarea rows="2" style="height:auto;width:100%;" value="@ViewData["DetailAddress"]" type="text" class="new-input" name="DetailAddress" id="address_where">@ViewData["DetailAddress"]</textarea></span></span>
             </div>
         </div>
     </div>
@@ -206,7 +204,7 @@
     <!--[D] 默认时加  new-abtn-default 把a标签换成span-->
     <a href="javascript:submitEditAddressForm()" class="new-abtn-type mgn">下一步</a>	
 </div>
-</form>
+        </form>
         <footer>
             <div class='i-footer'>
                 <div class='i-f-login'>

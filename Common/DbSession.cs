@@ -37,7 +37,7 @@ namespace Common
 
         public List<QObject> CreateDeleteCommand<T>(int Id) where T : QSmartEntity
         {
-            if (Id==0)
+            if (Id!=0)
             {
                 QSmartQuery QueryA = new QSmartQuery();
 
@@ -45,7 +45,7 @@ namespace Common
 
                 QueryA.FilterConditions.Add(new QSmartQueryFilterCondition
                 {
-                    Column = new QSmartQueryColumn { columnName = "Id", dataType = typeof(Guid) },
+                    Column = new QSmartQueryColumn { columnName = "Id", dataType = typeof(int) },
                     Operator = QSmartOperatorEnum.equal,
                     Values = new List<object> {Id}
                 });

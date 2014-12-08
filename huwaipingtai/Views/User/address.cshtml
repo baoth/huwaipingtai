@@ -33,6 +33,15 @@
                         tg.addClass('on');
                     }
                 });
+                $('.btn-chk').on('click',function(){debugger
+                   var target= $(this);
+                   if(target.hasClass('on')){
+                       target.removeClass('on');
+                   }else{
+                       target.addClass('on');
+                   }
+                })
+               
             });
         </script>
     </head>

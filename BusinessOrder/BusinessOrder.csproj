@@ -51,6 +51,10 @@
     <Content Include="DLL\QSmart.Core.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{4BFD3139-2ADA-4430-BF04-D058D8F26C44}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataModel\DataModel.csproj">
       <Project>{E745AD0E-4BDA-4045-8D9E-C9357963E89F}</Project>
       <Name>DataModel</Name>

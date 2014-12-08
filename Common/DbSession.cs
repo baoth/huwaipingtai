@@ -35,6 +35,24 @@ namespace Common
             return results.Count == 0 ? null : results[0];
         }
 
+        public List<QObject> CreateDeleteCommand<T>(int Id) where T : QSmartEntity
+        {
+            if (Id==0)
+            {
+                QSmartQuery QueryA = new QSmartQuery();
+
+                QueryA.Tables.Add(new QSmartQueryTable { tableName = typeof(T).Name });
+
+                QueryA.FilterConditions.Add(new QSmartQueryFilterCondition
+                {
+                    Column = new QSmartQueryColumn { columnName = "Id", dataType = typeof(Guid) },
+                    Operator = QSmartOperatorEnum.equal,
+                    Values = new List<object> {Id}
+                });
+                return new List<QObject> { QueryA };
+            }
+            return null;
+        }
         /// <summary>
         /// 判断是否存在实例
         /// </summary>

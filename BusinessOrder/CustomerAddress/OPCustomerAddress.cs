@@ -10,7 +10,7 @@ namespace BusinessOrder.CustomerAddress
    public  class OPCustomerAddress:IOPCustomerAddress
     {
 
-        public bool Add(ConsumerAddress cusomerAddress)
+        public bool Add(CostomerAddress cusomerAddress)
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             dbSession.Context.InsertEntity(cusomerAddress.CreateQSmartObject());
@@ -19,7 +19,7 @@ namespace BusinessOrder.CustomerAddress
             return true;
         }
 
-        public bool Update(ConsumerAddress cusomerAddress)
+        public bool Update(CostomerAddress cusomerAddress)
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             dbSession.Context.ModifyEntity(cusomerAddress.CreateQSmartObject());
@@ -30,16 +30,16 @@ namespace BusinessOrder.CustomerAddress
         public bool Delete(int Id)
         {
             var dbSession = Common.DbFactory.CreateDbSession();
-            dbSession.Context.DeleteEntity(dbSession.CreateDeleteCommand<ConsumerAddress>(Id));
+            dbSession.Context.DeleteEntity(dbSession.CreateDeleteCommand<CostomerAddress>(Id));
             dbSession.Context.SaveChange();
             return true;
         }
 
 
-        public DataModel.Order.ConsumerAddress Select(int Id)
+        public DataModel.Order.CostomerAddress Select(int Id)
         {
             var dbSession = Common.DbFactory.CreateDbSession();
-            return dbSession.Retrieve<ConsumerAddress>("Id", Id);
+            return dbSession.Retrieve<CostomerAddress>("Id", Id);
         }
     }
 }

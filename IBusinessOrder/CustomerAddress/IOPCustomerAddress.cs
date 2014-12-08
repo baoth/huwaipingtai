@@ -10,5 +10,6 @@ namespace BusinessOrder.CustomerAddress
         bool Add(ConsumerAddress cusomerAddress);
         bool Update(ConsumerAddress cusomerAddress);
         bool Delete(int Id);
+        ConsumerAddress Select(int Id);
     }
 }

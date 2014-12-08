@@ -11,7 +11,7 @@ namespace BusinessOrder.CustomerAddress
         public bool Add(DataModel.Order.ConsumerAddress cusomerAddress)
         {
             //实现业务逻辑和展现层 业务分离
-            throw new NotImplementedException();
+            return false;
         }
 
         public bool Update(DataModel.Order.ConsumerAddress cusomerAddress)
@@ -20,6 +20,12 @@ namespace BusinessOrder.CustomerAddress
         }
 
         public bool Delete(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public DataModel.Order.ConsumerAddress Select(int Id)
         {
             throw new NotImplementedException();
         }

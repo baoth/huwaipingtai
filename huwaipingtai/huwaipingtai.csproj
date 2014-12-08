@@ -249,7 +249,7 @@
     <Content Include="Views\Order\Copy of cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\DataModel.csproj">
+    <ProjectReference Include="..\DataModel\DataModel.csproj">
       <Project>{E745AD0E-4BDA-4045-8D9E-C9357963E89F}</Project>
       <Name>DataModel</Name>
     </ProjectReference>

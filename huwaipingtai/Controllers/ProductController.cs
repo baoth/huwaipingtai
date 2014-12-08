@@ -36,6 +36,11 @@ namespace huwaipingtai.Controllers
         {
             QSmartDatabaseClient db=DataBaseProvider.Create("db");
             db.CreateTable<Customer>(QSmartTableType.InnoDB);
+            db.CreateTable<GoodsShelves>(QSmartTableType.InnoDB);
+            db.CreateTable<Cart>(QSmartTableType.InnoDB);
+            db.CreateTable<CustomerAddress>(QSmartTableType.InnoDB);
+            db.CreateTable<Order>(QSmartTableType.InnoDB);
+            
             return Content("ok");
         }
     }

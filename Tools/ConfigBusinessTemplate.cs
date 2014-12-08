@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Autofac;
-using BusinessOrder.CustomerAddress;
+using BusinessOrder.CAddress;
+using BusinessOrder;
 
 namespace Tools
 {

@@ -40,6 +40,10 @@ namespace huwaipingtai.Controllers
         {
             return View("courier");
         }
+        public ActionResult cart()
+        {
+            return View("cart");
+        }
         #region 维护客户的发货人地址选择
         //选择发货人地址
         public ActionResult Address()
@@ -69,6 +73,7 @@ namespace huwaipingtai.Controllers
         {
             /*1、得到地址Id*/
             var addressId = Request["addressId"];
+            var orderId = Request["orderId"];
             var userId = Request["userId"];
             if (string.IsNullOrEmpty(addressId))
             {//新增默认的用户id附上就行了 

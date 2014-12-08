@@ -63,7 +63,7 @@ namespace huwaipingtai.Controllers
         }
         public ActionResult SaveAddress() 
         {
-            var caddress = new CostomerAddress();
+            var caddress = new CustomerAddress();
             iopcustomeraddress.Add(caddress);
             return View("");
         }

@@ -91,6 +91,16 @@ namespace huwaipingtai.Controllers
             /*打开发货人修改界面*/
             return View("editAddress");
         }
+
+        public ActionResult DelAddress() 
+        {
+            var id = Request["Id"];
+            if (!string.IsNullOrEmpty(id) && id != "-1")
+            {
+                iopcustomeraddress.Delete(int.Parse(id));
+            }
+            return Redirect("Address"); 
+        }
         #endregion
 
         public ActionResult Logon()

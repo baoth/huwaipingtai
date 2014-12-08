@@ -263,6 +263,10 @@
       <Project>{D25FE864-C030-43F7-8CF4-DBEE7EB55B3A}</Project>
       <Name>IBusinessOrder</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Toolkit\Toolkit.csproj">
+      <Project>{E5E25637-B3F7-49F3-A95A-A20F511270C3}</Project>
+      <Name>Toolkit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tools\BusinessTemplate.csproj">
       <Project>{C99F7B75-F05C-49D9-A62F-9F8C210B560C}</Project>
       <Name>BusinessTemplate</Name>

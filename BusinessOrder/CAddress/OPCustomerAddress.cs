@@ -12,6 +12,7 @@ namespace BusinessOrder.CAddress
 
         public bool Add(CustomerAddress cusomerAddress)
         {
+            cusomerAddress.CreateDate = DateTime.Now;
             var dbSession = Common.DbFactory.CreateDbSession();
             dbSession.Context.InsertEntity(cusomerAddress.CreateQSmartObject());
             dbSession.Context.SaveChange();
@@ -46,7 +47,8 @@ namespace BusinessOrder.CAddress
         public List<CustomerAddress> GetAll()
         {
             var dbSession = Common.DbFactory.CreateDbSession();
-           return dbSession.Context.QueryEntity<CustomerAddress>(new QSmart.Core.DataBase.QSmartQuery());
+            var dt = dbSession.Context.QueryTable("select * from customeraddress order by CreateDate"); ;
+            return dbSession.Context.ConversionEntity<CustomerAddress>(dt);
         }
     }
 }

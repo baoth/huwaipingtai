@@ -53,7 +53,21 @@ namespace huwaipingtai.Controllers
         public ActionResult EditAddress()
         {
             /*1、得到地址Id*/
-          
+            var id = Request["Id"];
+            if (!string.IsNullOrEmpty(id)&&id!="-1")
+            {
+                var iid = int.Parse(id);
+                var customer = iopcustomeraddress.Select(iid);
+                ViewData["Province"] = customer.Province;
+                ViewData["City"] = customer.City;
+                ViewData["County"] = customer.County;
+                ViewData["CreateDate"] = customer.CreateDate;
+                ViewData["CustomerId"] = customer.CustomerId;
+                ViewData["Default"] = customer.Default;
+                ViewData["DetailAddress"] = customer.DetailAddress;
+                ViewData["Shipper"] = customer.Shipper;
+                ViewData["ShipperPhone"] = customer.ShipperPhone;
+            }
             //if (string.IsNullOrEmpty(entity.Id+""))
             //{//新增默认的用户id附上就行了 
             //    iopcustomeraddress.Add(entity);

@@ -113,6 +113,8 @@
     <Content Include="Content\images\bg_line3.png" />
     <Content Include="Content\images\icon-shp-cart-remove.png" />
     <Content Include="Content\images\icon2b.png" />
+    <Content Include="Content\images\icon_chk.png" />
+    <Content Include="Content\images\icon_chk2.png" />
     <Content Include="Content\images\icon_detail.png" />
     <Content Include="Content\images\icon_order.png" />
     <Content Include="Content\images\shp-cart-icon-sprites.png" />

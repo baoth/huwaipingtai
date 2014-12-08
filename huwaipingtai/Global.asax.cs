@@ -39,7 +39,7 @@ namespace huwaipingtai
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-           // CreateData.CreateTable();
+            //CreateData.CreateTable();
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
@@ -55,6 +55,19 @@ namespace huwaipingtai
                 //var constring = System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString.ToString();
                 //var op = new QSmart.Core.DataBase.QSmartMySqlClient(constring);
                 //op.CreateTable<ConsumerAddress>();
+
+                //var constring = System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString.ToString();
+                //var op = new QSmart.Core.DataBase.QSmartMySqlClient(constring);
+                //op.CreateTable<DataModel.Order.Cart>();
+
+                //var constring = System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString.ToString();
+                //var op = new QSmart.Core.DataBase.QSmartMySqlClient(constring);
+                //op.CreateTable<DataModel.Goods.GoodsShelves>(); 
+
+                //CartView
+               
+
+                
             }
             catch (Exception ex)
             {

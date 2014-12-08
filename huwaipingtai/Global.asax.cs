@@ -35,7 +35,7 @@ namespace huwaipingtai
         protected void Application_Start()
         {
             var builder = new ContainerBuilder();
-            Tools.ConfigBusinessTemplate.SetupResolveRules(builder);
+            BusinessTemplate.ConfigBusinessTemplate.SetupResolveRules(builder);
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

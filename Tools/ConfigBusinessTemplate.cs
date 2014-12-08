@@ -6,7 +6,7 @@ using Autofac;
 using BusinessOrder.CAddress;
 using BusinessOrder;
 
-namespace Tools
+namespace BusinessTemplate
 {
     public class  ConfigBusinessTemplate
     {

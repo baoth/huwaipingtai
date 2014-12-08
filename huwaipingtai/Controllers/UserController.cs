@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessOrder;
 using DataModel.Order;
+using Toolkit.Ext;
 
 namespace huwaipingtai.Controllers
 {
@@ -43,12 +44,10 @@ namespace huwaipingtai.Controllers
         public ActionResult EditAddress()
         {
             /*1、得到地址Id*/
-            var addressId = Request["addressId"];
-            var orderId = Request["orderId"];
-            var userId = Request["userId"];
-            if (string.IsNullOrEmpty(addressId))
+            var entity= Request.CreateInstance<CustomerAddress>();
+            if (string.IsNullOrEmpty(entity.Id+""))
             {//新增默认的用户id附上就行了 
-
+                iopcustomeraddress.Add(entity);
             }
             else
             {

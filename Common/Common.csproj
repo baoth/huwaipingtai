@@ -47,12 +47,9 @@
   <ItemGroup>
     <Compile Include="DbFactory.cs" />
     <Compile Include="DbSession.cs" />
-    <Compile Include="Ext\HttpRequestBaseExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Fun\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DLL\QSmart.Core.dll" />
   </ItemGroup>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Web;
 using System.Reflection;
 
-namespace Common.Ext
+namespace Toolkit.Ext
 {
   public  static class HttpRequestBaseExt
     {

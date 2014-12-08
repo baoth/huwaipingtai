@@ -17,7 +17,7 @@ namespace BusinessOrder.CAddress
             dbSession.Context.SaveChange();
             //实现业务逻辑和展现层 业务分离
             return true;
-        }
+        }//18000 10000 28000+4000 18000+14000 36000
 
         public bool Update(CustomerAddress cusomerAddress)
         {
@@ -40,6 +40,13 @@ namespace BusinessOrder.CAddress
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             return dbSession.Retrieve<CustomerAddress>("Id", Id);
+        }
+
+
+        public List<CustomerAddress> GetAll()
+        {
+            var dbSession = Common.DbFactory.CreateDbSession();
+           return dbSession.Context.QueryEntity<CustomerAddress>(new QSmart.Core.DataBase.QSmartQuery());
         }
     }
 }

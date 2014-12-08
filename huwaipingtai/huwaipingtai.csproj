@@ -88,18 +88,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\CustomerAddressController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OutputOrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="整理类.cs" />
-    <Compile Include="销售子单.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bin\Autofac.Configuration.dll" />
@@ -115,6 +113,8 @@
     <Content Include="Content\images\bg_line3.png" />
     <Content Include="Content\images\icon-shp-cart-remove.png" />
     <Content Include="Content\images\icon2b.png" />
+    <Content Include="Content\images\icon_chk.png" />
+    <Content Include="Content\images\icon_chk2.png" />
     <Content Include="Content\images\icon_detail.png" />
     <Content Include="Content\images\icon_order.png" />
     <Content Include="Content\images\shp-cart-icon-sprites.png" />
@@ -191,7 +191,6 @@
     <Content Include="Scripts\numeralInput.js" />
     <Content Include="Scripts\Order\addresss\address.js" />
     <Content Include="Scripts\qsm-mui\fx.js" />
-    <Content Include="Scripts\qsm-mui\iscroll.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-combox-1.0.0.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-combox-2.0.0.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-detailpanel-1.0.0.js" />
@@ -243,17 +242,17 @@
     <None Include="Scripts\qsm-mui\iconfont_141111.ttf" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
-    <Content Include="Views\CustomerAddress\address.cshtml" />
+    <Content Include="Views\User\address.cshtml" />
     <Content Include="Views\Order\index.cshtml" />
     <Content Include="Views\Order\courier.cshtml" />
     <Content Include="Views\Order\delivery.cshtml" />
-    <Content Include="Views\CustomerAddress\editAddress.cshtml" />
+    <Content Include="Views\User\editAddress.cshtml" />
     <Content Include="Views\Order\invoice.cshtml" />
     <Content Include="Views\Order\pay.cshtml" />
     <Content Include="Views\Order\goodlisting.cshtml" />
     <Content Include="Views\OutputOrder\Detail.cshtml" />
     <Content Include="Views\Order\cart.cshtml" />
-    <Content Include="Views\Cart\cart.cshtml" />
+    <Content Include="Views\User\logon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">
@@ -263,6 +262,10 @@
     <ProjectReference Include="..\IBusinessOrder\IBusinessOrder.csproj">
       <Project>{D25FE864-C030-43F7-8CF4-DBEE7EB55B3A}</Project>
       <Name>IBusinessOrder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Toolkit\Toolkit.csproj">
+      <Project>{E5E25637-B3F7-49F3-A95A-A20F511270C3}</Project>
+      <Name>Toolkit</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tools\BusinessTemplate.csproj">
       <Project>{C99F7B75-F05C-49D9-A62F-9F8C210B560C}</Project>

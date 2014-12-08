@@ -25,8 +25,11 @@ namespace DataModel.Order
         public DateTime CreateDate { get; set; }
         /// <summary>
         /// 发货日期
+        /// 0:1-7天
+        /// 1:多1天9:00-15:00 2:多1天15:00-19:00 3:多1天19:00-22:00
+        /// 4:多2天..........一次类推
         /// </summary>
-        public string SendDate { get; set; }
+        public short SendDateIndex { get; set; }
         /// <summary>
         /// 是否电话确认
         /// </summary>
@@ -34,7 +37,7 @@ namespace DataModel.Order
         /// <summary>
         /// 收货人信息（地址 电话 姓名)
         /// </summary>
-        public string CustInfo { get; set; }
+        public int AddressId { get; set; }
         /// <summary>
         /// 发票抬头类型
         /// </summary>
@@ -56,6 +59,10 @@ namespace DataModel.Order
         /// 送货方式
         /// </summary>
         public short DeliveryType { get; set; }
+        /// <summary>
+        /// 是否是子订单
+        /// </summary>
+        public bool SubOrder { get; set; }
     }
 
 }

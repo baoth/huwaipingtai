@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QSmart.Core.DataBase;
+using QSmart.Core.Object;
+using DataModel.Order;
+using DataModel.Goods;
 
 namespace huwaipingtai.Controllers
 {
@@ -28,7 +32,12 @@ namespace huwaipingtai.Controllers
             return View("Test");
         }
 
-
+        public ContentResult CreateTable()
+        {
+            QSmartDatabaseClient db=DataBaseProvider.Create("db");
+            db.CreateTable<Customer>(QSmartTableType.InnoDB);
+            return Content("ok");
+        }
     }
 
 }

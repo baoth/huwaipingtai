@@ -7,9 +7,9 @@ namespace BusinessOrder.CustomerAddress
 {
     public  interface  IOPCustomerAddress
     {
-        bool Add(ConsumerAddress cusomerAddress);
-        bool Update(ConsumerAddress cusomerAddress);
+        bool Add(CostomerAddress cusomerAddress);
+        bool Update(CostomerAddress cusomerAddress);
         bool Delete(int Id);
-        ConsumerAddress Select(int Id);
+        CostomerAddress Select(int Id);
     }
 }

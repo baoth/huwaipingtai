@@ -9,7 +9,7 @@ namespace DataModel.Order
     /// <summary>
     /// 客户地址表 
     /// </summary>
-      public class CustomerAddress : QSmartEntity  
+      public class CostomerAddress : QSmartEntity  
       {
           [AutoIncrement]
           [PrimaryKey]

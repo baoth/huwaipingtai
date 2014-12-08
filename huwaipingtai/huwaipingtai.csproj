@@ -59,6 +59,9 @@
       <HintPath>Content\bin\QSmart.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 3\Assemblies\System.Web.Mvc.dll</HintPath>
@@ -85,7 +88,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CustomerAddressController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OutputOrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -236,11 +241,11 @@
     <None Include="Scripts\qsm-mui\iconfont_141111.ttf" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
-    <Content Include="Views\Order\address.cshtml" />
+    <Content Include="Views\CustomerAddress\address.cshtml" />
     <Content Include="Views\Order\index.cshtml" />
     <Content Include="Views\Order\courier.cshtml" />
     <Content Include="Views\Order\delivery.cshtml" />
-    <Content Include="Views\Order\editAddress.cshtml" />
+    <Content Include="Views\CustomerAddress\editAddress.cshtml" />
     <Content Include="Views\Order\invoice.cshtml" />
     <Content Include="Views\Order\pay.cshtml" />
     <Content Include="Views\Order\goodlisting.cshtml" />

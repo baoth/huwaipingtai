@@ -40,10 +40,15 @@
                     window.sessionStorage.courierTimeSect = '9:00-15:00';
                 }
                 var defaultTimeSect = window.sessionStorage.courierTimeSect;
+                
+                if (window.sessionStorage.courierSend == undefined || window.sessionStorage.courierSend == 'undefined' || window.sessionStorage.courierSend == '') {
+                    window.sessionStorage.courierSend = '1';
+                }
                 var TimeIndex = window.sessionStorage.courierTimeType || 1;
                 var PhoneIndex = window.sessionStorage.courierPoneType || 1;
                 $('#courier').data('date', defaultDate.Format('YYYY-M-D')).data('tsect', defaultTimeSect)
                              .data('phonetype', PhoneIndex).data('timetype', TimeIndex)
+                             .data('send',window.sessionStorage.courierSend)
                              .text(defaultDate.Format('YYYY-M-D (周W) ') + defaultTimeSect);
                 $('#courier').on($.clickAction, function () {
                     window.sessionStorage.backurl = document.URL;
@@ -106,6 +111,14 @@
                     window.sessionStorage.DeliveryText = $(this).text();
                     $(this).parent('a').trigger($.clickAction);
                 });
+                if (window.sessionStorage.DeliveryType == '1') {
+                    $('.address').hide();
+                    $('.courier').hide();
+                }
+                else {
+                    $('.address').show();
+                    $('.courier').show();
+                }
             };
             function initGoodListing() {
                 window.sessionStorage.GoodListing = ['111-111-11','22a-2222d-22'];
@@ -431,13 +444,7 @@
         <div class='i-bd' style='width:100%'>
             <form>
                 <div class='new-ct' style='width:100%;height:100%;float:left;'>
-                    <div class='title address'>收货人信息</div>
-                    <div class='info address'>
-                        <a id='address'>
-                            <span class='text'>李彬 <span class="phone-num" style="margin-left:5px;">18513603719</span></span>
-                            <span class='text2'>北京朝阳区三环到四环之间北京市朝阳区建外街道sohu现代城5号楼1907室</span>
-                        </a>
-                    </div>
+                    
                     <div class='title pay'>支付方式</div>
                     <div class='info pay'>
                         <a href='/order/pay'>
@@ -450,10 +457,17 @@
                             <span id='delivery' class='text' data-deltype=''></span>
                         </a>
                     </div>
+                    <div class='title address'>收货人信息</div>
+                    <div class='info address'>
+                        <a id='address'>
+                            <span class='text'>李彬 <span class="phone-num" style="margin-left:5px;">18513603719</span></span>
+                            <span class='text2'>北京朝阳区三环到四环之间北京市朝阳区建外街道sohu现代城5号楼1907室</span>
+                        </a>
+                    </div>
                     <div class='title courier'>配送方式</div>
                     <div class='info courier'>
                         <a href='/order/courier'>送货时间
-                            <span id='courier' class='text3' data-date='' data-tsect='' data-timetype='' data-phonetype=''></span>
+                            <span id='courier' class='text3' data-date='' data-tsect='' data-timetype='' data-phonetype='' data-send=''></span>
                         </a>
                     </div>
                     <div class='title invoice'>发票信息</div>

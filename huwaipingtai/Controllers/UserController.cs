@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DataModel.Order;
 using BusinessOrder;
+using DataModel.Order;
 
 namespace huwaipingtai.Controllers
 {
-    public class CustomerAddressController : Controller
+    public class UserController : Controller
     {
         #region 维护客户的发货人地址选择
         IOPCustomerAddress iopcustomeraddress;
-        public CustomerAddressController(IOPCustomerAddress iopcustomeraddress)
+        public UserController(IOPCustomerAddress iopcustomeraddress)
         {
             this.iopcustomeraddress = iopcustomeraddress;
         }
@@ -70,9 +70,9 @@ namespace huwaipingtai.Controllers
         //
         // GET: /CustomerAddress/
 
-        public ActionResult Index()
+        public ActionResult Logon()
         {
-            return View();
+            return View("logon");
         }
 
     }

@@ -31,7 +31,7 @@ namespace huwaipingtai.Controllers
         {
             return View("Test");
         }
-
+        
         public ContentResult CreateTable()
         {
             QSmartDatabaseClient db=DataBaseProvider.Create("db");

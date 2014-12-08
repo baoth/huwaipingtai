@@ -38,7 +38,7 @@ namespace huwaipingtai.Controllers
             db.CreateTable<Customer>(QSmartTableType.InnoDB);
             db.CreateTable<GoodsShelves>(QSmartTableType.InnoDB);
             db.CreateTable<Cart>(QSmartTableType.InnoDB);
-            db.CreateTable>(QSmartTableType.InnoDB);
+            db.CreateTable<CustomerAddress>(QSmartTableType.InnoDB);
             db.CreateTable<Order>(QSmartTableType.InnoDB);
             GoodsShelves item1 = new GoodsShelves
             {
@@ -64,6 +64,11 @@ namespace huwaipingtai.Controllers
                 Price = 99.88M,
                 Sku = 1000000022
             };
+            db.InsertEntity(item1.CreateQSmartObject());
+            db.InsertEntity(item2.CreateQSmartObject());
+            db.InsertEntity(item3.CreateQSmartObject());
+            db.InsertEntity(item4.CreateQSmartObject());
+            db.SaveChange();
             return Content("ok");
         }
     }

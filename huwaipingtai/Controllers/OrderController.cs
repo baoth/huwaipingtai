@@ -9,7 +9,7 @@ using BusinessOrder;
 
 namespace huwaipingtai.Controllers
 {
-    public class OrderController : Controller
+    public class OrderController : BasicController
     {
          //业务接口导入
         BusinessOrder.IOPCustomerAddress iopcustomeraddress;

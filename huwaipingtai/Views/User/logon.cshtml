@@ -44,6 +44,16 @@
                 $('#loginsub').on($.clickAction, function () {
                     $('#frm_logon').submit();
                 });
+                $('#username').on('focus', function () {
+                    
+                    $("#error").hide();
+                    $("#err").hide();
+                });
+
+                $('#password').on('focus', function () {
+                    $("#error").hide();
+                    $("#err").hide();
+                });
             });
             function checkUsername() {
                 var username = $("#username").val().trim();
@@ -75,33 +85,7 @@
                 return true;
             }
 
-            function checkCode() {
-                if ($('#codeLevel').val() && $('#codeLevel').val() != '0') {
-                    var code = $('#validateCode').val().trim();
-                    if (code == "") {
-                        if (true) {
-                            $("#err").html("\u8bf7\u8f93\u5165\u9a8c\u8bc1\u7801");
-                            $("#err").show();
-                        } else {
-                            $("#error").html("\u8bf7\u8f93\u5165\u9a8c\u8bc1\u7801");
-                            $("#error").show();
-                        }
-                        return false;
-                    }
-                }
-                return true;
-            }
-
-            $('#password').on('focus', function () {
-                
-                $("#error").hide();
-                $("#err").hide();
-            });
-
-            $('#password').on('focus',function () {
-                $("#error").hide();
-                $("#err").hide();
-            });
+            
 	
         </script>
         <style type="text/css">
@@ -413,7 +397,7 @@
         <div class='new-ct logon'>
             <div class='logon-ct'>
                 <div class='logon-info'>
-                    <form action="#" method="post" id="frm_logon">
+                    <form action="/User/DoLogon" method="post" id="frm_logon">
     			        <input type="hidden" name="r-url" value="">
     			        <div class="txt-err" id="err" style="display:none;"></div> 
     			        <span class="logon-s">

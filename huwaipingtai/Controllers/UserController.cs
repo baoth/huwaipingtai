@@ -6,10 +6,12 @@ using System.Web.Mvc;
 using BusinessOrder;
 using DataModel.Order;
 using Toolkit.Ext;
+using QSmart.Core.DataBase;
+using System.Data;
 
 namespace huwaipingtai.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BasicController
     {
         #region 维护客户的发货人地址选择
         IOPCustomerAddress iopcustomeraddress;
@@ -74,5 +76,31 @@ namespace huwaipingtai.Controllers
             return View("logon");
         }
 
+        public void DoLogon()
+        {
+            var username = this.Request["username"];
+            var password = this.Request["password"];
+            QSmartDatabaseClient db=DataBaseProvider.Create("db");
+            string command = string.Format("select * from customer where LoginName='{0}' and password='{1}'",
+                username, password);
+            DataTable dt = db.QueryTable(command);
+            if (dt.Rows.Count > 0)
+            {
+                
+                Session[RequestCommand.SESSION_USERINFO] = new UserInfo
+                {
+                    Id=(int)dt.Rows[0]["Id"],
+                    NickName = dt.Rows[0]["NikeName"].ToString()
+                };
+                this.Response.Redirect(Session[RequestCommand.DIRECT_PATH] as string);
+            }
+            
+        }
+
+        public void LogOut()
+        {
+            Session[RequestCommand.SESSION_USERINFO] = null;
+            this.Response.Redirect("/Product/1000000011/index.html");
+        }
     }
 }

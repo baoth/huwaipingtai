@@ -28,5 +28,6 @@ namespace DataModel.Order
           [StringMaxLength(20, VarCharType.nvarchar)]
           public string ShipperPhone { get; set; }
           public bool Default { get; set; }
+          public DateTime CreateDate { get; set; }
   }
 }

@@ -15,6 +15,12 @@
         <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function () {
+                //非空验证
+                $('#frm_logon').bind('submit', function (e) {
+                    if (!(checkUsername() && checkPassword() && checkCode())) {
+                        e.preventDefault();
+                    }
+                });
                 $('.i-a-bh').on($.clickAction, function () {
                     var tg = $('.i-bh-tab');
                     if (tg.hasClass('on')) {
@@ -27,14 +33,76 @@
                 $('.i-a-back').on($.clickAction, function () {
                     window.location = window.sessionStorage.backurl;
                 });
+                $('.s-ck').on($.clickAction, function () {
+                    if ($(this).hasClass('on')) {
+                        $(this).removeClass('on');
+                    }
+                    else {
+                        $(this).addClass('on');
+                    }
+                });
+                $('#loginsub').on($.clickAction, function () {
+                    $('#frm_logon').submit();
+                });
+            });
+            function checkUsername() {
+                var username = $("#username").val().trim();
+                if (username == "") {
+                    if (true) {
+                        $("#err").html("\u8d26\u6237\u540d\u4e0d\u80fd\u4e3a\u7a7a");
+                        $("#err").show();
+                    } else {
+                        $("#error").html("\u8d26\u6237\u540d\u4e0d\u80fd\u4e3a\u7a7a");
+                        $("#error").show();
+                    }
+                    return false;
+                }
+                return true;
+            }
+
+            function checkPassword() {
+                var password = $("#password").val().trim();
+                if (password == "") {
+                    if (true) {
+                        $("#err").html("\u5bc6\u7801\u4e0d\u80fd\u4e3a\u7a7a");
+                        $("#err").show();
+                    } else {
+                        $("#error").html("\u5bc6\u7801\u4e0d\u80fd\u4e3a\u7a7a");
+                        $("#error").show();
+                    }
+                    return false;
+                }
+                return true;
+            }
+
+            function checkCode() {
+                if ($('#codeLevel').val() && $('#codeLevel').val() != '0') {
+                    var code = $('#validateCode').val().trim();
+                    if (code == "") {
+                        if (true) {
+                            $("#err").html("\u8bf7\u8f93\u5165\u9a8c\u8bc1\u7801");
+                            $("#err").show();
+                        } else {
+                            $("#error").html("\u8bf7\u8f93\u5165\u9a8c\u8bc1\u7801");
+                            $("#error").show();
+                        }
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            $('#password').on('focus', function () {
+                
+                $("#error").hide();
+                $("#err").hide();
             });
 
-            function submitForm() {
-
-                window.sessionStorage.DeliveryType = $('#iddelvType').val();
-                window.sessionStorage.DeliveryText = $('#delvType' + window.sessionStorage.DeliveryType).next().text();
-                window.location = window.sessionStorage.backurl;
-            };
+            $('#password').on('focus',function () {
+                $("#error").hide();
+                $("#err").hide();
+            });
+	
         </script>
         <style type="text/css">
             @@font-face
@@ -198,15 +266,51 @@
                 color: #666;
                 text-decoration:none;
             }
+            .s-ck.on
+            {
+            	
+                background: url(../Content/images/icon_chk.png) 0 0 no-repeat;
+                background-size: 18px 18px;
+                
+            }
             .s-ck
             {
             	display: inline-block;
                 width: 18px;
                 height: 18px;
                 margin-right: 5px;
-                background: url(/images/touch2013/icon_chk.png) 0 0 no-repeat;
+            	background: url(../Content/images/icon_chk2.png) 0 0 no-repeat;
                 background-size: 18px 18px;
                 vertical-align: middle;
+            }
+            .login-register 
+            {
+                padding: 10px;
+            }
+            .logon-tbl
+            {
+                display: table;
+                width: 100%;
+            }
+            .logon-tbl-cell
+            {
+            	display: table-cell;
+            	vertical-align: top;
+            	padding: 3px 0;
+            }
+            .login-register a 
+            {
+                font-size: 14px;
+                color: #333;
+                text-decoration: underline;
+            }
+            .n-reg
+            {
+            	float: left;
+            }
+            .n-fb
+            {
+            	float: right;
             }
             .mgn 
             {
@@ -282,7 +386,7 @@
         <header>
             <div class='i-bh-header'>
                 <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
-                <h2>选择发货方式</h2>
+                <h2>登陆</h2>
                 <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
             </div>
             <div class='i-bh-tab'>
@@ -313,27 +417,36 @@
     			        <input type="hidden" name="r-url" value="">
     			        <div class="txt-err" id="err" style="display:none;"></div> 
     			        <span class="logon-s">
-                            <input type="text" value="" class="logon-input" name="username" id="username" placeholder="请输入用户名/邮箱/已验证手机" onkeydown="changeColor(0,event)">
+                            <input type="text" value="" class="logon-input" name="username" id="username" placeholder="请输入用户名/邮箱/已验证手机">
                         </span>
                         <span class="logon-s">
-                            <input type="password" value="" class="logon-input" name="password" id="password" placeholder="请输入密码" onkeydown="changeColor(1,event)">
+                            <input type="password" value="" class="logon-input" name="password" id="password" placeholder="请输入密码">
                         </span>
-        				<input type="hidden" id="remember" value="true" name="remember">
 				        <a class="a-txt" href="javascript:void(0);">
-                            <span class="s-ck" onclick="remeber()"></span>
+                            <span class="s-ck"></span>
     				        一个月内免登录
 				        </a>
-                		<a href="javascript:void(0);" id="loginSubmit" class="new-abtn-type mgn">登录</a>
+                		<a href="javascript:void(0);" id="loginsub" class="new-abtn-type mgn">登录</a>
     		         </form>
+                     <div class="login-register">
+                        <div class="logon-tbl">
+                            <span class="logon-tbl-cell">
+                                <a rel="nofollow" href="javascript:void(0);" class="n-reg">免费注册</a>
+                        	</span>
+                            <span class="logon-tbl-cell text-r">
+                                <a href="javascript:void(0);" class="n-fb"> 找回密码</a>  
+						    </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <footer>
             <div class='i-footer'>
                 <div class='i-f-login'>
-                    <a rel="nofollow" href='#'>tyrone</a>
-                    <span class="i-bar2">|</span>
-                    <a rel="nofollow" href="#">退出</a>
+                    <a rel="nofollow" href='#'></a>
+                    <span class="i-bar2" style='color:#a8a8a8'>|</span>
+                    <a rel="nofollow" href="#"></a>
                     <span class="i-back-top">
                         <a href="javascript:void(0);">反馈</a>
                         <span class="i-bar2">|</span>

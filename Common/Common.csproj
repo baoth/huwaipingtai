@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,9 +47,12 @@
   <ItemGroup>
     <Compile Include="DbFactory.cs" />
     <Compile Include="DbSession.cs" />
+    <Compile Include="Ext\HttpRequestBaseExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Fun\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="DLL\QSmart.Core.dll" />
   </ItemGroup>

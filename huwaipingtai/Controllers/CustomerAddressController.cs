@@ -43,10 +43,8 @@ namespace huwaipingtai.Controllers
         public ActionResult EditAddress()
         {
             /*1、得到地址Id*/
-            var addressId = Request["addressId"];
-            var orderId = Request["orderId"];
-            var userId = Request["userId"];
-            if (string.IsNullOrEmpty(addressId))
+            //var entity= Request.CreateInstance<CustomerAddress>();
+            if (string.IsNullOrEmpty(""))
             {//新增默认的用户id附上就行了 
 
             }
@@ -72,7 +70,7 @@ namespace huwaipingtai.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View("address");
         }
 
     }

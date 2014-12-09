@@ -6,10 +6,12 @@ using System.Web.Mvc;
 using BusinessOrder;
 using DataModel.Order;
 using Toolkit.Ext;
+using QSmart.Core.DataBase;
+using System.Data;
 
 namespace huwaipingtai.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BasicController
     {
         #region 维护客户的发货人地址选择
         IOPCustomerAddress iopcustomeraddress;
@@ -22,7 +24,15 @@ namespace huwaipingtai.Controllers
         {
             try
             {
-                List<CustomerAddress> listAddress = iopcustomeraddress.GetAll();
+                var IdStr = Request["Id"];
+                var customerId = this.CurrentUserInfo.Id;
+                int i;
+                int.TryParse(IdStr,out i);
+                List<CustomerAddress> listAddress = iopcustomeraddress.GetAll(customerId);
+                var ent= listAddress.FirstOrDefault(e => e.Id == i);
+                if (ent != null) {
+                    ent.Default = true;
+                }
                 ViewData["listAddress"] = listAddress;
             }
             catch (Exception ex)
@@ -66,7 +76,7 @@ namespace huwaipingtai.Controllers
         {
             /*1、得到地址Id*/
             var id = Request["Id"];
-            if (!string.IsNullOrEmpty(id)&&id!="-1")
+            if (!string.IsNullOrEmpty(id) && id != "-1")
             {
                 var iid = int.Parse(id);
                 var customer = iopcustomeraddress.Select(iid);
@@ -79,17 +89,22 @@ namespace huwaipingtai.Controllers
                 ViewData["DetailAddress"] = customer.DetailAddress;
                 ViewData["Shipper"] = customer.Shipper;
                 ViewData["ShipperPhone"] = customer.ShipperPhone;
+                ViewData["Id"] = iid;
             }
-            //if (string.IsNullOrEmpty(entity.Id+""))
-            //{//新增默认的用户id附上就行了 
-            //    iopcustomeraddress.Add(entity);
-            //}
-            //else
-            //{
-            //    /*2如果有addressId 是编辑 给界面赋值*/
-            //}
-            /*打开发货人修改界面*/
+            else {
+                ViewData["CustomerId"] = this.CurrentUserInfo.Id;
+            }
             return View("editAddress");
+        }
+
+        public ActionResult DelAddress() 
+        {
+            var id = Request["Id"];
+            if (!string.IsNullOrEmpty(id) && id != "-1")
+            {
+                iopcustomeraddress.Delete(int.Parse(id));
+            }
+            return Redirect("Address"); 
         }
         #endregion
 
@@ -98,5 +113,31 @@ namespace huwaipingtai.Controllers
             return View("logon");
         }
 
+        public void DoLogon()
+        {
+            var username = this.Request["username"];
+            var password = this.Request["password"];
+            QSmartDatabaseClient db=DataBaseProvider.Create("db");
+            string command = string.Format("select * from customer where LoginName='{0}' and password='{1}'",
+                username, password);
+            DataTable dt = db.QueryTable(command);
+            if (dt.Rows.Count > 0)
+            {
+                
+                Session[RequestCommand.SESSION_USERINFO] = new UserInfo
+                {
+                    Id=(int)dt.Rows[0]["Id"],
+                    NickName = dt.Rows[0]["NikeName"].ToString()
+                };
+                this.Response.Redirect(Session[RequestCommand.DIRECT_PATH] as string);
+            }
+            
+        }
+
+        public void LogOut()
+        {
+            Session[RequestCommand.SESSION_USERINFO] = null;
+            this.Response.Redirect("/Product/1000000011/index.html");
+        }
     }
 }

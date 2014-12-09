@@ -5,14 +5,8 @@ using System.Text;
 using QSmart.Core.Object;
 namespace DataModel.Order
 {
-    /// <summary>
-    /// 商品订单
-    /// </summary>
-    public class Order:QSmartEntity
+    public class CustomerOrder : QSmartEntity
     {
-        /// <summary>
-        /// 订单号
-        /// </summary>
         [PrimaryKey]
         public int Id { get; set; }
         /// <summary>
@@ -59,10 +53,24 @@ namespace DataModel.Order
         /// 送货方式
         /// </summary>
         public short DeliveryType { get; set; }
-        /// <summary>
-        /// 是否是子订单
-        /// </summary>
+    }
+    /// <summary>
+    /// 商品订单
+    /// </summary>
+    public class Order:QSmartEntity
+    {
+        public int Id { get; set; }
         public bool SubOrder { get; set; }
+        public int CustomerOrderId { get; set; }
+        public short Status { get; set; }
+    }
+
+    public class OrderGoods : QSmartEntity
+    {
+        public int Id { get; set; }
+        public int OrderId { get; set; }
+        public int Sku { get; set; }
+        public int Quantity { get; set; }
     }
 
 }

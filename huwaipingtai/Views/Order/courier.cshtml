@@ -415,9 +415,7 @@
         </style>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('.i-a-back').on($.clickAction, function () {
-                    window.location = window.sessionStorage.backurl;
-                });
+                $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
                 $('.i-a-bh').on($.clickAction, function () {
                     var tg = $('.i-bh-tab');
                     if (tg.hasClass('on')) {
@@ -496,7 +494,7 @@
                 window.sessionStorage.courierTimeType = $('#idTime').val();
                 window.sessionStorage.courierPoneType = $('#idPhone').val();
                 window.sessionStorage.courierSend = $('#i-sendTime').data('send');
-                window.location = window.sessionStorage.backurl;
+                $('.i-a-back').trigger($.clickAction);
             };
             function selectTime() {
                 

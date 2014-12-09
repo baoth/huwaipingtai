@@ -28,11 +28,8 @@ namespace huwaipingtai.Controllers
                 var customerId = this.CurrentUserInfo.Id;
                 int i;
                 int.TryParse(IdStr,out i);
-                List<CustomerAddress> listAddress = iopcustomeraddress.GetAll(customerId);
-                var ent= listAddress.FirstOrDefault(e => e.Id == i);
-                if (ent != null) {
-                    ent.Default = true;
-                }
+                iopcustomeraddress.SetDefault(i);
+                var listAddress = iopcustomeraddress.GetAll(customerId);
                 ViewData["listAddress"] = listAddress;
             }
             catch (Exception ex)
@@ -113,7 +110,7 @@ namespace huwaipingtai.Controllers
             return View("logon");
         }
 
-        public void DoLogon()
+        public RedirectResult DoLogon()
         {
             var username = this.Request["username"];
             var password = this.Request["password"];
@@ -123,21 +120,20 @@ namespace huwaipingtai.Controllers
             DataTable dt = db.QueryTable(command);
             if (dt.Rows.Count > 0)
             {
-                
-                Session[RequestCommand.SESSION_USERINFO] = new UserInfo
-                {
-                    Id=(int)dt.Rows[0]["Id"],
-                    NickName = dt.Rows[0]["NikeName"].ToString()
-                };
-                this.Response.Redirect(Session[RequestCommand.DIRECT_PATH] as string);
+                Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = (int)dt.Rows[0]["Id"], NickName = dt.Rows[0]["NikeName"] as string };
+                var jumpurl = Session[RequestCommand.LOGON_JUMP_URL] as string;
+                Session[RequestCommand.LOGON_JUMP_URL] = null;
+                return Redirect(jumpurl);
             }
+            return Redirect("logon");
             
         }
 
-        public void LogOut()
+        public RedirectResult LogOut()
         {
             Session[RequestCommand.SESSION_USERINFO] = null;
-            this.Response.Redirect("/Product/1000000011/index.html");
+            Session[RequestCommand.LOGON_JUMP_URL] = null;
+            return Redirect("/Product/1000000011/index.html");
         }
     }
 }

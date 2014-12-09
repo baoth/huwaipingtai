@@ -294,6 +294,7 @@
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
+            $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
             Init();
             BindEvent();
         });

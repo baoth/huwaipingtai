@@ -14,14 +14,14 @@ namespace huwaipingtai.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (RequestCommand.InterceptAction(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName,
-                filterContext.ActionDescriptor.ActionName))
+            if (!RequestCommand.Intercepts.Contains(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower() +
+                filterContext.ActionDescriptor.ActionName.ToLower()))
             {
                 this.CurrentUserInfo = Session[RequestCommand.SESSION_USERINFO] as UserInfo;
-                if (this.CurrentUserInfo == null)
+                if (CurrentUserInfo==null)
                 {
                     ViewData["Name"] = "登陆"; ViewData["Action"] = "/User/logon";
-                    Session[RequestCommand.DIRECT_PATH] = this.Request.Path;
+                    Session[RequestCommand.LOGON_JUMP_URL] = this.Request.Path;
                     Response.Redirect("/User/logon");
                     return;
                 }
@@ -30,7 +30,6 @@ namespace huwaipingtai.Controllers
             }
             base.OnActionExecuting(filterContext);
         }
-
     }
 
     public class UserInfo
@@ -42,15 +41,7 @@ namespace huwaipingtai.Controllers
     public static class RequestCommand
     {
         public static readonly string SESSION_USERINFO = "uinfo";
-        public static readonly string DIRECT_PATH = "dpath";
-        public static bool InterceptAction(string ControllerName, string ActionName)
-        {
-            ControllerName = ControllerName.ToLower();
-            ActionName = ActionName.ToLower();
-            if (ControllerName == "user" && ActionName == "logon") return false;
-            if (ControllerName == "user" && ActionName == "dologon") return false;
-            if (ControllerName == "user" && ActionName == "logout") return false;
-            return true;
-        }
+        public static readonly string LOGON_JUMP_URL = "lju";
+        public static List<string> Intercepts = new List<string> { "userlogon", "userdologon", "userlogout" };
     }
 }

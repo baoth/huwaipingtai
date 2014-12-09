@@ -24,9 +24,7 @@
                         tg.addClass('on');
                     }
                 });
-                $('.i-a-back').on($.clickAction, function () {
-                    window.location = window.sessionStorage.backurl;
-                });
+                $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
                 $('.choosePayType').on($.clickAction, choosePayType);
                 initPay();
             });
@@ -48,7 +46,7 @@
             function submitForm() {
                 window.sessionStorage.payType = $('#idpayType').val();
                 window.sessionStorage.payText = $('#payType' + window.sessionStorage.payType).next().text();
-                window.location = window.sessionStorage.backurl;
+                $('.i-a-back').trigger($.clickAction);
             };
         </script>
         <style type="text/css">

@@ -53,20 +53,21 @@ namespace huwaipingtai.Controllers
 
         public ActionResult Index()
         {
-            QSmartDatabaseClient db = DataBaseProvider.Create("db");
-            DataTable dt = db.QueryTable("select Quantity,price from cartview where customerid=" + this.CurrentUserInfo.Id +
-                                         " and actived=1");
-            decimal Money = 0;
-            foreach (DataRow dr in dt.Rows)
-            {
-                Money += (int)dr[0] * (decimal)dr[1];
-            }
-            ViewData["Money"] = Money.ToString("C");
+            //QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            //DataTable dt = db.QueryTable("select Quantity,price from cartview where customerid=" + this.CurrentUserInfo.Id +
+            //                             " and actived=1");
+            //decimal Money = 0;
+            //foreach (DataRow dr in dt.Rows)
+            //{
+            //    Money += (int)dr[0] * (decimal)dr[1];
+            //}
+            ViewData["Money"] = "0.00";// Money.ToString("C");
             ViewData["Fee"] = "0.00";
-            ViewData["Total"] = Money.ToString("C");
+            ViewData["Total"] = "0.00";// Money.ToString("C");
             //读取当前客户所有在购物车里状态actived为true的商品
             //计算金额合计
             return View();
+            
         }
         public ActionResult pay()
         {

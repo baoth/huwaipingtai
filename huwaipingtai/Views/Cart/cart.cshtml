@@ -27,15 +27,133 @@
                 $('.i-a-back').on($.clickAction, function () {
                     window.location = window.sessionStorage.backurl;
                 });
-                SetTotal();
+                LoadData();
+                
             });
-            
+
+            var LoadData = function () {                
+                var cid = $("#cid").val();
+                $.ajax({
+                    url: "GetCartProductByCustomer",
+                    data: { cid: cid },
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        debugger
+                        var lis = "";
+                        if (data) {
+                            for (var i = 0, j = data.length; i < j; i++) {
+                                lis += getHtml(data[i]);
+                            }
+                        }
+                        if (lis) {
+                            var objul = $("#notEmptyMyCart ul");
+                            var li = objul.find("li:last");
+                            if (li && li.length>0) {
+                                li.after(lis);
+                            }
+                            else {
+                                objul.html(lis);
+                            }
+                        }
+                        SetTotal(data);
+                    },
+                    error: function () {
+                        alert("请求错误！");
+                    }
+
+                });
+            }
+
+            var getHtml = function (data) {
+                
+                var sku = data["Sku"];
+                var price = data["Price"] + "";
+                price = price.formatCurrency();
+                var quantity = data["Quantity"];
+                var Actived = data["Actived"]; //checked
+                if (Actived == "1" || Actived == "true") {
+                    Actived = "checked";
+                }
+                else {
+                    Actived = "";
+                }
+                var Description = data["Description"];
+                var cartId=data["Id"];
+                var li = '<li id="product{0}">'
+	            + '<div class="items">'
+                + ' <div class="cart-check-wrapper"> '
+                + ' <span id="checkIcon{0}" class="cart-checkbox {3}" onclick="changeSelected(this,{0},1)"></span> '
+                + ' </div> '
+                + ' <div class="cart-item-core"> '
+                + '  <div class="cart-product-cell-3"> '
+                + '      <span class="cart-item-price" id="price{0}">￥{1}</span> '
+                + '  </div> '
+                + '  <a class="cart-product-cell-1" href="/product/{0}.html?sid=a0b43b56f4431a58b6e78b635837359c"> '
+                + '      <img class="cart-photo-thumb" alt="" src="../../ProductImage/1119896/111989601.jpg" onerror="lib/skin/e/i/error-jd.gif"> '
+                + '  </a> '
+                + '  <div class="cart-product-cell-2"> '
+                + '      <div class="cart-product-name"><a href="/product/{0}.html?pid=a0b43b56f4431a58b6e78b635837359c"><span>{4}</span></a></div>  '
+                + '       <div class="cart-opt"> '
+                + '          <div class="cart-quantity-wrapper"> '
+                + '              <input type="hidden" id="limitSukNum{0}" value="200"> '
+                + '              <a class="cart-quantity-decrease disabled" id="subnum{0}" href="javascript:subQuantityBybutton({5})">-</a> '
+                + '              <input type="text" class="quantity" size="4"  value="{2}" name="num" id="num{0}">  '
+                + '              <a class="quantity-increase" id="addnum{0}" href="javascript:addQuantityBybutton({5})">+</a> '
+                + '          </div>'
+                + '          <a class="cart-icon-remove" href="javascript:deleteCartWare({5})"></a> '
+                + '      </div> '
+                + '  </div> '
+                + '  </div>  '
+                + ' <div class="cart-diver-hr-dashed"></div> '
+	            + '</div> '
+                + ' </li>'
+                var liHtml = li.format(sku, price, quantity, Actived, Description);
+                return liHtml;
+            }
+
+
 
             function deleteCartWare(id) {                
                 if (confirm("确定要删除吗？")) {
-                    $("#product" + id).remove();
+                    // $("#product" + id).remove();
+                    var cid = $("#cid").val();
+                    DeleteData(cid,id);
                 }
             }
+            var DeleteData = function (cid,productId) {               
+                $.ajax({
+                    url: "Delete",
+                    data: { cid: cid,pid:productId},
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        debugger
+                        var lis = "";
+                        if (data) {
+                            for (var i = 0, j = data.length; i < j; i++) {
+                                lis += getHtml(data[i]);
+                            }
+                        }
+                        if (lis) {
+                            var objul = $("#notEmptyMyCart ul");
+                            var li = objul.find("li:last");
+                            if (li && li.length > 0) {
+                                li.after(lis);
+                            }
+                            else {
+                                objul.html(lis);
+                            }
+                        }
+                        SetTotal(data);
+                    },
+                    error: function () {
+                        alert("请求错误！");
+                    }
+
+                });
+            }
+
             function changeSelected(e,id) {                
                 var obj = $(e);
                 if (obj.hasClass("checked")) {
@@ -63,8 +181,10 @@
                 }
                 SetTotal();
             }
-            function SetTotal() {
-                var sumPrice = cartSumPrice();
+            function SetTotal(data) {
+            debugger
+            var sumPrice = cartSumPrice(data);
+             sumPrice=(sumPrice+"").formatCurrency();
                 $("#cart_realPrice").html(sumPrice);
 
                 //商品总额
@@ -73,58 +193,66 @@
                 $("#cart_rePrice").html("0.00");
                 //结算数量
                 var iCount = 0;
-                $("#notEmptyMyCart .quantity").each(function () {
-                    var q = $(this).val();
-                    if (q) {
-                        q = parseInt(q);
-                    }
-                    else {
-                        q = 0;
-                    }
-                    iCount += q;
-                })
+                iCount=cartProductCount(data);
                 $("#checkedNum").html(iCount);
                 //设置全选按钮状态
                 var notCheckCount = 0;
-                $("#notEmptyMyCart .cart-checkbox").each(function () {
-                    if (!$(this).hasClass("checked")) {
-                        notCheckCount++;
-                    }
-                })
-                if (notCheckCount > 0) {
-                    $("#payment .cart-checkbox.checked").each(function () {
-                        $(this).removeClass("checked");
-                    })
-                }
-                else {
+                if(data.length==iCount)
+                {
                     $("#payment .cart-checkbox").each(function () {
                         $(this).addClass("checked");
                     })
                 }
+                else
+                {
+                    $("#payment .cart-checkbox.checked").each(function () {
+                        $(this).removeClass("checked");
+                    })
+                }
             }
-            function cartSumPrice() {
+            function cartSumPrice(data) {
                 var sumTotal = 0.00;
-                $("#notEmptyMyCart .cart-checkbox.checked").each(function () {                    
-                    var productId = $(this).attr("id").replace("checkIcon","");
-                    var price = $("#price" + productId).text().replace("￥","");
-                    if (price) {
-                        price = parseFloat(price);
+                for(var i=0,j=data.length;i<j;i++ )
+                {
+                    var row=data[i];
+                    if(row["Actived"]=="1")
+                    {
+                         var quantity=row["Quantity"];
+                        if(quantity)
+                        {
+                            quantity=parseInt(quantity);
+                        }
+                        var price=row["Price"];
+                        if(price)
+                        {
+                            price=parseFloat(price);
+                        }
+                        sumTotal+=quantity * price;
                     }
-                    else {
-                        price = 0.00;
-                    }
-                    var quantity = $("#num" + productId).val();
-                    if (quantity) {
-                        quantity = parseFloat(quantity);
-                    }
-                    else {
-                        quantity = 0.00;
-                    }
-                    sumTotal += price * quantity;
-                })
+                }
                 return sumTotal;
 
             }
+
+            function cartProductCount(data)
+            {
+                var count=0;
+                 for(var i=0,j=data.length;i<j;i++ )
+                {
+                    var row=data[i];
+                    if(row["Actived"]=="1")
+                    {
+                         var quantity=row["Quantity"];
+                        if(quantity)
+                        {
+                            quantity=parseInt(quantity);
+                            count+=quantity;
+                        }                        
+                    }
+                }
+                return count;
+            }
+
             function addQuantityBybutton(productid) {
                 var q = $("#num" + productid).val();
                 if (q) {
@@ -146,6 +274,57 @@
                 SetTotal();
             }
            
+        </script>
+
+        <script type="text/javascript">
+            String.prototype.format = function (args) {
+                var result = this;
+                if (arguments.length > 0) {
+                    if (arguments.length == 1 && typeof (args) == "object") {
+                        for (var key in args) {
+                            if (args[key] != undefined) {
+                                var reg = new RegExp("({" + key + "})", "g");
+                                result = result.replace(reg, args[key]);
+                            }
+                        }
+                    }
+                    else {
+                        for (var i = 0; i < arguments.length; i++) {
+                            if (arguments[i] != undefined) {                              
+                                var reg = new RegExp("({)" + i + "(})", "g");
+                                result = result.replace(reg, arguments[i]);
+                            }
+                        }
+                    }
+                }
+                return result;
+            }
+
+            /**
+            * 将数值四舍五入(保留2位小数)后格式化成金额形式
+            *
+            * param num 数值(Number或者String)
+            * return 金额格式的字符串,如'1,234,567.45'
+            * type String
+            */
+            String.prototype.formatCurrency = function () {
+                var num = this.toString();                
+                if (num == undefined || num=="") return "0.00";
+                num = num.toString().replace(/\$|\,/g, '');
+                if (isNaN(num))
+                    num = "0";
+                var sign = (num == (num = Math.abs(num)));
+                num = Math.floor(num * 100 + 0.50000000001);
+                var cents = num % 100;
+                num = Math.floor(num / 100).toString();
+                if (cents < 10)
+                    cents = "0" + cents;
+                for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+                    num = num.substring(0, num.length - (4 * i + 3)) + ',' +
+                     num.substring(num.length - (4 * i + 3));
+                return (((sign) ? '' : '-') + num + '.' + cents);
+            }
+
         </script>
         <style type="text/css">
             @@font-face
@@ -630,64 +809,7 @@
 
          <div id="notEmptyMyCart" style="display:block">
 	          <ul class="cart-list">
-              <li id="product1119895">
-	              <div class="items">
-                   <div class="cart-check-wrapper">
-                   <span id="checkIcon1119895" class="cart-checkbox checked" onclick="changeSelected(this,1119895,1)"></span>
-                   </div>
-                   <div class="cart-item-core">
-                    <div class="cart-product-cell-3">
-                        <span class="cart-item-price" id="price1119895">￥60.40</span>
-                    </div>
-                    <a class="cart-product-cell-1" href="/product/1119895.html?sid=a0b43b56f4431a58b6e78b635837359c">
-                        <img class="cart-photo-thumb" alt="" src="../../ProductImage/1119896/111989601.jpg" onerror="lib/skin/e/i/error-jd.gif">
-                    </a>
-                    <div class="cart-product-cell-2">
-                        <div class="cart-product-name"><a href="/product/1119895.html?sid=a0b43b56f4431a58b6e78b635837359c"><span>立白 精致衣物丝滑乳液柔护洗衣液（温润花香）5kg/瓶</span></a></div>    
-                         <div class="cart-opt">
-                            <div class="cart-quantity-wrapper">
-                                <input type="hidden" id="limitSukNum1119895" value="200">
-                                <a class="cart-quantity-decrease disabled" id="subnum1119895" href="javascript:subQuantityBybutton('1119895')">-</a>
-                                <input type="text" class="quantity" size="4"  value="1" name="num" id="num1119895"> @*onchange="modifyWare('1119895')"*@
-                                <a class="quantity-increase" id="addnum1119895" href="javascript:addQuantityBybutton('1119895')">+</a>
-                            </div>
-                            <a class="cart-icon-remove" href="javascript:deleteCartWare(1119895)"></a>
-                        </div>
-                    </div>
-                    </div> 
-                   <div class="cart-diver-hr-dashed"></div>
-	              </div>
-              </li>
-              
-              <li id="product1119896">
-	              <div class="items">
-                   <div class="cart-check-wrapper">
-                   <span id="checkIcon1119896" class="cart-checkbox checked" onclick="changeSelected(this,1119896,1)"></span>
-                   </div>
-                   <div class="cart-item-core">
-                    <div class="cart-product-cell-3">
-                        <span class="cart-item-price" id="price1119896">￥60.40</span>
-                    </div>
-                    <a class="cart-product-cell-1" href="/product/1119896.html?sid=a0b43b56f4431a58b6e78b635837359c">
-                        <img class="cart-photo-thumb" alt="" src="../../ProductImage/1119896/111989601.jpg" onerror="lib/skin/e/i/error-jd.gif">
-                    </a>
-                    <div class="cart-product-cell-2">
-                        <div class="cart-product-name"><a href="/product/1119896.html?sid=a0b43b56f4431a58b6e78b635837359c"><span>立白 精致衣物丝滑乳液柔护洗衣液（温润花香）3kg/瓶</span></a></div>    
-                         <div class="cart-opt">
-                            <div class="cart-quantity-wrapper">
-                                <input type="hidden" id="limitSukNum1119896" value="200">
-                                <a class="cart-quantity-decrease disabled" id="subnum1119896" href="javascript:subQuantityBybutton('1119896')">-</a>
-                                <input type="text" class="quantity" size="4"  value="1" name="num" id="num1119896">
-                                <a class="quantity-increase" id="addnum1119896" href="javascript:addQuantityBybutton('1119896')">+</a>
-                            </div>
-                            <a class="cart-icon-remove" href="javascript:deleteCartWare(1119896,1)" "></a>
-                        </div>
-                    </div>
-                    </div> 
-                   <div class="cart-diver-hr-dashed"></div>
-	              </div>
-              </li>
-
+            
               </ul>   
          </div>
 
@@ -701,7 +823,10 @@
             </div>
              <a class="btn-right-block" id="submit" style="background: rgb(192, 0, 0);">结算(<span id="checkedNum"> 1 </span>)</a>
        </div>
-        
+
+       <div style="display:none">
+          <input type="hidden" id="cid" value="@ViewData["cid"]" />
+      </div>
     </body>
 
 </html>

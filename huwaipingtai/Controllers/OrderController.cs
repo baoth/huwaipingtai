@@ -8,17 +8,39 @@ using DataModel.Order;
 using BusinessOrder;
 using QSmart.Core.DataBase;
 using QSmart.Core.Object;
-
+using IBusinessOrder.Order;
+using BusinessOrder;
+using DataModel.Order;
+using Toolkit.Ext;
+using QSmart.Core.DataBase;
+using System.Data;
 namespace huwaipingtai.Controllers
 {
     public class OrderController : BasicController
     {
          //业务接口导入
-        BusinessOrder.IOPCustomerAddress iopcustomeraddress;
-        public OrderController(IOPCustomerAddress iopcustomeraddress)
-         {
-             this.iopcustomeraddress = iopcustomeraddress;
-         }
+        IOPCustomerOrder customerOrder;
+        public OrderController(IOPCustomerOrder customerOrder)
+        {
+            this.customerOrder = customerOrder;
+        }
+        /*订单提交*/
+        [HttpPost]
+        public JsonResult SubmitOrder() 
+        {
+            var entity = Request.CreateInstance<CustomerOrder>();
+            entity.CreateDate = DateTime.Now;
+            entity.CustomerId = this.CurrentUserInfo.Id;
+            try
+            {
+               bool bIsSuccess= customerOrder.SubmitOrder(entity);
+            }
+            catch (Exception ex)
+            {
+            }
+            return Json("提交订单成功");
+        }
+
         /// <summary>
         /// 立刻购买
         /// </summary>
@@ -80,6 +102,8 @@ namespace huwaipingtai.Controllers
         {
             return View("courier");
         }
+      
+
     }
 
 }

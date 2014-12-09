@@ -15,7 +15,7 @@ namespace IBusinessOrder.Order
         /// 提交订单
         /// </summary>
         /// <returns></returns>
-        bool SubmitOrder();
+        bool SubmitOrder(CustomerOrder customerOrder);
         
     }
 }

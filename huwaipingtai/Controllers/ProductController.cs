@@ -40,6 +40,10 @@ namespace huwaipingtai.Controllers
             db.CreateTable<Cart>(QSmartTableType.InnoDB);
             db.CreateTable<CustomerAddress>(QSmartTableType.InnoDB);
             db.CreateTable<Order>(QSmartTableType.InnoDB);
+            db.CreateTable<CustomerOrder>(QSmartTableType.InnoDB);
+
+            db.CreateTable<Order>(QSmartTableType.InnoDB);
+            db.CreateTable<OrderGoods>(QSmartTableType.InnoDB);
             GoodsShelves item1 = new GoodsShelves
             {
                 Description = "加棉衣服 卡其色 XL",

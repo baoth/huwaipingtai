@@ -15,6 +15,7 @@ namespace BusinessTemplate
         {
             builder.RegisterType<OPCustomerAddress>().As<IOPCustomerAddress>();
             builder.RegisterType<BusinessOrder.Cart.OPCart>().As<IBusinessOrder.Cart.IOPCart>();
+            builder.RegisterType<BusinessOrder.Order.OPCustomerOrder>().As<IBusinessOrder.Order.IOPCustomerOrder>();
             //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
             //    .Where(t => t.Name.EndsWith("Repository"))
             //    .AsImplementedInterfaces();

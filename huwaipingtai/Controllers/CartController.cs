@@ -20,39 +20,51 @@ namespace huwaipingtai.Controllers
 
         public ActionResult Index()
         {
+            var cid=Request["cid"];
+            cid = "111";
+            if (!string.IsNullOrEmpty(cid))
+            {
+                ViewData["cid"] = cid;
+            }
+           
             return View("cart");
         }
         public ActionResult Add()
         {
             DataModel.Order.Cart model = new DataModel.Order.Cart();
 
-            iopcart.Add(model);
+           //iopcart.Add(model);
             return Json(new Message("ok","",""));
         }
 
-        public ActionResult Delete(string id)
+        public ActionResult Delete(string cid,string pid)
         {
-            if (string.IsNullOrEmpty(id)) return null;
+            if (string.IsNullOrEmpty(pid) || string.IsNullOrEmpty(cid)) return null;
             int cartId = 0;
-            if (int.TryParse(id, out cartId))
+            if (int.TryParse(pid, out cartId))
             {
                 iopcart.Delete(cartId);
-                return Json(new Message("ok", "", ""));
+
+                GetCartProductByCustomer(cid);
             }
-            return Json(new Message("error", "", ""));
+            return Content(null);
         }
         public ActionResult GetCartProductByCustomer(string cId)
         {
-            cId = "111";
-
+            
             if (string.IsNullOrEmpty(cId)) return null;
             int customerId = 0;
             int.TryParse(cId,out customerId);
-            List<DataModel.View.CartView> list = iopcart.CartList(customerId);
-            var json = JsonHelp.objectToJson(list);
+            var json = GetDataJsonByCustomerId(customerId);
             return Content(json);
         }
 
+        private string GetDataJsonByCustomerId(int cid)
+        {
+            List<DataModel.View.CartView> list = iopcart.CartList(cid);
+            var json = JsonHelp.objectToJson(list);
+            return json;
+        }
 
     }
     public class Message

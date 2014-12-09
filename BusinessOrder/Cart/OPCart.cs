@@ -15,56 +15,51 @@ namespace BusinessOrder.Cart
         /// 添加
         /// </summary>
         /// <param name="cart"></param>
-        /// <returns></returns>
-        public bool Add(DataModel.Order.Cart cart)
+        /// <returns></returns>        
+        public bool Add(DataModel.Order.Cart cart, string type)
         {
             try
             {
-                db.Context.InsertEntity(cart.CreateQSmartObject());
+                if (type == "2")//立即购买
+                {
+                   
+                }
+                else 
+                {
+                    db.Context.InsertEntity(cart.CreateQSmartObject());
+                }
+
                 db.Context.SaveChange();
+
             }
             catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
             return true;
         }
-        /// <summary>
-        /// 修改
-        /// </summary>
-        /// <param name="cart"></param>
-        /// <returns></returns>
-        public bool Update(DataModel.Order.Cart cart)
-        
-        {
-            try
-            {
-                db.Context.ModifyEntity(cart.CreateQSmartObject());
-                db.Context.SaveChange();
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-            return true;
-        }
+       
         //删除
         public bool Delete(int Id)
         {
             try
             {
                 DataModel.Order.Cart model = new DataModel.Order.Cart() {Id=Id };
-                db.Context.ModifyEntity(model.CreateQSmartObject());
+                db.Context.DeleteEntity(model.CreateQSmartObject());
                 db.Context.SaveChange();
             }
             catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
             return true;
         }
 
-
+       /// <summary>
+       /// 获取数据
+       /// </summary>
+       /// <param name="customerId"></param>
+       /// <returns></returns>
         public List<DataModel.View.CartView> CartList(int customerId)
         {
             try
@@ -89,5 +84,19 @@ namespace BusinessOrder.Cart
             }
 
         }
+
+
+        public bool UpdateQuantity(string customerId, string productId, int quantity)
+        {
+           // throw new NotImplementedException();
+            return true;
+        }
+
+        public bool UpdateActived(string customerId, List<string> productIds)
+        {
+            return true;
+        }
+
+        
     }
 }

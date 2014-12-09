@@ -126,7 +126,8 @@ namespace huwaipingtai.Controllers
                     Id=(int)dt.Rows[0]["Id"],
                     NickName = dt.Rows[0]["NikeName"].ToString()
                 };
-                this.Response.Redirect(Session[RequestCommand.DIRECT_PATH] as string);
+                //this.Response.Redirect(Session[RequestCommand.DIRECT_PATH] as string);
+                this.Response.Redirect("/Order");
             }
             
         }

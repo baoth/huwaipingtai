@@ -132,6 +132,18 @@
                     $('.goodlisting').show();
                 }
             };
+            function initAddress() {
+                if (window.sessionStorage.Address == undefined || window.sessionStorage.Address.length == 0) {
+                    $('#address .text').text();
+                    $('#address .text2').text();
+                    $('#address .phone-num').text();
+                }
+                else {
+
+                    $('#goodlisting').data('list', window.sessionStorage.GoodListing);
+                    $('.goodlisting').show();
+                }
+            }
         </script>
         <style type="text/css">
             @@font-face
@@ -460,7 +472,7 @@
                     <div class='title address'>收货人信息</div>
                     <div class='info address'>
                         <a id='address'>
-                            <span class='text'>李彬 <span class="phone-num" style="margin-left:5px;">18513603719</span></span>
+                            <span class='text'><label id="shiperName">李彬</label> <span class="phone-num" id="phoneNumId" style="margin-left:5px;">18513603719</span>
                             <span class='text2'>北京朝阳区三环到四环之间北京市朝阳区建外街道sohu现代城5号楼1907室</span>
                         </a>
                     </div>

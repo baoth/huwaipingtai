@@ -19,6 +19,7 @@
                 initInvoice();
                 initPay();
                 initDelivery();
+                initAddress();
                 initGoodListing();
                 $('.i-a-bh').on($.clickAction, function () {
                     var tg = $('.i-bh-tab');
@@ -133,15 +134,19 @@
                 }
             };
             function initAddress() {
-                if (window.sessionStorage.Address == undefined || window.sessionStorage.Address.length == 0) {
-                    $('#address .text').text();
-                    $('#address .text2').text();
-                    $('#address .phone-num').text();
+                debugger
+                window.sessionStorage.backurl = document.URL;
+                if (!window.sessionStorage.addressDetailId) {
+                    $('#shiperNameId').text(" ");
+                    $('#phoneNumId').text("选择收货人");
+                    $('#addressDetailId').text("");
                 }
                 else {
-
-                    $('#goodlisting').data('list', window.sessionStorage.GoodListing);
-                    $('.goodlisting').show();
+                    $('#shiperNameId').text(window.sessionStorage.shiperName);
+                    $('#phoneNumId').text(window.sessionStorage.phoneNum);
+                    $('#addressDetailId').text(window.sessionStorage.addressDetail);
+                    var href = $('#address').attr('href');
+                    $('#address').attr('href', href + "?Id=" + window.sessionStorage.addressDetailId)
                 }
             }
         </script>
@@ -471,9 +476,9 @@
                     </div>
                     <div class='title address'>收货人信息</div>
                     <div class='info address'>
-                        <a id='address'>
-                            <span class='text'><label id="shiperName">李彬</label> <span class="phone-num" id="phoneNumId" style="margin-left:5px;">18513603719</span>
-                            <span class='text2'>北京朝阳区三环到四环之间北京市朝阳区建外街道sohu现代城5号楼1907室</span>
+                        <a id='address' href="/user/address">
+                            <span class='text'><label id="shiperNameId">李彬</label> <span class="phone-num" id="phoneNumId" style="margin-left:5px;">18513603719</span>
+                            <span class='text2' id="addressDetailId">北京朝阳区三环到四环之间北京市朝阳区建外街道sohu现代城5号楼1907室</span>
                         </a>
                     </div>
                     <div class='title courier'>配送方式</div>

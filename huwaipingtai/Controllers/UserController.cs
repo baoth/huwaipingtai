@@ -24,7 +24,14 @@ namespace huwaipingtai.Controllers
         {
             try
             {
+                var IdStr = Request["Id"];
+                int i;
+                int.TryParse(IdStr,out i);
                 List<CustomerAddress> listAddress = iopcustomeraddress.GetAll();
+                var ent= listAddress.FirstOrDefault(e => e.Id == i);
+                if (ent != null) {
+                    ent.Default = true;
+                }
                 ViewData["listAddress"] = listAddress;
             }
             catch (Exception ex)

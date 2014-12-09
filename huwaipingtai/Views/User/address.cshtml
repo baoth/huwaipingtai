@@ -16,12 +16,31 @@
         <script type="text/javascript">
             function confirmDel(id) {
                 if (confirm("确认要删除吗")) {
-                    debugger
                     $('#delHref' + id).click();
-                }else{
-                    alert(1);
                 }
-               
+
+            }
+            function submitForm(shiperName,phone,detailAddress,id) {
+                window.sessionStorage.shiperName = shiperName;
+                window.sessionStorage.phoneNum = phone;
+                window.sessionStorage.addressDetail = detailAddress;
+                window.sessionStorage.addressDetailId = id;
+                window.location = window.sessionStorage.backurl;
+            };
+            function keyDown(id) {
+                var target = $(this);
+                if (target.hasClass('on')) {
+                    target.removeClass('on');
+                } else {
+                    target.addClass('on');
+                }
+                var Shipper = "#Shipper" + id,
+                    shipperPhone = "#shipperPhone" + id,
+                    shipperDetail = "#shipperDetail" + id;
+                var sh = $(Shipper).text();
+               var sP= $(shipperPhone).text();
+               var sD = $(shipperDetail).text();
+               submitForm(sh, sP, sD, id);
             }
             $(document).ready(function () {
                 $('.i-a-bh').on('click', function () {
@@ -33,14 +52,9 @@
                         tg.addClass('on');
                     }
                 });
-                $('.btn-chk').on('click',function(){debugger
-                   var target= $(this);
-                   if(target.hasClass('on')){
-                       target.removeClass('on');
-                   }else{
-                       target.addClass('on');
-                   }
-                })
+//                $('.btn-chk').on('click',function(){
+//                 
+//                })
                
             });
         </script>
@@ -92,12 +106,15 @@
                     foreach (DataModel.Order.CustomerAddress item in list)
                     {
                         var on = @item.Default == true ? "on" : "";
-                        var delhref = "delHref" + item.Id;
+                        var delhref = "delHref" + @item.Id;
+                        var Shipper = "Shipper" + @item.Id;
+                        var shipperPhone = "shipperPhone" + @item.Id;
+                        var shipperDetail = "shipperDetail" + @item.Id;
                         <div class="addr-info">
         	                <div class="addr-border">
             	                <div class="pd-tb10">
-                                    <p>@item.Shipper<span>&nbsp; @item.ShipperPhone</span></p>
-                                    <p class="text-f14-c6">@item.DetailAddress</p>
+                                    <p><span id="@Shipper">@item.Shipper</span><span id="@shipperPhone">&nbsp; @item.ShipperPhone</span></p>
+                                    <p class="text-f14-c6" id="@shipperDetail">@item.DetailAddress</p>
                                 </div>
                                 <div class="bg-border3"></div>
                                 <div class="addr-btn">
@@ -108,8 +125,10 @@
                                         </span>
                                         <span class="tbl-cell text-right">
                         	                <a href="/User/EditAddress?Id=@item.Id" class="btn-update"><span></span>修改</a>
+                                            @if(on!="on"){
                                             <a href='javascript:confirmDel("@item.Id")' class="btn-del"><span></span>删除</a>
                                             <a id="@delhref" href="/User/DelAddress?Id=@item.Id" style="display:none"></a>
+                                            }
                                         </span>
                                     </span>
                                 </div>

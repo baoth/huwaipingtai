@@ -31,38 +31,12 @@
                 
             });
 
-            var LoadData = function () {                
+            var LoadData = function () {
                 var cid = $("#cid").val();
-                $.ajax({
-                    url: "GetCartProductByCustomer",
-                    data: { cid: cid },
-                    type: "POST",
-                    dataType: "json",
-                    success: function (data) {
-                        debugger
-                        var lis = "";
-                        if (data) {
-                            for (var i = 0, j = data.length; i < j; i++) {
-                                lis += getHtml(data[i]);
-                            }
-                        }
-                        if (lis) {
-                            var objul = $("#notEmptyMyCart ul");
-                            var li = objul.find("li:last");
-                            if (li && li.length>0) {
-                                li.after(lis);
-                            }
-                            else {
-                                objul.html(lis);
-                            }
-                        }
-                        SetTotal(data);
-                    },
-                    error: function () {
-                        alert("请求错误！");
-                    }
 
-                });
+                var url = "GetCartProductByCustomer";
+                var para = { cid: cid };
+                submitAjax(url, para);               
             }
 
             var getHtml = function (data) {
@@ -97,9 +71,9 @@
                 + '       <div class="cart-opt"> '
                 + '          <div class="cart-quantity-wrapper"> '
                 + '              <input type="hidden" id="limitSukNum{0}" value="200"> '
-                + '              <a class="cart-quantity-decrease disabled" id="subnum{0}" href="javascript:subQuantityBybutton({5})">-</a> '
-                + '              <input type="text" class="quantity" size="4"  value="{2}" name="num" id="num{0}">  '
-                + '              <a class="quantity-increase" id="addnum{0}" href="javascript:addQuantityBybutton({5})">+</a> '
+                + '              <a class="cart-quantity-decrease disabled" id="subnum{0}" href="javascript:subQuantityBybutton({0})">-</a> '
+                + '              <input type="text" class="quantity" size="4" onchange="QuqntityChange({0},this.value)"   value="{2}" name="num" id="num{0}">  '
+                + '              <a class="quantity-increase" id="addnum{0}" href="javascript:addQuantityBybutton({0})">+</a> '
                 + '          </div>'
                 + '          <a class="cart-icon-remove" href="javascript:deleteCartWare({5})"></a> '
                 + '      </div> '
@@ -108,27 +82,18 @@
                 + ' <div class="cart-diver-hr-dashed"></div> '
 	            + '</div> '
                 + ' </li>'
-                var liHtml = li.format(sku, price, quantity, Actived, Description);
+                var liHtml = li.format(sku, price, quantity, Actived, Description,cartId);
                 return liHtml;
             }
 
-
-
-            function deleteCartWare(id) {                
-                if (confirm("确定要删除吗？")) {
-                    // $("#product" + id).remove();
-                    var cid = $("#cid").val();
-                    DeleteData(cid,id);
-                }
-            }
-            var DeleteData = function (cid,productId) {               
+            var submitAjax = function (url, para) {
                 $.ajax({
-                    url: "Delete",
-                    data: { cid: cid,pid:productId},
+                    url: url,
+                    data: para,
                     type: "POST",
                     dataType: "json",
                     success: function (data) {
-                        debugger
+                        
                         var lis = "";
                         if (data) {
                             for (var i = 0, j = data.length; i < j; i++) {
@@ -139,7 +104,8 @@
                             var objul = $("#notEmptyMyCart ul");
                             var li = objul.find("li:last");
                             if (li && li.length > 0) {
-                                li.after(lis);
+                                objul.children().remove();
+                                objul.html(lis);
                             }
                             else {
                                 objul.html(lis);
@@ -153,38 +119,57 @@
 
                 });
             }
-
-            function changeSelected(e,id) {                
-                var obj = $(e);
-                if (obj.hasClass("checked")) {
-                    obj.removeClass("checked");
+            function deleteCartWare(id) {                
+                if (confirm("确定要删除吗？")) {
+                    // $("#product" + id).remove();                    
+                    DeleteData(id);
                 }
-                else {
-                    obj.addClass("checked");
-                }
-                SetTotal();
             }
-            function checkAllProduct(e) {
-            
+            var DeleteData = function (productId) {
+                var url = "Delete";
+                var para = {pid: productId };
+                submitAjax(url,para);              
+            }
+           
+            function changeSelected(e,id) {
                 var obj = $(e);
+                var check = 0;
                 if (obj.hasClass("checked")) {
-                    $(".cart-checkbox.checked").each(function () {
-                        $(this).removeClass("checked");
-                    })
+                    // obj.removeClass("checked");
+                    check =0;
+                }
+                else {
+                    //obj.addClass("checked");
+                    check = 1;
+                }
+                var url = "UpdateActived";
+                var pStr = id + "," + check;
+                var para ={para:pStr};
+
+                submitAjax(url,para);
+            }
+
+            function checkAllProduct(e) {
+
+                var obj = $(e);
+                var actived=1;
+                if (obj.hasClass("checked")) {
+                    actived = 0;
                     obj.removeClass("checked");
                 }
                 else {
-                    $(".cart-checkbox").each(function () {
-                        $(this).addClass("checked");
-                    })
                     obj.addClass("checked");
                 }
-                SetTotal();
+
+                var url = "UpdateActived";
+                var para = { type: "all", actived: actived };
+
+                submitAjax(url, para);     
             }
             function SetTotal(data) {
-            debugger
+            
             var sumPrice = cartSumPrice(data);
-             sumPrice=(sumPrice+"").formatCurrency();
+                sumPrice=(sumPrice+"").formatCurrency();
                 $("#cart_realPrice").html(sumPrice);
 
                 //商品总额
@@ -197,7 +182,8 @@
                 $("#checkedNum").html(iCount);
                 //设置全选按钮状态
                 var notCheckCount = 0;
-                if(data.length==iCount)
+                var actived = cartAcivedCount(data);
+                if (data.length == actived)
                 {
                     $("#payment .cart-checkbox").each(function () {
                         $(this).addClass("checked");
@@ -253,6 +239,17 @@
                 return count;
             }
 
+            function cartAcivedCount(data) {
+                var count = 0;
+                for (var i = 0, j = data.length; i < j; i++) {
+                    var row = data[i];
+                    if (row["Actived"] == "1") {
+                        count++;
+                    }
+                }
+                return count;
+            }
+
             function addQuantityBybutton(productid) {
                 var q = $("#num" + productid).val();
                 if (q) {
@@ -260,7 +257,8 @@
                     q++;
                 }
                 $("#num" + productid).val(q);
-                SetTotal();
+                $("#num" + productid).attr("value",q);
+                QuqntityChange(productid, q);
             }
             function subQuantityBybutton(productid) {
                 var q = $("#num" + productid).val();
@@ -271,9 +269,16 @@
                     }
                 }
                 $("#num" + productid).val(q);
-                SetTotal();
+                $("#num" + productid).attr("value", q);
+                QuqntityChange(productid,q);
             }
-           
+            function QuqntityChange(productid, value) {
+                
+                var url = "UpdateQuantity";                
+                var para = { pid: productid,quantity:value};
+                submitAjax(url, para);
+            }
+
         </script>
 
         <script type="text/javascript">
@@ -815,7 +820,7 @@
 
         <div class="payment-total-bar" id="payment">
             <div class="shp-chk">
-                <span onclick="checkAllProduct(this);" class="cart-checkbox checked" id="checkIcon-1"></span>
+                <span onclick="checkAllProduct(this);" class="cart-checkbox checked"  id="checkIcon-1"></span>
             </div>
             <div class="shp-cart-info">
                 <strong class="shp-cart-total">总计:￥<span class="" id="cart_realPrice">60.40</span></strong>
@@ -826,6 +831,7 @@
 
        <div style="display:none">
           <input type="hidden" id="cid" value="@ViewData["cid"]" />
+        
       </div>
     </body>
 

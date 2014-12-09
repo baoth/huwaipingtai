@@ -8,7 +8,7 @@ using System.Web.Configuration;
 
 namespace huwaipingtai.Controllers
 {
-    public class CartController : Controller
+    public class CartController : BasicController
     {
         IBusinessOrder.Cart.IOPCart iopcart;
         public CartController(IBusinessOrder.Cart.IOPCart iopcart)
@@ -20,32 +20,50 @@ namespace huwaipingtai.Controllers
 
         public ActionResult Index()
         {
-            var cid=Request["cid"];
-            cid = "111";
-            if (!string.IsNullOrEmpty(cid))
-            {
-                ViewData["cid"] = cid;
-            }
+            //var cid=Request["cid"];
+            //cid = "111";
+            //if (!string.IsNullOrEmpty(cid))
+            //{
+            //    ViewData["cid"] = cid;
+            //}
            
             return View("cart");
         }
         public ActionResult Add()
         {
-            DataModel.Order.Cart model = new DataModel.Order.Cart();
+            var customerId = this.CurrentUserInfo.Id;
 
-           //iopcart.Add(model);
-            return Json(new Message("ok","",""));
+            var type=Request["type"];//等于           
+            DataModel.Order.Cart model = new DataModel.Order.Cart();
+            var pid=Request["sku"];
+            var quantity=Request["quantity"];
+            int q;
+            int.TryParse(quantity,out q);
+            var actived=true;            
+            int sku;
+            int.TryParse(pid,out sku);
+            model.Sku = sku;
+            model.Quantity = q;
+            model.Actived =actived;
+            
+           iopcart.Add(model,type);
+
+           var json=GetDataJsonByCustomerId(customerId);
+           return Content(json);
         }
 
-        public ActionResult Delete(string cid,string pid)
+        public ActionResult Delete(string pid)
         {
-            if (string.IsNullOrEmpty(pid) || string.IsNullOrEmpty(cid)) return null;
+            var customerId = this.CurrentUserInfo.Id;
+
+            if (string.IsNullOrEmpty(pid)) return null;
             int cartId = 0;
             if (int.TryParse(pid, out cartId))
             {
                 iopcart.Delete(cartId);
 
-                GetCartProductByCustomer(cid);
+                var json = GetDataJsonByCustomerId(customerId);
+                return Content(json);
             }
             return Content(null);
         }
@@ -64,6 +82,67 @@ namespace huwaipingtai.Controllers
             List<DataModel.View.CartView> list = iopcart.CartList(cid);
             var json = JsonHelp.objectToJson(list);
             return json;
+        }
+        public ActionResult UpdateActived()
+        {
+            try
+            {
+                var customerId = this.CurrentUserInfo.Id;//客户信息ID
+                var para = Request["para"];
+                var type=Request["type"];
+                var actived=Request["actived"];
+                if (type == "all")
+                {
+                    iopcart.UpdateActived(customerId.ToString(), actived);
+                }
+                else
+                {
+                    Dictionary<string, string> dic = new Dictionary<string, string>();
+                    if (para.IndexOf('#') >= 0)
+                    {
+                        var arr = para.Split('#');
+                        for (int i = 0, j = arr.Length; i < j; i++)
+                        {
+                            var strArr = arr[0].Split(',');
+                            dic[strArr[0]] = strArr[1];
+                        }
+                    }
+                    else
+                    {
+                        var strArr = para.Split(',');
+                        dic[strArr[0]] = strArr[1];
+                    }
+
+                    iopcart.UpdateActived(customerId.ToString(), dic);
+                }
+                var json = GetDataJsonByCustomerId(customerId);
+
+                return Content(json);
+            }
+            catch (Exception ex)
+            {
+                return Content("");
+            }
+
+        }
+
+        public ActionResult UpdateQuantity()
+        {
+            try
+            {
+                var customerId = this.CurrentUserInfo.Id;//客户信息ID
+                var productId=Request["pid"];
+                var quantity=Request["quantity"];
+                int q;
+                int.TryParse(quantity,out q);                
+                iopcart.UpdateQuantity(customerId.ToString(),productId,q);
+                var json = GetDataJsonByCustomerId(customerId);
+                return Content(json);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }

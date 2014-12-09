@@ -30,8 +30,36 @@
                         tg.addClass('on');
                     }
                 });
-
+                $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
             });
+            //提交
+            var payType = $('#pay').data('paytype');//支付方式
+            var delType = $('#delivery').data('deltype'); //发货方式
+            var addressDetail = $('#address').data('address-detail-id');//收货人地址
+            var shiperType = $('#courier').data('send'); //配送方式
+            var isPhone = $('#courier').data('phonetype');
+            var title = $('#invoice').data('title');
+            var content = $('#invoice').data('content');
+            var orgName = $('#invoice').data('orgName');
+            function submitOrder() {
+                $.ajax({
+                    url: '/Order/SumitOrder',
+                    params: {
+                        SendDateIndex: shiperType,
+                        PhoneConfirm: isPhone,
+                        AddressId: addressDetail,
+                        InvoiceTitleType: title,
+                        InvoiceContentType: content,
+                        InvoiceCompany: orgName,
+                        PayType: payType,
+                        DeliveryType:delType
+                    },
+                    type: 'post',
+                    success: function () { 
+                        
+                    }
+                });
+            }
             function initCourier() {
                 if (window.sessionStorage.courierDate == undefined || window.sessionStorage.courierDate == '') {
                     window.sessionStorage.courierDate = new Date().DateAdd('d', 1).Format('YYYY-M-D');
@@ -52,7 +80,7 @@
                              .data('send',window.sessionStorage.courierSend)
                              .text(defaultDate.Format('YYYY-M-D (周W) ') + defaultTimeSect);
                 $('#courier').on($.clickAction, function () {
-                    window.sessionStorage.backurl = document.URL;
+                    
                     window.sessionStorage.courierDate = $(this).data('date');
                     window.sessionStorage.courierTimeSect = $(this).data('tsect');
                     window.sessionStorage.courierPoneType = $(this).data('phonetype');
@@ -74,7 +102,7 @@
                              .data('content', window.sessionStorage.invoiceContent)
                              .text('普通发票');
                 $('#invoice').on($.clickAction, function () {
-                    window.sessionStorage.backurl = document.URL;
+                    
                     window.sessionStorage.invoiceTitle = $(this).data('title');
                     window.sessionStorage.invoiceContent = $(this).data('content');
                     $(this).parent('a').trigger($.clickAction);
@@ -90,7 +118,7 @@
                 $('#pay').data('paytype', window.sessionStorage.payType)
                          .text(window.sessionStorage.payText);
                 $('#pay').on($.clickAction, function () {
-                    window.sessionStorage.backurl = document.URL;
+                    
                     window.sessionStorage.payType = $(this).data('paytype');
                     window.sessionStorage.payText = $(this).text();
                     $(this).parent('a').trigger($.clickAction);
@@ -107,7 +135,7 @@
                 $('#delivery').data('deltype', window.sessionStorage.DeliveryType)
                          .text(window.sessionStorage.DeliveryText);
                 $('#delivery').on($.clickAction, function () {
-                    window.sessionStorage.backurl = document.URL;
+                    
                     window.sessionStorage.DeliveryType = $(this).data('deltype');
                     window.sessionStorage.DeliveryText = $(this).text();
                     $(this).parent('a').trigger($.clickAction);
@@ -135,7 +163,6 @@
             };
             function initAddress() {
                 
-                window.sessionStorage.backurl = document.URL;
                 if (!window.sessionStorage.addressDetailId) {
                     $('#shiperNameId').text(" ");
                     $('#phoneNumId').text("选择收货人");
@@ -146,7 +173,8 @@
                     $('#phoneNumId').text(window.sessionStorage.phoneNum);
                     $('#addressDetailId').text(window.sessionStorage.addressDetail);
                     var href = $('#address').attr('href');
-                    $('#address').attr('href', href + "?Id=" + window.sessionStorage.addressDetailId)
+                    $('#address').attr('href', href + "?Id=" + window.sessionStorage.addressDetailId);
+                    $('#address').data('addressDetailId', window.sessionStorage.addressDetailId);
                 }
             }
         </script>

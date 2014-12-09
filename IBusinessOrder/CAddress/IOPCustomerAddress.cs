@@ -11,6 +11,6 @@ namespace BusinessOrder
         bool Update(CustomerAddress cusomerAddress);
         bool Delete(int Id);
         CustomerAddress Select(int Id);
-        List<CustomerAddress> GetAll();
+        List<CustomerAddress> GetAll(int customerId);
     }
 }

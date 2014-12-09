@@ -50,10 +50,9 @@
                 } else if (type > 0 || type == -1) {
                     getData(type, '', '', '', '', '', '1', '72', '2799', '0');
                 }
-
-                if ($("#parent1").text() != "" && $("#parent1").text() != null) {
-                    $("#backUrl").attr("href", "javascript:backListener('child1','parent1')");
-                }
+                $('.i-a-back').on('click', function () {
+                    window.location = '/User/Address/';
+                });
             });
         </script>
     </head>
@@ -86,7 +85,7 @@
                 </div>
             </div>
         </header>
-        <form action="/User/SaveAddress" method="post" id="editAddressForm">
+        <form action="/User/SaveAddress?" method="post" id="editAddressForm">
             <div class="new-ct shouhuo">
     <div class="title">收货人地址</div>
     <div class="info-list">
@@ -204,6 +203,8 @@
     <!--[D] 默认时加  new-abtn-default 把a标签换成span-->
     <a href="javascript:submitEditAddressForm()" class="new-abtn-type mgn">下一步</a>	
 </div>
+<input type="hidden" name="Id" value="@ViewData["Id"]"/>
+<input type="hidden" name="CustomerId" value="@ViewData["CustomerId"]"/>
         </form>
         <footer>
             <div class='i-footer'>

@@ -25,9 +25,10 @@ namespace huwaipingtai.Controllers
             try
             {
                 var IdStr = Request["Id"];
+                var customerId = this.CurrentUserInfo.Id;
                 int i;
                 int.TryParse(IdStr,out i);
-                List<CustomerAddress> listAddress = iopcustomeraddress.GetAll();
+                List<CustomerAddress> listAddress = iopcustomeraddress.GetAll(customerId);
                 var ent= listAddress.FirstOrDefault(e => e.Id == i);
                 if (ent != null) {
                     ent.Default = true;
@@ -75,7 +76,7 @@ namespace huwaipingtai.Controllers
         {
             /*1、得到地址Id*/
             var id = Request["Id"];
-            if (!string.IsNullOrEmpty(id)&&id!="-1")
+            if (!string.IsNullOrEmpty(id) && id != "-1")
             {
                 var iid = int.Parse(id);
                 var customer = iopcustomeraddress.Select(iid);
@@ -88,16 +89,11 @@ namespace huwaipingtai.Controllers
                 ViewData["DetailAddress"] = customer.DetailAddress;
                 ViewData["Shipper"] = customer.Shipper;
                 ViewData["ShipperPhone"] = customer.ShipperPhone;
+                ViewData["Id"] = iid;
             }
-            //if (string.IsNullOrEmpty(entity.Id+""))
-            //{//新增默认的用户id附上就行了 
-            //    iopcustomeraddress.Add(entity);
-            //}
-            //else
-            //{
-            //    /*2如果有addressId 是编辑 给界面赋值*/
-            //}
-            /*打开发货人修改界面*/
+            else {
+                ViewData["CustomerId"] = this.CurrentUserInfo.Id;
+            }
             return View("editAddress");
         }
 

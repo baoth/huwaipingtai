@@ -110,7 +110,7 @@ namespace huwaipingtai.Controllers
             return View("logon");
         }
 
-        public void DoLogon()
+        public RedirectResult DoLogon()
         {
             var username = this.Request["username"];
             var password = this.Request["password"];
@@ -127,9 +127,10 @@ namespace huwaipingtai.Controllers
                     NickName = dt.Rows[0]["NikeName"].ToString()
                 };
                 //this.Response.Redirect(Session[RequestCommand.DIRECT_PATH] as string);
-                this.Response.Redirect("/Order");
+                var strUrl = Session[RequestCommand.DIRECT_PATH] as string;
+                return Redirect(strUrl);
             }
-            
+            return null;
         }
 
         public void LogOut()

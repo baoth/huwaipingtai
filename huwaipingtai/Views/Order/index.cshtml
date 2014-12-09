@@ -32,6 +32,28 @@
                 });
 
             });
+            function submiOrder() {
+                /*支付方式*/
+                var paytype=$('#pay').data('paytype');        //1线下支付 : 2在线支付
+                /*送货方式*/
+                var deltype = $('#delivery').data('deltype'); //1门店自提 : 2送货上门
+                /*收货人信息*/
+                var address = $('#address').data('address-detail-id');
+                /*配送方式*/
+                var send = $('#courier').data('send');
+                var isPhoneNotie = $('#courier').data("phonetype");
+                /*发票信息*/
+                var content = $('#invoice').data('content');
+                var paytype = $('#invoice').data('paytype');
+                var deltype = $('#invoice').data('deltype');
+
+                $.ajax({
+                    type: 'post',
+                    success:function () { 
+                        
+                    }
+                })
+             }
             function initCourier() {
                 if (window.sessionStorage.courierDate == undefined || window.sessionStorage.courierDate == '') {
                     window.sessionStorage.courierDate = new Date().DateAdd('d', 1).Format('YYYY-M-D');
@@ -134,7 +156,6 @@
                 }
             };
             function initAddress() {
-                debugger
                 window.sessionStorage.backurl = document.URL;
                 if (!window.sessionStorage.addressDetailId) {
                     $('#shiperNameId').text(" ");
@@ -146,7 +167,8 @@
                     $('#phoneNumId').text(window.sessionStorage.phoneNum);
                     $('#addressDetailId').text(window.sessionStorage.addressDetail);
                     var href = $('#address').attr('href');
-                    $('#address').attr('href', href + "?Id=" + window.sessionStorage.addressDetailId)
+                    $('#address').attr('href', href + "?Id=" + window.sessionStorage.addressDetailId);
+                    $('#address').data('addressDetailId', window.sessionStorage.addressDetailId);
                 }
             }
         </script>

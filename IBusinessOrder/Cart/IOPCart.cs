@@ -43,6 +43,24 @@ namespace IBusinessOrder.Cart
        /// <param name="productIds"></param>
        /// <returns></returns>
        bool UpdateActived(string customerId, Dictionary<string, string> dic);
+        /// <summary>
+        /// 更改所有的状态
+        /// </summary>
+        /// <param name="customerId">客户ID</param>
+        /// <param name="actived">状态</param>
+        /// <returns>bool</returns>
        bool UpdateActived(string customerId, string actived);
+       /// <summary>
+       /// 获取被激活的删除SQL语句
+       /// </summary>
+       /// <param name="customerId">客户ID</param>
+       /// <returns>string</returns>
+       string GetDeleteActivedSql(int customerId);
+        /// <summary>
+        /// 根据客户ID获取购物车激活的商品列表信息
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
+       List<DataModel.Order.Cart> CartActivedList(int customerId);
     }
 }

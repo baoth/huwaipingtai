@@ -26,7 +26,7 @@ namespace BusinessOrder.Cart
                     List<string> sqlList = new List<string>();
                     
                     //删除同类商品
-                    var sql1 = string.Format("delete cart where CustomerId='{1}' and Sku='{2}' ", 0, cart.CustomerId, cart.Sku);
+                    var sql1 = string.Format("delete from cart where CustomerId='{1}' and Sku='{2}' ", 0, cart.CustomerId, cart.Sku);
                     sqlList.Add(sql1);
                    //修改状态
                     var sql2 = string.Format("update cart set Actived={0} where CustomerId='{1}' and Sku='{2}' ",0,cart.CustomerId,cart.Sku);
@@ -169,6 +169,30 @@ namespace BusinessOrder.Cart
             {
                 throw ex;
             }           
+        }
+
+
+        public string GetDeleteActivedSql(int customerId)
+        {
+            var sql = string.Format("delete from cart where actived=1 and  customerId='{0}' ", customerId);
+            return sql;
+        }
+
+        public List<DataModel.Order.Cart> CartActivedList(int customerId)
+        {
+            QSmartQuery Query = new QSmartQuery();
+            Query.Tables.Add(new QSmartQueryTable());
+            Query.Tables[0].tableName = typeof(DataModel.Order.Cart).Name;
+            Query.FilterConditions.Add(new QSmartQueryFilterCondition
+            {
+                Column = new QSmartQueryColumn { columnName = "CustomerId", dataType = typeof(int) },
+                Operator = QSmartOperatorEnum.equal,
+                Values = new List<object> { customerId },
+                Connector = QSmartConnectorEnum.and
+            });
+
+            List<DataModel.Order.Cart> list = db.Context.QueryEntity<DataModel.Order.Cart>(Query);
+            return list;
         }
     }
 }

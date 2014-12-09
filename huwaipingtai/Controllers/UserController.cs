@@ -28,11 +28,8 @@ namespace huwaipingtai.Controllers
                 var customerId = this.CurrentUserInfo.Id;
                 int i;
                 int.TryParse(IdStr,out i);
-                List<CustomerAddress> listAddress = iopcustomeraddress.GetAll(customerId);
-                var ent= listAddress.FirstOrDefault(e => e.Id == i);
-                if (ent != null) {
-                    ent.Default = true;
-                }
+                iopcustomeraddress.SetDefault(i);
+                var listAddress = iopcustomeraddress.GetAll(customerId);
                 ViewData["listAddress"] = listAddress;
             }
             catch (Exception ex)

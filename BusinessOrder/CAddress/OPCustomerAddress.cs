@@ -51,5 +51,15 @@ namespace BusinessOrder.CAddress
             var dt = dbSession.Context.QueryTable(sql); ;
             return dbSession.Context.ConversionEntity<CustomerAddress>(dt);
         }
+
+
+        public bool SetDefault(int Id)
+        {
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var sql = string.Format("update customeraddress a set   a.Default=0  ", Id);
+            var sql1 = string.Format("update customeraddress a set   a.Default=1 where a.Id={0} ", Id);
+            dbSession.Context.ExcuteNoQuery(new List<string>() { sql,sql1});
+            return true;
+        }
     }
 }

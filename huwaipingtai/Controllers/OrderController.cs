@@ -62,6 +62,7 @@ namespace huwaipingtai.Controllers
             //读取当前客户所有在购物车里状态actived为true的商品
             //计算金额合计
             return View();
+            
         }
         public ActionResult pay()
         {

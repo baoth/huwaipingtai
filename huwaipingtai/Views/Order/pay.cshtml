@@ -48,7 +48,7 @@
             function submitForm() {
                 window.sessionStorage.payType = $('#idpayType').val();
                 window.sessionStorage.payText = $('#payType' + window.sessionStorage.payType).next().text();
-                window.location = window.sessionStorage.backurl;
+                $('.i-a-back').trigger($.clickAction);
             };
         </script>
         <style type="text/css">

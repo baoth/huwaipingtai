@@ -120,23 +120,20 @@ namespace huwaipingtai.Controllers
             DataTable dt = db.QueryTable(command);
             if (dt.Rows.Count > 0)
             {
-                
-                Session[RequestCommand.SESSION_USERINFO] = new UserInfo
-                {
-                    Id=(int)dt.Rows[0]["Id"],
-                    NickName = dt.Rows[0]["NikeName"].ToString()
-                };
-                //this.Response.Redirect(Session[RequestCommand.DIRECT_PATH] as string);
-                var strUrl = Session[RequestCommand.DIRECT_PATH] as string;
-                return Redirect(strUrl);
+                Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = (int)dt.Rows[0]["Id"], NickName = dt.Rows[0]["NikeName"] as string };
+                var jumpurl = Session[RequestCommand.LOGON_JUMP_URL] as string;
+                Session[RequestCommand.LOGON_JUMP_URL] = null;
+                return Redirect(jumpurl);
             }
-            return null;
+            return Redirect("logon");
+            
         }
 
-        public void LogOut()
+        public RedirectResult LogOut()
         {
             Session[RequestCommand.SESSION_USERINFO] = null;
-            this.Response.Redirect("/Product/1000000011/index.html");
+            Session[RequestCommand.LOGON_JUMP_URL] = null;
+            return Redirect("/Product/1000000011/index.html");
         }
     }
 }

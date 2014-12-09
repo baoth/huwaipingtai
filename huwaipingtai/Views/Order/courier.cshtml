@@ -496,7 +496,7 @@
                 window.sessionStorage.courierTimeType = $('#idTime').val();
                 window.sessionStorage.courierPoneType = $('#idPhone').val();
                 window.sessionStorage.courierSend = $('#i-sendTime').data('send');
-                window.location = window.sessionStorage.backurl;
+                $('.i-a-back').trigger($.clickAction);
             };
             function selectTime() {
                 

@@ -49,7 +49,7 @@
                 
                 window.sessionStorage.DeliveryType = $('#iddelvType').val();
                 window.sessionStorage.DeliveryText = $('#delvType' + window.sessionStorage.DeliveryType).next().text();
-                window.location = window.sessionStorage.backurl;
+                $('.i-a-back').trigger($.clickAction);
             };
         </script>
         <style type="text/css">

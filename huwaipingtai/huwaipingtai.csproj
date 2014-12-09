@@ -255,7 +255,6 @@
     <Content Include="Views\Order\pay.cshtml" />
     <Content Include="Views\Order\goodlisting.cshtml" />
     <Content Include="Views\OutputOrder\Detail.cshtml" />
-    <Content Include="Views\Order\cart.cshtml" />
     <Content Include="Views\User\logon.cshtml" />
     <Content Include="Views\Cart\cart.cshtml" />
   </ItemGroup>

@@ -18,35 +18,71 @@ namespace BusinessOrder.Cart
         /// <returns></returns>        
         public bool Add(DataModel.Order.Cart cart, string type)
         {
+           
             try
             {
                 if (type == "2")//立即购买
                 {
-                   
+                    List<string> sqlList = new List<string>();
+                    
+                    //删除同类商品
+                    var sql1 = string.Format("delete cart where CustomerId='{1}' and Sku='{2}' ", 0, cart.CustomerId, cart.Sku);
+                    sqlList.Add(sql1);
+                   //修改状态
+                    var sql2 = string.Format("update cart set Actived={0} where CustomerId='{1}' and Sku='{2}' ",0,cart.CustomerId,cart.Sku);
+                    sqlList.Add(sql2);
+                   //增加商品
+                    var addSql = string.Format("insert cart(Sku,CustomerId,Actived,Quantity) values('{0}','{1}','{2}','{3}') ",cart.Sku,cart.CustomerId,cart.Actived,cart.Quantity);
+                    sqlList.Add(addSql);
+                    db.Context.ExcuteNoQuery(sqlList);
                 }
                 else 
                 {
-                    db.Context.InsertEntity(cart.CreateQSmartObject());
+                    if (IsExists(cart))
+                    {
+                        //修改状态
+                        var sql = string.Format("update cart set Actived={0},Quantity={1} where CustomerId='{2}' and Sku='{3}' ", cart.Actived, cart.Quantity, cart.CustomerId, cart.Sku);
+                        db.Context.ExcuteNoQuery(sql);
+
+                    }
+                    else
+                    {
+                        //增加商品
+                        var addSql = string.Format("insert cart(Sku,CustomerId,Actived,Quantity) values('{0}','{1}','{2}','{3}') ", cart.Sku, cart.CustomerId, cart.Actived, cart.Quantity);                        
+                        db.Context.ExcuteNoQuery(addSql);
+                    }
                 }
-
-                db.Context.SaveChange();
-
+                return true;
+               
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return true;
+           
         }
-       
+
+        private bool IsExists(DataModel.Order.Cart cart)
+        {
+            //删除同类商品
+            var sql= string.Format("select Id cart where CustomerId='{0}' and Sku='{1}' ",cart.CustomerId, cart.Sku);
+            var dt=db.Context.QueryTable(sql);
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
         //删除
         public bool Delete(int Id)
         {
             try
             {
-                DataModel.Order.Cart model = new DataModel.Order.Cart() {Id=Id };
-                db.Context.DeleteEntity(model.CreateQSmartObject());
-                db.Context.SaveChange();
+                //DataModel.Order.Cart model = new DataModel.Order.Cart() {Id=Id };
+                //db.Context.DeleteEntity(model.CreateQSmartObject());
+                //db.Context.SaveChange();
+                var sql = string.Format("delete from cart where Id='{0}' ",Id);
+                db.Context.ExcuteNoQuery(sql);
             }
             catch (Exception ex)
             {
@@ -88,15 +124,51 @@ namespace BusinessOrder.Cart
 
         public bool UpdateQuantity(string customerId, string productId, int quantity)
         {
-           // throw new NotImplementedException();
-            return true;
+            try
+            {
+                //QSmartDatabaseClient db=DataBaseProvider.Create('db');
+
+                var sql = string.Format("update cart set quantity={0} where CustomerId='{1}' and Sku='{2}' ", quantity, customerId, productId);
+                db.Context.ExcuteNoQuery(sql);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }           
         }
 
-        public bool UpdateActived(string customerId, List<string> productIds)
+        public bool UpdateActived(string customerId,Dictionary<string,string> dic)
         {
-            return true;
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (KeyValuePair<string,string> item in dic)
+                {
+                    var sql = string.Format("update cart set Actived={0} where CustomerId='{1}' and Sku='{2}' ; ", item.Value, customerId, item.Key);
+                    sb.Append(sql);
+                }
+                db.Context.ExcuteNoQuery(sb.ToString());
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }           
         }
 
-        
+        public bool UpdateActived(string customerId, string actived)
+        {
+            try
+            {                
+                var sql = string.Format("update cart set Actived={0} where CustomerId='{1}'",actived,customerId);
+                db.Context.ExcuteNoQuery(sql);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }           
+        }
     }
 }

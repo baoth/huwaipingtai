@@ -24,9 +24,7 @@
                         tg.addClass('on');
                     }
                 });
-                $('.i-a-back').on($.clickAction, function () {
-                    window.location = window.sessionStorage.backurl;
-                });
+                $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
                 $('.chooseDelvType').on($.clickAction, chooseDelvType);
                 initDelivery();
             });

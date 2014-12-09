@@ -15,8 +15,17 @@ namespace IBusinessOrder.Cart
         /// <param name="type">类型：1表示加入购物车 2表示立即购买</param>
         /// <returns></returns>
         bool Add(DataModel.Order.Cart cart,string type);
-       
+       /// <summary>
+       /// 删除
+       /// </summary>
+       /// <param name="Id"></param>
+       /// <returns></returns>
         bool Delete(int Id);
+        /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
         List<DataModel.View.CartView> CartList(int customerId);
 
         /// <summary>
@@ -33,6 +42,7 @@ namespace IBusinessOrder.Cart
        /// <param name="customerId"></param>
        /// <param name="productIds"></param>
        /// <returns></returns>
-       bool UpdateActived(string customerId, List<string> productIds);
+       bool UpdateActived(string customerId, Dictionary<string, string> dic);
+       bool UpdateActived(string customerId, string actived);
     }
 }

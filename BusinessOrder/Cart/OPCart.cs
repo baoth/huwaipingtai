@@ -17,40 +17,36 @@ namespace BusinessOrder.Cart
         /// <param name="cart"></param>
         /// <returns></returns>        
         public bool Add(DataModel.Order.Cart cart, string type)
-        {
-           
+        {           
             try
             {
+                List<string> sqlList = new List<string>();    
                 if (type == "2")//立即购买
                 {
-                    List<string> sqlList = new List<string>();
-                    
+                   
                     //删除同类商品
-                    var sql1 = string.Format("delete from cart where CustomerId='{1}' and Sku='{2}' ", 0, cart.CustomerId, cart.Sku);
+                    var sql1 = string.Format("delete from cart where CustomerId='{0}' and Sku='{1}' ",cart.CustomerId, cart.Sku);
                     sqlList.Add(sql1);
                    //修改状态
-                    var sql2 = string.Format("update cart set Actived={0} where CustomerId='{1}' and Sku='{2}' ",0,cart.CustomerId,cart.Sku);
+                    var sql2 = string.Format("update cart set Actived={0} where CustomerId='{1}' ",0,cart.CustomerId);
                     sqlList.Add(sql2);
                    //增加商品
-                    var addSql = string.Format("insert cart(Sku,CustomerId,Actived,Quantity) values('{0}','{1}','{2}','{3}') ",cart.Sku,cart.CustomerId,cart.Actived==true?1:0,cart.Quantity);
+                    var addSql = string.Format("insert cart(Sku,CustomerId,Actived,Quantity) values('{0}','{1}','{2}','{3}') ",cart.Sku,cart.CustomerId,1,cart.Quantity);
                     sqlList.Add(addSql);
                     db.Context.ExcuteNoQuery(sqlList);
                 }
                 else 
                 {
-                    if (IsExists(cart))
-                    {
-                        //修改状态
-                        var sql = string.Format("update cart set Actived={0},Quantity={1} where CustomerId='{2}' and Sku='{3}' ", cart.Actived, cart.Quantity, cart.CustomerId, cart.Sku);
-                        db.Context.ExcuteNoQuery(sql);
+                    //先删除后添加
 
-                    }
-                    else
-                    {
-                        //增加商品
-                        var addSql = string.Format("insert cart(Sku,CustomerId,Actived,Quantity) values('{0}','{1}','{2}','{3}') ", cart.Sku, cart.CustomerId, cart.Actived, cart.Quantity);                        
-                        db.Context.ExcuteNoQuery(addSql);
-                    }
+                    //删除同类商品
+                    var sql1 = string.Format("delete from cart where CustomerId='{0}' and Sku='{1}' ",cart.CustomerId, cart.Sku);
+                    sqlList.Add(sql1);
+                    //增加商品
+                    var addSql = string.Format("insert cart(Sku,CustomerId,Actived,Quantity) values('{0}','{1}','{2}','{3}') ",cart.Sku,cart.CustomerId,1,cart.Quantity);
+                    sqlList.Add(addSql);
+                    db.Context.ExcuteNoQuery(sqlList);
+                    
                 }
                 return true;
                
@@ -73,6 +69,7 @@ namespace BusinessOrder.Cart
             }
             return false;
         }
+
         //删除
         public bool Delete(int Id)
         {

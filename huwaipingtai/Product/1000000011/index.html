@@ -329,7 +329,13 @@
                  more();
              });
              $("#directorder").bind("click", function () {
-                window.location = window.location.origin + '/Order';
+                 // window.location = window.location.origin + '/Order';
+                 directorderBuy();
+             });
+             //购物车
+             $("#product_cart").bind("click", function () {
+                 var productId = $("#ProductId").val();
+                 window.location = window.location.origin + '/Cart/index'
              });
          }
          //数量计算
@@ -387,8 +393,26 @@
              alert("无更多数据");
          }
          var directorderBuy = function () {
-             alert("立即购买");
+             var url = "/cart/add";
+             var productId = $("#ProductId").val();
+             var quantity = $("#txt_quantity").val();
+             $.ajax({
+                 url: url,
+                 data: { sku: productId, quantity: quantity,type:2 },
+                 type: "POST",
+                 dataType: "json",
+                 success: function (data) {
+                     window.location = window.location.origin + '/Order';
+                 },
+                 error: function () {
+                     alert("请求错误！");
+                 }
+
+             });
+
          }
+        
+         
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -422,7 +446,7 @@
                         <span style='width:26px;background-position:0 -25px;'></span>
                         <p style='color:#6e6e6e;'>分类搜索</p>
                     </a>
-                    <a href='#' class='i-tbl-cell'>
+                    <a href='#' id="product_cart" class='i-tbl-cell'>
                         <span style='width:25px;background-position:-29px -25px'></span>
                         <p style='color:#6e6e6e;'>购物车</p>
                     </a>
@@ -510,6 +534,10 @@
 
       <div  class="footer" style="z-index:1;  " >       
          <a id="directorder" class="btn-buy"><span></span>立即购买</a>
+      </div>
+      <div style=" display:none">
+         <input type="hidden" id="ProductId" value="1000000011" />
+        
       </div>
     
 </body>

@@ -329,7 +329,8 @@
                  more();
              });
              $("#directorder").bind("click", function () {
-
+                 alert(1);
+                 directorderBuy();
              });
          }
          //数量计算
@@ -386,9 +387,27 @@
          var more = function () {
              alert("无更多数据");
          }
-         var directorderBuy = function () {
-             alert("立即购买");
-         }
+        
+        var directorderBuy = function () {
+            var url = "/cart/add";
+            var productId = $("#ProductId").val();
+            var quantity = $("#txt_quantity").val();
+            $.ajax({
+                url: url,
+                data: { sku: productId, quantity: quantity, type: 2 },
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    window.location = window.location.origin + '/Order';
+                },
+                error: function () {
+                    alert("请求错误！");
+                }
+
+            });
+
+        }
+         
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -511,7 +530,9 @@
       <div  class="footer" style="z-index:1;  " >       
          <a id="directorder" class="btn-buy" ><span></span>立即购买</a>
       </div>
-    
+      <div style=" display:none">
+         <input type="hidden" id="ProductId" value="1000000012" />
+      </div>
 </body>
 </html>
 

@@ -164,11 +164,13 @@
     <Content Include="Product\1000000011\00002.jpg" />
     <Content Include="Product\1000000011\00003.jpg" />
     <Content Include="Product\1000000011\00004.jpg" />
+    <Content Include="Product\1000000011\1000000011.jpg" />
     <Content Include="Product\1000000011\index.html" />
     <Content Include="Product\1000000012\00001.jpg" />
     <Content Include="Product\1000000012\00002.jpg" />
     <Content Include="Product\1000000012\00003.jpg" />
     <Content Include="Product\1000000012\00004.jpg" />
+    <Content Include="Product\1000000012\1000000012.jpg" />
     <Content Include="Product\1000000012\index.html" />
     <Content Include="Product\1000000021\00001.jpg" />
     <Content Include="Product\1000000021\00002.jpg" />

@@ -32,7 +32,7 @@ namespace BusinessOrder.Cart
                     var sql2 = string.Format("update cart set Actived={0} where CustomerId='{1}' and Sku='{2}' ",0,cart.CustomerId,cart.Sku);
                     sqlList.Add(sql2);
                    //增加商品
-                    var addSql = string.Format("insert cart(Sku,CustomerId,Actived,Quantity) values('{0}','{1}','{2}','{3}') ",cart.Sku,cart.CustomerId,cart.Actived,cart.Quantity);
+                    var addSql = string.Format("insert cart(Sku,CustomerId,Actived,Quantity) values('{0}','{1}','{2}','{3}') ",cart.Sku,cart.CustomerId,cart.Actived==true?1:0,cart.Quantity);
                     sqlList.Add(addSql);
                     db.Context.ExcuteNoQuery(sqlList);
                 }
@@ -65,7 +65,7 @@ namespace BusinessOrder.Cart
         private bool IsExists(DataModel.Order.Cart cart)
         {
             //删除同类商品
-            var sql= string.Format("select Id cart where CustomerId='{0}' and Sku='{1}' ",cart.CustomerId, cart.Sku);
+            var sql= string.Format("select Id from cart where CustomerId='{0}' and Sku='{1}' ",cart.CustomerId, cart.Sku);
             var dt=db.Context.QueryTable(sql);
             if (dt.Rows.Count > 0)
             {

@@ -29,44 +29,10 @@
         -webkit-text-size-adjust: none;
         }
         
-        .footer
-        {
-            height:35px;            
-            bottom: -1px;
-            padding-bottom: 1px;
-            left: 0;
-            right: 0;
-            width: 100%;
-            position: fixed;
-            z-index: 1000;             
-            background-color:#CCCCCC;
-            border-color: #1b1b1b;
-            color: #fff;
-            text-shadow: 0 1px 0 #111;
-            font-weight: 700;
-            text-align:center;            
-        }
-        /*.header
-        {
-            height:35px;
-            top:-1px; 
-            padding-top:1px;
-            left: 0;
-            right: 0;
-            width: 100%;
-            position: fixed;
-            z-index: 1000;             
-            background-color:#CCCCCC;/*#1d1d1d*/
-            border-color: #1b1b1b;        
-            text-shadow: 0 1px 0 #111;
-            font-weight: 700;
-            text-align:center; 
-            
-            
-        }*/
+       
+       
         .content
-        {
-            margin: 36px 0px 0px -40px; 
+        {           
             text-align:left;  
         }
         ul
@@ -90,20 +56,7 @@
         text-decoration: none;
         }
         
-       .footer a {
-        display: block;
-        height: 35px;
-        margin: 0 10px;
-        border-radius: 3px;
-        line-height: 35px;
-        color: #fff;
-        }
         
-        .btn-buy {
-        background: #c00;
-        font-size:large;
-        }
-              
        .btn-color
        {
         display: inline-block;
@@ -151,7 +104,7 @@
         .quantity-input {
         float: left;
         width: 33px;
-        height: 34px;
+        height: 35px;
         line-height: 34px;
         font-size: 14px;
         color: #333;
@@ -190,6 +143,17 @@
        .btn_more
        {
          width:50px; height:30px;position:absolute;right: 5px;   
+       }
+       
+      
+        .content a {        
+        height: 35px;       
+        border-radius: 3px;
+        line-height: 35px;       
+        }
+       .content .title
+       {
+           margin: 0px;
        }
     </style>
     <style>
@@ -291,6 +255,151 @@
                 height: 22px;
                 color:#6e6e6e;
             }
+            
+            
+    </style>
+
+    <!--底部按钮-->
+    <style type="text/css">
+        .detail-tbn2 .tbl-cell {
+        width: 50%;
+        text-align: center;
+        }
+        .tbl-cell {
+        display: table-cell;
+        } 
+        .detail-tbn2 {
+        padding: 5px 0;
+        background: #f1f1f5;
+        }   
+        .tbl-type {
+        display: table;
+        width: 100%;
+        }
+        .detail-tbn2 .tbl-cell a {
+        display: block;
+        height: 35px;
+        margin: 0 10px;
+        border-radius: 3px;
+        line-height: 35px;
+        color: #fff;
+        }  
+        
+        .btn-buy {
+        background: #c00;
+        }
+       
+       .btn-cart {
+        background: #6cb248;
+        }
+        
+        .btn-buy span, .btn-cart span, .btn-buy-def span, .btn-cart-def span {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+        background: url(../../Content/images/icon_detail.png) -74px 0 no-repeat;
+        background-size: 100px 100px;
+        vertical-align: -2px;
+        }
+        .btn-cart span {
+        background-position: -60px -27px;
+        }
+        
+       
+    </style>
+
+     <!--底部登陆信息样式-->
+    <style type="text/css">
+        .login-area {
+        padding-bottom: 1.8em;
+        text-align: center;
+        width: 100%;
+        max-width: 640px;
+        background-color: #fff;
+        margin: 0 auto;
+        }
+        .login-area .login {
+        padding: .55em .71em;
+        border-bottom: 1px solid #e5e5e5;
+        text-align: left;
+        }
+        .login-area a {
+        font-size: .85em;
+        color: #666;
+        }
+        .login-area .lg-bar {
+        display: inline-block;
+        margin: 0 2px;
+        color: #666;
+        }
+        .login-area .login {
+        padding: .55em .71em;
+        border-bottom: 1px solid #e5e5e5;
+        text-align: left;
+        }
+        .new-fr {
+        float: right;
+        }
+       .version {
+        padding: .71em 0 5px;
+        }
+        .version a {
+        padding: 0 1.16em;
+        color: #6e6e6e;
+        }
+        .version a.on {
+        color: #e6242b;
+        }
+        .copyright {
+        font-size: 12px;
+        color: #666;
+        }
+    </style>
+    <!-- 遮盖层-->
+    <style type="text/css">
+    .cart-pop {
+        position: absolute;
+        left: 30px;
+        bottom: 1px;
+        width: 228px;
+        height:150px;
+        background-color: rgba(0,0,0,.65);
+        color: #fff;
+        border-radius: 2px;
+        border: 1px solid #3d3c3b;
+        box-shadow: 1px 1px 1px rgba(0,0,0,.5);
+      }
+      .cart-pop .ico-succ {
+        padding: 11px 15px 9px 52px;
+        background: url(../../Content/images/icon_suc.png) 11px 20px no-repeat;
+        border-bottom: 1px solid rgba(130,128,127,.5);
+        text-shadow: 0 1px 0 rgba(0,0,0,1);
+      }
+      .cart-pop .cp-lnk {
+        display: table;
+        width: 100%;
+      }
+      .cart-pop .cp-lnk a {
+        display: table-cell;
+        width: 50%;
+        padding: 7px 0 9px;
+        font-size: 14px;
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0,0,0,1);
+        text-align: center;
+        }
+        .cart-pop .bar {
+        height: 17px;
+        margin-top: 4px;
+        background: rgba(130,128,127,.65);
+        }
+        .bar {
+        width: 1px;
+        height: 20px;
+        color: #c8c7cc;
+        vertical-align: top;
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -332,9 +441,16 @@
                  // window.location = window.location.origin + '/Order';
                  directorderBuy();
              });
-             //购物车
+             //表头菜单购物车
              $("#product_cart").bind("click", function () {
                  var productId = $("#ProductId").val();
+                 window.location = window.location.origin + '/Cart/index'
+             });
+             //添加购物车
+             $("#add_cart").bind("click", function () {
+                 addCartProduct();
+             });
+             $("#goCart").bind("click", function () {
                  window.location = window.location.origin + '/Cart/index'
              });
          }
@@ -411,8 +527,35 @@
              });
 
          }
-        
-         
+         var addCartProduct = function () {
+             var url = "/cart/add";
+             var productId = $("#ProductId").val();
+             var quantity = $("#txt_quantity").val();
+             $.ajax({
+                 url: url,
+                 data: { sku: productId, quantity: quantity, type: 1 },
+                 type: "POST",
+                 dataType: "json",
+                 success: function (data) {
+                     $('#cart').show();
+                     $('#_mask').show();                    
+                     sc1("cart");
+                 },
+                 error: function () {
+                     alert("请求错误！");
+                 }
+
+             });
+         }
+
+         function sc1(DivId) {
+             var Div = $(DivId);
+             d$(DivId).style.top = (document.documentElement.scrollTop + (document.documentElement.clientHeight - d$(DivId).offsetHeight) / 2) + "px";
+             d$(DivId).style.left = (document.documentElement.scrollLeft + (document.documentElement.clientWidth - d$(DivId).offsetWidth) / 2) + "px";
+         }
+         function d$(id) {
+             return document.getElementById(id);
+         } 
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -479,7 +622,7 @@
              
             
              <li>
-                <div>
+                <div class="content title">
                     颜色
                 </div>
                 <div id="btn_color">                  
@@ -490,7 +633,7 @@
                 <hr style=" margin-top:2px" />
              </li>
              <li>
-                <div>
+                <div class="content title">
                     尺码
                 </div>
                 <div id="btn_size">                    
@@ -500,7 +643,7 @@
                 <hr style=" margin-top:2px"/>
              </li>
              <li style=" height:50px">
-                <div>购买数量</div>
+                <div class="content title">购买数量</div>
                 <span class="add-del">                 
                 <a class="btn-add" id="btn_quantityCut"><span></span></a>
                  <input id="txt_quantity" type="text" class="quantity-input" value="1"/>
@@ -532,14 +675,58 @@
                       
        </div>
 
-      <div  class="footer" style="z-index:1;  " >       
+      <!--<div  class="footer" style="z-index:1;  " >       
          <a id="directorder" class="btn-buy"><span></span>立即购买</a>
+      </div>-->
+
+      <div class="tbl-type detail-tbn2" id="cart1" style="position: fixed; left: 0px; bottom: 0px; z-index: 999; display: table;">
+    	   <div class="tbl-cell">                   
+               <a id="directorder" class="btn-buy"><span></span>立即购买</a>
+           </div>
+           <div class="tbl-cell">  
+                <a id="add_cart" class="btn-cart"><span></span>加入购物车</a>
+           </div>
       </div>
+
+      <div class="login-area" id="footer">
+        	<div class="login">
+			<a rel="nofollow" href="#">
+					tzwe..
+        	</a>
+    		<span class="lg-bar">|</span>
+			<a rel="nofollow" href="#">退出</a>
+			<span class="new-fr">
+                <a href="#">反馈</a>
+                <span class="lg-bar">|</span>
+                <a href="#top">回到顶部</a>
+            </span>
+            </div>
+
+        	<div class="version"><a href="#">标准版</a><a href="javascript:void(0)" class="on">触屏版</a>
+				<a onclick="skip();" href="javascript:void(0);" id="toPcHome">电脑版</a>
+        	</div>
+        	<div id="clientArea">
+	        	<a href="#" id="toClient" class="openJD">客户端</a>
+        	</div>
+            <div class="copyright">Copyright © 2014-2015 baoth.com 版权所有</div>
+       </div>
+
       <div style=" display:none">
          <input type="hidden" id="ProductId" value="1000000011" />
         
       </div>
-    
+
+      <div id="_mask" style="display:none;position:absolute;left:0px;top:0px;background-color:rgb(20, 20, 20);filter:alpha(opacity=60);opacity: 0.6;width:100%;height:1124px;z-index:9998;"></div>
+      <div class="cart-pop" id="cart" style=" display:none; position: absolute; bottom: 63px; z-index: 9999; left: 93px; -webkit-transform-origin: 0px 0px 0px; opacity: 1; -webkit-transform: scale(1, 1);">
+        <div class="ico-succ">
+            <span class="att-succ">添加成功！</span>
+            <span class="cart-succ">商品已成功加入购物车</span>
+        </div>
+        <div class="cp-lnk">
+            <a href="javascript:void(0)" onclick="$('#cart').hide();$('#_mask').hide();" id="stroll">再逛逛</a>                    
+            <a id="goCart"><span class="bar"></span>去购物车</a>
+        </div>
+       </div>
 </body>
 </html>
 

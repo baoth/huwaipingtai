@@ -119,6 +119,7 @@
     <Content Include="Content\images\icon_chk2.png" />
     <Content Include="Content\images\icon_detail.png" />
     <Content Include="Content\images\icon_order.png" />
+    <Content Include="Content\images\icon_suc.png" />
     <Content Include="Content\images\shp-cart-icon-sprites.png" />
     <Content Include="Content\mobile\base.css" />
     <Content Include="Content\mobile\checkbox.css" />

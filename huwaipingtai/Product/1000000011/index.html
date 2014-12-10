@@ -332,6 +332,11 @@
                  // window.location = window.location.origin + '/Order';
                  directorderBuy();
              });
+             //购物车
+             $("#product_cart").bind("click", function () {
+                 var productId = $("#ProductId").val();
+                 window.location = window.location.origin + '/Cart/index'
+             });
          }
          //数量计算
          var QuantityCount = function (obj, type) {
@@ -387,7 +392,6 @@
          var more = function () {
              alert("无更多数据");
          }
-
          var directorderBuy = function () {
              var url = "/cart/add";
              var productId = $("#ProductId").val();
@@ -407,6 +411,7 @@
              });
 
          }
+        
          
     </script>
     <script type="text/javascript">
@@ -441,7 +446,7 @@
                         <span style='width:26px;background-position:0 -25px;'></span>
                         <p style='color:#6e6e6e;'>分类搜索</p>
                     </a>
-                    <a href='#' class='i-tbl-cell'>
+                    <a href='#' id="product_cart" class='i-tbl-cell'>
                         <span style='width:25px;background-position:-29px -25px'></span>
                         <p style='color:#6e6e6e;'>购物车</p>
                     </a>

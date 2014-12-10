@@ -177,11 +177,11 @@ namespace BusinessOrder.Cart
             return sql;
         }
 
-        public List<DataModel.Order.CartView> CartActivedList(string customerId)
+        public List<DataModel.View.CartView> CartActivedList(string customerId)
         {
             QSmartQuery Query = new QSmartQuery();
             Query.Tables.Add(new QSmartQueryTable());
-            Query.Tables[0].tableName = typeof(DataModel.Order.CartView).Name;
+            Query.Tables[0].tableName = typeof(DataModel.View.CartView).Name;
             Query.FilterConditions.Add(new QSmartQueryFilterCondition
             {
                 Column = new QSmartQueryColumn { columnName = "CustomerId", dataType = typeof(int) },
@@ -190,7 +190,7 @@ namespace BusinessOrder.Cart
                 Connector = QSmartConnectorEnum.and
             });
 
-            List<DataModel.Order.CartView> list = db.Context.QueryEntity<DataModel.Order.CartView>(Query);
+            List<DataModel.View.CartView> list = db.Context.QueryEntity<DataModel.View.CartView>(Query);
             return list;
         }
     }

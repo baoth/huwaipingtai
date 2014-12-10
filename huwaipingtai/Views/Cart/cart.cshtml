@@ -31,11 +31,9 @@
                 
             });
 
-            var LoadData = function () {
-                var cid = $("#cid").val();
-
+            var LoadData = function () {                
                 var url = "GetCartProductByCustomer";
-                var para = { cid: cid };
+                var para = { };
                 submitAjax(url, para);               
             }
 

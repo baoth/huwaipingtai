@@ -30,7 +30,7 @@
                         tg.addClass('on');
                     }
                 });
-
+                $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
             });
             //提交
             var payType = $('#pay').data('paytype');//支付方式

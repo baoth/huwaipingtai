@@ -67,12 +67,11 @@ namespace huwaipingtai.Controllers
             }
             return Content(null);
         }
-        public ActionResult GetCartProductByCustomer(string cId)
-        {
+        public ActionResult GetCartProductByCustomer()
+        {            
             
-            if (string.IsNullOrEmpty(cId)) return null;
-            int customerId = 0;
-            int.TryParse(cId,out customerId);
+            int customerId = this.CurrentUserInfo.Id;
+            
             var json = GetDataJsonByCustomerId(customerId);
             return Content(json);
         }

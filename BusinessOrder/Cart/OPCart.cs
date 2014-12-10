@@ -10,6 +10,8 @@ namespace BusinessOrder.Cart
 {
    public class OPCart:IOPCart
     {
+       public OPCart() { 
+       }
         DbSession db = DbFactory.CreateDbSession();
         /// <summary>
         /// 添加

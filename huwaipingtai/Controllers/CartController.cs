@@ -30,7 +30,12 @@ namespace huwaipingtai.Controllers
             return View("cart");
         }
         public ActionResult Add()
-        {
+        {          
+           
+            if (this.CurrentUserInfo== null)
+            {
+                return Content("");
+            }
             var customerId = this.CurrentUserInfo.Id;
 
             var type=Request["type"];//等于2时 立即购买           

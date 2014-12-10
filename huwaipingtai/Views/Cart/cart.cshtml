@@ -97,13 +97,13 @@
                     success: function (data) {
                         
                         var lis = "";
-                        if (data) {
+                        if (data && data.length > 0) {
                             for (var i = 0, j = data.length; i < j; i++) {
                                 lis += getHtml(data[i]);
                             }
                         }
+                        var objul = $("#notEmptyMyCart ul");
                         if (lis) {
-                            var objul = $("#notEmptyMyCart ul");
                             var li = objul.find("li:last");
                             if (li && li.length > 0) {
                                 objul.children().remove();
@@ -112,6 +112,9 @@
                             else {
                                 objul.html(lis);
                             }
+                        }
+                        else {
+                            objul.html("");
                         }
                         SetTotal(data);
                     },

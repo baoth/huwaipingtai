@@ -39,7 +39,9 @@ namespace huwaipingtai.Controllers
             db.CreateTable<GoodsShelves>(QSmartTableType.InnoDB);
             db.CreateTable<Cart>(QSmartTableType.InnoDB);
             db.CreateTable<CustomerAddress>(QSmartTableType.InnoDB);
+            db.CreateTable<CustomerOrder>(QSmartTableType.InnoDB);
             db.CreateTable<Order>(QSmartTableType.InnoDB);
+            db.CreateTable<OrderGoods>(QSmartTableType.InnoDB);
             GoodsShelves item1 = new GoodsShelves
             {
                 Description = "加棉衣服 卡其色 XL",
@@ -68,6 +70,11 @@ namespace huwaipingtai.Controllers
             db.InsertEntity(item2.CreateQSmartObject());
             db.InsertEntity(item3.CreateQSmartObject());
             db.InsertEntity(item4.CreateQSmartObject());
+            Customer ct = new Customer
+            {
+                 LoginName="baoth", NikeName="正信元", Password="123456", Phone="13520265783"
+            };
+            db.InsertEntity(ct.CreateQSmartObject());
             db.SaveChange();
             /*
              CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` 

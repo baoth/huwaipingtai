@@ -61,6 +61,6 @@ namespace IBusinessOrder.Cart
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
-       List<DataModel.Order.Cart> CartActivedList(int customerId);
+       List<DataModel.Order.CartView> CartActivedList(int customerId);
     }
 }

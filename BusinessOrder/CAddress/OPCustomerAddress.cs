@@ -44,7 +44,7 @@ namespace BusinessOrder.CAddress
         }
 
 
-        public List<CustomerAddress> GetAll(int customerId)
+        public List<CustomerAddress> GetAll(string customerId)
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format("select * from customeraddress where CustomerId='{0}' order by CreateDate desc", customerId);

@@ -120,7 +120,7 @@ namespace huwaipingtai.Controllers
             DataTable dt = db.QueryTable(command);
             if (dt.Rows.Count > 0)
             {
-                Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = (int)dt.Rows[0]["Id"], NickName = dt.Rows[0]["NikeName"] as string };
+                Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = dt.Rows[0]["Id"].ToString(), NickName = dt.Rows[0]["NikeName"] as string };
                 var jumpurl = Session[RequestCommand.LOGON_JUMP_URL] as string;
                 Session[RequestCommand.LOGON_JUMP_URL] = null;
                 return Redirect(jumpurl);

@@ -11,6 +11,7 @@ namespace BusinessOrder.Store
         public List<SKUStore> GetGoodsStore(List<int> listSKU)
         {
            return new List<SKUStore>(){
+                new SKUStore(){SKU=10001,StoreCount=100},
                 new SKUStore(){SKU=10001,StoreCount=100}
            };
         }

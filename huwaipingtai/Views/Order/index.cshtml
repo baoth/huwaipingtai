@@ -32,19 +32,21 @@
                 });
                 $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
             });
-            //提交
-            var payType = $('#pay').data('paytype');//支付方式
-            var delType = $('#delivery').data('deltype'); //发货方式
-            var addressDetail = $('#address').data('address-detail-id');//收货人地址
-            var shiperType = $('#courier').data('send'); //配送方式
-            var isPhone = $('#courier').data('phonetype');
-            var title = $('#invoice').data('title');
-            var content = $('#invoice').data('content');
-            var orgName = $('#invoice').data('orgName');
+
             function submitOrder() {
+                debugger
+                //提交
+                var payType = $('#pay').data('paytype'); //支付方式
+                var delType = $('#delivery').data('deltype'); //发货方式
+                var addressDetail = $('#address').data('address-detail-id'); //收货人地址
+                var shiperType = $('#courier').data('send'); //配送方式
+                var isPhone = $('#courier').data('phonetype');
+                var title = $('#invoice').data('title');
+                var content = $('#invoice').data('content');
+                var orgName = $('#invoice').data('orgName');
                 $.ajax({
-                    url: '/Order/SumitOrder',
-                    params: {
+                    url: '/Order/SubmitOrder',
+                    data: {
                         SendDateIndex: shiperType,
                         PhoneConfirm: isPhone,
                         AddressId: addressDetail,
@@ -56,7 +58,7 @@
                     },
                     type: 'post',
                     success: function () { 
-                        
+                        alert("提交订单成功")
                     }
                 });
             }
@@ -162,7 +164,7 @@
                 }
             };
             function initAddress() {
-                
+                window.sessionStorage.backurl = document.URL;
                 if (!window.sessionStorage.addressDetailId) {
                     $('#shiperNameId').text(" ");
                     $('#phoneNumId').text("选择收货人");

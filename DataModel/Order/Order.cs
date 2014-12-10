@@ -8,11 +8,12 @@ namespace DataModel.Order
     public class CustomerOrder : QSmartEntity
     {
         [PrimaryKey]
+        [AutoIncrement]
         public int Id { get; set; }
         /// <summary>
         /// 客户编码
         /// </summary>
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
         /// <summary>
         /// 订单日期
         /// </summary>
@@ -59,6 +60,8 @@ namespace DataModel.Order
     /// </summary>
     public class Order:QSmartEntity
     {
+        [PrimaryKey]
+        [AutoIncrement]
         public int Id { get; set; }
         public bool SubOrder { get; set; }
         public int CustomerOrderId { get; set; }
@@ -67,6 +70,8 @@ namespace DataModel.Order
 
     public class OrderGoods : QSmartEntity
     {
+        [PrimaryKey]
+        [AutoIncrement]
         public int Id { get; set; }
         public int OrderId { get; set; }
         public int Sku { get; set; }

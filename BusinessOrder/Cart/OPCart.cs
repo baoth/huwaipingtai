@@ -10,6 +10,8 @@ namespace BusinessOrder.Cart
 {
    public class OPCart:IOPCart
     {
+       public OPCart() { 
+       }
         DbSession db = DbFactory.CreateDbSession();
         /// <summary>
         /// 添加
@@ -26,13 +28,13 @@ namespace BusinessOrder.Cart
                     List<string> sqlList = new List<string>();
                     
                     //删除同类商品
-                    var sql1 = string.Format("delete cart where CustomerId='{1}' and Sku='{2}' ", 0, cart.CustomerId, cart.Sku);
+                    var sql1 = string.Format("delete from cart where CustomerId='{1}' and Sku='{2}' ", 0, cart.CustomerId, cart.Sku);
                     sqlList.Add(sql1);
                    //修改状态
                     var sql2 = string.Format("update cart set Actived={0} where CustomerId='{1}' and Sku='{2}' ",0,cart.CustomerId,cart.Sku);
                     sqlList.Add(sql2);
                    //增加商品
-                    var addSql = string.Format("insert cart(Sku,CustomerId,Actived,Quantity) values('{0}','{1}','{2}','{3}') ",cart.Sku,cart.CustomerId,cart.Actived,cart.Quantity);
+                    var addSql = string.Format("insert cart(Sku,CustomerId,Actived,Quantity) values('{0}','{1}','{2}','{3}') ",cart.Sku,cart.CustomerId,cart.Actived==true?1:0,cart.Quantity);
                     sqlList.Add(addSql);
                     db.Context.ExcuteNoQuery(sqlList);
                 }
@@ -65,7 +67,7 @@ namespace BusinessOrder.Cart
         private bool IsExists(DataModel.Order.Cart cart)
         {
             //删除同类商品
-            var sql= string.Format("select Id cart where CustomerId='{0}' and Sku='{1}' ",cart.CustomerId, cart.Sku);
+            var sql= string.Format("select Id from cart where CustomerId='{0}' and Sku='{1}' ",cart.CustomerId, cart.Sku);
             var dt=db.Context.QueryTable(sql);
             if (dt.Rows.Count > 0)
             {
@@ -96,7 +98,7 @@ namespace BusinessOrder.Cart
        /// </summary>
        /// <param name="customerId"></param>
        /// <returns></returns>
-        public List<DataModel.View.CartView> CartList(int customerId)
+        public List<DataModel.View.CartView> CartList(string customerId)
         {
             try
             {
@@ -169,6 +171,30 @@ namespace BusinessOrder.Cart
             {
                 throw ex;
             }           
+        }
+
+
+        public string GetDeleteActivedSql(string customerId)
+        {
+            var sql = string.Format("delete from cart where actived=1 and  customerId='{0}' ", customerId);
+            return sql;
+        }
+
+        public List<DataModel.Order.CartView> CartActivedList(string customerId)
+        {
+            QSmartQuery Query = new QSmartQuery();
+            Query.Tables.Add(new QSmartQueryTable());
+            Query.Tables[0].tableName = typeof(DataModel.Order.CartView).Name;
+            Query.FilterConditions.Add(new QSmartQueryFilterCondition
+            {
+                Column = new QSmartQueryColumn { columnName = "CustomerId", dataType = typeof(int) },
+                Operator = QSmartOperatorEnum.equal,
+                Values = new List<object> { customerId },
+                Connector = QSmartConnectorEnum.and
+            });
+
+            List<DataModel.Order.CartView> list = db.Context.QueryEntity<DataModel.Order.CartView>(Query);
+            return list;
         }
     }
 }

@@ -31,16 +31,14 @@
                 
             });
 
-            var LoadData = function () {
-                var cid = $("#cid").val();
-
+            var LoadData = function () {                
                 var url = "GetCartProductByCustomer";
-                var para = { cid: cid };
+                var para = { };
                 submitAjax(url, para);               
             }
 
             var getHtml = function (data) {
-                
+
                 var sku = data["Sku"];
                 var price = data["Price"] + "";
                 price = price.formatCurrency();
@@ -53,7 +51,11 @@
                     Actived = "";
                 }
                 var Description = data["Description"];
-                var cartId=data["Id"];
+                if (!Description) {
+                    Description = "";
+                }
+                var cartId = data["Id"];
+
                 var li = '<li id="product{0}">'
 	            + '<div class="items">'
                 + ' <div class="cart-check-wrapper"> '
@@ -63,11 +65,11 @@
                 + '  <div class="cart-product-cell-3"> '
                 + '      <span class="cart-item-price" id="price{0}">￥{1}</span> '
                 + '  </div> '
-                + '  <a class="cart-product-cell-1" href="/product/{0}.html?sid=a0b43b56f4431a58b6e78b635837359c"> '
-                + '      <img class="cart-photo-thumb" alt="" src="../../ProductImage/1119896/111989601.jpg" onerror="lib/skin/e/i/error-jd.gif"> '
+                + '  <a class="cart-product-cell-1" href="/product/{0}/index.html?sid=a0b43b56f4431a58b6e78b635837359c"> '
+                + '      <img class="cart-photo-thumb" alt="" src="../../product/{0}/{0}.jpg" onerror="lib/skin/e/i/error-jd.gif"> '
                 + '  </a> '
                 + '  <div class="cart-product-cell-2"> '
-                + '      <div class="cart-product-name"><a href="/product/{0}.html?pid=a0b43b56f4431a58b6e78b635837359c"><span>{4}</span></a></div>  '
+                + '      <div class="cart-product-name"><a href="/product/{0}/index.html?pid=a0b43b56f4431a58b6e78b635837359c"><span>{4}</span></a></div>  '
                 + '       <div class="cart-opt"> '
                 + '          <div class="cart-quantity-wrapper"> '
                 + '              <input type="hidden" id="limitSukNum{0}" value="200"> '
@@ -82,7 +84,7 @@
                 + ' <div class="cart-diver-hr-dashed"></div> '
 	            + '</div> '
                 + ' </li>'
-                var liHtml = li.format(sku, price, quantity, Actived, Description,cartId);
+                var liHtml = li.format(sku, price, quantity, Actived, Description, cartId);
                 return liHtml;
             }
 

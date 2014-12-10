@@ -107,7 +107,7 @@ namespace BusinessOrder.Cart
                 Query.Tables[0].tableName = typeof(DataModel.View.CartView).Name;
                 Query.FilterConditions.Add(new QSmartQueryFilterCondition
                 {
-                    Column = new QSmartQueryColumn { columnName = "CustomerId", dataType = typeof(int) },
+                    Column = new QSmartQueryColumn { columnName = "CustomerId", dataType = typeof(string) },
                     Operator = QSmartOperatorEnum.equal,
                     Values = new List<object> { customerId },
                     Connector = QSmartConnectorEnum.and

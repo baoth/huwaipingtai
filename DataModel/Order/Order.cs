@@ -59,6 +59,7 @@ namespace DataModel.Order
     /// </summary>
     public class Order:QSmartEntity
     {
+        [PrimaryKey]
         public int Id { get; set; }
         public bool SubOrder { get; set; }
         public int CustomerOrderId { get; set; }
@@ -67,6 +68,7 @@ namespace DataModel.Order
 
     public class OrderGoods : QSmartEntity
     {
+        [PrimaryKey]
         public int Id { get; set; }
         public int OrderId { get; set; }
         public int Sku { get; set; }

@@ -10,6 +10,8 @@ namespace BusinessOrder.Cart
 {
    public class OPCart:IOPCart
     {
+       public OPCart() { 
+       }
         DbSession db = DbFactory.CreateDbSession();
         /// <summary>
         /// 添加
@@ -93,7 +95,7 @@ namespace BusinessOrder.Cart
        /// </summary>
        /// <param name="customerId"></param>
        /// <returns></returns>
-        public List<DataModel.View.CartView> CartList(int customerId)
+        public List<DataModel.View.CartView> CartList(string customerId)
         {
             try
             {
@@ -102,7 +104,7 @@ namespace BusinessOrder.Cart
                 Query.Tables[0].tableName = typeof(DataModel.View.CartView).Name;
                 Query.FilterConditions.Add(new QSmartQueryFilterCondition
                 {
-                    Column = new QSmartQueryColumn { columnName = "CustomerId", dataType = typeof(int) },
+                    Column = new QSmartQueryColumn { columnName = "CustomerId", dataType = typeof(string) },
                     Operator = QSmartOperatorEnum.equal,
                     Values = new List<object> { customerId },
                     Connector = QSmartConnectorEnum.and
@@ -169,13 +171,13 @@ namespace BusinessOrder.Cart
         }
 
 
-        public string GetDeleteActivedSql(int customerId)
+        public string GetDeleteActivedSql(string customerId)
         {
             var sql = string.Format("delete from cart where actived=1 and  customerId='{0}' ", customerId);
             return sql;
         }
 
-        public List<DataModel.Order.CartView> CartActivedList(int customerId)
+        public List<DataModel.Order.CartView> CartActivedList(string customerId)
         {
             QSmartQuery Query = new QSmartQuery();
             Query.Tables.Add(new QSmartQueryTable());

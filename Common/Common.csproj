@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="DbFactory.cs" />
     <Compile Include="DbSession.cs" />
+    <Compile Include="Fun\Framework.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

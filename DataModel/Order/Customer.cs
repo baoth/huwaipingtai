@@ -10,9 +10,9 @@ namespace DataModel.Order
     /// </summary>
     public class Customer : QSmartEntity          
     {
-        [AutoIncrement]
         [PrimaryKey]
-        public int Id { get; set; }
+        [StringMaxLength(32,VarCharType.nvarchar)]
+        public string Id { get; set; }
         [StringMaxLength(50, VarCharType.nvarchar)]
         public string RealName { get; set; }
         [StringMaxLength(20, VarCharType.nvarchar)]

@@ -45,6 +45,6 @@ namespace BusinessOrder
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
-        List<CustomerAddress> GetAll(int customerId);
+        List<CustomerAddress> GetAll(string customerId);
     }
 }

@@ -71,13 +71,13 @@ namespace huwaipingtai.Controllers
         public ActionResult GetCartProductByCustomer()
         {            
             
-            int customerId = this.CurrentUserInfo.Id;
+            string customerId = this.CurrentUserInfo.Id;
             
             var json = GetDataJsonByCustomerId(customerId);
             return Content(json);
         }
 
-        private string GetDataJsonByCustomerId(int cid)
+        private string GetDataJsonByCustomerId(string cid)
         {
             List<DataModel.View.CartView> list = iopcart.CartList(cid);
             var json = JsonHelp.objectToJson(list);

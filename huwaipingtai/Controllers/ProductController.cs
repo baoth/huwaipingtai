@@ -35,11 +35,11 @@ namespace huwaipingtai.Controllers
         public ContentResult CreateTable()
         {
             QSmartDatabaseClient db=DataBaseProvider.Create("db");
+            
             db.CreateTable<Customer>(QSmartTableType.InnoDB);
             db.CreateTable<GoodsShelves>(QSmartTableType.InnoDB);
             db.CreateTable<Cart>(QSmartTableType.InnoDB);
             db.CreateTable<CustomerAddress>(QSmartTableType.InnoDB);
-            db.CreateTable<Order>(QSmartTableType.InnoDB);
             db.CreateTable<CustomerOrder>(QSmartTableType.InnoDB);
 
             db.CreateTable<Order>(QSmartTableType.InnoDB);
@@ -72,6 +72,15 @@ namespace huwaipingtai.Controllers
             db.InsertEntity(item2.CreateQSmartObject());
             db.InsertEntity(item3.CreateQSmartObject());
             db.InsertEntity(item4.CreateQSmartObject());
+            Customer ct = new Customer
+            {
+                Id = Guid.NewGuid().ToString().Replace("-", ""),
+                LoginName = "admin",
+                NikeName = "管理员",
+                Password = "123456",
+                Phone = "123456789"
+            };
+            db.InsertEntity(ct.CreateQSmartObject());
             db.SaveChange();
             /*
              CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` 

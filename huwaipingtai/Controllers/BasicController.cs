@@ -14,22 +14,26 @@ namespace huwaipingtai.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            base.OnActionExecuting(filterContext);
             if (!RequestCommand.Intercepts.Contains(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower() +
                 filterContext.ActionDescriptor.ActionName.ToLower()))
             {
                 this.CurrentUserInfo = Session[RequestCommand.SESSION_USERINFO] as UserInfo;
-                if (CurrentUserInfo==null)
+                if (CurrentUserInfo == null)
                 {
                     ViewData["Name"] = "登陆"; ViewData["Action"] = "/User/logon";
                     Session[RequestCommand.LOGON_JUMP_URL] = this.Request.Path;
                     Response.Redirect("/User/logon");
-                    return;
                 }
-                ViewData["Name"] = this.CurrentUserInfo.NickName;
-                ViewData["Action"] = "#";
+                else
+                {
+                    ViewData["Name"] = this.CurrentUserInfo.NickName;
+                    ViewData["Action"] = "#";
+                }
             }
-            base.OnActionExecuting(filterContext);
+            
         }
+
     }
 
     public class UserInfo

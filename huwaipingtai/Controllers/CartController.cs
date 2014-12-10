@@ -31,26 +31,33 @@ namespace huwaipingtai.Controllers
         }
         public ActionResult Add()
         {
-            var customerId = this.CurrentUserInfo.Id;
+            if (this.CurrentUserInfo != null)
+            {
+                var customerId = this.CurrentUserInfo.Id;
 
-            var type=Request["type"];//等于2时 立即购买           
-            DataModel.Order.Cart model = new DataModel.Order.Cart();
-            var pid=Request["sku"];
-            var quantity=Request["quantity"];
-            int q;
-            int.TryParse(quantity,out q);
-            var actived=true;            
-            int sku;
-            int.TryParse(pid,out sku);
-            model.Sku = sku;
-            model.Quantity = q;
-            model.Actived =actived;
-            model.CustomerId = customerId;
-            
-           iopcart.Add(model,type);
+                var type = Request["type"];//等于2时 立即购买           
+                DataModel.Order.Cart model = new DataModel.Order.Cart();
+                var pid = Request["sku"];
+                var quantity = Request["quantity"];
+                int q;
+                int.TryParse(quantity, out q);
+                var actived = true;
+                int sku;
+                int.TryParse(pid, out sku);
+                model.Sku = sku;
+                model.Quantity = q;
+                model.Actived = actived;
+                model.CustomerId = customerId;
 
-           var json=GetDataJsonByCustomerId(customerId);
-           return Content(json);
+                iopcart.Add(model, type);
+
+                var json = GetDataJsonByCustomerId(customerId);
+                return Content(json);
+            }
+            else
+            {
+                return Content("");
+            }
         }
 
         public ActionResult Delete(string pid)

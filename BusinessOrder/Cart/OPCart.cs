@@ -98,7 +98,7 @@ namespace BusinessOrder.Cart
        /// </summary>
        /// <param name="customerId"></param>
        /// <returns></returns>
-        public List<DataModel.View.CartView> CartList(int customerId)
+        public List<DataModel.View.CartView> CartList(string customerId)
         {
             try
             {
@@ -174,13 +174,13 @@ namespace BusinessOrder.Cart
         }
 
 
-        public string GetDeleteActivedSql(int customerId)
+        public string GetDeleteActivedSql(string customerId)
         {
             var sql = string.Format("delete from cart where actived=1 and  customerId='{0}' ", customerId);
             return sql;
         }
 
-        public List<DataModel.Order.CartView> CartActivedList(int customerId)
+        public List<DataModel.Order.CartView> CartActivedList(string customerId)
         {
             QSmartQuery Query = new QSmartQuery();
             Query.Tables.Add(new QSmartQueryTable());

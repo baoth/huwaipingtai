@@ -6,6 +6,7 @@ using IBusinessOrder.Order;
 using DataModel.Order;
 using BusinessOrder.Enum;
 using DataModel.Goods;
+using Common.Fun;
 namespace BusinessOrder.Order
 {
     public class OPCustomerOrder : IOPCustomerOrder
@@ -13,7 +14,7 @@ namespace BusinessOrder.Order
         //提交客户订单
         public bool SubmitOrder(CustomerOrder customerOrder)
         {
-            var dbSession = Common.DbFactory.CreateDbSession();
+         
             //1、调用购物车查询所有这次提交要买的商品
             var opCart =new  BusinessOrder.Cart.OPCart();
             var products= opCart.CartActivedList(customerOrder.CustomerId);
@@ -21,7 +22,9 @@ namespace BusinessOrder.Order
             var opStore = new BusinessOrder.Store.OPStore();
             var goodsCount=  opStore.GetGoodsStore(products.Select(e => e.Sku).ToList());
             //3、检查是否有库存不满足
+          
             //4、自动拆单过程
+
             //5、保存订单
             var listOrderReSql = new List<string>();
             //生成客户订单表
@@ -46,17 +49,19 @@ namespace BusinessOrder.Order
             listOrderReSql.Add(sqlCustomerOrder);
 
             //生成订单表
-            var orderId = Guid.NewGuid();
+            var orderId = Framework.GetOrderNum();
             var sqlOrderFormat = @"insert into order(Id,SubOrder,CustomerOrderId,Status) values ('{0}','{1}','{2}','{3}')";
             var sqlOrder = string.Format(sqlOrderFormat, orderId, 0, customerOrder.Id, (int)OrderStatusEnum.Generate);
-
+            listOrderReSql.Add(sqlOrder);
             //生成订单商品表
-            //foreach (GoodsShelves goods in opCart)
-            //{ 
-            //    var sqlOrderGoodsFormat = @"insert into ordergoods(OrderId,Sku,Quantity) values ('{0}','{1}','{2}')";
-            //    var sqlOrderGoods = string.Format(sqlOrderGoodsFormat, orderId,goods.Sku,goods.12 );
-            //}
-          
+            foreach (var goods in products)
+            { 
+                var sqlOrderGoodsFormat = @"insert into ordergoods(OrderId,Sku,Quantity) values ('{0}','{1}','{2}')";
+                var sqlOrderGoods = string.Format(sqlOrderGoodsFormat, orderId, goods.Sku, goods.Quantity);
+                listOrderReSql.Add(sqlOrderGoods);
+            }
+            var dbSession = Common.DbFactory.CreateDbSession();
+            dbSession.Context.ExcuteNoQuery(listOrderReSql);
             return true;
         }
     }

@@ -14,7 +14,7 @@ namespace DataModel.Order
           [AutoIncrement]
           [PrimaryKey]
           public int Id { get; set; }
-          public int CustomerId { get; set; }
+          public string CustomerId { get; set; }
           [StringMaxLength(200, VarCharType.nvarchar)]
           public string DetailAddress { get; set; }
           [StringMaxLength(20, VarCharType.nvarchar)]

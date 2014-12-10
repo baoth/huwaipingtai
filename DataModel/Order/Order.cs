@@ -13,7 +13,7 @@ namespace DataModel.Order
         /// <summary>
         /// 客户编码
         /// </summary>
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
         /// <summary>
         /// 订单日期
         /// </summary>

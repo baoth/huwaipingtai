@@ -17,6 +17,7 @@ namespace DataModel.View
         /// <summary>
         /// 客户编码
         /// </summary>
+        [StringMaxLength(32, VarCharType.nvarchar)]
         public string CustomerId { get; set; }
         /// <summary>
         /// 是否被激活

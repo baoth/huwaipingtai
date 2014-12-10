@@ -535,18 +535,22 @@
                  url: url,
                  data: { sku: productId, quantity: quantity, type: 1 },
                  type: "POST",
-                 dataType: "text",
-                 success: function (msg) {                     
-                     $('#cart').show();
-                     $('#_mask').show();
-                     sc1("cart");
+                 dataType: "json",
+                 success: function (data) {
+                     if (data == null) {
+                         window.location = "/user/logon"; 
+                     }
+                     else {
+                         $('#cart').show();
+                         $('#_mask').show();
+                         sc1("cart");
+                     }
                  },
-                 error: function () {
-                     alert("请求错误！");
+                 error: function (data) {
+                     window.location = "/user/logon"; 
                  }
 
              });
-           
          }
 
          function sc1(DivId) {
@@ -556,11 +560,7 @@
          }
          function d$(id) {
              return document.getElementById(id);
-         }
-
-         function GoLogin() {
-             window.location = window.location.origin + "/User/Logon";
-         }
+         } 
     </script>
     <script type="text/javascript">
         $(document).ready(function () {

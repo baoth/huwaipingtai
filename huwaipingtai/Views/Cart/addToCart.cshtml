@@ -15,15 +15,8 @@
         <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>      
 
         <script type="text/javascript">
-            function GoSettleAccounts() {
-                window.location = window.location.origin + "/cart/index";
-            }
-            
             function GoWalk() {
                 window.location = window.location.origin + "/Product/1000000011/index.html";
-            }
-            function GoLogin() {
-                window.location = window.location.origin + "/User/Logon";
             }
         </script>
           
@@ -100,7 +93,7 @@
             <div class="success-b"><p>已加入购物车！</p></div>
             <div class="empty-btn-wrapper">
               <a href="javascript:GoWalk()" class="btn-jd-gray btn-large">继续购物</a>
-              <a href="javascript:GoSettleAccounts()" class="btn-jd-darkred btn-large">去结算</a>             
+              <a href="/Cart/Index" class="btn-jd-darkred btn-large">去购物车结算</a>             
             </div>
        </div>
         @Html.Partial("_FooterTypical")

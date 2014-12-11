@@ -6,6 +6,9 @@ using Toolkit.CommonModel;
 
 namespace Toolkit.Fun
 {
+    /// <summary>
+    /// 返回结果信息类
+    /// </summary>
    public static class FunResult
     {
        /// <summary>

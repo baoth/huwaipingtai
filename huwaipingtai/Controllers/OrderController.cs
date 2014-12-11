@@ -52,6 +52,8 @@ namespace huwaipingtai.Controllers
           
         }
 
+        
+
         // GET: /Order/
         public ActionResult Index()
         {

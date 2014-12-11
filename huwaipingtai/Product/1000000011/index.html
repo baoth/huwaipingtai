@@ -442,14 +442,11 @@
                  var quantity = $("#txt_quantity").val();
                  $(this).attr("href", "/Cart/BuyDirect?sku=" + sku + "&quantity=" + quantity);
              });
-             //表头菜单购物车
-             $("#product_cart").bind("click", function () {
-                 var productId = $("#ProductId").val();
-                 window.location = window.location.origin + '/Cart/index'
-             });
              //添加购物车
              $("#add_cart").bind("click", function () {
-                 addCartProduct();
+                 var sku = $("#ProductId").val();
+                 var quantity = $("#txt_quantity").val();
+                 $(this).attr("href", "/Cart/Add?sku=" + sku + "&quantity=" + quantity);
              });
              $("#goCart").bind("click", function () {
                  window.location = window.location.origin + '/Cart/index'
@@ -509,53 +506,6 @@
          var more = function () {
              alert("无更多数据");
          }
-         var directorderBuy = function () {
-             var url = "/cart/add";
-             var productId = $("#ProductId").val();
-             var quantity = $("#txt_quantity").val();
-             $.ajax({
-                 url: url,
-                 data: { sku: productId, quantity: quantity,type:2 },
-                 type: "POST",
-                 dataType: "json",
-                 success: function (data) {
-                     window.location = window.location.origin + '/Order';
-                 },
-                 error: function () {
-                    /*temp*/
-                     window.location = window.location.origin + '/User/Logon';
-//                     alert("请求错误！");
-                 }
-
-             });
-
-         }
-         var addCartProduct = function () {
-             var url = "/cart/add";
-             var productId = $("#ProductId").val();
-             var quantity = $("#txt_quantity").val();
-             $.ajax({
-                 url: url,
-                 data: { sku: productId, quantity: quantity, type: 1 },
-                 type: "POST",
-                 dataType: "json",
-                 success: function (data) {
-                     if (data == null) {
-//                         window.location = "/user/logon"; 
-                     }
-                     else {
-                         $('#cart').show();
-                         $('#_mask').show();
-                         sc1("cart");
-                     }
-                 },
-                 error: function (data) {
-                     window.location = "/user/logon"; 
-                 }
-
-             });
-         }
-
          function sc1(DivId) {
              var Div = $(DivId);
              d$(DivId).style.top = (document.documentElement.scrollTop + (document.documentElement.clientHeight - d$(DivId).offsetHeight) / 2) + "px";

@@ -15,6 +15,7 @@ using Toolkit.Ext;
 using QSmart.Core.DataBase;
 using System.Data;
 using Toolkit.CommonModel;
+using Toolkit.Fun;
 namespace huwaipingtai.Controllers
 {
     public class OrderController : BasicController
@@ -31,15 +32,22 @@ namespace huwaipingtai.Controllers
         {
             try
             {
+               //绑定订单数据
                var entity = Request.CreateInstance<CustomerOrder>();
                entity.CreateDate = DateTime.Now;
                entity.CustomerId = this.CurrentUserInfo.Id;
+               //验证订单信息
+               var checkResult=customerOrder.VerifyEntity(entity);
+               if(!checkResult.IsSuccess){
+                   return Json(checkResult); 
+               }
+               //提交订单
                var result= customerOrder.SubmitOrder(entity);
                return Json(result);
             }
             catch (Exception ex)
             {
-                return Json(new CResult() { IsSuccess=false,Msg=ex.ToString()});
+                return Json(FunResult.GetError(ex.Message));
             }
           
         }
@@ -47,14 +55,7 @@ namespace huwaipingtai.Controllers
         // GET: /Order/
         public ActionResult Index()
         {
-            //QSmartDatabaseClient db = DataBaseProvider.Create("db");
-            //DataTable dt = db.QueryTable("select Quantity,price from cartview where customerid=" + this.CurrentUserInfo.Id +
-            //                             " and actived=1");
-            //decimal Money = 0;
-            //foreach (DataRow dr in dt.Rows)
-            //{
-            //    Money += (int)dr[0] * (decimal)dr[1];
-            //}
+            
             ViewData["Money"] = "0.00";// Money.ToString("C");
             ViewData["Fee"] = "0.00";
             ViewData["Total"] = "0.00";// Money.ToString("C");

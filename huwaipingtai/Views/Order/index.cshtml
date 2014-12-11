@@ -43,7 +43,7 @@
                 var isPhone = $('#courier').data('phonetype');
                 var title = $('#invoice').data('title');
                 var content = $('#invoice').data('content');
-                var orgName = $('#invoice').data('orgName');
+                var orgName = $('#invoice').data('company');
                 $.ajax({
                     url: '/Order/SubmitOrder',
                     data: {
@@ -54,11 +54,19 @@
                         InvoiceContentType: content,
                         InvoiceCompany: orgName,
                         PayType: payType,
-                        DeliveryType:delType
+                        DeliveryType: delType
                     },
                     type: 'post',
-                    success: function () { 
-                        alert("提交订单成功")
+                    success: function (action, response) {
+                        debugger
+                        //  var msg = action.IsSuccess?action.Msg"
+                        if (action.IsSuccess) {
+                            alert("提交订单成功");
+                        } else {
+                            /*页面跳转支付*/
+                            alert(action.Msg);
+                           
+                        }
                     }
                 });
             }
@@ -91,6 +99,7 @@
                 });
             };
             function initInvoice() {
+                debugger
                 if (window.sessionStorage.invoiceTitle == undefined || window.sessionStorage.invoiceTitle == '') {
                     window.sessionStorage.invoiceTitle = '1';
                 }
@@ -101,6 +110,7 @@
                     window.sessionStorage.invoiceCompany = '';
                 }
                 $('#invoice').data('title', window.sessionStorage.invoiceTitle)
+                             .data('company', window.sessionStorage.invoiceCompany)
                              .data('content', window.sessionStorage.invoiceContent)
                              .text('普通发票');
                 $('#invoice').on($.clickAction, function () {

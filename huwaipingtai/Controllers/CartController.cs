@@ -30,16 +30,18 @@ namespace huwaipingtai.Controllers
            
             return View("cart");
         }
-        public ActionResult Add()
-        {          
-           
-            if (this.CurrentUserInfo== null)
+        public ActionResult AddToCart()
+        {
+            return View("addToCart");
+        }
+        public ActionResult BuyDirect()
+        {
+            if (this.CurrentUserInfo == null)
             {
                 return Content("");
             }
             var customerId = this.CurrentUserInfo.Id;
 
-            var type = Request["type"];//等于2时 立即购买           
             DataModel.Order.Cart model = new DataModel.Order.Cart();
             var pid = Request["sku"];
             var quantity = Request["quantity"];
@@ -53,10 +55,33 @@ namespace huwaipingtai.Controllers
             model.Actived = actived;
             model.CustomerId = customerId;
 
-            iopcart.Add(model, type);
+            iopcart.Add(model, "2");
+            return Redirect("/Order/Index");
+        }
+        public ActionResult Add()
+        {          
+           
+            if (this.CurrentUserInfo== null)
+            {
+                return Content("");
+            }
+            var customerId = this.CurrentUserInfo.Id;
+          
+            DataModel.Order.Cart model = new DataModel.Order.Cart();
+            var pid = Request["sku"];
+            var quantity = Request["quantity"];
+            int q;
+            int.TryParse(quantity, out q);
+            var actived = true;
+            int sku;
+            int.TryParse(pid, out sku);
+            model.Sku = sku;
+            model.Quantity = q;
+            model.Actived = actived;
+            model.CustomerId = customerId;
 
-            var json = GetDataJsonByCustomerId(customerId);
-            return Content(json);
+            iopcart.Add(model, "1");
+            return Redirect("AddToCart");
         }
 
         public ActionResult Delete(string pid)

@@ -100,18 +100,23 @@ namespace BusinessOrder.Cart
         {
             try
             {
-                QSmartQuery Query = new QSmartQuery();
-                Query.Tables.Add(new QSmartQueryTable());
-                Query.Tables[0].tableName = typeof(DataModel.View.CartView).Name;
-                Query.FilterConditions.Add(new QSmartQueryFilterCondition
-                {
-                    Column = new QSmartQueryColumn { columnName = "CustomerId", dataType = typeof(string) },
-                    Operator = QSmartOperatorEnum.equal,
-                    Values = new List<object> { customerId },
-                    Connector = QSmartConnectorEnum.and
-                });
+                //QSmartQuery Query = new QSmartQuery();
+                //Query.Tables.Add(new QSmartQueryTable());
+                //Query.Tables[0].tableName = typeof(DataModel.View.CartView).Name;
+                //Query.FilterConditions.Add(new QSmartQueryFilterCondition
+                //{
+                //    Column = new QSmartQueryColumn { columnName = "CustomerId", dataType = typeof(string) },
+                //    Operator = QSmartOperatorEnum.equal,
+                //    Values = new List<object> { customerId },
+                //    Connector = QSmartConnectorEnum.and
+                //});
 
-                List<DataModel.View.CartView> list = db.Context.QueryEntity<DataModel.View.CartView>(Query);
+                //List<DataModel.View.CartView> list = db.Context.QueryEntity<DataModel.View.CartView>(Query);
+
+                var sql = string.Format("select Id,Sku,CustomerId,Actived,Quantity,Description,Price  from cartView where customerId='{0}' ", customerId);
+                DataTable dt = db.Context.QueryTable(sql);
+                var list = db.Context.ConversionEntity<DataModel.View.CartView>(dt);
+              
                 return list;
             }
             catch (Exception ex)

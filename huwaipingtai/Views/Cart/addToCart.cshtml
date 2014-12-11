@@ -1,0 +1,102 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+        <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>      
+
+        <script type="text/javascript">
+            function GoWalk() {
+                window.location = window.location.origin + "/Product/1000000011/index.html";
+            }
+        </script>
+          
+      @* 空购物车*@
+       <style type="text/css">
+        .empty-sign {
+            background: url('../../Content/images/empty-cart.png') no-repeat center center;
+            background-size: 100px 100px;
+            height: 110px;
+            margin-top: 33px;
+        }
+        .empty-warning-text {
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+            line-height: 18px;
+            min-height: 50px;
+        }
+        .empty-btn-wrapper {
+            margin-top: 15px;
+            text-align: center;
+        }
+        .btn-jd-red.btn-large, .btn-jd-gray.btn-large, .btn-jd-darkred.btn-large {
+            font-size: 14px;
+            padding: 12px 40px;
+        }
+        .empty-btn-wrapper .btn-large {
+              margin: 0 10px;
+        }
+        .btn-jd-darkred {
+            color: #fff;
+            display: inline-block;
+            background: #c00000;
+            border-radius: 3px;
+            padding: 4px 12px;
+            line-height: 1.2em;
+        }
+        
+        .btn-jd-gray {
+            color: #fff;
+            display: inline-block;
+            background: #bfbfbf;
+            border-radius: 3px;
+            padding: 4px 12px;
+            line-height: 1.2em;
+        }
+        
+        
+        
+       </style>
+
+       <style>
+        
+        .success-b 
+        {
+        padding: 18px 10px 16px 80px;
+       
+        overflow: hidden;
+        width: 150px;
+        height: 40px;
+        padding-left: 56px;
+        background: url(../../Content/images/addToCart.png) no-repeat 0 -100px;
+        font-size:large;
+        color: #7ABD54;
+        margin: auto;
+        }
+        
+       </style>
+    </head>
+    <body>
+        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "加入购物车" } })
+       <div id="addMsgCart">
+            
+            <div class="success-b"><p>已加入购物车！</p></div>
+            <div class="empty-btn-wrapper">
+              <a href="javascript:GoWalk()" class="btn-jd-gray btn-large">继续购物</a>
+              <a href="/Cart/Index" class="btn-jd-darkred btn-large">去购物车结算</a>             
+            </div>
+       </div>
+        @Html.Partial("_FooterTypical")
+    </body>
+
+</html>

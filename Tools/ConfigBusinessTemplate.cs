@@ -6,6 +6,8 @@ using Autofac;
 using BusinessOrder.CAddress;
 using BusinessOrder;
 using IBusinessOrder.Store;
+using BusinessOrder.Order;
+using BusinessOrder.User;
 
 namespace BusinessTemplate
 {
@@ -21,6 +23,10 @@ namespace BusinessTemplate
             //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
             //    .Where(t => t.Name.EndsWith("Repository"))
             //    .AsImplementedInterfaces();
+        }
+        public static IBusinessOrder.User.ILogon GetILogon()
+        {
+            return new OPLogon();
         }
     }
 }

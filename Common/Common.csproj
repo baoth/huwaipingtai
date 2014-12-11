@@ -50,7 +50,12 @@
     <Compile Include="Fun\Framework.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DataModel\DataModel.csproj">
+      <Project>{E745AD0E-4BDA-4045-8D9E-C9357963E89F}</Project>
+      <Name>DataModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="DLL\QSmart.Core.dll" />
   </ItemGroup>

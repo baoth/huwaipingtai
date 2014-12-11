@@ -49,10 +49,13 @@
         .btn-jd-darkred {
             color: #fff;
             display: inline-block;
-            background: #c00000;
+            background: #ccc url(../../Content/images/addToCart.png) no-repeat;
+            line-height: 100px;
             border-radius: 3px;
             padding: 4px 12px;
             line-height: 1.2em;
+            width: 100px;
+            height: 15px;
         }
         
         .btn-jd-gray {
@@ -62,6 +65,8 @@
             border-radius: 3px;
             padding: 4px 12px;
             line-height: 1.2em;
+            width: 100px;
+            height: 15px;
         }
         
         
@@ -75,15 +80,17 @@
         padding: 18px 10px 16px 80px;
        
         overflow: hidden;
-        width: 150px;
-        height: 40px;
+        width: 150px;      
         padding-left: 56px;
         background: url(../../Content/images/addToCart.png) no-repeat 0 -100px;
         font-size:large;
         color: #7ABD54;
         margin: auto;
         }
-        
+        .empty-btn-wrapper div
+        {
+            padding:15px;
+        }
        </style>
     </head>
     <body>
@@ -92,8 +99,13 @@
             
             <div class="success-b"><p>已加入购物车！</p></div>
             <div class="empty-btn-wrapper">
-              <a href="javascript:GoWalk()" class="btn-jd-gray btn-large">继续购物</a>
-              <a href="/Cart/Index" class="btn-jd-darkred btn-large">去购物车结算</a>             
+                <div>
+                <a href="javascript:GoWalk()" class="btn-jd-gray btn-large">继续购物</a>
+                </div>
+               <div>
+               <a href="/Cart/Index" class="btn-jd-darkred btn-large"></a>     
+               </div>
+                      
             </div>
        </div>
         @Html.Partial("_FooterTypical")

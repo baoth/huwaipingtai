@@ -27,14 +27,14 @@ namespace huwaipingtai.Controllers
                 var IdStr = Request["Id"];
                 var customerId = this.CurrentUserInfo.Id;
                 int i;
-                int.TryParse(IdStr,out i);
+                int.TryParse(IdStr, out i);
                 iopcustomeraddress.SetDefault(i);
                 var listAddress = iopcustomeraddress.GetAll(customerId);
                 ViewData["listAddress"] = listAddress;
             }
             catch (Exception ex)
             {
-                
+
             }
             return View("address");
         }
@@ -58,7 +58,7 @@ namespace huwaipingtai.Controllers
                 {
                     iopcustomeraddress.Add(entity);
                 }
-                else 
+                else
                 {
                     iopcustomeraddress.Update(entity);
                 }
@@ -66,7 +66,7 @@ namespace huwaipingtai.Controllers
             catch (Exception ex)
             {
             }
-            return Redirect("Address"); 
+            return Redirect("Address");
         }
         //编辑地址
         public ActionResult EditAddress()
@@ -88,61 +88,73 @@ namespace huwaipingtai.Controllers
                 ViewData["ShipperPhone"] = customer.ShipperPhone;
                 ViewData["Id"] = iid;
             }
-            else {
+            else
+            {
                 ViewData["CustomerId"] = this.CurrentUserInfo.Id;
             }
             return View("editAddress");
         }
 
-        public ActionResult DelAddress() 
+        public ActionResult DelAddress()
         {
             var id = Request["Id"];
             if (!string.IsNullOrEmpty(id) && id != "-1")
             {
                 iopcustomeraddress.Delete(int.Parse(id));
             }
-            return Redirect("Address"); 
+            return Redirect("Address");
         }
         #endregion
 
         public ActionResult Logon()
         {
-            if (Session[RequestCommand.LOGON_JUMP_URL]==null) Session[RequestCommand.LOGON_JUMP_URL] = Request.UrlReferrer.AbsolutePath;
+            if (Session[RequestCommand.LOGON_JUMP_URL] == null) Session[RequestCommand.LOGON_JUMP_URL] = Request.UrlReferrer.AbsolutePath;
             return View("logon");
         }
 
+        public ActionResult Home()
+        {
+            return View("home");
+        }
         public RedirectResult DoLogon()
         {
             var username = this.Request["username"];
             var password = this.Request["password"];
             var avoidlogon = this.Request["avoidlogon"];
-            QSmartDatabaseClient db=DataBaseProvider.Create("db");
-            string command = string.Format("select * from customer where LoginName='{0}' and password='{1}'",
-                username, password);
-            DataTable dt = db.QueryTable(command);
-            if (dt.Rows.Count > 0)
+            var user = base.iLogon.Logon(username, password);
+            if (user != null)
             {
                 if (avoidlogon == "1")
                 {
-                    Request.Cookies.Add(new HttpCookie(RequestCommand.COOKIE_LOGONNAME,username));
-                    Request.Cookies.Add(new HttpCookie(RequestCommand.COOKIE_LOGONPASSWORD, password));
+                    var ncookie = new HttpCookie(RequestCommand.COOKIE_LOGONNAME, username);
+                    ncookie.Expires = DateTime.Now.AddMonths(1);
+                    var pcookie = new HttpCookie(RequestCommand.COOKIE_LOGONPASSWORD, password);
+                    pcookie.Expires = DateTime.Now.AddMonths(1);
+                    Response.SetCookie(ncookie);
+                    Response.SetCookie(pcookie);
                 }
-                Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = dt.Rows[0]["Id"].ToString(), NickName = dt.Rows[0]["NikeName"] as string };
+                else
+                {
+                    Response.Cookies[RequestCommand.COOKIE_LOGONNAME].Expires = DateTime.Now.AddDays(-1);
+                    Response.Cookies[RequestCommand.COOKIE_LOGONPASSWORD].Expires = DateTime.Now.AddDays(-1);
+                }
+                Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = user.Id, NickName = user.NikeName };
                 var jumpurl = Session[RequestCommand.LOGON_JUMP_URL] as string;
                 Session[RequestCommand.LOGON_JUMP_URL] = null;
-                
+
                 return Redirect(jumpurl);
             }
             return Redirect("logon");
-            
+
         }
 
         public RedirectResult LogOut()
         {
             Session[RequestCommand.SESSION_USERINFO] = null;
             Session[RequestCommand.LOGON_JUMP_URL] = null;
-            Request.Cookies.Remove(RequestCommand.COOKIE_LOGONNAME);
-            Request.Cookies.Remove(RequestCommand.COOKIE_LOGONPASSWORD);
+
+            Response.Cookies[RequestCommand.COOKIE_LOGONNAME].Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies[RequestCommand.COOKIE_LOGONPASSWORD].Expires = DateTime.Now.AddDays(-1);
             return Redirect("/Product/1000000011/index.html");
         }
     }

@@ -50,6 +50,7 @@
     <Compile Include="Order\OPCustomerOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Store\OPStore.cs" />
+    <Compile Include="User\OPLogon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DLL\QSmart.Core.dll" />

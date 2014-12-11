@@ -300,6 +300,21 @@
             function GoLogin() {
                 window.location = window.location.origin + "/User/Logon";
             }
+            //结算
+            function SettleAccounts() {
+                var checkCount = 0;
+                
+                $("#notEmptyMyCart ul .cart-checkbox.checked").each(function () {
+                    
+                    checkCount++;
+                });
+                if (checkCount > 0) {
+                    window.location = window.location.origin + "/order/index";
+                }
+                else {
+                    alert("请选择要结算的商品！");
+                 }
+            }
         </script>
 
         <script type="text/javascript">
@@ -703,7 +718,7 @@
                 <strong class="shp-cart-total">总计:￥<span class="" id="cart_realPrice">60.40</span></strong>
                 <span class="sale-off">商品总额:￥<span class="bottom-bar-price" id="cart_oriPrice">60.40</span> 返现:￥<span class="bottom-bar-price" id="cart_rePrice">0.00</span></span>
             </div>
-             <a class="btn-right-block" id="submit" style="background: rgb(192, 0, 0);">结算(<span id="checkedNum"> 1 </span>)</a>
+             <a class="btn-right-block" id="submit" href="#" onclick="SettleAccounts()" style="background: rgb(192, 0, 0);">结算(<span id="checkedNum"> 1 </span>)</a>
        </div>
 
        <div id="emptyCart" style="display:none">

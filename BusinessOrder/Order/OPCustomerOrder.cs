@@ -116,7 +116,8 @@ namespace BusinessOrder.Order
                     msg = "请填写发票的抬头";
                 }
             }
-            return FunResult.GetError(msg);
+            
+            return string.IsNullOrEmpty(msg)?FunResult.GetSuccess(): FunResult.GetError(msg);
         }
     }
 }

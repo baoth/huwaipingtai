@@ -47,14 +47,7 @@ namespace huwaipingtai.Controllers
         // GET: /Order/
         public ActionResult Index()
         {
-            //QSmartDatabaseClient db = DataBaseProvider.Create("db");
-            //DataTable dt = db.QueryTable("select Quantity,price from cartview where customerid=" + this.CurrentUserInfo.Id +
-            //                             " and actived=1");
-            //decimal Money = 0;
-            //foreach (DataRow dr in dt.Rows)
-            //{
-            //    Money += (int)dr[0] * (decimal)dr[1];
-            //}
+            
             ViewData["Money"] = "0.00";// Money.ToString("C");
             ViewData["Fee"] = "0.00";
             ViewData["Total"] = "0.00";// Money.ToString("C");

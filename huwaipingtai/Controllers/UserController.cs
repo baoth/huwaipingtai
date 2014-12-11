@@ -107,7 +107,7 @@ namespace huwaipingtai.Controllers
 
         public ActionResult Logon()
         {
-            Session[RequestCommand.LOGON_JUMP_URL] = Request.UrlReferrer.AbsolutePath;
+            if (Session[RequestCommand.LOGON_JUMP_URL]==null) Session[RequestCommand.LOGON_JUMP_URL] = Request.UrlReferrer.AbsolutePath;
             return View("logon");
         }
 

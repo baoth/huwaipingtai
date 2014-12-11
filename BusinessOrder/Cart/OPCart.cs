@@ -6,6 +6,7 @@ using IBusinessOrder.Cart;
 using Common;
 using QSmart.Core.Object;
 using QSmart.Core.DataBase;
+using System.Data;
 namespace BusinessOrder.Cart
 {
    public class OPCart:IOPCart
@@ -124,9 +125,7 @@ namespace BusinessOrder.Cart
         public bool UpdateQuantity(string customerId, string productId, int quantity)
         {
             try
-            {
-                //QSmartDatabaseClient db=DataBaseProvider.Create('db');
-
+            {               
                 var sql = string.Format("update cart set quantity={0} where CustomerId='{1}' and Sku='{2}' ", quantity, customerId, productId);
                 db.Context.ExcuteNoQuery(sql);
                 return true;
@@ -179,18 +178,10 @@ namespace BusinessOrder.Cart
 
         public List<DataModel.View.CartView> CartActivedList(string customerId)
         {
-            QSmartQuery Query = new QSmartQuery();
-            Query.Tables.Add(new QSmartQueryTable());
-            Query.Tables[0].tableName = typeof(DataModel.View.CartView).Name;
-            Query.FilterConditions.Add(new QSmartQueryFilterCondition
-            {
-                Column = new QSmartQueryColumn { columnName = "CustomerId", dataType = typeof(int) },
-                Operator = QSmartOperatorEnum.equal,
-                Values = new List<object> { customerId },
-                Connector = QSmartConnectorEnum.and
-            });
-
-            List<DataModel.View.CartView> list = db.Context.QueryEntity<DataModel.View.CartView>(Query);
+         
+            var sql = string.Format("select Id,Sku,CustomerId,Actived,Quantity,Description,Price  from cartView where actived=1 and  customerId='{0}' ", customerId);
+            DataTable dt= db.Context.QueryTable(sql);
+            var list= db.Context.ConversionEntity<DataModel.View.CartView>(dt);           
             return list;
         }
     }

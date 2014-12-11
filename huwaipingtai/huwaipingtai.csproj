@@ -260,6 +260,7 @@
     <Content Include="Views\Cart\cart.cshtml" />
     <Content Include="Views\Shared\_HeaderTypical.cshtml" />
     <Content Include="Views\Shared\_FooterTypical.cshtml" />
+    <Content Include="Views\Cart\addToCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

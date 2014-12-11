@@ -8,37 +8,46 @@ using BusinessOrder.Enum;
 using DataModel.Goods;
 using Common.Fun;
 using Toolkit.CommonModel;
+using IBusinessOrder.Cart;
+using IBusinessOrder.Store;
+using Toolkit.Fun;
 namespace BusinessOrder.Order
 {
     public class OPCustomerOrder : IOPCustomerOrder
     {
+        IOPCart iOpCat;
+        IOPStore iOpStore;
+        public OPCustomerOrder(IOPCart iopcatr,IOPStore iopstore) {
+            //导入业务接口
+            iOpCat = iopcatr;
+            iOpStore = iopstore;
+        }
         //提交客户订单
         public CResult SubmitOrder(CustomerOrder customerOrder)
         {
 
             var CResult = new CResult();
             //1、调用购物车查询所有这次提交要买的商品
-            var opCart =new  BusinessOrder.Cart.OPCart();
-            var products= opCart.CartActivedList(customerOrder.CustomerId);
+            var products = iOpCat.CartActivedList(customerOrder.CustomerId);
             if (products.Count == 0) {
-                CResult.IsSuccess = false;
-                CResult.Msg = "亲，购物车中没有商品，不能生成订单呦！";
-                return CResult;
+                return FunResult.GetError("亲，购物车中没有商品，不能生成订单呦！");
             }
             //2、获得商品库存状况
-            var opStore = new BusinessOrder.Store.OPStore();
-            var goodsCount=  opStore.GetGoodsStore(products.Select(e => e.Sku).ToList());
+            var goodsCount = iOpStore.GetGoodsStore(products.Select(e => e.Sku).ToList());
             //3、检查是否有库存不满足 预留在这里吧  
             foreach (var item in goodsCount)
             {   
                 //还有种情况是随然让你下订单，但是我需要通知商家补货。如不能补货 则取消订单。
                 var product=products.FirstOrDefault(e => e.Sku==item.SKU);
-                if (item.StoreCount < product.Quantity) { 
-                    //应该不能拆单 直接返回给客服 让客服看是否可以补货  让后产生订单
+                if (product != null) { //商品在库存中不存在 几乎不存在这种情况 前期测试为了严谨
+                    if (item.StoreCount < product.Quantity) { 
+                        //应该不能拆单 直接返回给客服 让客服看是否可以补货  然后产生订单
 
+                    }
                 }
             }
-            //4、自动拆单过程
+            //3.1检查库存不符合的
+            //4、自动拆单过程 涉及门店优先级 涉及就近地点 就近仓库 
 
             //5、保存订单
             var listOrderReSql = new List<string>();
@@ -77,7 +86,7 @@ namespace BusinessOrder.Order
             }
             var dbSession = Common.DbFactory.CreateDbSession();
             dbSession.Context.ExcuteNoQuery(listOrderReSql);
-            return CResult;
+            return FunResult.GetSuccess();
         }
         /// <summary>
         /// 获取购物车中激活的商品
@@ -86,8 +95,28 @@ namespace BusinessOrder.Order
         /// <returns></returns>
         public List<DataModel.View.CartView> GetActivedCarts(string customerId)
         {
-            var opCart = new BusinessOrder.Cart.OPCart();
-            return opCart.CartActivedList(customerId);
+            return iOpCat.CartActivedList(customerId);
+        }
+
+
+        public CResult VerifyEntity(CustomerOrder customerOrder)
+        {
+            var msg = "";
+            if (customerOrder.AddressId == 0) {
+                msg = "收货人地址为空不能提交订单！";
+            }
+            else if (string.IsNullOrEmpty(customerOrder.CustomerId)) {
+                msg = "请重新登录！";
+            }
+            else if (customerOrder.PayType==0) {
+                msg = "请选择付款方式！";
+            }
+            else if (customerOrder.InvoiceTitleType == 2) {
+                if (string.IsNullOrEmpty(customerOrder.InvoiceCompany)) {
+                    msg = "请填写发票的抬头";
+                }
+            }
+            return FunResult.GetError(msg);
         }
     }
 }

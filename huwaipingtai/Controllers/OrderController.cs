@@ -15,6 +15,7 @@ using Toolkit.Ext;
 using QSmart.Core.DataBase;
 using System.Data;
 using Toolkit.CommonModel;
+using Toolkit.Fun;
 namespace huwaipingtai.Controllers
 {
     public class OrderController : BasicController
@@ -31,15 +32,22 @@ namespace huwaipingtai.Controllers
         {
             try
             {
+               //绑定订单数据
                var entity = Request.CreateInstance<CustomerOrder>();
                entity.CreateDate = DateTime.Now;
                entity.CustomerId = this.CurrentUserInfo.Id;
+               //验证订单信息
+               var checkResult=customerOrder.VerifyEntity(entity);
+               if(!checkResult.IsSuccess){
+                   return Json(checkResult); 
+               }
+               //提交订单
                var result= customerOrder.SubmitOrder(entity);
                return Json(result);
             }
             catch (Exception ex)
             {
-                return Json(new CResult() { IsSuccess=false,Msg=ex.ToString()});
+                return Json(FunResult.GetError(ex.Message));
             }
           
         }

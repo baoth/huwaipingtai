@@ -29,7 +29,7 @@ namespace Toolkit.CommonModel
        public List<T> Data { get; set; }
    }
    /// <summary>
-   /// 带字符串
+   /// 带字符串     
    /// </summary>
    /// <typeparam name="T"></typeparam>
    public class CResultStrData : CResultCode

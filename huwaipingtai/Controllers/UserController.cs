@@ -107,6 +107,7 @@ namespace huwaipingtai.Controllers
 
         public ActionResult Logon()
         {
+            Session[RequestCommand.LOGON_JUMP_URL] = Request.UrlReferrer.AbsolutePath;
             return View("logon");
         }
 
@@ -123,6 +124,7 @@ namespace huwaipingtai.Controllers
                 Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = dt.Rows[0]["Id"].ToString(), NickName = dt.Rows[0]["NikeName"] as string };
                 var jumpurl = Session[RequestCommand.LOGON_JUMP_URL] as string;
                 Session[RequestCommand.LOGON_JUMP_URL] = null;
+                
                 return Redirect(jumpurl);
             }
             return Redirect("logon");

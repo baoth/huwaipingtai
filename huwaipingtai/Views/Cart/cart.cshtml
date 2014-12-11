@@ -97,13 +97,13 @@
                     success: function (data) {
                         
                         var lis = "";
-                        if (data) {
+                        if (data && data.length > 0) {
                             for (var i = 0, j = data.length; i < j; i++) {
                                 lis += getHtml(data[i]);
                             }
                         }
+                        var objul = $("#notEmptyMyCart ul");
                         if (lis) {
-                            var objul = $("#notEmptyMyCart ul");
                             var li = objul.find("li:last");
                             if (li && li.length > 0) {
                                 objul.children().remove();
@@ -112,6 +112,9 @@
                             else {
                                 objul.html(lis);
                             }
+                        }
+                        else {
+                            objul.html("");
                         }
                         SetTotal(data);
                     },
@@ -725,7 +728,7 @@
             -webkit-border-image: url("data:image/png;base64,R0lGODlhBgAEAIABANfW2v///yH/C1hNUCBEYXRhWE1QPD94cGFj…ZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQBAAABACwAAAAABgAEAAACBoSDqWuQBQA7") 2 0 repeat;
            }
        </style>
-       <style>
+       <style type="text/css">
            
           .payment-total-bar {
             width: 100%;

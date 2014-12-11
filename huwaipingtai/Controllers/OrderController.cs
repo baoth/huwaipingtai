@@ -41,32 +41,6 @@ namespace huwaipingtai.Controllers
             return Json("提交订单成功");
         }
 
-        /// <summary>
-        /// 立刻购买
-        /// </summary>
-        /// <returns></returns>
-        public void BuyDirect()
-        {
-            string sku = Request["sku"];
-            string quantity = Request["quantity"];
-            QSmartDatabaseClient db = DataBaseProvider.Create("db");
-            Cart entity = new Cart
-            {
-                 Actived=true,
-                 CustomerId=this.CurrentUserInfo.Id,
-                 Quantity=int.Parse(quantity),
-                 Sku=int.Parse(sku)
-            };
-            //删除在购物车中相同的商品项(如果有)
-            db.ExcuteNoQuery(string.Format("DELETE FROM `cart` WHERE Sku={0} and CustomerId={1}",
-                             entity.Sku,entity.CustomerId));
-            //修改所有商品的Actived状态为false
-            db.ExcuteNoQuery(string.Format("UPDATE `cart` SET `Actived` = 0 WHERE `CustomerId` ={0}",
-                             entity.CustomerId));
-            //把当前商品插入到购物车中
-            db.InsertEntity(entity.CreateQSmartObject());
-            //跳转到order/index
-        }
         // GET: /Order/
         public ActionResult Index()
         {

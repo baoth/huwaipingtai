@@ -33,6 +33,7 @@ namespace DataModel.Order
     public class CustomerOrderSettings : QSmartEntity
     {
         [PrimaryKey]
+        [StringMaxLength(32, VarCharType.nvarchar)]
         public int CustomerId { get; set; }
         
         private int _AddressId = 0;

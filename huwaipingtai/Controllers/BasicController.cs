@@ -14,22 +14,30 @@ namespace huwaipingtai.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            base.OnActionExecuting(filterContext);
             if (!RequestCommand.Intercepts.Contains(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower() +
                 filterContext.ActionDescriptor.ActionName.ToLower()))
             {
                 this.CurrentUserInfo = Session[RequestCommand.SESSION_USERINFO] as UserInfo;
-                if (CurrentUserInfo==null)
+                if (CurrentUserInfo == null)
                 {
                     ViewData["Name"] = "登陆"; ViewData["Action"] = "/User/logon";
-                    Session[RequestCommand.LOGON_JUMP_URL] = this.Request.Path;
+                    //Session[RequestCommand.LOGON_JUMP_URL] = this.Request.Path;
+                    //重定向
                     Response.Redirect("/User/logon");
+                    //加了这句就不再走后面的Action
+                    filterContext.Result = new HttpNotFoundResult();
                     return;
                 }
-                ViewData["Name"] = this.CurrentUserInfo.NickName;
-                ViewData["Action"] = "#";
+                else
+                {
+                    ViewData["Name"] = this.CurrentUserInfo.NickName;
+                    ViewData["Action"] = "#";
+                }
             }
-            base.OnActionExecuting(filterContext);
+            
         }
+
     }
 
     public class UserInfo
@@ -42,6 +50,6 @@ namespace huwaipingtai.Controllers
     {
         public static readonly string SESSION_USERINFO = "uinfo";
         public static readonly string LOGON_JUMP_URL = "lju";
-        public static List<string> Intercepts = new List<string> { "userlogon", "userdologon", "userlogout" };
+        public static List<string> Intercepts = new List<string> { "userlogon", "userdologon", "userlogout"};
     }
 }

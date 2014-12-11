@@ -119,12 +119,18 @@ namespace huwaipingtai.Controllers
         {
             var username = this.Request["username"];
             var password = this.Request["password"];
+            var avoidlogon = this.Request["avoidlogon"];
             QSmartDatabaseClient db=DataBaseProvider.Create("db");
             string command = string.Format("select * from customer where LoginName='{0}' and password='{1}'",
                 username, password);
             DataTable dt = db.QueryTable(command);
             if (dt.Rows.Count > 0)
             {
+                if (avoidlogon == "1")
+                {
+                    Request.Cookies.Add(new HttpCookie(RequestCommand.COOKIE_LOGONNAME,username));
+                    Request.Cookies.Add(new HttpCookie(RequestCommand.COOKIE_LOGONPASSWORD, password));
+                }
                 Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = dt.Rows[0]["Id"].ToString(), NickName = dt.Rows[0]["NikeName"] as string };
                 var jumpurl = Session[RequestCommand.LOGON_JUMP_URL] as string;
                 Session[RequestCommand.LOGON_JUMP_URL] = null;
@@ -139,6 +145,8 @@ namespace huwaipingtai.Controllers
         {
             Session[RequestCommand.SESSION_USERINFO] = null;
             Session[RequestCommand.LOGON_JUMP_URL] = null;
+            Request.Cookies.Remove(RequestCommand.COOKIE_LOGONNAME);
+            Request.Cookies.Remove(RequestCommand.COOKIE_LOGONPASSWORD);
             return Redirect("/Product/1000000011/index.html");
         }
     }

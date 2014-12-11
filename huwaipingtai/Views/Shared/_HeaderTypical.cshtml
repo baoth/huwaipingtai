@@ -15,7 +15,7 @@
                 <span style='width:26px;background-position:0 -25px;'></span>
                 <p style='color:#6e6e6e;'>分类搜索</p>
             </a>
-            <a href='#' class='i-tbl-cell'>
+            <a href='/Cart/Index' class='i-tbl-cell'>
                 <span style='width:25px;background-position:-29px -25px'></span>
                 <p style='color:#6e6e6e;'>购物车</p>
             </a>
@@ -26,6 +26,20 @@
         </div>
     </div>
 </header>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.i-a-bh').on($.clickAction, function () {
+            var tg = $('.i-bh-tab');
+            if (tg.hasClass('on')) {
+                tg.removeClass('on');
+            }
+            else {
+                tg.addClass('on');
+            }
+        });
+        $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
+    });
+</script>
 <style type="text/css">
     @@font-face
     {
@@ -133,17 +147,3 @@
         color:#6e6e6e;
     }
 </style>
-<script type="text/javascript">
-$(document).ready(function () {
-    $('.i-a-bh').on($.clickAction, function () {
-        var tg = $('.i-bh-tab');
-        if (tg.hasClass('on')) {
-            tg.removeClass('on');
-        }
-        else {
-            tg.addClass('on');
-        }
-    });
-    $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
-});
-</script>

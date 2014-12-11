@@ -95,8 +95,7 @@ namespace BusinessOrder.Order
         /// <returns></returns>
         public List<DataModel.View.CartView> GetActivedCarts(string customerId)
         {
-            var opCart = new BusinessOrder.Cart.OPCart();
-            return opCart.CartActivedList(customerId);
+            return iOpCat.CartActivedList(customerId);
         }
     }
 }

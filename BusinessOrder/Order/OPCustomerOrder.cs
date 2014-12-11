@@ -10,6 +10,7 @@ using Common.Fun;
 using Toolkit.CommonModel;
 using IBusinessOrder.Cart;
 using IBusinessOrder.Store;
+using Toolkit.Fun;
 namespace BusinessOrder.Order
 {
     public class OPCustomerOrder : IOPCustomerOrder
@@ -29,9 +30,7 @@ namespace BusinessOrder.Order
             //1、调用购物车查询所有这次提交要买的商品
             var products = iOpCat.CartActivedList(customerOrder.CustomerId);
             if (products.Count == 0) {
-                CResult.IsSuccess = false;
-                CResult.Msg = "亲，购物车中没有商品，不能生成订单呦！";
-                return CResult;
+                return FunResult.GetError("亲，购物车中没有商品，不能生成订单呦！");
             }
             //2、获得商品库存状况
             var goodsCount = iOpStore.GetGoodsStore(products.Select(e => e.Sku).ToList());
@@ -40,9 +39,11 @@ namespace BusinessOrder.Order
             {   
                 //还有种情况是随然让你下订单，但是我需要通知商家补货。如不能补货 则取消订单。
                 var product=products.FirstOrDefault(e => e.Sku==item.SKU);
-                if (item.StoreCount < product.Quantity) { 
-                    //应该不能拆单 直接返回给客服 让客服看是否可以补货  然后产生订单
+                if (product != null) { //商品在库存中不存在 几乎不存在这种情况 前期测试为了严谨
+                    if (item.StoreCount < product.Quantity) { 
+                        //应该不能拆单 直接返回给客服 让客服看是否可以补货  然后产生订单
 
+                    }
                 }
             }
             //3.1检查库存不符合的
@@ -85,7 +86,7 @@ namespace BusinessOrder.Order
             }
             var dbSession = Common.DbFactory.CreateDbSession();
             dbSession.Context.ExcuteNoQuery(listOrderReSql);
-            return CResult;
+            return FunResult.GetSuccess();
         }
         /// <summary>
         /// 获取购物车中激活的商品

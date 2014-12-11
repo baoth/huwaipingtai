@@ -34,6 +34,7 @@
             });
 
             function submitOrder() {
+                debugger
                 //提交
                 var payType = $('#pay').data('paytype'); //支付方式
                 var delType = $('#delivery').data('deltype'); //发货方式
@@ -57,12 +58,14 @@
                     },
                     type: 'post',
                     success: function (action, response) {
+                        debugger
                         //  var msg = action.IsSuccess?action.Msg"
                         if (action.IsSuccess) {
-                            alert(action.Msg);
+                            alert("提交订单成功");
                         } else {
                             /*页面跳转支付*/
-                            alert("提交订单成功");
+                            alert(action.Msg);
+                           
                         }
                     }
                 });
@@ -96,6 +99,7 @@
                 });
             };
             function initInvoice() {
+                debugger
                 if (window.sessionStorage.invoiceTitle == undefined || window.sessionStorage.invoiceTitle == '') {
                     window.sessionStorage.invoiceTitle = '1';
                 }

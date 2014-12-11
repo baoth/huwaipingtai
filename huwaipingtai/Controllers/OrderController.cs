@@ -15,6 +15,7 @@ using Toolkit.Ext;
 using QSmart.Core.DataBase;
 using System.Data;
 using Toolkit.CommonModel;
+using Toolkit.Fun;
 namespace huwaipingtai.Controllers
 {
     public class OrderController : BasicController
@@ -39,7 +40,7 @@ namespace huwaipingtai.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new CResult() { IsSuccess=false,Msg=ex.Message.ToString()});
+                return Json(FunResult.GetError(ex.Message));
             }
           
         }

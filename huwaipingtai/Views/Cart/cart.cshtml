@@ -27,9 +27,21 @@
                 $('.i-a-back').on($.clickAction, function () {
                     window.location = window.sessionStorage.backurl;
                 });
+                InitData();
                 LoadData();
-                
+
             });
+            var InitData = function () {
+                debugger
+                var nickName = $("#NickName").val();
+                if (!nickName) {
+                    var aobj = (".btn-jd-gray btn-large");
+                    if (!obj) {
+                        var a = '<a href="javascript:GoLogin()" class="btn-jd-gray btn-large">去登录</a>';
+                        $(".empty-btn-wrapper a:last").after(a);
+                    }
+                }
+            }
 
             var LoadData = function () {                
                 var url = "GetCartProductByCustomer";
@@ -95,7 +107,7 @@
                     type: "POST",
                     dataType: "json",
                     success: function (data) {
-                        
+
                         var lis = "";
                         if (data && data.length > 0) {
                             for (var i = 0, j = data.length; i < j; i++) {
@@ -112,9 +124,20 @@
                             else {
                                 objul.html(lis);
                             }
+                            //显示购物车
+                            $("#notEmptyMyCart").show();
+                            $("#payment").show();
+                            //隐藏购物车
+                            $("#emptyCart").hide();
                         }
                         else {
                             objul.html("");
+
+                            //隐藏购物车
+                            $("#notEmptyMyCart").hide();
+                            $("#payment").hide();
+                            //显示购物车
+                            $("#emptyCart").show();
                         }
                         SetTotal(data);
                     },
@@ -283,7 +306,12 @@
                 var para = { pid: productid,quantity:value};
                 submitAjax(url, para);
             }
-
+            function GoWalk() {
+                window.location = window.location.origin + "/Product/1000000011/index.html";
+            }
+            function GoLogin() {
+                window.location = window.location.origin + "/User/Logon";
+            }
         </script>
 
         <script type="text/javascript">
@@ -728,6 +756,7 @@
             -webkit-border-image: url("data:image/png;base64,R0lGODlhBgAEAIABANfW2v///yH/C1hNUCBEYXRhWE1QPD94cGFj…ZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQBAAABACwAAAAABgAEAAACBoSDqWuQBQA7") 2 0 repeat;
            }
        </style>
+      @* 底部合计样式*@
        <style type="text/css">
            
           .payment-total-bar {
@@ -785,6 +814,51 @@
             right: 0;
           }
        </style> 
+       
+      @* 空购物车*@
+       <style type="text/css">
+        .empty-sign {
+            background: url('../../Content/images/empty-cart.png') no-repeat center center;
+            background-size: 100px 100px;
+            height: 110px;
+            margin-top: 33px;
+        }
+        .empty-warning-text {
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+            line-height: 18px;
+            min-height: 50px;
+        }
+        .empty-btn-wrapper {
+            margin-top: 15px;
+            text-align: center;
+        }
+        .btn-jd-red.btn-large, .btn-jd-gray.btn-large, .btn-jd-darkred.btn-large {
+            font-size: 14px;
+            padding: 12px 40px;
+        }
+        .empty-btn-wrapper .btn-large {
+              margin: 0 10px;
+        }
+        .btn-jd-darkred {
+            color: #fff;
+            display: inline-block;
+            background: #c00000;
+            border-radius: 3px;
+            padding: 4px 12px;
+            line-height: 1.2em;
+        }
+        
+        .btn-jd-gray {
+            color: #fff;
+            display: inline-block;
+            background: #bfbfbf;
+            border-radius: 3px;
+            padding: 4px 12px;
+            line-height: 1.2em;
+        }
+       </style>
     </head>
     <body>
         <a name="top"></a>
@@ -834,8 +908,17 @@
              <a class="btn-right-block" id="submit" style="background: rgb(192, 0, 0);">结算(<span id="checkedNum"> 1 </span>)</a>
        </div>
 
+       <div id="emptyCart" style="display:none">
+            <div class="empty-sign"></div>
+            <div class="empty-warning-text">亲！购物车无宝贝吆！快去购物吧</div>
+            <div class="empty-btn-wrapper">
+              <a href="javascript:GoWalk()" class="btn-jd-darkred btn-large">去逛逛</a>
+             
+            </div>
+       </div>
+
        <div style="display:none">
-          <input type="hidden" id="cid" value="@ViewData["cid"]" />
+          <input type="hidden" id="NickName" value="@ViewData["NickName"]" />
         
       </div>
     </body>

@@ -20,12 +20,13 @@ namespace huwaipingtai.Controllers
 
         public ActionResult Index()
         {
-            //var cid=Request["cid"];
-            //cid = "111";
-            //if (!string.IsNullOrEmpty(cid))
-            //{
-            //    ViewData["cid"] = cid;
-            //}
+            if (this.CurrentUserInfo != null)
+            {
+                if (!string.IsNullOrEmpty(this.CurrentUserInfo.NickName))
+                {
+                    ViewData["NickName"] = this.CurrentUserInfo.NickName;
+                }
+            }
            
             return View("cart");
         }

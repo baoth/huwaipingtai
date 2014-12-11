@@ -8,26 +8,33 @@ using BusinessOrder.Enum;
 using DataModel.Goods;
 using Common.Fun;
 using Toolkit.CommonModel;
+using IBusinessOrder.Cart;
+using IBusinessOrder.Store;
 namespace BusinessOrder.Order
 {
     public class OPCustomerOrder : IOPCustomerOrder
     {
+        IOPCart iOpCat;
+        IOPStore iOpStore;
+        public OPCustomerOrder(IOPCart iopcatr,IOPStore iopstore) {
+            //导入业务接口
+            iOpCat = iopcatr;
+            iOpStore = iopstore;
+        }
         //提交客户订单
         public CResult SubmitOrder(CustomerOrder customerOrder)
         {
 
             var CResult = new CResult();
             //1、调用购物车查询所有这次提交要买的商品
-            var opCart =new  BusinessOrder.Cart.OPCart();
-            var products= opCart.CartActivedList(customerOrder.CustomerId);
+            var products = iOpCat.CartActivedList(customerOrder.CustomerId);
             if (products.Count == 0) {
                 CResult.IsSuccess = false;
                 CResult.Msg = "亲，购物车中没有商品，不能生成订单呦！";
                 return CResult;
             }
             //2、获得商品库存状况
-            var opStore = new BusinessOrder.Store.OPStore();
-            var goodsCount=  opStore.GetGoodsStore(products.Select(e => e.Sku).ToList());
+            var goodsCount = iOpStore.GetGoodsStore(products.Select(e => e.Sku).ToList());
             //3、检查是否有库存不满足 预留在这里吧  
             foreach (var item in goodsCount)
             {   
@@ -38,7 +45,9 @@ namespace BusinessOrder.Order
 
                 }
             }
-            //4、自动拆单过程
+            //3.1检查库存不符合的
+
+            //4、自动拆单过程 涉及门店优先级 涉及就近地点 就近仓库 
 
             //5、保存订单
             var listOrderReSql = new List<string>();

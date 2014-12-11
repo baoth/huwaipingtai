@@ -1,0 +1,391 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>       
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.i-a-bh').on($.clickAction, function () {
+                    var tg = $('.i-bh-tab');
+                    if (tg.hasClass('on')) {
+                        tg.removeClass('on');
+                    }
+                    else {
+                        tg.addClass('on');
+                    }
+                });
+                $('.i-a-back').on($.clickAction, function () {
+                    window.location = window.sessionStorage.backurl;
+                });
+               
+
+            });
+
+            function GoSettleAccounts() {
+                window.location = window.location.origin + "/cart/index";
+            }
+            
+            function GoWalk() {
+                window.location = window.location.origin + "/Product/1000000011/index.html";
+            }
+            function GoLogin() {
+                window.location = window.location.origin + "/User/Logon";
+            }
+        </script>
+      
+        <style type="text/css">
+            @@font-face
+            {
+        	    font-family:icons;
+        	    src:url(../Scripts/qsm-mui/iconfont_141111.ttf) format('truetype');
+        	    font-weight:400;
+        	    font-style:normal;
+            }
+            *
+            {
+            	margin:0;
+            	padding:0;
+            }
+            a
+            {
+            	text-decoration:none;
+            }
+            body
+            {
+            	line-height: 1.25em;
+            	font-family: 'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;
+            }
+            .i-bh-header
+            {
+                position: relative;
+                height: 44px;
+                background: #e4393c;
+            }
+            .i-bh-header h2 
+            {
+                height: 44px;
+                line-height: 44px;
+                font-weight: normal;
+                font-size: 16px;
+                color: #fff;
+                text-align: center;
+            }
+            .i-a-back 
+            {
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 30px;
+                height: 32px;
+            }
+            .i-a-back span 
+            {
+                display: inline-block;
+                width: 10px;
+                height: 18px;
+                margin-top: 6px;
+                background: url(../Content/images/icon2b.png) -60px 0 no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-a-bh 
+            {
+                position: absolute;
+                top: 6px;
+                right: 12px;
+                width: 37px;
+                height: 30px;
+            }
+            .i-a-bh span 
+            {
+                display: inline-block;
+                width: 21px;
+                height: 21px;
+                margin: 5px 0 0 13px;
+                background: url(../Content/images/icon2b.png) -125px -24px no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-bh-tab
+            {
+                border-bottom: 1px solid #d0cece;
+                background-color: #fff;
+                display:none;
+            }
+            .i-bh-tab.on
+            {
+            	display:block;
+            }
+            .i-tbl-type 
+            {
+                display: table;
+                width: 100%;
+            }
+            .i-bh-tab .i-tbl-cell 
+            {
+                width: 25%;
+                padding: 9px 0;
+                font-size: 12px;
+                text-align: center;
+                display: table-cell;
+            }
+            .i-bh-tab .i-tbl-cell span
+            {
+            	background: url(../Content/images/icon2b.png) -60px -25px no-repeat;
+                background-size: 180px 180px;
+                vertical-align: text-top;
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                color:#6e6e6e;
+            }
+            
+            
+            
+           .new-ct 
+            {
+                min-height: 203px;
+                background-color: #fff;
+            }
+            .title 
+            {
+                padding: 13px 10px 7px;
+                border-bottom: 1px solid #c8c7cc;
+                background: #f1f1f5;
+                font-size: 14px;
+                color: #666;
+            }
+            .cart-list
+            {
+                padding-left: 10px;
+                border-bottom: 1px solid #c8c7cc;
+            }
+            .info-delv
+            {
+                padding: 13px 10px 12px;
+                border-bottom: 1px solid #c8c7cc;
+            }
+            .info-delv.b-b-n
+            {
+                border-bottom: none;
+            }
+            .btn-radio 
+            {
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                padding: 0;
+                /*background: url(../Content/images/icon_order.png) -79px -50px no-repeat; */     
+                background: url(../Content/images/icon_order.png) -29px -57px no-repeat;             
+                background-size: 100px 100px;
+                vertical-align: -5px;
+            }
+            .btn-radio.on 
+            {
+                /*background-position: -55px -50px;*/
+                background-position:0px -56px
+            }
+            .mgn 
+            {
+                margin: 15px 10px;
+            }
+            .new-abtn-type
+            {
+                display: block;
+                padding: 8px;
+                border-radius: 2px;
+                background-color: #c00;
+                font-size: 14px;
+                color: #fff;
+                text-align: center;
+            }
+            
+            
+            
+            
+            
+            .i-footer 
+            {
+                margin-top: 20px;
+                background-color: #f3f2f2;
+                font-size: 14px;
+                color: #6e6e6e;
+                text-align: center;
+            }
+            .i-footer .i-f-login 
+            {
+                /*position: relative;*/
+                padding: 0 12px;
+                background-color: #a8a8a8;
+                line-height: 27px;
+                color: #fff;
+                text-align: left;
+                heigth: 27px;
+            }
+            .i-footer .i-f-login a 
+            {
+                color: #fff;
+            }
+            .i-footer .i-f-login .i-bar2 
+            {
+                margin: 0 5px;
+            }
+            .i-footer .i-f-login .i-back-top 
+            {
+                position: absolute;
+                right: 12px;
+            }
+            .i-footer .i-f-section, .i-footer .i-f-section2 
+            {
+                padding: 10px 0;
+            }
+            .i-footer .i-f-section a:first-child 
+            {
+                margin-left: 0;
+            }
+            .i-footer .i-f-section a 
+            {
+                margin-left: 20px;
+                color: #6e6e6e;
+            }
+            .i-footer .i-f-section .on 
+            {
+                color: #c30202;
+            }
+        </style>
+          
+      @* 空购物车*@
+       <style type="text/css">
+        .empty-sign {
+            background: url('../../Content/images/empty-cart.png') no-repeat center center;
+            background-size: 100px 100px;
+            height: 110px;
+            margin-top: 33px;
+        }
+        .empty-warning-text {
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+            line-height: 18px;
+            min-height: 50px;
+        }
+        .empty-btn-wrapper {
+            margin-top: 15px;
+            text-align: center;
+        }
+        .btn-jd-red.btn-large, .btn-jd-gray.btn-large, .btn-jd-darkred.btn-large {
+            font-size: 14px;
+            padding: 12px 40px;
+        }
+        .empty-btn-wrapper .btn-large {
+              margin: 0 10px;
+        }
+        .btn-jd-darkred {
+            color: #fff;
+            display: inline-block;
+            background: #c00000;
+            border-radius: 3px;
+            padding: 4px 12px;
+            line-height: 1.2em;
+        }
+        
+        .btn-jd-gray {
+            color: #fff;
+            display: inline-block;
+            background: #bfbfbf;
+            border-radius: 3px;
+            padding: 4px 12px;
+            line-height: 1.2em;
+        }
+        
+        
+        
+       </style>
+
+       <style>
+        
+        .success-b 
+        {
+        padding: 18px 10px 16px 80px;
+       
+        overflow: hidden;
+        width: 150px;
+        height: 40px;
+        padding-left: 56px;
+        background: url(../../Content/images/addToCart.png) no-repeat 0 -100px;
+        font-size:large;
+        color: #7ABD54;
+        margin: auto;
+        }
+        
+       </style>
+    </head>
+    <body>
+        <a name="top"></a>
+        <header>
+            <div class='i-bh-header'>
+                <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
+                <h2>购物车</h2>
+                <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
+            </div>
+            <div class='i-bh-tab'>
+                <div class='i-tbl-type'>
+                    <a href='#' class='i-tbl-cell'>
+                        <span></span>
+                        <p style='color:#6e6e6e;'>首页</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:26px;background-position:0 -25px;'></span>
+                        <p style='color:#6e6e6e;'>分类搜索</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:25px;background-position:-29px -25px'></span>
+                        <p style='color:#6e6e6e;'>购物车</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:22px;background-position:-85px -25px'></span>
+                        <p style='color:#6e6e6e;'>我的易购</p>
+                    </a>
+                </div>
+            </div>
+        </header>
+      
+       <div id="addMsgCart">
+            
+            <div class="success-b"><p>已加入购物车！</p></div>
+            <div class="empty-btn-wrapper">
+              <a href="javascript:GoWalk()" class="btn-jd-gray btn-large">继续购物</a>
+              <a href="javascript:GoSettleAccounts()" class="btn-jd-darkred btn-large">去结算</a>             
+            </div>
+       </div>
+
+        
+        <footer>
+            <div class='i-footer'>
+                <div class='i-f-login'>
+                    <a rel="nofollow" href='#'>tyrone</a>
+                    <span class="i-bar2">|</span>
+                    <a rel="nofollow" href="#">退出</a>
+                    <span class="i-back-top">
+                        <a href="javascript:void(0);">反馈</a>
+                        
+                    </span>
+                </div>
+                <div class="i-f-section">
+                    <a href="#">标准版</a>
+                    <a href="#" class="on">触屏版</a>
+                    <a href="#" id="toPcHome">电脑版</a>
+                </div>
+                <div class="i-f-section2">Copyright © 2014-2015 baoth.com 版权所有</div>
+            </div>
+        </footer>
+    </body>
+
+</html>

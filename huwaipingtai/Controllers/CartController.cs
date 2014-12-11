@@ -30,6 +30,10 @@ namespace huwaipingtai.Controllers
            
             return View("cart");
         }
+        public ActionResult AddToCart()
+        {
+            return View("addToCart");
+        }
         public ActionResult Add()
         {          
            

@@ -19,6 +19,12 @@ namespace IBusinessOrder.Order
         /// <returns></returns>
         CResult SubmitOrder(CustomerOrder customerOrder);
         /// <summary>
+        /// 验证实体合法
+        /// </summary>
+        /// <param name="customerOrder"></param>
+        /// <returns></returns>
+        CResult VerifyEntity(CustomerOrder customerOrder);
+        /// <summary>
         /// 获取购物车中激活的商品
         /// </summary>
         /// <param name="customerId"></param>

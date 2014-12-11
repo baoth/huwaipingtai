@@ -97,5 +97,26 @@ namespace BusinessOrder.Order
         {
             return iOpCat.CartActivedList(customerId);
         }
+
+
+        public CResult VerifyEntity(CustomerOrder customerOrder)
+        {
+            var msg = "";
+            if (customerOrder.AddressId == 0) {
+                msg = "收货人地址为空不能提交订单！";
+            }
+            else if (string.IsNullOrEmpty(customerOrder.CustomerId)) {
+                msg = "请重新登录！";
+            }
+            else if (customerOrder.PayType==0) {
+                msg = "请选择付款方式！";
+            }
+            else if (customerOrder.InvoiceTitleType == 2) {
+                if (string.IsNullOrEmpty(customerOrder.InvoiceCompany)) {
+                    msg = "请填写发票的抬头";
+                }
+            }
+            return FunResult.GetError(msg);
+        }
     }
 }

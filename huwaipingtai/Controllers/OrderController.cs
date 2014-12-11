@@ -32,9 +32,16 @@ namespace huwaipingtai.Controllers
         {
             try
             {
+               //绑定订单数据
                var entity = Request.CreateInstance<CustomerOrder>();
                entity.CreateDate = DateTime.Now;
                entity.CustomerId = this.CurrentUserInfo.Id;
+               //验证订单信息
+               var checkResult=customerOrder.VerifyEntity(entity);
+               if(!checkResult.IsSuccess){
+                   return Json(checkResult); 
+               }
+               //提交订单
                var result= customerOrder.SubmitOrder(entity);
                return Json(result);
             }

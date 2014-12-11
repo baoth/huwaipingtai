@@ -233,8 +233,6 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +258,8 @@
     <Content Include="Views\OutputOrder\Detail.cshtml" />
     <Content Include="Views\User\logon.cshtml" />
     <Content Include="Views\Cart\cart.cshtml" />
+    <Content Include="Views\Shared\_HeaderTypical.cshtml" />
+    <Content Include="Views\Shared\_FooterTypical.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

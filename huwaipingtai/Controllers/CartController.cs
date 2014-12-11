@@ -30,6 +30,39 @@ namespace huwaipingtai.Controllers
            
             return View("cart");
         }
+        /// <summary>
+        /// 直接购买
+        /// </summary>
+        /// <returns></returns>
+        public RedirectResult BuyDirect()
+        {
+            if (this.CurrentUserInfo == null)
+            {
+                return null;
+            }
+            var customerId = this.CurrentUserInfo.Id;
+
+             
+            DataModel.Order.Cart model = new DataModel.Order.Cart();
+            var pid = Request["sku"];
+            var quantity = Request["quantity"];
+            int q;
+            int.TryParse(quantity, out q);
+            var actived = true;
+            int sku;
+            int.TryParse(pid, out sku);
+            model.Sku = sku;
+            model.Quantity = q;
+            model.Actived = actived;
+            model.CustomerId = customerId;
+
+            iopcart.Add(model, "2");
+            return Redirect("/Order/Index");
+        }
+        /// <summary>
+        /// 添加到购物车
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Add()
         {          
            
@@ -53,7 +86,7 @@ namespace huwaipingtai.Controllers
             model.Actived = actived;
             model.CustomerId = customerId;
 
-            iopcart.Add(model, type);
+            iopcart.Add(model, "1");
 
             var json = GetDataJsonByCustomerId(customerId);
             return Content(json);

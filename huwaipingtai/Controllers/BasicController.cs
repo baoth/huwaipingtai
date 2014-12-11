@@ -22,7 +22,7 @@ namespace huwaipingtai.Controllers
                 if (CurrentUserInfo == null)
                 {
                     ViewData["Name"] = "登陆"; ViewData["Action"] = "/User/logon";
-                    Session[RequestCommand.LOGON_JUMP_URL] = this.Request.Path;
+                    Session[RequestCommand.LOGON_JUMP_URL] = this.Request.RawUrl;
                     //重定向
                     filterContext.Result = new RedirectResult("/User/logon");
                     //Response.Redirect("/User/logon");

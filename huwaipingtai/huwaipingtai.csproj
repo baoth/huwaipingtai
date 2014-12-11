@@ -109,6 +109,7 @@
     <Content Include="Content\bin\QSmart.Core.dll" />
     <Content Include="Content\bin\System.Web.Mvc.dll" />
     <Content Include="Content\bin\System.Web.Mvc.xml" />
+    <Content Include="Content\images\addToCart.png" />
     <Content Include="Content\images\bg_line.png" />
     <Content Include="Content\images\bg_line2.png" />
     <Content Include="Content\images\bg_line3.png" />

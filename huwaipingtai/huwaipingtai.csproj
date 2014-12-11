@@ -120,6 +120,7 @@
     <Content Include="Content\images\icon_order.png" />
     <Content Include="Content\images\icon_suc.png" />
     <Content Include="Content\images\shp-cart-icon-sprites.png" />
+    <Content Include="Content\images\empty-cart.png" />
     <Content Include="Content\mobile\base.css" />
     <Content Include="Content\mobile\checkbox.css" />
     <Content Include="Content\mobile\spinner.css" />
@@ -295,7 +296,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>22831</DevelopmentServerPort>
+          <DevelopmentServerPort>12156</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

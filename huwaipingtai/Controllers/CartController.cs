@@ -19,33 +19,16 @@ namespace huwaipingtai.Controllers
         // GET: /Cart/
 
         public ActionResult Index()
-        {  
-            return View("cart");
-        }
-        public RedirectResult BuyDirect()
         {
-            if (this.CurrentUserInfo == null)
+            if (this.CurrentUserInfo != null)
             {
-                return null;
+                if (!string.IsNullOrEmpty(this.CurrentUserInfo.NickName))
+                {
+                    ViewData["NickName"] = this.CurrentUserInfo.NickName;
+                }
             }
-            var customerId = this.CurrentUserInfo.Id;
-         
-            DataModel.Order.Cart model = new DataModel.Order.Cart();
-            var pid = Request["sku"];
-            var quantity = Request["quantity"];
-            int q;
-            int.TryParse(quantity, out q);
-            var actived = true;
-            int sku;
-            int.TryParse(pid, out sku);
-            model.Sku = sku;
-            model.Quantity = q;
-            model.Actived = actived;
-            model.CustomerId = customerId;
-
-            iopcart.Add(model, "2");
-
-            return Redirect("/Order/Index");
+           
+            return View("cart");
         }
         public ActionResult Add()
         {          
@@ -74,7 +57,6 @@ namespace huwaipingtai.Controllers
 
             var json = GetDataJsonByCustomerId(customerId);
             return Content(json);
-
         }
 
         public ActionResult Delete(string pid)

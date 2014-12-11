@@ -14,6 +14,7 @@ using DataModel.Order;
 using Toolkit.Ext;
 using QSmart.Core.DataBase;
 using System.Data;
+using Toolkit.CommonModel;
 namespace huwaipingtai.Controllers
 {
     public class OrderController : BasicController
@@ -28,17 +29,19 @@ namespace huwaipingtai.Controllers
         [HttpPost]
         public JsonResult SubmitOrder() 
         {
-            var entity = Request.CreateInstance<CustomerOrder>();
-            entity.CreateDate = DateTime.Now;
-            entity.CustomerId = this.CurrentUserInfo.Id;
             try
             {
-               bool bIsSuccess= customerOrder.SubmitOrder(entity);
+               var entity = Request.CreateInstance<CustomerOrder>();
+               entity.CreateDate = DateTime.Now;
+               entity.CustomerId = this.CurrentUserInfo.Id;
+               var result= customerOrder.SubmitOrder(entity);
+               return Json(result);
             }
             catch (Exception ex)
             {
+                return Json(new CResult() { IsSuccess=false,Msg=ex.ToString()});
             }
-            return Json("提交订单成功");
+          
         }
 
         // GET: /Order/

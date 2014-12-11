@@ -25,15 +25,6 @@
             }
 
             $(document).ready(function () {
-                $('.i-a-bh').on('click', function () {
-                    var tg = $('.i-bh-tab');
-                    if (tg.hasClass('on')) {
-                        tg.removeClass('on');
-                    }
-                    else {
-                        tg.addClass('on');
-                    }
-                });
                 $("#editAddressForm").submit(validateSubmit);
                 $("#address_province").change(citychange);
                 $("#address_city").change(areachange);
@@ -50,41 +41,11 @@
                 } else if (type > 0 || type == -1) {
                     getData(type, '', '', '', '', '', '1', '72', '2799', '0');
                 }
-                $('.i-a-back').on('click', function () {
-                    window.location = '/User/Address/';
-                });
             });
         </script>
     </head>
     <body>
-        <a name="top"></a>
-        <header>
-            <div class='i-bh-header'>
-                <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
-                <h2>收货地址</h2>
-                <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
-            </div>
-            <div class='i-bh-tab'>
-                <div class='i-tbl-type'>
-                    <a href='#' class='i-tbl-cell'>
-                        <span></span>
-                        <p style='color:#6e6e6e;'>首页</p>
-                    </a>
-                    <a href='#' class='i-tbl-cell'>
-                        <span style='width:26px;background-position:0 -25px;'></span>
-                        <p style='color:#6e6e6e;'>分类搜索</p>
-                    </a>
-                    <a href='#' class='i-tbl-cell'>
-                        <span style='width:25px;background-position:-29px -25px'></span>
-                        <p style='color:#6e6e6e;'>购物车</p>
-                    </a>
-                    <a href='#' class='i-tbl-cell'>
-                        <span style='width:22px;background-position:-85px -25px'></span>
-                        <p style='color:#6e6e6e;'>我的易购</p>
-                    </a>
-                </div>
-            </div>
-        </header>
+        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "收货地址" } })
         <form action="/User/SaveAddress?" method="post" id="editAddressForm">
             <div class="new-ct shouhuo">
     <div class="title">收货人地址</div>
@@ -206,26 +167,7 @@
 <input type="hidden" name="Id" value="@ViewData["Id"]"/>
 <input type="hidden" name="CustomerId" value="@ViewData["CustomerId"]"/>
         </form>
-        <footer>
-            <div class='i-footer'>
-                <div class='i-f-login'>
-                    <a rel="nofollow" href='#'>tyrone</a>
-                    <span class="i-bar2">|</span>
-                    <a rel="nofollow" href="#">退出</a>
-                    <span class="i-back-top">
-                        <a href="javascript:void(0);">反馈</a>
-                        <span class="i-bar2">|</span>
-                        <a href="#top">回到顶部</a>
-                    </span>
-                </div>
-                <div class="i-f-section">
-                    <a href="#">标准版</a>
-                    <a href="#" class="on">触屏版</a>
-                    <a href="#" id="toPcHome">电脑版</a>
-                </div>
-                <div class="i-f-section2">Copyright © 2014-2015 baoth.com 版权所有</div>
-            </div>
-        </footer>
+        @Html.Partial("_FooterTypical")
     </body>
 
 </html>

@@ -21,6 +21,9 @@ namespace huwaipingtai.Controllers
         }
         public ActionResult Detail()
         {
+            ViewData["Money"] = "188.00";
+            ViewData["Fee"] = "188.00";
+            ViewData["Money"] = "188.00";
             return View("Detail");
         }
         public ActionResult List()
@@ -83,11 +86,9 @@ namespace huwaipingtai.Controllers
             db.InsertEntity(ct.CreateQSmartObject());
             db.SaveChange();
             /*
-             CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` 
-SQL SECURITY DEFINER 
-VIEW `cartview` AS 
-select `cart`.`Sku` AS `Sku`,`cart`.`CustomerId` AS `CustomerId`,`cart`.`Actived` AS `Actived`,`cart`.`Quantity` AS `Quantity`,`goodsshelves`.`Description` AS `description`,`goodsshelves`.`Price` AS `price` 
-from (`cart` left join `goodsshelves` on((`cart`.`Sku` = `goodsshelves`.`Sku`)));
+CREATE  OR REPLACE VIEW `cartview` AS
+select `cart`.`Id` AS `Id`,`cart`.`Sku` AS `Sku`,`cart`.`CustomerId` AS `CustomerId`,`cart`.`Actived` AS `Actived`,`cart`.`Quantity` AS `Quantity`,`goodsshelves`.`Description` AS `Description`,`goodsshelves`.`Price` AS `Price` from (`cart` left join `goodsshelves` on((`cart`.`Sku` = `goodsshelves`.`Sku`)));
+;
              * */
             return Content("ok");
         }

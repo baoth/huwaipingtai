@@ -55,10 +55,20 @@ namespace huwaipingtai.Controllers
         // GET: /Order/
         public ActionResult Index()
         {
-            
-            ViewData["Money"] = "0.00";// Money.ToString("C");
-            ViewData["Fee"] = "0.00";
-            ViewData["Total"] = "0.00";// Money.ToString("C");
+
+            List<DataModel.View.CartView> cvs = customerOrder.GetActivedCarts(this.CurrentUserInfo.Id);
+            decimal totalmoney=0;
+            if (cvs != null && cvs.Count > 0)
+            {
+                foreach (DataModel.View.CartView cv in cvs)
+                {
+                    totalmoney += cv.Price * cv.Quantity;
+                }
+            }
+
+            ViewData["Money"] = totalmoney.ToString("C");
+            ViewData["Fee"] = ((decimal)0).ToString("C");
+            ViewData["Total"] = totalmoney.ToString("C");
             //读取当前客户所有在购物车里状态actived为true的商品
             //计算金额合计
             return View();

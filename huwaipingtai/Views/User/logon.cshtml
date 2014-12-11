@@ -24,16 +24,18 @@
                 $('.s-ck').on($.clickAction, function () {
                     if ($(this).hasClass('on')) {
                         $(this).removeClass('on');
+                        $('#avoidlogon').val("0");
                     }
                     else {
                         $(this).addClass('on');
+                        $('#avoidlogon').val("1");
                     }
                 });
                 $('#loginsub').on($.clickAction, function () {
                     $('#frm_logon').submit();
                 });
                 $('#username').on('focus', function () {
-                    
+
                     $("#error").hide();
                     $("#err").hide();
                 });
@@ -251,7 +253,8 @@
             <div class='logon-ct'>
                 <div class='logon-info'>
                     <form action="/User/DoLogon" method="post" id="frm_logon">
-    			        <input type="hidden" name="r-url" value="">
+    			        <input type="hidden" name="avoidlogon" id='avoidlogon' value="0">
+                        
     			        <div class="txt-err" id="err" style="display:none;"></div> 
     			        <span class="logon-s">
                             <input type="text" value="" class="logon-input" name="username" id="username" placeholder="请输入用户名/邮箱/已验证手机">

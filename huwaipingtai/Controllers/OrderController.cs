@@ -39,7 +39,7 @@ namespace huwaipingtai.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new CResult() { IsSuccess=false,Msg=ex.ToString()});
+                return Json(new CResult() { IsSuccess=false,Msg=ex.Message.ToString()});
             }
           
         }

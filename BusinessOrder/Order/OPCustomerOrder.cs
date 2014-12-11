@@ -41,12 +41,11 @@ namespace BusinessOrder.Order
                 //还有种情况是随然让你下订单，但是我需要通知商家补货。如不能补货 则取消订单。
                 var product=products.FirstOrDefault(e => e.Sku==item.SKU);
                 if (item.StoreCount < product.Quantity) { 
-                    //应该不能拆单 直接返回给客服 让客服看是否可以补货  让后产生订单
+                    //应该不能拆单 直接返回给客服 让客服看是否可以补货  然后产生订单
 
                 }
             }
             //3.1检查库存不符合的
-
             //4、自动拆单过程 涉及门店优先级 涉及就近地点 就近仓库 
 
             //5、保存订单

@@ -98,7 +98,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Table.cs" />
     <Compile Include="整理类.cs" />
   </ItemGroup>
   <ItemGroup>

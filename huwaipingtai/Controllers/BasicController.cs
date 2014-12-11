@@ -22,11 +22,12 @@ namespace huwaipingtai.Controllers
                 if (CurrentUserInfo == null)
                 {
                     ViewData["Name"] = "登陆"; ViewData["Action"] = "/User/logon";
-                    //Session[RequestCommand.LOGON_JUMP_URL] = this.Request.Path;
+                    Session[RequestCommand.LOGON_JUMP_URL] = this.Request.Path;
                     //重定向
-                    Response.Redirect("/User/logon");
+                    filterContext.Result = new RedirectResult("/User/logon");
+                    //Response.Redirect("/User/logon");
                     //加了这句就不再走后面的Action
-                    filterContext.Result = new HttpNotFoundResult();
+                    //filterContext.Result = new HttpNotFoundResult();
                     return;
                 }
                 else

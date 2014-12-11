@@ -438,8 +438,9 @@
                  more();
              });
              $("#directorder").bind("click", function () {
-                 // window.location = window.location.origin + '/Order';
-                 directorderBuy();
+                 var sku = $("#ProductId").val();
+                 var quantity = $("#txt_quantity").val();
+                 $(this).attr('href', "/Cart/BuyDirect?Sku=" + sku + "&quantity=" + quantity);
              });
              //表头菜单购物车
              $("#product_cart").bind("click", function () {
@@ -509,19 +510,21 @@
              alert("无更多数据");
          }
          var directorderBuy = function () {
-             var url = "/cart/add";
+             var url = "/order/buydirect";
              var productId = $("#ProductId").val();
              var quantity = $("#txt_quantity").val();
              $.ajax({
                  url: url,
                  data: { sku: productId, quantity: quantity,type:2 },
-                 type: "POST",
+                 type: "get",
                  dataType: "json",
                  success: function (data) {
-                     window.location = window.location.origin + '/Order';
+                    debugger
+//                     window.location = window.location.origin + '/Order';
                  },
                  error: function () {
-                     alert("请求错误！");
+                    debugger
+//                     alert("请求错误！");
                  }
 
              });
@@ -537,6 +540,7 @@
                  type: "POST",
                  dataType: "json",
                  success: function (data) {
+                    debugger
                      if (data == null) {
 //                         window.location = "/user/logon"; 
                      }
@@ -547,6 +551,7 @@
                      }
                  },
                  error: function (data) {
+                    debugger
                      window.location = "/user/logon"; 
                  }
 
@@ -686,7 +691,7 @@
 
       <div class="tbl-type detail-tbn2" id="cart1" style="position: fixed; left: 0px; bottom: 0px; z-index: 999; display: table;">
     	   <div class="tbl-cell">                   
-               <a id="directorder" class="btn-buy"><span></span>立即购买</a>
+               <a id="directorder" class="btn-buy" ><span></span>立即购买</a>
            </div>
            <div class="tbl-cell">  
                 <a id="add_cart" class="btn-cart"><span></span>加入购物车</a>

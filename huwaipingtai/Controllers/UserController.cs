@@ -111,6 +111,10 @@ namespace huwaipingtai.Controllers
             return View("logon");
         }
 
+        public ActionResult Home()
+        {
+            return View("home");
+        }
         public RedirectResult DoLogon()
         {
             var username = this.Request["username"];

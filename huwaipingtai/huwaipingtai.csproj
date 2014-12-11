@@ -110,6 +110,7 @@
     <Content Include="Content\bin\System.Web.Mvc.dll" />
     <Content Include="Content\bin\System.Web.Mvc.xml" />
     <Content Include="Content\images\addToCart.png" />
+    <Content Include="Content\images\bgdefault.png" />
     <Content Include="Content\images\bg_line.png" />
     <Content Include="Content\images\bg_line2.png" />
     <Content Include="Content\images\bg_line3.png" />
@@ -120,8 +121,10 @@
     <Content Include="Content\images\icon_detail.png" />
     <Content Include="Content\images\icon_order.png" />
     <Content Include="Content\images\icon_suc.png" />
+    <Content Include="Content\images\msg-icon2.png" />
     <Content Include="Content\images\shp-cart-icon-sprites.png" />
     <Content Include="Content\images\empty-cart.png" />
+    <Content Include="Content\images\userdefaul.png" />
     <Content Include="Content\mobile\base.css" />
     <Content Include="Content\mobile\checkbox.css" />
     <Content Include="Content\mobile\spinner.css" />
@@ -262,6 +265,7 @@
     <Content Include="Views\Shared\_HeaderTypical.cshtml" />
     <Content Include="Views\Shared\_FooterTypical.cshtml" />
     <Content Include="Views\Cart\addToCart.cshtml" />
+    <Content Include="Views\User\home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

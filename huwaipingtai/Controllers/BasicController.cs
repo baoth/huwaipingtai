@@ -9,9 +9,13 @@ namespace huwaipingtai.Controllers
     public class BasicController : Controller
     {
         protected UserInfo CurrentUserInfo = null;
+        protected IBusinessOrder.User.ILogon iLogon = BusinessTemplate.ConfigBusinessTemplate.GetILogon();
         //
         // GET: /Basic/
-
+        public BasicController() 
+        {
+            
+        }
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
@@ -21,11 +25,36 @@ namespace huwaipingtai.Controllers
                 this.CurrentUserInfo = Session[RequestCommand.SESSION_USERINFO] as UserInfo;
                 if (CurrentUserInfo == null)
                 {
-                    ViewData["Name"] = "登陆"; ViewData["Action"] = "/User/logon";
-                    Session[RequestCommand.LOGON_JUMP_URL] = this.Request.RawUrl;
-                    //重定向
-                    filterContext.Result = new RedirectResult("/User/logon");
-                    return;
+                    var userName = Request.Cookies[RequestCommand.COOKIE_LOGONNAME];
+                   
+                    if (userName == null)
+                    {
+                        ViewData["Name"] = "登陆"; ViewData["Action"] = "/User/logon";
+                        Session[RequestCommand.LOGON_JUMP_URL] = this.Request.RawUrl;
+                        //重定向
+                        filterContext.Result = new RedirectResult("/User/logon");
+                        return;
+                    }
+                    else
+                    {
+                        var password = Request.Cookies[RequestCommand.COOKIE_LOGONPASSWORD];
+                        var user = iLogon.Logon(userName.Value, password.Value);
+                        if (user == null)
+                        {
+                            ViewData["Name"] = "登陆"; ViewData["Action"] = "/User/logon";
+                            Session[RequestCommand.LOGON_JUMP_URL] = this.Request.RawUrl;
+                            //重定向
+                            filterContext.Result = new RedirectResult("/User/logon");
+                            return;
+                        }
+                        else
+                        {
+                            var uinfo= new UserInfo { Id = user.Id, NickName = user.NikeName };
+                            Session[RequestCommand.SESSION_USERINFO] = uinfo;
+                            this.CurrentUserInfo=uinfo;
+                            filterContext.Result = new RedirectResult(this.Request.RawUrl);
+                        }
+                    }
                 }
                 else
                 {

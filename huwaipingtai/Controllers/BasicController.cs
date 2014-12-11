@@ -51,6 +51,7 @@ namespace huwaipingtai.Controllers
     {
         public static readonly string SESSION_USERINFO = "uinfo";
         public static readonly string LOGON_JUMP_URL = "lju";
-        public static List<string> Intercepts = new List<string> { "userlogon", "userdologon", "userlogout"};
+        public static List<string> Intercepts = new List<string> { "userlogon", "userdologon", "userlogout",
+                                                "cartaddtocart"};
     }
 }

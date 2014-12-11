@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataModel.Order;
+using Toolkit.CommonModel;
 
 namespace IBusinessOrder.Order
 {
@@ -15,7 +16,7 @@ namespace IBusinessOrder.Order
         /// 提交订单
         /// </summary>
         /// <returns></returns>
-        bool SubmitOrder(CustomerOrder customerOrder);
+        CResult SubmitOrder(CustomerOrder customerOrder);
         
     }
 }

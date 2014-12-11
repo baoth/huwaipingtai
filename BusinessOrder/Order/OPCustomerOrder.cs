@@ -7,22 +7,37 @@ using DataModel.Order;
 using BusinessOrder.Enum;
 using DataModel.Goods;
 using Common.Fun;
+using Toolkit.CommonModel;
 namespace BusinessOrder.Order
 {
     public class OPCustomerOrder : IOPCustomerOrder
     {
         //提交客户订单
-        public bool SubmitOrder(CustomerOrder customerOrder)
+        public CResult SubmitOrder(CustomerOrder customerOrder)
         {
-         
+
+            var CResult = new CResult();
             //1、调用购物车查询所有这次提交要买的商品
             var opCart =new  BusinessOrder.Cart.OPCart();
             var products= opCart.CartActivedList(customerOrder.CustomerId);
+            if (products.Count == 0) {
+                CResult.IsSuccess = false;
+                CResult.Msg = "亲，购物车中没有商品，不能生成订单呦！";
+                return CResult;
+            }
             //2、获得商品库存状况
             var opStore = new BusinessOrder.Store.OPStore();
             var goodsCount=  opStore.GetGoodsStore(products.Select(e => e.Sku).ToList());
-            //3、检查是否有库存不满足
-          
+            //3、检查是否有库存不满足 预留在这里吧  
+            foreach (var item in goodsCount)
+            {   
+                //还有种情况是随然让你下订单，但是我需要通知商家补货。如不能补货 则取消订单。
+                var product=products.FirstOrDefault(e => e.Sku==item.SKU);
+                if (item.StoreCount < product.Quantity) { 
+                    //应该不能拆单 直接返回给客服 让客服看是否可以补货  让后产生订单
+
+                }
+            }
             //4、自动拆单过程
 
             //5、保存订单
@@ -39,7 +54,7 @@ namespace BusinessOrder.Order
                     customerOrder.CustomerId,
                     customerOrder.CreateDate,
                     customerOrder.SendDateIndex , 
-                    customerOrder.PhoneConfirm, 
+                    customerOrder.PhoneConfirm?1:0, 
                     customerOrder.AddressId, 
                     customerOrder.InvoiceTitleType,
                     customerOrder.InvoiceContentType,
@@ -50,7 +65,7 @@ namespace BusinessOrder.Order
 
             //生成订单表
             var orderId = Framework.GetOrderNum();
-            var sqlOrderFormat = @"insert into order(Id,SubOrder,CustomerOrderId,Status) values ('{0}','{1}','{2}','{3}')";
+            var sqlOrderFormat = @"insert into `order`(Id,SubOrder,CustomerOrderId,Status) values ('{0}','{1}','{2}','{3}')";
             var sqlOrder = string.Format(sqlOrderFormat, orderId, 0, customerOrder.Id, (int)OrderStatusEnum.Generate);
             listOrderReSql.Add(sqlOrder);
             //生成订单商品表
@@ -62,7 +77,7 @@ namespace BusinessOrder.Order
             }
             var dbSession = Common.DbFactory.CreateDbSession();
             dbSession.Context.ExcuteNoQuery(listOrderReSql);
-            return true;
+            return CResult;
         }
     }
 }

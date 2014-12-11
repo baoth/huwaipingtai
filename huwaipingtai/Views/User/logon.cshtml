@@ -17,7 +17,7 @@
             $(document).ready(function () {
                 //非空验证
                 $('#frm_logon').bind('submit', function (e) {
-                    if (!(checkUsername() && checkPassword() && checkCode())) {
+                    if (!(checkUsername() && checkPassword())) {
                         e.preventDefault();
                     }
                 });
@@ -31,7 +31,7 @@
                     }
                 });
                 $('.i-a-back').on($.clickAction, function () {
-                    window.location = window.sessionStorage.backurl;
+                    window.history.back(-1); 
                 });
                 $('.s-ck').on($.clickAction, function () {
                     if ($(this).hasClass('on')) {

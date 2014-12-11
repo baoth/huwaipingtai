@@ -79,5 +79,15 @@ namespace BusinessOrder.Order
             dbSession.Context.ExcuteNoQuery(listOrderReSql);
             return CResult;
         }
+        /// <summary>
+        /// 获取购物车中激活的商品
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
+        public List<DataModel.View.CartView> GetActivedCarts(string customerId)
+        {
+            var opCart = new BusinessOrder.Cart.OPCart();
+            return opCart.CartActivedList(customerId);
+        }
     }
 }

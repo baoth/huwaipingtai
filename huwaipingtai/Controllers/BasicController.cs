@@ -29,7 +29,6 @@ namespace huwaipingtai.Controllers
                    
                     if (userName == null)
                     {
-                        ViewData["Name"] = "登陆"; ViewData["Action"] = "/User/logon";
                         Session[RequestCommand.LOGON_JUMP_URL] = this.Request.RawUrl;
                         //重定向
                         filterContext.Result = new RedirectResult("/User/logon");
@@ -41,7 +40,6 @@ namespace huwaipingtai.Controllers
                         var user = iLogon.Logon(userName.Value, password.Value);
                         if (user == null)
                         {
-                            ViewData["Name"] = "登陆"; ViewData["Action"] = "/User/logon";
                             Session[RequestCommand.LOGON_JUMP_URL] = this.Request.RawUrl;
                             //重定向
                             filterContext.Result = new RedirectResult("/User/logon");
@@ -56,15 +54,23 @@ namespace huwaipingtai.Controllers
                         }
                     }
                 }
-                else
-                {
-                    ViewData["Name"] = this.CurrentUserInfo.NickName;
-                    ViewData["Action"] = "#";
-                }
             }
-            
+            SetFooter();
         }
 
+        private void SetFooter()
+        {
+            if (this.CurrentUserInfo != null)
+            {
+                ViewData["NameL"] = this.CurrentUserInfo.NickName; ViewData["ActionL"] = "/User/Home";
+                ViewData["NameR"] = "退出"; ViewData["ActionR"] = "/User/LogOut";
+            }
+            else
+            {
+                ViewData["NameL"] = "登陆"; ViewData["ActionL"] = "/User/logon";
+                ViewData["NameR"] = "注册"; ViewData["ActionR"] = "#";
+            }
+        }
     }
 
     public class UserInfo

@@ -227,22 +227,6 @@
     <body>
         @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "我的账户" } })
        
-        <div class="user-bg" style="background:url(../../Content/images/bgdefault.png) no-repeat;background-size:cover"></div>
-        <div class="user-wrapper">
-	        <div class="div-user">
-                <div class="user">
-    		         <img src="../../Content/images/userdefaul.png" class="user-avatar">
-                      <div class="user-info">
-                        <span class="user-name">@ViewData["NickName"]</span>   
-                        <span class="user-level">铜牌用户</span>   
-                      </div>
-    		        <a href="/user/messages.action?sid=2522b1a01c942a1cb55c5a635f2cb57d">
-    			        <span class="msg">消息</span>
-    		        </a>
-                </div>
-		   </div>
-
-        </div>
 
         <div class="shortcut-navs">
 

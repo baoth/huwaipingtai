@@ -266,6 +266,7 @@
     <Content Include="Views\Shared\_FooterTypical.cshtml" />
     <Content Include="Views\Cart\addToCart.cshtml" />
     <Content Include="Views\User\home.cshtml" />
+    <Content Include="Views\Cart\Copy %282%29 of addToCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

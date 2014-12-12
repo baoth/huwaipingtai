@@ -53,7 +53,7 @@ namespace BusinessOrder.Order
             //5、保存订单
             var listOrderReSql = new List<string>();
             //生成客户订单表
-            var orderCustomerId = Guid.NewGuid();
+            var orderCustomerId = Guid.NewGuid().ToString().Replace("-","");
             var sqlFormatCustomerOrder = @"insert into customerorder (
                     Id,CustomerId,CreateDate,SendDateIndex,
                     PhoneConfirm,AddressId,InvoiceTitleType,
@@ -76,7 +76,7 @@ namespace BusinessOrder.Order
             //生成订单表
             var orderId = Framework.GetOrderNum();
             var sqlOrderFormat = @"insert into `order`(Id,SubOrder,CustomerOrderId,Status) values ('{0}','{1}','{2}','{3}')";
-            var sqlOrder = string.Format(sqlOrderFormat, orderId, 0, customerOrder.Id, (int)OrderStatusEnum.Generate);
+            var sqlOrder = string.Format(sqlOrderFormat, orderId, 0, orderCustomerId, (int)OrderStatusEnum.Generate);
             listOrderReSql.Add(sqlOrder);
             //生成订单商品表
             foreach (var goods in products)
@@ -103,7 +103,8 @@ namespace BusinessOrder.Order
         public CResult VerifyEntity(CustomerOrder customerOrder)
         {
             var msg = "";
-            if (customerOrder.AddressId == 0) {
+            if (customerOrder.DeliveryType==2&&customerOrder.AddressId == 0)
+            {
                 msg = "收货人地址为空不能提交订单！";
             }
             else if (string.IsNullOrEmpty(customerOrder.CustomerId)) {

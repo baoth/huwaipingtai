@@ -48,7 +48,6 @@
     <Compile Include="DbFactory.cs" />
     <Compile Include="DbSession.cs" />
     <Compile Include="Fun\Framework.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">
@@ -58,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DLL\QSmart.Core.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

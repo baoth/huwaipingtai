@@ -55,7 +55,6 @@
     <Compile Include="Goods\GoodsShelves.cs" />
     <Compile Include="Order\CustomerOrderDto.cs" />
     <Compile Include="Order\Order.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Store\SKUStore.cs" />
     <Compile Include="View\CartView.cs" />
   </ItemGroup>
@@ -63,7 +62,9 @@
     <Content Include="DLL\MySql.Data.dll" />
     <Content Include="DLL\QSmart.Core.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

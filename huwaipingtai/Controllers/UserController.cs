@@ -114,6 +114,10 @@ namespace huwaipingtai.Controllers
 
         public ActionResult Home()
         {
+            if (this.CurrentUserInfo != null)
+            {
+                ViewData["NickName"]=this.CurrentUserInfo.NickName;
+            }
             return View("home");
         }
         public RedirectResult DoLogon()

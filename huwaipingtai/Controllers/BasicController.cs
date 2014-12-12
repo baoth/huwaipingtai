@@ -19,14 +19,14 @@ namespace huwaipingtai.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
+            this.CurrentUserInfo = Session[RequestCommand.SESSION_USERINFO] as UserInfo;
             if (!RequestCommand.Intercepts.Contains(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower() +
                 filterContext.ActionDescriptor.ActionName.ToLower()))
             {
-                this.CurrentUserInfo = Session[RequestCommand.SESSION_USERINFO] as UserInfo;
                 if (CurrentUserInfo == null)
                 {
                     var userName = Request.Cookies[RequestCommand.COOKIE_LOGONNAME];
-                   
+
                     if (userName == null)
                     {
                         Session[RequestCommand.LOGON_JUMP_URL] = this.Request.RawUrl;
@@ -47,9 +47,7 @@ namespace huwaipingtai.Controllers
                         }
                         else
                         {
-                            var uinfo= new UserInfo { Id = user.Id, NickName = user.NikeName };
-                            Session[RequestCommand.SESSION_USERINFO] = uinfo;
-                            this.CurrentUserInfo=uinfo;
+                            Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = user.Id, NickName = user.NikeName };
                             filterContext.Result = new RedirectResult(this.Request.RawUrl);
                         }
                     }
@@ -67,7 +65,7 @@ namespace huwaipingtai.Controllers
             }
             else
             {
-                ViewData["NameL"] = "登陆"; ViewData["ActionL"] = "/User/logon";
+                ViewData["NameL"] = "登陆"; ViewData["ActionL"] = "/User/logon?t=direct_l";
                 ViewData["NameR"] = "注册"; ViewData["ActionR"] = "#";
             }
         }
@@ -85,7 +83,7 @@ namespace huwaipingtai.Controllers
         public static readonly string LOGON_JUMP_URL = "lju";
         public static readonly string COOKIE_LOGONNAME = "baoname";
         public static readonly string COOKIE_LOGONPASSWORD = "baopsw";
-        public static List<string> Intercepts = new List<string> { "userlogon", "userdologon", "userlogout"
-                                                };
+        public static List<string> Intercepts = new List<string> { "userlogon", "userdologon", "userlogout",
+                                                "feedbackadvice","feedbacksubmitadvice"};
     }
 }

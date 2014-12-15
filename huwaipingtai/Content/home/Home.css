@@ -120,7 +120,7 @@ body {
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-ms-border-radius: 3px;
-	margin: 0 8px 0 8px;
+	margin: 0 1px 0 8px;
 	background: #ebebeb;
 	height: 24px;
 	padding-top: 7px;
@@ -152,12 +152,11 @@ body {
 .search-bar-cell-1 {
 	display: table-cell;
 	width: 34px;
-	vertical-align: top;
-	text-align: right;
+	vertical-align: top;	
 }
 .search-bar-cell-2 {
 	display: table-cell;
-	width: 90%;
+	width: 95%;
 	text-align: left;
 	vertical-align: top;
 }

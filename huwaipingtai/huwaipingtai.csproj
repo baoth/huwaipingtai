@@ -91,6 +91,7 @@
     <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\FeedBackController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OutputOrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -277,6 +278,8 @@
     <Content Include="Views\Cart\addToCart.cshtml" />
     <Content Include="Views\User\home.cshtml" />
     <Content Include="Views\Home\index.cshtml" />
+    <Content Include="Views\FeedBack\Advice.cshtml" />
+    <Content Include="Views\FeedBack\AdviceSubmited.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

@@ -25,7 +25,7 @@
         <link href="../../Content/home/Layout.css" rel="stylesheet" type="text/css" />
         <link href="../../Content/home/Home.css" rel="stylesheet" type="text/css" />
 
-      
+    
     </head>
     <body>
       
@@ -258,7 +258,16 @@
         }
   </style>
  <script type="text/javascript">
-     document.tab = new QsmartTab('tabpages', { 'callback': dd });
+     var tab = new QsmartTab('tabpages', { 'callback': dd });
+     $(document).ready(function () {
+         $("#serial-number span").bind("click", function () {             
+             var index = $(this).index();
+             tab.jump(index);
+             //添加样式
+             $(this).addClass("selected").siblings().removeClass("selected");
+         });
+     });
+    
 
      function dd(a) {
          console.log(a);

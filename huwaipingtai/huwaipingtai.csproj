@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OutputOrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -109,11 +110,14 @@
     <Content Include="Content\bin\QSmart.Core.dll" />
     <Content Include="Content\bin\System.Web.Mvc.dll" />
     <Content Include="Content\bin\System.Web.Mvc.xml" />
+    <Content Include="Content\home\Home.css" />
+    <Content Include="Content\home\Layout.css" />
     <Content Include="Content\images\addToCart.png" />
     <Content Include="Content\images\bgdefault.png" />
     <Content Include="Content\images\bg_line.png" />
     <Content Include="Content\images\bg_line2.png" />
     <Content Include="Content\images\bg_line3.png" />
+    <Content Include="Content\images\home-icons.png" />
     <Content Include="Content\images\icon-shp-cart-remove.png" />
     <Content Include="Content\images\icon2b.png" />
     <Content Include="Content\images\icon_chk.png" />
@@ -127,12 +131,7 @@
     <Content Include="Content\images\empty-cart.png" />
     <Content Include="Content\images\userdefaul.png" />
     <Content Include="Content\mobile\base.css" />
-    <Content Include="Content\mobile\checkbox.css" />
-    <Content Include="Content\mobile\spinner.css" />
-    <Content Include="Content\mobile\shopping-cart.css" />
-    <Content Include="Content\mobile\title-bar.css" />
     <Content Include="Content\mobile\order.css" />
-    <Content Include="Content\mobile\btn.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -165,6 +164,17 @@
     <Content Include="ProductImage\001\00002.jpg" />
     <Content Include="ProductImage\001\00003.jpg" />
     <Content Include="ProductImage\001\00004.jpg" />
+    <Content Include="ProductImage\002\01.jpg" />
+    <Content Include="ProductImage\002\02.jpg" />
+    <Content Include="ProductImage\002\03.jpg" />
+    <Content Include="ProductImage\002\11.jpg" />
+    <Content Include="ProductImage\002\12.jpg" />
+    <Content Include="ProductImage\002\13.jpg" />
+    <Content Include="ProductImage\002\21.jpg" />
+    <Content Include="ProductImage\002\31.jpg" />
+    <Content Include="ProductImage\002\32.jpg" />
+    <Content Include="ProductImage\002\33.jpg" />
+    <Content Include="ProductImage\002\34.jpg" />
     <Content Include="ProductImage\1119896\111989601.jpg" />
     <Content Include="Product\1000000011\00001.jpg" />
     <Content Include="Product\1000000011\00002.jpg" />
@@ -243,7 +253,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -267,6 +276,7 @@
     <Content Include="Views\Shared\_FooterTypical.cshtml" />
     <Content Include="Views\Cart\addToCart.cshtml" />
     <Content Include="Views\User\home.cshtml" />
+    <Content Include="Views\Home\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

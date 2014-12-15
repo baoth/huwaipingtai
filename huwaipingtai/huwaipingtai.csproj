@@ -199,6 +199,8 @@
     <Content Include="Product\1000000022\00003.jpg" />
     <Content Include="Product\1000000022\00004.jpg" />
     <Content Include="Product\1000000022\index.html" />
+    <Content Include="Product\1000000022\shelves01.css" />
+    <Content Include="Product\1000000022\shelves01.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />

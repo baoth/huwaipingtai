@@ -33,7 +33,7 @@
         for (var i in options) {
             me.options[i] = options[i];
         }
-
+        
         if (me._ismobile()) {
             me.options.action = 'tap';
             me.options.mdownaction = 'touchstart';
@@ -172,7 +172,6 @@
     };
 
     QsmartTab.prototype._end = function (e) {
-        console.log('end');
         if (this.started != true) return;
         this._removeEvent(window, this.options.moveaction, this);
         var point = e.touches ? e.touches[0] : e;

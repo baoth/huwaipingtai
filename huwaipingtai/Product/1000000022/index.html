@@ -1,18 +1,14 @@
-﻿
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html>
 <head>
+    <title>商品详情</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />   
-    <link href="../../Scripts/qsm-mui/qsmart-mui.css" rel="stylesheet" type="text/css" />
-    
-    <title></title>
-    
     
     <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
     <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
     <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
     <script src="../../Scripts/qsm-mui/qsmart-mui-tab-1.0.0.js" type="text/javascript"></script>
@@ -295,6 +291,15 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
+            $('.i-a-bh').on('click', function () {
+                var tg = $('.i-bh-tab');
+                if (tg.hasClass('on')) {
+                    tg.removeClass('on');
+                }
+                else {
+                    tg.addClass('on');
+                }
+            });
             Init();
             BindEvent();
         });
@@ -390,166 +395,136 @@
              alert("立即购买");
          }
     </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.i-a-bh').on('click', function () {
-                var tg = $('.i-bh-tab');
-                if (tg.hasClass('on')) {
-                    tg.removeClass('on');
-                }
-                else {
-                    tg.addClass('on');
-                }
-            });
-        });
-     </script>
 </head>
 <body>
-    
-       <header>
-            <div class='i-bh-header'>
-                <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
-                <h2>商品详细</h2>
-                <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
+    <header>
+        <div class='i-bh-header'>
+            <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
+            <h2>商品详细</h2>
+            <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
+        </div>
+        <div class='i-bh-tab'>
+            <div class='i-tbl-type'>
+                <a href='#' class='i-tbl-cell'>
+                    <span></span>
+                    <p style='color:#6e6e6e;'>首页</p>
+                </a>
+                <a href='#' class='i-tbl-cell'>
+                    <span style='width:26px;background-position:0 -25px;'></span>
+                    <p style='color:#6e6e6e;'>分类搜索</p>
+                </a>
+                <a href='#' class='i-tbl-cell'>
+                    <span style='width:25px;background-position:-29px -25px'></span>
+                    <p style='color:#6e6e6e;'>购物车</p>
+                </a>
+                <a href='#' class='i-tbl-cell'>
+                    <span style='width:22px;background-position:-85px -25px'></span>
+                    <p style='color:#6e6e6e;'>我的易购</p>
+                </a>
             </div>
-            <div class='i-bh-tab'>
-                <div class='i-tbl-type'>
-                    <a href='#' class='i-tbl-cell'>
-                        <span></span>
-                        <p style='color:#6e6e6e;'>首页</p>
-                    </a>
-                    <a href='#' class='i-tbl-cell'>
-                        <span style='width:26px;background-position:0 -25px;'></span>
-                        <p style='color:#6e6e6e;'>分类搜索</p>
-                    </a>
-                    <a href='#' class='i-tbl-cell'>
-                        <span style='width:25px;background-position:-29px -25px'></span>
-                        <p style='color:#6e6e6e;'>购物车</p>
-                    </a>
-                    <a href='#' class='i-tbl-cell'>
-                        <span style='width:22px;background-position:-85px -25px'></span>
-                        <p style='color:#6e6e6e;'>我的易购</p>
-                    </a>
-                </div>
-            </div>
-        </header>
+        </div>
+    </header>
 
-       <div class="content">
-            <ul>
-             <li>
-                  <div id="tabpages">
-                   <div class='tab-scroller'>                       
-                        <div class='tab-item'><div class="c"><span id='Span1'></span></div></div>
-                        <div class='tab-item'><div class="c"><span id='Span2'></span></div></div>
-                        <div class='tab-item'><div class="c"><span id='Span3'></span></div></div>
-                        <div class='tab-item'><div class="c"><span id='Span4'></span></div></div>
-                        <ul><span id='Span5'></span></ul>
-                    </div>                
-                 </div>
-             </li>
-             <li style=" text-align:center;">
+    <div class="content">
+        <ul>
+            <li>
+                <div id="tabpages">
+                    <div class='tab-scroller'>                       
+                        <div class='tab-item'><img src="00001.jpg" /></div>
+                        <div class='tab-item'><img src="00002.jpg" /></div>
+                        <div class='tab-item'><img src="00003.jpg" /></div>
+                        <div class='tab-item'><img src="00004.jpg" /></div>
+                    </div>
+                </div>
+                <ul class="nav-tip">
+                    <li id="nav-0" class='on' style="left:0;width:25%;"></li>
+                    <li id="nav-1" style="left:25%;width:25%;"></li>
+                    <li id="nav-2" style="left:50%;width:25%;"></li>
+                    <li id="nav-3" style="left:75%;width:25%;"></li>
+                </ul>
+                <script type="text/javascript">
+                    document.tab = new QsmartTab('tabpages', { 'callback': tabcallback });
+                    function tabcallback(index) {
+                        $('.nav-tip li').removeClass('on');
+                        $('#nav-' + index).addClass('on');
+                    };
+                </script>
+                <style type="text/css">
+                    #tabpages
+                    {
+                        width: 100%;            
+                        height: 200px;           
+                        background:#fff;
+                        text-align:center;
+                    }
+                    .nav-tip
+                    {
+                        text-decoration:none;
+                        list-style:none;
+                        margin:0;
+                        padding:0;
+                    	
+                    }
+                    .nav-tip li
+                    {
+                        list-style:none;
+                        position:absolute;
+                        border-bottom:2px solid #ccc;
+                    }
+                    .nav-tip li.on
+                    {
+                        border-bottom:2px solid #369;
+                    }
+                </style>
+            </li>
+            <li style=" text-align:center;">
                 <div id="detail_discription" style=" font-size:large">加棉衣服</div>
                 <div style=" color:Red;font-size:large;">￥99.88</div>
-                 <hr  />
-             </li>
-             
-            
-             <li>
-                <div>
-                    颜色
-                </div>
+                <hr  />
+            </li>
+            <li>
+                <div>颜色</div>
                 <div id="btn_color">                  
-                  <a title="卡其色" code="1"  href="javascript:void(0)" class="btn-color">卡其色</a>
-                  <a title="咖啡色" code="2"  href="javascript:void(0)" class="btn-color on">咖啡色</a>
-                 
+                    <a title="卡其色" code="1"  href="javascript:void(0)" class="btn-color">卡其色</a>
+                    <a title="咖啡色" code="2"  href="javascript:void(0)" class="btn-color on">咖啡色</a>
                 </div>
                 <hr style=" margin-top:2px" />
-             </li>
-             <li>
-                <div>
-                    尺码
-                </div>
+            </li>
+            <li>
+                <div>尺码</div>
                 <div id="btn_size">                    
                     <a title="XL" code="1"  href="javascript:void(0)" class="btn-color">XL</a>
                     <a title="XXL" code="2"  href="javascript:void(0)" class="btn-color on">XXL</a>
                 </div>
                 <hr style=" margin-top:2px"/>
-             </li>
-             <li style=" height:50px">
+            </li>
+            <li style=" height:50px">
                 <div>购买数量</div>
                 <span class="add-del">                 
-                <a class="btn-add" id="btn_quantityCut"><span></span></a>
-                 <input id="txt_quantity" type="text" class="quantity-input" value="1"/>
-                <a class="btn-del"  id="btn_quantityAdd"><span></span></a>
+                    <a class="btn-add" id="btn_quantityCut"><span></span></a>
+                    <input id="txt_quantity" type="text" class="quantity-input" value="1"/>
+                    <a class="btn-del"  id="btn_quantityAdd"><span></span></a>
                 </span>  
                 <span id="product_quantity" style=" position:absolute; right:5px">库存100件</span> 
-             </li>
-             <li>
+            </li>
+            <li>
                 <div id="product_image" class="product_image">
                     <div>查看图文详情</div>
                     <ul>
-                        <li>                            
-                            <img src="00001.jpg" style="width:100%"/>
-                        </li>
-                         <li>
-                            <img src="00002.jpg" style="width:100%"/>
-                        </li>
-                         <li>
-                            <img src="00003.jpg" style="width:100%"/>
-                        </li>
-                         <li><span style="font-size:large">细节展示</span></li>
-                         <li>                            
-                            <img src="00004.jpg" style="width:100%"/>
-                        </li>
+                        <li><img src="00001.jpg" style="width:100%"/></li>                           
+                        <li><img src="00002.jpg" style="width:100%"/></li>
+                        <li><img src="00003.jpg" style="width:100%"/></li> 
+                        <li><span style="font-size:large">细节展示</span></li>
+                        <li><img src="00004.jpg" style="width:100%"/></li>
                     </ul>
                 </div>
-             </li>
-            </ul>
-                      
-       </div>
-
-      <div  class="footer" style="z-index:1;  " >       
-         <a id="directorder" class="btn-buy" ><span></span>立即购买</a>
-      </div>
-    
+            </li>
+        </ul>
+    </div>
+    <div  class="footer" style="z-index:1;  " >       
+        <a id="directorder" class="btn-buy" ><span></span>立即购买</a>
+    </div>
 </body>
 </html>
 
-<style type="text/css">
-        #tabpages
-        {
-        	width: 100%;            
-            height: 200px;           
-            background:#ccc;
-            text-align:center;
-        }
-        #tabpages span
-        {
-        	font-family:icons!important;
-        	font-size:100px;
-        }
-        .tab-scroller1
-        {
-        	height:100%;
-        }
-        .tab-item,#tabpages ul
-        {
-        	background:#fff;
-        }
-  </style>
- <script type="text/javascript">
-     document.tab = new QsmartTab('tabpages', { 'callback': dd });
-    
-     function dd(a) {
-         console.log(a);
-     };
-     var kk = 0;
-     $('.ui-gotop').on('click', function () { document.tab.jump(kk); kk++; });
 
-     $('#Span1').html('<img src="00001.jpg" style="width:100%"/>');
-     $('#Span2').html('<img src="00002.jpg" style="width:100%"/>');
-     $('#Span3').html('<img src="00003.jpg" style="width:100%"/>');
-     $('#Span4').html('<img src="00004.jpg" style="width:100%"/>');
-     $('#Span5').html('<img src="00001.jpg" style="width:100%"/>');
-
-    </script>

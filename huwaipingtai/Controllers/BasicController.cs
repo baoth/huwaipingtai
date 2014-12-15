@@ -69,6 +69,7 @@ namespace huwaipingtai.Controllers
                 ViewData["NameR"] = "注册"; ViewData["ActionR"] = "#";
             }
         }
+        
     }
 
     public class UserInfo

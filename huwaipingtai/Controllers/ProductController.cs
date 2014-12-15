@@ -34,7 +34,10 @@ namespace huwaipingtai.Controllers
         {
             return View("Test");
         }
-        
+        public ContentResult userinfo()
+        {
+            return Content(Request["callback"].ToString() + "({'provinceId':'1','countryId':'2799'})");
+        }
         public ContentResult CreateTable()
         {
             QSmartDatabaseClient db=DataBaseProvider.Create("db");

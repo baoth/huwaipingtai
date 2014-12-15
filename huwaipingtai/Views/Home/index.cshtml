@@ -25,7 +25,46 @@
         <link href="../../Content/home/Layout.css" rel="stylesheet" type="text/css" />
         <link href="../../Content/home/Home.css" rel="stylesheet" type="text/css" />
 
-      
+      <script type="text/javascript">
+          $(document).ready(function () {
+              ImageFun();
+          });
+          var imageCount = 0;
+          var ImageFun = function () {
+              $(".activity-item div").each(function () {
+                  imageCount++;
+              });
+          }
+          // 循环执行，每隔3秒钟执行一次 showalert（）
+          var index = 0;
+          var setInt = setInterval(function () {
+              showImage();
+          }, 3000);
+
+
+          function showImage() {
+              if (index == imageCount) {
+                  index = 0;
+              }
+              
+              var images = $($(".activity-item div")[index]).find('img');
+              images.each(function () {
+                var display = $(this)[0].style.display;
+                if (undefined || display == "none") {
+                    $(this).removeAttr("style");
+                    $(this).css({ "opacity": "1" });
+                }
+                else {
+                    $(this)[0].style.display = "none";
+                }
+
+            }); 
+
+            index++;
+           
+         } 
+       
+      </script> 
     </head>
     <body>
       
@@ -66,8 +105,8 @@
         </ul>
 
         <div id="serial-number" class="serial-number" style="z-index:1; ">
-		            <span class="point"></span>
 		            <span class="point selected"></span>
+		            <span class="point"></span>
 		            <span class="point"></span>
 		            <span class="point"></span>		
                     <span class="point"></span>	            
@@ -258,10 +297,20 @@
         }
   </style>
  <script type="text/javascript">
-     document.tab = new QsmartTab('tabpages', { 'callback': dd });
+     var tab = new QsmartTab('tabpages', { 'callback': dd });
+     $(document).ready(function () {
+         $("#serial-number span").bind("click", function () {             
+             var index = $(this).index();
+             tab.jump(index);
+             //添加样式
+             $(this).addClass("selected").siblings().removeClass("selected");
+         });
+     });
+
 
      function dd(a) {
-         console.log(a);
+        // tab.jump(a);
+         var span = $($("#serial-number span")[a]).addClass("selected").siblings().removeClass("selected");
      };
      var kk = 0;
      $('.ui-gotop').on('click', function () { document.tab.jump(kk); kk++; });

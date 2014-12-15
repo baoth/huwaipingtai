@@ -306,10 +306,11 @@
              $(this).addClass("selected").siblings().removeClass("selected");
          });
      });
-    
+
 
      function dd(a) {
-         console.log(a);
+        // tab.jump(a);
+         var span = $($("#serial-number span")[a]).addClass("selected").siblings().removeClass("selected");
      };
      var kk = 0;
      $('.ui-gotop').on('click', function () { document.tab.jump(kk); kk++; });

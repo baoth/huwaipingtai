@@ -171,35 +171,6 @@ namespace huwaipingtai.Controllers
             return Redirect("/Product/1000000011/index.html");
         }
 
-        /// <summary>
-        /// 图片验证码
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult ImageCode() 
-        {
-            var codeNum = Toolkit.Fun.VerifyCode.GetTxt(5);
-            Session["imagecodeuser"] = codeNum ;
-            var bFile= Toolkit.Fun.VerifyCode.CreateImage(codeNum);
-            return File(bFile, "image/Jpeg");
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult MobileReg() 
-        {
-            return View("mobileReg");
-        }
-        /// <summary>
-        /// 注册
-        /// </summary>
-        /// <returns></returns>
-        public RedirectResult UserReg() 
-        {
-            var session=Session["imagecodeuser"];
-            var verifyCode = Request["verifyCode"];
-            var mobile = Request["mobile"];
-            return Redirect("/Product/1000000011/index.html"); 
-        }
+       
     }
 }

@@ -26,6 +26,7 @@ namespace DataModel.Goods
         /// <summary>
         /// 分类名称
         /// </summary>
+       [StringMaxLength(50, VarCharType.nvarchar)]
         public string Name { get; set; }
         /// <summary>
         /// 父级分类

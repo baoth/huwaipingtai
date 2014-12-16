@@ -170,5 +170,7 @@ namespace huwaipingtai.Controllers
             Response.Cookies[RequestCommand.COOKIE_LOGONPASSWORD].Expires = DateTime.Now.AddDays(-1);
             return Redirect("/Product/1000000011/index.html");
         }
+
+       
     }
 }

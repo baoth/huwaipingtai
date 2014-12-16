@@ -1,0 +1,6 @@
+X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\CMS.dll
+X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\CMS.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\NVelocity.dll
+X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\VTemplate.Engine.dll
+X:\FuZhuangPingTai2014\huwaipingtai\CMS\obj\Debug\CMS.dll
+X:\FuZhuangPingTai2014\huwaipingtai\CMS\obj\Debug\CMS.pdb

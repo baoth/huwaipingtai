@@ -1,0 +1,4 @@
+X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\bin\Debug\Toolkit.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\bin\Debug\Toolkit.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\obj\Debug\Toolkit.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\obj\Debug\Toolkit.pdb

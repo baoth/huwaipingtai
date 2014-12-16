@@ -16,5 +16,11 @@ namespace BusinessOrder.User
            var result = dbSession.Context.ConversionEntity<DataModel.Order.Customer>(dt);
            return result.Count == 0 ? null : result[0];
         }
+
+
+        public DataModel.Order.Customer RegUser(string validateCode, string phoneCode, string phone)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

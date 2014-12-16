@@ -1,0 +1,8 @@
+X:\FuZhuangPingTai2014\huwaipingtai\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+X:\FuZhuangPingTai2014\huwaipingtai\Common\bin\Debug\Common.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Common\bin\Debug\Common.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\Common\bin\Debug\DataModel.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Common\bin\Debug\QSmart.Core.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Common\bin\Debug\DataModel.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\Common\obj\Debug\Common.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Common\obj\Debug\Common.pdb

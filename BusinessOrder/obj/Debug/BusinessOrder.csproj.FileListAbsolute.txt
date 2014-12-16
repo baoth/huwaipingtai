@@ -1,0 +1,14 @@
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.csprojResolveAssemblyReference.cache
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\BusinessOrder.dll
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\BusinessOrder.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\Common.dll
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\DataModel.dll
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\IBusinessOrder.dll
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\QSmart.Core.dll
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\Toolkit.dll
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\Common.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\DataModel.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\IBusinessOrder.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\Toolkit.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.dll
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.pdb

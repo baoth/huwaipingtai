@@ -1,5 +1,4 @@
 *.exe
-obj/
 [Rr]elease*/
 [Tt]emp/
 [Rr]eportViews/

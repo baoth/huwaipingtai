@@ -33,5 +33,9 @@ namespace DataModel.Goods
         /// </summary>
         [StringMaxLength(2, VarCharType.nvarchar)]
         public string PCode { get; set; }
+        /// <summary>
+        /// 停用 启用
+        /// </summary>
+        public bool IsStop { get; set; }
     }
 }

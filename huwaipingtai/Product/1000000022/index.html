@@ -18,33 +18,30 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#allinfos').on($.clickAction, function () {
-                var me = $(this);
-                if (me.hasClass('on')) {
-                    me.removeClass('on');
-                    $('#infos-detail').hide();
-                }
-                else {
-                    me.addClass('on');
-                    $('#infos-detail').show();
-                }
-            });
-            colorcreator([
-                { href: '', name: '藏青色' },
-                { href: '', name: '卡其色' },
-                { href: '', name: '浅灰色' },
-                { href: '', name: '深灰色', on: true }
-            ]);
-            sizecreator([
-                { href: '', name: 'M' },
-                { href: '', name: 'L' },
-                { href: '', name: 'XL', on: true },
-                { href: '', name: 'XXL' },
-                { href: '', name: 'XXXL' },
-                { href: '', name: '4XL' },
-                { href: '', name: '5XL' }
-            ]);
-            createbanner(['00001.jpg', '00002.jpg', '00003.jpg', '00004.jpg', '00004.jpg']);
+            var options = {};
+            options.colors = [
+                { sku: '', name: '藏青色' },
+                { sku: '', name: '卡其色' },
+                { sku: '', name: '浅灰色' },
+                { sku: '', name: '深灰色', on: true }
+            ];
+            options.sizes = [
+                { sku: '', name: 'M' },
+                { sku: '', name: 'L' },
+                { sku: '', name: 'XL', on: true },
+                { sku: '', name: 'XXL' },
+                { sku: '', name: 'XXXL' },
+                { sku: '', name: '4XL' },
+                { sku: '', name: '5XL' }
+            ];
+            options.gifts = [
+                { name: 'TZ.mall 秋冬保暖纯棉袜子 秋冬保暖必需品 赠品拍下不发货 随机发放颜色 袜子 均码 X  1' }
+            ];
+            options.imgs = ['00001.jpg', '00002.jpg', '00003.jpg', '00004.jpg', '00004.jpg'];
+            options.title = 'TZ.mall 2014 男装修身  格子 条纹 加绒 加厚 免烫保暖长袖衬衫 男 MS01藏青色 L ';
+            options.promotion = ' ';
+            options.vender = '由TZ.mall服饰负责发货，并提供售后服务。';
+            pageload(options);
         });
     </script>
 </head>
@@ -96,16 +93,14 @@
                     </a>
                     <span class="icon-arr"></span>
                 </div>
-                <p class="detail-title" id="title">TZ.mall 2014 男装修身  格子 条纹 加绒 加厚 免烫保暖长袖衬衫 男 MS01藏青色 L </p>
-                <p class="pi" id="promotionInfo" style=" ">促销信息：</p>
-                <p class="pi-detail" id="vender" style=" ">服务：由TZ.mall服饰负责发货，并提供售后服务。</p>
+                <p class="detail-title" id="title"><span></span></p>
+                <p class="pi" id="promotion" style=" ">促销信息：<span></span></p>
+                <p class="pi-detail" id="vender" style=" ">服务：<span></span></p>
                 <div class="info gifts">
                     <span class="gift-content">
                         <span id="giftslist">
                             <span class="title12">赠品：</span>
-                            <span class="content">
-                                <a href="" class="link-event">TZ.mall 秋冬保暖纯棉袜子 秋冬保暖必需品 赠品拍下不发货 随机发放颜色 袜子 均码 X  1</a>
-                            </span>
+                            <span class="content"></span>
                         </span>
 				        <span id="couponslist" style="display:none ">
                             <span class="title12">赠券：</span>
@@ -119,19 +114,18 @@
             <li class="bg-skape"></li>
             <li class="info-detail selector">
                 <div class="info border-b-none">
-            	    <!--[D] 加on 箭头向下 -->
                     <a class="btn-switch" id='allinfos'>
                         <span class="s-block">
                             <span class="title12">库存：</span>
-                            <span class="content"><span class="to-text3">现货</span></span>
+                            <span class="content"><span class="to-text3" style='color:#c00'>现货</span></span>
                         </span>
 				        <span class="s-block">
                             <span class="title12">颜色：</span>
-                            <span class="content"><span class="to-text3">深灰色</span></span>
+                            <span class="content"><span class="to-text3" id='sh-color'></span></span>
                         </span>
 					    <span class="s-block">
                             <span class="title12">尺寸：</span>
-                            <span class="content"><span class="to-text3">4XL</span></span>
+                            <span class="content"><span class="to-text3" id='sh-size'></span></span>
                         </span>  
 				        <span class="icon-arr"></span>
                     </a>
@@ -167,7 +161,7 @@
                             <span class="i-bar2">|</span>
                             <a rel="nofollow" href=''>退出</a>
                             <span class="i-back-top">
-                                <a href="">反馈</a>
+                                <a href="/FeedBack/Advice">反馈</a>
                                 <span class="i-bar2">|</span>
                                 <a href="#top">回到顶部</a>
                             </span>

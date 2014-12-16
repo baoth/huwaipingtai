@@ -9,7 +9,17 @@
             tg.addClass('on');
         }
     });
-
+    $('#allinfos').on($.clickAction, function () {
+        var me = $(this);
+        if (me.hasClass('on')) {
+            me.removeClass('on');
+            $('#infos-detail').hide();
+        }
+        else {
+            me.addClass('on');
+            $('#infos-detail').show();
+        }
+    });
     /*数量加减*/
     $("#number").numeral();
     $("#number").on('blur', function () {
@@ -56,6 +66,51 @@
         }
     });
 });
+
+/*页面加载*/
+function pageload(options) {
+    if (options == undefined) return;
+    //商品描述信息
+    options.title = options.title || "";
+    if (options.title == "") {
+        $('#title').hide();
+    }
+    else {
+        $('#title span').text(options.title);
+    }
+    //促销信息
+    options.promotion = options.promotion || "";
+    if (options.promotion == "") {
+        $('#promotion').hide();
+    }
+    else {
+        $('#promotion span').text(options.promotion);
+    }
+    //服务信息
+    options.vender = options.vender || "";
+    if (options.vender == "") {
+        $('#vender').hide();
+    }
+    else {
+        $('#vender span').text(options.vender);
+    }
+    //赠品信息
+    giftscreator(options.gifts);
+    //添加颜色选项
+    colorcreator(options.colors);
+    //添加尺寸选项
+    sizecreator(options.sizes);
+    //添加图片浏览
+    createbanner(options.imgs);
+    $('.btn-hf').on($.clickAction, function () {
+        var sku = $(this).data('sku');
+        if (sku != undefined && sku != "") {
+            var url = '/' + sku + '.html';
+            $(this).attr('href', url);
+        }
+    });
+};
+
 /*图片浏览器*/
 function createbanner(imgs) {
     imgs = imgs || [];
@@ -85,9 +140,12 @@ function colorcreator(colors) {
     var $color = $('#color');
     $color.children().remove();
     $.each(colors, function (index, item) {
-        item.on = item.on || "";
-        if (item.on == 'true' || item.on == true) item.on = ' on'
-        $color.append("<a href='" + item.href + "' class='btn-color-op mb-10" + item.on + "'>" + item.name + "</a>&nbsp;");
+        item.on = item.on || ""; item.sku = item.sku || ''; item.name = item.name || '';
+        if (item.on == 'true' || item.on == true) {
+            item.on = ' on';
+            $('#sh-color').text(item.name);
+        }
+        $color.append("<a href='' data-sku='" + item.sku + "' class='btn-hf btn-color-op mb-10" + item.on + "'>" + item.name + "</a>&nbsp;");
     });
 };
 function sizecreator(sizes) {
@@ -96,8 +154,26 @@ function sizecreator(sizes) {
     var $size = $('#size');
     $size.children().remove();
     $.each(sizes, function (index, item) {
-        item.on = item.on || "";
-        if (item.on == 'true' || item.on == true) item.on = ' on'
-        $size.append("<a href='" + item.href + "' class='btn-color-op mb-10" + item.on + "'>" + item.name + "</a>&nbsp;");
+        item.on = item.on || ""; item.sku = item.sku || ''; item.name = item.name || '';
+        if (item.on == 'true' || item.on == true) {
+            item.on = ' on';
+            $('#sh-size').text(item.name);
+        }
+        $size.append("<a href='' data-sku='" + item.sku + "' class='btn-hf btn-color-op mb-10" + item.on + "'>" + item.name + "</a>&nbsp;");
     });
 };
+
+/*赠品*/
+function giftscreator(gifts) {
+    gifts = gifts || [];
+    if (gifts.length == 0) {
+        $('.info.gifts').hide();
+        return;
+    }
+    var $giftscontent = $('#giftslist .content');
+    $giftscontent.children().remove();
+    $.each(gifts, function (index, item) {
+        item.sku = item.sku || ''; item.name = item.name || '';
+        $giftscontent.append("<a href='' data-sku='" + item.sku + "' class='link-event btn-hf'>" + item.name + "</a>");
+    });
+}

@@ -132,6 +132,7 @@
     <Content Include="Content\mobile\title-bar.css" />
     <Content Include="Content\mobile\order.css" />
     <Content Include="Content\mobile\btn.css" />
+    <Content Include="Content\mobile\regMobile.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -267,6 +268,7 @@
     <Content Include="Views\Cart\addToCart.cshtml" />
     <Content Include="Views\User\home.cshtml" />
     <Content Include="Views\Cart\Copy %282%29 of addToCart.cshtml" />
+    <Content Include="Views\User\mobileReg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

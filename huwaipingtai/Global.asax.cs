@@ -19,7 +19,6 @@ namespace huwaipingtai
         {
             filters.Add(new HandleErrorAttribute());
         }
-
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -43,6 +42,15 @@ namespace huwaipingtai
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+        }
+        protected void Session_End(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Session_End");
+        }
+
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Session_Start");
         }
     }
 

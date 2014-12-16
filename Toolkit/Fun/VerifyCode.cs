@@ -9,7 +9,7 @@ namespace Toolkit.Fun
    public class VerifyCode
     {
 
-       private String GetRandomint(int codeCount)
+       private static String GetRandomint(int codeCount)
        {
            Random random = new Random();
            string min = "";
@@ -21,7 +21,7 @@ namespace Toolkit.Fun
            }
            return (random.Next(Convert.ToInt32(min), Convert.ToInt32(max)).ToString());
        }
-       private string CreateRandomCode(int codeCount)
+       private static string CreateRandomCode(int codeCount)
        {
            string allChar = "0,1,2,3,4,5,6,7,8,9";
            string[] allCharArray = allChar.Split(',');
@@ -45,7 +45,7 @@ namespace Toolkit.Fun
            return randomCode;
        }
        //组合
-       private string CreateRandomCodeZ(int codeCount)
+       private static string CreateRandomCodeZ(int codeCount)
        {
            string allChar = "0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
            string[] allCharArray = allChar.Split(',');
@@ -194,18 +194,9 @@ namespace Toolkit.Fun
            }
            return bytes;
        }
-       private string stxt(int num)
+       public static string GetTxt(int num)
        {
-           Encoding gb = Encoding.GetEncoding("gb2312");
-           //调用函数产生10个随机中文汉字编码
-           object[] bytes = CreateRegionCode1(num);
-           string strtxt = "";
-           //根据汉字编码的字节数组解码出中文汉字
-           for (int i = 0; i < num; i++)
-           {
-               strtxt += gb.GetString((byte[])Convert.ChangeType(bytes, typeof(byte[])));
-           }
-           return strtxt;
+           return CreateRandomCodeZ(num);
        }
        /// <summary>
        /// 这个是使用字母,数字混合
@@ -235,17 +226,17 @@ namespace Toolkit.Fun
            }
            return randomCode;
        }
-       public byte[] CreateImage(string checkCode)
+       public static byte[] CreateImage(string checkCode)
        {
            int iwidth = (int)(checkCode.Length * 20);
-           System.Drawing.Bitmap image = new System.Drawing.Bitmap(iwidth, 25);
+           System.Drawing.Bitmap image = new System.Drawing.Bitmap(iwidth, 40);
            Graphics g = Graphics.FromImage(image);
-           Font f = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold);
-           Brush b = new System.Drawing.SolidBrush(Color.White);
+           Font f = new System.Drawing.Font("Arial", 20, System.Drawing.FontStyle.Strikeout);
+           Brush b = new System.Drawing.SolidBrush(Color.Red);
            //g.FillRectangle(new System.Drawing.SolidBrush(Color.Blue),0,0,image.Width, image.Height);   
-           g.Clear(Color.Black);
+           g.Clear(Color.White);
            g.DrawString(checkCode, f, b, 3, 3);
-           Pen blackPen = new Pen(Color.Black, 0);
+           Pen blackPen = new Pen(Color.White, 0);
            Random rand = new Random();
            //for (int i=0;i<5;i++)   
            //{       

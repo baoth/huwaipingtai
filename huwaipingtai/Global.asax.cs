@@ -38,7 +38,6 @@ namespace huwaipingtai
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-           // CreateData.CreateTable();
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
@@ -51,38 +50,6 @@ namespace huwaipingtai
         protected void Session_Start(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Session_Start");
-        }
-    }
-
-    public class CreateData
-    {
-        public static void CreateTable()
-        {
-            try
-            {
-                //var constring = System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString.ToString();
-                //var op = new QSmart.Core.DataBase.QSmartMySqlClient(constring);
-                //op.CreateTable<ConsumerAddress>();
-
-                //var constring = System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString.ToString();
-                //var op = new QSmart.Core.DataBase.QSmartMySqlClient(constring);
-                //op.CreateTable<DataModel.Order.Cart>();
-
-                //var constring = System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString.ToString();
-                //var op = new QSmart.Core.DataBase.QSmartMySqlClient(constring);
-                //op.CreateTable<DataModel.Goods.GoodsShelves>(); 
-
-                //var constring = System.Configuration.ConfigurationManager.ConnectionStrings["db"].ConnectionString.ToString();
-                //var op = new QSmart.Core.DataBase.QSmartMySqlClient(constring);
-                //op.CreateTable<DataModel.Order.Customer>(); 
-
-                
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
         }
     }
 }

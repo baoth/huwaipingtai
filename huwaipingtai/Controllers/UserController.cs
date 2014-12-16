@@ -108,14 +108,26 @@ namespace huwaipingtai.Controllers
 
         public ActionResult Logon()
         {
-            if (Session[RequestCommand.LOGON_JUMP_URL] == null) Session[RequestCommand.LOGON_JUMP_URL] = Request.UrlReferrer.AbsolutePath;
+            if (string.IsNullOrEmpty(Request["t"]))
+            {
+                if (Session[RequestCommand.LOGON_JUMP_URL] == null) Session[RequestCommand.LOGON_JUMP_URL] = Request.UrlReferrer.AbsolutePath;
+            }
+            else
+            {
+                Session[RequestCommand.LOGON_JUMP_URL] = "/User/Home";
+            }
             return View("logon");
         }
 
         public ActionResult Home()
         {
+            if (this.CurrentUserInfo != null)
+            {
+                ViewData["NickName"]=this.CurrentUserInfo.NickName;
+            }
             return View("home");
         }
+
         public RedirectResult DoLogon()
         {
             var username = this.Request["username"];
@@ -150,6 +162,7 @@ namespace huwaipingtai.Controllers
 
         public RedirectResult LogOut()
         {
+            this.CurrentUserInfo = null;
             Session[RequestCommand.SESSION_USERINFO] = null;
             Session[RequestCommand.LOGON_JUMP_URL] = null;
 

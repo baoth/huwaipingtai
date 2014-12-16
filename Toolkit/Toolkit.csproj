@@ -46,6 +46,7 @@
     <Compile Include="Ext\HttpRequestBaseExt.cs" />
     <Compile Include="Fun\FunResult.cs" />
     <Compile Include="Fun\VerifyCode.cs" />
+    <Compile Include="HtmlFileCreator\MobileCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

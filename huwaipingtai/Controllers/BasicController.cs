@@ -19,17 +19,16 @@ namespace huwaipingtai.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
+            this.CurrentUserInfo = Session[RequestCommand.SESSION_USERINFO] as UserInfo;
             if (!RequestCommand.Intercepts.Contains(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower() +
                 filterContext.ActionDescriptor.ActionName.ToLower()))
             {
-                this.CurrentUserInfo = Session[RequestCommand.SESSION_USERINFO] as UserInfo;
                 if (CurrentUserInfo == null)
                 {
                     var userName = Request.Cookies[RequestCommand.COOKIE_LOGONNAME];
-                   
+
                     if (userName == null)
                     {
-                        ViewData["Name"] = "登陆"; ViewData["Action"] = "/User/logon";
                         Session[RequestCommand.LOGON_JUMP_URL] = this.Request.RawUrl;
                         //重定向
                         filterContext.Result = new RedirectResult("/User/logon");
@@ -41,7 +40,6 @@ namespace huwaipingtai.Controllers
                         var user = iLogon.Logon(userName.Value, password.Value);
                         if (user == null)
                         {
-                            ViewData["Name"] = "登陆"; ViewData["Action"] = "/User/logon";
                             Session[RequestCommand.LOGON_JUMP_URL] = this.Request.RawUrl;
                             //重定向
                             filterContext.Result = new RedirectResult("/User/logon");
@@ -49,22 +47,29 @@ namespace huwaipingtai.Controllers
                         }
                         else
                         {
-                            var uinfo= new UserInfo { Id = user.Id, NickName = user.NikeName };
-                            Session[RequestCommand.SESSION_USERINFO] = uinfo;
-                            this.CurrentUserInfo=uinfo;
+                            Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = user.Id, NickName = user.NikeName };
                             filterContext.Result = new RedirectResult(this.Request.RawUrl);
                         }
                     }
                 }
-                else
-                {
-                    ViewData["Name"] = this.CurrentUserInfo.NickName;
-                    ViewData["Action"] = "#";
-                }
             }
-            
+            SetFooter();
         }
 
+        private void SetFooter()
+        {
+            if (this.CurrentUserInfo != null)
+            {
+                ViewData["NameL"] = this.CurrentUserInfo.NickName; ViewData["ActionL"] = "/User/Home";
+                ViewData["NameR"] = "退出"; ViewData["ActionR"] = "/User/LogOut";
+            }
+            else
+            {
+                ViewData["NameL"] = "登陆"; ViewData["ActionL"] = "/User/logon?t=direct_l";
+                ViewData["NameR"] = "注册"; ViewData["ActionR"] = "#";
+            }
+        }
+        
     }
 
     public class UserInfo
@@ -79,7 +84,7 @@ namespace huwaipingtai.Controllers
         public static readonly string LOGON_JUMP_URL = "lju";
         public static readonly string COOKIE_LOGONNAME = "baoname";
         public static readonly string COOKIE_LOGONPASSWORD = "baopsw";
-        public static List<string> Intercepts = new List<string> { "userlogon", "userdologon", "userlogout"
-                                                };
+        public static List<string> Intercepts = new List<string> { "userlogon", "userdologon", "userlogout",
+                                                "feedbackadvice","feedbacksubmitadvice"};
     }
 }

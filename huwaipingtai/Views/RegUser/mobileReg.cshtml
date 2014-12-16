@@ -45,7 +45,7 @@
         </div>
 	</header>
 <div class="new-ct bind">
-	<form action="/user/mobileRegisterEnd.action?sid=8629afd6793ab6e6ac0bd8c962956e67" method="post" id="form">
+	<form action="/RegUser/Register" method="post" id="form">
 	
 	<div class="new-pay-pw">   		
         <div class="new-set-info">
@@ -62,9 +62,9 @@
     				</span>
     				<span class="new-tbl-cell">
     				  <span class="new-abtn-code">
-						 <img onclick="com_jd_passport_m_validateCode('code','codeKey','2');" id="code" style="width:100px;height:40px;" src="/User/ImageCode">
+						 <img onclick="next_m_validateCode();" id="code" style="width:100px;height:40px;" src="/RegUser/ImageCode?r=1">
     				  </span>
-						 <a href="javascript:void(0);" onclick="com_jd_passport_m_validateCode('code','codeKey','2');" class="new-txt-rd2">换一张</a>
+						 <a href="javascript:void(0);" onclick="next_m_validateCode();" class="new-txt-rd2">换一张</a>
 						 <input type="hidden" value="11cc8bb764e181d1d9a07eebd118995e" name="codeKey" id="codeKey">
 						 
                     </span>
@@ -105,6 +105,9 @@
 </div>
 
 <script type="text/javascript">
+    function next_m_validateCode() {debugger
+        $('#code').attr("src", "/RegUser/ImageCode?r=" + Math.random());
+    }
     var distantTime = 120;
     var endTime;
 

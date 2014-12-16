@@ -8,6 +8,11 @@ namespace huwaipingtai.Controllers
 {
     public class RegUserController : Controller
     {
+
+        public RegUserController() 
+        {
+
+        }
         /// <summary>
         /// 图片验证码
         /// </summary>
@@ -15,8 +20,8 @@ namespace huwaipingtai.Controllers
         public ActionResult ImageCode()
         {
             var codeNum = Toolkit.Fun.VerifyCode.GetTxt(5);
-            Session["imagecodeuser"] = codeNum;
             var bFile = Toolkit.Fun.VerifyCode.CreateImage(codeNum);
+            Session["imagecodeuser"] = codeNum.ToLower();
             return File(bFile, "image/Jpeg");
         }
         /// <summary>
@@ -38,6 +43,22 @@ namespace huwaipingtai.Controllers
             var mobile = Request["mobile"];
             return Redirect("/Product/1000000011/index.html");
         }
+        public RedirectResult Register() 
+        {
+            var vcode = Request["validateCode"];
+            var mobile = Request["mobile"];
+            var password = Request["password"];
+            /*插入数据库*/
+            //比对图片code
+            if (vcode.ToLower() != Session["imagecodeuser"].ToString()) { 
+            
+            }
+            //比对手机码
+            if (password.ToLower() != Session["usermobilecode"].ToString())
+            {
 
+            }
+            return Redirect("/Product/1000000011/index.html"); ;//临时返回这个
+        } 
     }
 }

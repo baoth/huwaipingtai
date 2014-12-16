@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "huwaipingtai", "huwaipingtai\huwaipingtai.csproj", "{DD881223-CD86-45DF-AB34-7106FD0EAFDE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessOrder", "BusinessOrder\BusinessOrder.csproj", "{12E3318F-7076-43A9-BD8D-D64C0B626D21}"

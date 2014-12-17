@@ -8,7 +8,7 @@ namespace DataModel.CMS.Models
     /// <summary>
     /// 商品尺码
     /// </summary>
-    public class GoodsSize
+    public class GoodsSizeDto
     {
         public string Name { get; set; }
         public bool IsDefalut { get; set; }

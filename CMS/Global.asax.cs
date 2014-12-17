@@ -4,9 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Autofac;
-using Autofac.Integration.Mvc;
 using System.Reflection;
+using Autofac.Integration.Mvc;
+using Autofac;
+
 namespace CMS
 {
     // 注意: 有关启用 IIS6 或 IIS7 经典模式的说明，

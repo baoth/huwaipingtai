@@ -8,6 +8,7 @@ using BusinessOrder;
 using IBusinessOrder.Store;
 using BusinessOrder.Order;
 using BusinessOrder.User;
+using IBusinessOrder.Goods;
 
 namespace BusinessTemplate
 {
@@ -20,14 +21,7 @@ namespace BusinessTemplate
             builder.RegisterType<BusinessOrder.Cart.OPCart>().As<IBusinessOrder.Cart.IOPCart>();
             builder.RegisterType<BusinessOrder.Order.OPCustomerOrder>().As<IBusinessOrder.Order.IOPCustomerOrder>();
             builder.RegisterType<BusinessOrder.Store.OPStore>().As<IOPStore>();
-            /* CMS模块 * start*/            
-             
-            //分类目录
-            builder.RegisterType<BusinessOrder.CMS.OPGoodsCatalog>().As<IBusinessOrder.CMS.IOPGoodsCatalog>();
-            /* CMS模块* end  */        
-            
-
-
+            builder.RegisterType<BusinessOrder.Goods.OPGoods>().As<IOPGoods>();
             //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
             //    .Where(t => t.Name.EndsWith("Repository"))
             //    .AsImplementedInterfaces();

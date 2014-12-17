@@ -45,6 +45,15 @@
     <Reference Include="MySql.Data, Version=6.9.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\MySql.Data.dll</HintPath>
+      <HintPath>Content\bin\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration, Version=2.4.5.724, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Content\bin\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=2.4.5.724, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Content\bin\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="NVelocity">
       <HintPath>..\Reflib\NVelocity.dll</HintPath>
@@ -94,6 +103,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bin\Autofac.Configuration.dll" />
+    <Content Include="Content\bin\Autofac.dll" />
+    <Content Include="Content\bin\Autofac.Integration.Mvc.dll" />
+    <Content Include="Content\bin\Autofac.xml" />
+    <Content Include="Content\bin\MySql.Data.dll" />
+    <Content Include="Content\bin\QSmart.Core.dll" />
+    <Content Include="Content\bin\System.Web.Mvc.dll" />
+    <Content Include="Content\bin\System.Web.Mvc.xml" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-easyui-1.3.4\jquery.easyui.min.js" />
     <Content Include="Scripts\jquery-easyui-1.3.4\jquery.min.js" />
@@ -1087,6 +1104,10 @@
     <ProjectReference Include="..\IBusinessOrder\IBusinessOrder.csproj">
       <Project>{D25FE864-C030-43F7-8CF4-DBEE7EB55B3A}</Project>
       <Name>IBusinessOrder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Toolkit\Toolkit.csproj">
+      <Project>{E5E25637-B3F7-49F3-A95A-A20F511270C3}</Project>
+      <Name>Toolkit</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tools\BusinessTemplate.csproj">
       <Project>{C99F7B75-F05C-49D9-A62F-9F8C210B560C}</Project>

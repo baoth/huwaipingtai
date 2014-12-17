@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -44,9 +45,11 @@
   <ItemGroup>
     <Compile Include="CommonModel\CResult.cs" />
     <Compile Include="Ext\HttpRequestBaseExt.cs" />
+    <Compile Include="Ext\ObjectExt.cs" />
     <Compile Include="Fun\FunResult.cs" />
     <Compile Include="Fun\VerifyCode.cs" />
     <Compile Include="HtmlFileCreator\MobileCreator.cs" />
+    <Compile Include="Path\PathConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

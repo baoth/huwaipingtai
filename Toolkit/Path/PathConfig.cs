@@ -17,5 +17,13 @@ namespace Toolkit.Path
            var template =System.IO.Path.Combine(path,System.Configuration.ConfigurationManager.AppSettings["TemplatePath"]);
            return template ;
        }
+       /// <summary>
+       /// 生成的全路径
+       /// </summary>
+       /// <returns></returns>
+       public static string GetGeneratePath() 
+       {
+           return System.Configuration.ConfigurationManager.AppSettings["GenerateFullPath"];
+       }
     }
 }

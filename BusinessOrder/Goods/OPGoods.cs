@@ -15,6 +15,12 @@ namespace BusinessOrder.Goods
             var strTemplate = "mGoodsDetail.htm";
             return path.CombinePath(strTemplate);
         }
+        public string GetGoodsGenerateFullPath() 
+        {
+            var path = Toolkit.Path.PathConfig.GetGeneratePath();
+
+            return path.CombinePath("Product");
+        }
         public List<GoodsSizeDto> GetGoodsSize(string goodsSKU)
         {
             return new List<GoodsSizeDto> { 

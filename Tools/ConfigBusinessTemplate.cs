@@ -22,9 +22,6 @@ namespace BusinessTemplate
             builder.RegisterType<BusinessOrder.Order.OPCustomerOrder>().As<IBusinessOrder.Order.IOPCustomerOrder>();
             builder.RegisterType<BusinessOrder.Store.OPStore>().As<IOPStore>();
             builder.RegisterType<BusinessOrder.Goods.OPGoods>().As<IOPGoods>();
-            //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-            //    .Where(t => t.Name.EndsWith("Repository"))
-            //    .AsImplementedInterfaces();
         }
         public static IBusinessOrder.User.ILogon GetILogon()
         {

@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,6 +48,7 @@
     <Compile Include="Fun\FunResult.cs" />
     <Compile Include="Fun\VerifyCode.cs" />
     <Compile Include="HtmlFileCreator\MobileCreator.cs" />
+    <Compile Include="JsonHelp\JsonHelp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

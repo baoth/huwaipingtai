@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CAddress\OPCustomerAddress.cs" />
     <Compile Include="Cart\OPCart.cs" />
+    <Compile Include="CMS\OPGoodsCatalog.cs" />
     <Compile Include="Enum\OrderStatusEnum.cs" />
     <Compile Include="Order\OPCustomerOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-
+using Autofac;
+using Autofac.Integration.Mvc;
+using System.Reflection;
 namespace CMS
 {
     // 注意: 有关启用 IIS6 或 IIS7 经典模式的说明，
@@ -31,8 +33,12 @@ namespace CMS
 
         protected void Application_Start()
         {
+            var builder = new ContainerBuilder();
+            BusinessTemplate.ConfigBusinessTemplate.SetupResolveRules(builder);
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            IContainer container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             AreaRegistration.RegisterAllAreas();
-
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }

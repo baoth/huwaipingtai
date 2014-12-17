@@ -12,3 +12,17 @@ X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\IBusinessOrder.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\Toolkit.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.dll
 X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.pdb
+F:\GithubMobile\huwaipingtai\BusinessOrder\bin\Debug\BusinessOrder.dll
+F:\GithubMobile\huwaipingtai\BusinessOrder\bin\Debug\BusinessOrder.pdb
+F:\GithubMobile\huwaipingtai\BusinessOrder\bin\Debug\Common.dll
+F:\GithubMobile\huwaipingtai\BusinessOrder\bin\Debug\DataModel.dll
+F:\GithubMobile\huwaipingtai\BusinessOrder\bin\Debug\IBusinessOrder.dll
+F:\GithubMobile\huwaipingtai\BusinessOrder\bin\Debug\QSmart.Core.dll
+F:\GithubMobile\huwaipingtai\BusinessOrder\bin\Debug\Toolkit.dll
+F:\GithubMobile\huwaipingtai\BusinessOrder\bin\Debug\Common.pdb
+F:\GithubMobile\huwaipingtai\BusinessOrder\bin\Debug\DataModel.pdb
+F:\GithubMobile\huwaipingtai\BusinessOrder\bin\Debug\IBusinessOrder.pdb
+F:\GithubMobile\huwaipingtai\BusinessOrder\bin\Debug\Toolkit.pdb
+F:\GithubMobile\huwaipingtai\BusinessOrder\obj\Debug\ResolveAssemblyReference.cache
+F:\GithubMobile\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.dll
+F:\GithubMobile\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.pdb

@@ -1048,6 +1048,7 @@
     <Content Include="Scripts\jquery-easyui-1.3.4\themes\skin\red\redbak.css" />
     <Content Include="Scripts\jquery-easyui-1.3.4\themes\skin\red\style.css" />
     <Content Include="Scripts\jquery-easyui-1.3.4\themes\tab.css" />
+    <Content Include="Template\mGoodsDetail.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1060,6 +1061,7 @@
   <ItemGroup>
     <Folder Include="Content\" />
     <Folder Include="Scripts\jquery-easyui-1.3.4\themes\skin\green\images\leftImages\" />
+    <Folder Include="Scripts\" />
     <Folder Include="Template\List\" />
   </ItemGroup>
   <ItemGroup>

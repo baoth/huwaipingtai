@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Goods\GoodsCatalog.cs" />
+    <Compile Include="CMSDto\GoodsColorDto.cs" />
+    <Compile Include="CMSDto\GoodsDto.cs" />
+    <Compile Include="CMSDto\GoodsSizeDto.cs" />
     <Compile Include="Order\Cart.cs" />
     <Compile Include="Order\Customer.cs" />
     <Compile Include="Order\CustomerAddress.cs" />

@@ -12,3 +12,17 @@ X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\IBusinessOrder.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\Toolkit.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.dll
 X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.pdb
+E:\户外运动平台\huwaipingtai\BusinessOrder\bin\Debug\BusinessOrder.dll
+E:\户外运动平台\huwaipingtai\BusinessOrder\bin\Debug\BusinessOrder.pdb
+E:\户外运动平台\huwaipingtai\BusinessOrder\bin\Debug\Common.dll
+E:\户外运动平台\huwaipingtai\BusinessOrder\bin\Debug\DataModel.dll
+E:\户外运动平台\huwaipingtai\BusinessOrder\bin\Debug\IBusinessOrder.dll
+E:\户外运动平台\huwaipingtai\BusinessOrder\bin\Debug\QSmart.Core.dll
+E:\户外运动平台\huwaipingtai\BusinessOrder\bin\Debug\Toolkit.dll
+E:\户外运动平台\huwaipingtai\BusinessOrder\bin\Debug\Common.pdb
+E:\户外运动平台\huwaipingtai\BusinessOrder\bin\Debug\DataModel.pdb
+E:\户外运动平台\huwaipingtai\BusinessOrder\bin\Debug\IBusinessOrder.pdb
+E:\户外运动平台\huwaipingtai\BusinessOrder\bin\Debug\Toolkit.pdb
+E:\户外运动平台\huwaipingtai\BusinessOrder\obj\Debug\ResolveAssemblyReference.cache
+E:\户外运动平台\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.dll
+E:\户外运动平台\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.pdb

@@ -15,6 +15,11 @@ namespace CMS.Controllers
         {
             return View();
         }
-
+        public ActionResult CreateTemplate() 
+        {
+            var p = new CMS.Common.Pub();
+            p.Publish();
+            return null;
+        }
     }
 }

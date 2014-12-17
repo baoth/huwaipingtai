@@ -4,3 +4,6 @@ X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\NVelocity.dll
 X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\VTemplate.Engine.dll
 X:\FuZhuangPingTai2014\huwaipingtai\CMS\obj\Debug\CMS.dll
 X:\FuZhuangPingTai2014\huwaipingtai\CMS\obj\Debug\CMS.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\CMS\obj\Debug\CMS.csprojResolveAssemblyReference.cache
+X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\DataModel.dll
+X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\DataModel.pdb

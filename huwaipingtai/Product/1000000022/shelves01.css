@@ -91,6 +91,7 @@ a
 {
     background: url(../../../Content/images/icon2b.png) -60px -25px no-repeat;
     background-size: 180px 180px;
+    margin: 7px;
     vertical-align: text-top;
     display: inline-block;
     width: 22px;
@@ -438,6 +439,7 @@ a
 .info-detail .btn-add span, .info-detail .btn-del span 
 {
 	display: inline-block;
+	margin:7px;
 	width: 15px;
 	height: 15px;
 	background: url(../../Content/images/icon_detail.png) -85px -15px no-repeat;

@@ -4,47 +4,106 @@ using System.Linq;
 using System.Web;
 using VTemplate.Engine;
 using System.Text;
+using System.IO;
+using DataModel.CMS.Models;
 
 namespace CMS.Common
 {
+    public class OPGoods 
+    {
+        /// <summary>
+        /// 给商品尺寸
+        /// </summary>
+        /// <param name="goodsId"></param>
+        /// <returns></returns>
+        public List<GoodsSize> GetColor(string goodsId) {
+            return new List<GoodsSize> { 
+                new GoodsSize() {Id="",Name= "藏青色" },
+                new GoodsSize() {Id="",Name= "卡其色" },
+                new GoodsSize() {Id="",Name= "浅灰色" },
+                new GoodsSize() {Id="",Name= "深灰色" },
+            };
+        }
+        /// <summary>
+        /// 给商品颜色
+        /// </summary>
+        /// <param name="goodsId"></param>
+        /// <returns></returns>
+        public List<GoodsColor> GetSize(string goodsId)
+        {
+            return new List<GoodsColor> { 
+                new GoodsColor() {Id="",Name= "M" },
+                new GoodsColor() {Id="",Name= "L" },
+                new GoodsColor() {Id="",Name= "XL" },
+                new GoodsColor() {Id="",Name= "XXL" },
+                new GoodsColor() {Id="",Name= "XXXL" },
+                new GoodsColor() {Id="",Name= "4XL" },
+                new GoodsColor() {Id="",Name= "5XL" } 
+            };
+        }
+        public GoodsDto GetGoods(string goodsId)
+        {
+         
+           var o=   new GoodsDto()
+            {
+                DiapalyPrice = "¥3699.00",
+                Price=3699,
+                Id=1,
+                Desc = "TZ.mall 2014 男装修身  格子 条纹 加绒 加厚 免烫保暖长袖衬衫 男 MS01藏青色 L",
+                Brand = "TZ.mall",
+                DonationDesc = "TZ.mall 秋冬保暖纯棉袜子 秋冬保暖必需品 赠品拍下不发货 随机发放颜色 袜子 均码 X  1",
+                Ecoupons=""
+
+            };
+           o.IsDispalyDonationDesc = string.IsNullOrEmpty(o.DonationDesc) ? "none" : "block";
+           o.IsDispalyEcoupons = string.IsNullOrEmpty(o.Ecoupons) ? "none" : "block";
+          return o;
+        }
+    }
     public class Pub
     {
-       public Document GetVTDocument(string fileName)
+        public OPGoods opGoods = null;
+        public Pub() {
+            opGoods = new OPGoods();
+        }
+       public Document GetVTDocument(string goodsSKU,string fileName)
         {
             Document document = new Document(fileName, Encoding.UTF8);
-            document.SetValue("ArticleObject", new {title="test1" });
-            #region 注册文章对象PictureObject
-            //注册文章对象ArticleObject
-            UserDefinedFunction GetPictureObject = (o) =>
+            document.SetValue("Goods", opGoods.GetGoods(goodsSKU));
+            //注册商品尺码对象
+            UserDefinedFunction GetGoodsSize = (o) =>
             {
-                //返回结果
-                return new {title="详细页" };
+                /*预留吧 有可能根据商品分类来读取数据*/
+                var d = TemplateDocument.CurrentRenderingDocument;
+                var tag = d == null ? null : d.CurrentRenderingTag;
+                var goodsName = tag.Attributes.GetValue("name");
+                var goodsId = tag.Attributes.GetValue("id");
+                return opGoods.GetSize(goodsId);
             };
-            document.RegisterGlobalFunction("GetPictureObject", GetPictureObject);
-            #endregion
-
+            document.RegisterGlobalFunction("GetGoodsSize", GetGoodsSize);
+           //注册商品颜色对象
+            UserDefinedFunction GetGoodsColor = (o) =>
+            {
+                /*预留吧 有可能根据商品分类来读取数据*/
+                var d = TemplateDocument.CurrentRenderingDocument;
+                var tag = d == null ? null : d.CurrentRenderingTag;
+                var goodsName = tag.Attributes.GetValue("name");
+                var goodsId = tag.Attributes.GetValue("id");
+                //返回结果
+                return opGoods.GetColor(goodsId);
+            };
+            document.RegisterGlobalFunction("GetGoodsColor", GetGoodsColor);
             return document;
         }
        public void Publish() 
        {
-           //string strFile=""
-           //Document document = GetVTDocument();
-
-           //TextWriter textWriter = new StringWriter();
-           //document.SetValue("ArticleObject", entity4Article);
-           //document.SetValue("ChannelObject", entity4Channel);
-           //document.SetValue("SiteObject", entity4Site);
-           //document.Render(textWriter);
-           ////把生成的静态内容写入到目标文件
-           //string html = textWriter.ToString();
-           //string fileName = string.Format(ArticlePubFileName4ArticleFormat, entity4Article.ID);
-           //string path4Article = Path.Combine(path4Channel, fileName);
-           //string format = @"<iframe src='{0}?id={1}' style='width:0px; height:0px; display:none;'></iframe>";
-           //string saveReadCountUrl = db.BAP_CMS_SysConstant.FirstOrDefault(e => e.SignValue == "ChangeArticleReadCount").RealValue;
-           //format = string.Format(format, saveReadCountUrl, entity4Article.ID);
-           //int index = html.LastIndexOf("</body>");
-           //html = html.Insert(index, format);
-           //File.WriteAllText(path4Article, html, Encoding.UTF8);
+           string strFile = @"X:\FuZhuangPingTai2014\huwaipingtai\CMS\Template\mGoodsDetail.htm";
+           Document document = GetVTDocument("goodId",strFile);
+           TextWriter textWriter = new StringWriter();
+           document.Render(textWriter);
+           //把生成的静态内容写入到目标文件
+           string html = textWriter.ToString();
+           File.WriteAllText(@"X:\FuZhuangPingTai2014\huwaipingtai\huwaipingtai\Product\1000000022\1.html", html, Encoding.UTF8);
        }
     }
     public class Document : VTemplate.Engine.TemplateDocument

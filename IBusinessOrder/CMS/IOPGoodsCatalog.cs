@@ -37,6 +37,11 @@ namespace IBusinessOrder.CMS
         /// <param name="customerId"></param>
         /// <returns></returns>
         List<DataModel.Goods.GoodsCatalog> GetGoodsCatalogChild(string code);
+        /// <summary>
+        /// 未停用的数据
+        /// </summary>
+        /// <returns></returns>
+        List<DataModel.Goods.GoodsCatalog> GetGoodsCatalogNotIsStopList();
 
      
     }

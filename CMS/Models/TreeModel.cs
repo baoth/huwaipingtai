@@ -67,7 +67,7 @@ namespace CMS.Models
         /// </summary>
         /// <param name="list">原始数据列表</param>
         /// <param name="childList">子项数据列表</param>
-        /// <returns></returns>
+        /// <returns>TreeModel List </returns>
         private static List<TreeModel> ChildGoodsCatalogList(List<DataModel.Goods.GoodsCatalog> list, List<DataModel.Goods.GoodsCatalog> childList)
         {
             List<TreeModel> treeModelList = new List<TreeModel>() ;
@@ -103,8 +103,7 @@ namespace CMS.Models
             }
             return treeModelList;
         }
-
-
+        
       
     }
    

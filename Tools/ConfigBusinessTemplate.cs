@@ -22,6 +22,12 @@ namespace BusinessTemplate
             builder.RegisterType<BusinessOrder.Order.OPCustomerOrder>().As<IBusinessOrder.Order.IOPCustomerOrder>();
             builder.RegisterType<BusinessOrder.Store.OPStore>().As<IOPStore>();
             builder.RegisterType<BusinessOrder.Goods.OPGoods>().As<IOPGoods>();
+
+            /*
+             CMS
+             */
+            builder.RegisterType<BusinessOrder.CMS.OPGoodsCatalog>().As<IBusinessOrder.CMS.IOPGoodsCatalog>();
+
             //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
             //    .Where(t => t.Name.EndsWith("Repository"))
             //    .AsImplementedInterfaces();

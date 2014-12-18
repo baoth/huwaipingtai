@@ -21,7 +21,7 @@ namespace BusinessTemplate
             builder.RegisterType<BusinessOrder.Cart.OPCart>().As<IBusinessOrder.Cart.IOPCart>();
             builder.RegisterType<BusinessOrder.Order.OPCustomerOrder>().As<IBusinessOrder.Order.IOPCustomerOrder>();
             builder.RegisterType<BusinessOrder.Store.OPStore>().As<IOPStore>();
-            builder.RegisterType<BusinessOrder.Goods.OPGoods>().As<IOPGoods>();
+            builder.RegisterType<BusinessOrder.CMS.OPGoods>().As<IOPGoods>();
         }
         public static IBusinessOrder.User.ILogon GetILogon()
         {

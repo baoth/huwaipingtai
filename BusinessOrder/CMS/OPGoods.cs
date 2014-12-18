@@ -5,7 +5,7 @@ using System.Text;
 using IBusinessOrder.Goods;
 using DataModel.CMS.Models;
 using Toolkit.Ext;
-namespace BusinessOrder.Goods
+namespace BusinessOrder.CMS
 {
     public class OPGoods : IOPGoods
     {

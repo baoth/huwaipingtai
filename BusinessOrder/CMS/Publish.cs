@@ -1,23 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using VTemplate.Engine;
 using System.Text;
-using System.IO;
-using DataModel.CMS.Models;
+using IBusinessOrder.CMS;
+using Toolkit.PubCms;
 using IBusinessOrder.Goods;
-
-namespace CMS.Common
+using System.IO;
+using VTemplate.Engine;
+using Toolkit.CommonModel;
+using Toolkit.Fun;
+namespace BusinessOrder.CMS
 {
-    public class Pub
+    public class Publish : IPublish
     {
         public IOPGoods opGoods = null;
-        public Pub(IOPGoods iopgoods)
+        public Publish(IOPGoods iopgoods)
         {
             opGoods = iopgoods;
         }
-       public Document GetVTDocument(string goodsSKU,string fileName)
+        public CResult PublishGoods(string goodsSKU)
+        {
+            string pathTemplate = this.opGoods.GetGoodsCurTemplate("1231");
+            Document document = GetVTDocument("goodId", pathTemplate);
+            TextWriter textWriter = new StringWriter();
+            document.Render(textWriter);
+            //把生成的静态内容写入到目标文件
+            string html = textWriter.ToString();
+            var newPath = Toolkit.Path.PathConfig.GetGeneratePath("Product");
+            File.WriteAllText(newPath+@"\1000000022\1.html", html, Encoding.UTF8);
+            return FunResult.GetSuccess();
+        }
+
+        private Document GetVTDocument(string goodsSKU, string fileName)
         {
             Document document = new Document(fileName, Encoding.UTF8);
             document.SetValue("Goods", opGoods.GetGoods(goodsSKU));
@@ -32,7 +46,7 @@ namespace CMS.Common
                 return opGoods.GetGoodsSize(goodsId);
             };
             document.RegisterGlobalFunction("GetGoodsSize", GetGoodsSize);
-           //注册商品颜色对象
+            //注册商品颜色对象
             UserDefinedFunction GetGoodsColor = (o) =>
             {
                 /*预留吧 有可能根据商品分类来读取数据*/
@@ -45,30 +59,6 @@ namespace CMS.Common
             };
             document.RegisterGlobalFunction("GetGoodsColor", GetGoodsColor);
             return document;
-        }
-       public void Publish() 
-       {
-           string pathTemplate = this.opGoods.GetGoodsCurTemplate("1231");
-           Document document = GetVTDocument("goodId", pathTemplate);
-           TextWriter textWriter = new StringWriter();
-           document.Render(textWriter);
-           //把生成的静态内容写入到目标文件
-           string html = textWriter.ToString();
-           File.WriteAllText(@"X:\FuZhuangPingTai2014\huwaipingtai\huwaipingtai\Product\1000000022\1.html", html, Encoding.UTF8);
-       }
-    }
-    public class Document : VTemplate.Engine.TemplateDocument
-    {
-        public Document(string templateContent)
-            : base(templateContent)
-        {
-            new VTemplate.Engine.TemplateDocument(templateContent);
-        }
-
-        public Document(string fileName, Encoding encod)
-            : base(fileName, encod)
-        {
-            new VTemplate.Engine.TemplateDocument(fileName, encod);
         }
     }
 }

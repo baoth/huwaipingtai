@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Toolkit.Ext;
 namespace Toolkit.Path
 {
    public class PathConfig
@@ -21,9 +21,10 @@ namespace Toolkit.Path
        /// 生成的全路径
        /// </summary>
        /// <returns></returns>
-       public static string GetGeneratePath() 
+       public static string GetGeneratePath(string path="") 
        {
-           return System.Configuration.ConfigurationManager.AppSettings["GenerateFullPath"];
+           var p=System.Configuration.ConfigurationManager.AppSettings["GenerateFullPath"];;
+           return string.IsNullOrEmpty(path) ? p : p.CombinePath(path);
        }
     }
 }

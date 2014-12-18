@@ -26,3 +26,4 @@ F:\GithubMobile\huwaipingtai\BusinessOrder\bin\Debug\Toolkit.pdb
 F:\GithubMobile\huwaipingtai\BusinessOrder\obj\Debug\ResolveAssemblyReference.cache
 F:\GithubMobile\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.dll
 F:\GithubMobile\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\VTemplate.Engine.dll

@@ -18,3 +18,4 @@ X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\bin\Debug\Toolkit.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\obj\Debug\IBusinessOrder.csprojResolveAssemblyReference.cache
 X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\obj\Debug\IBusinessOrder.dll
 X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\obj\Debug\IBusinessOrder.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\bin\Debug\VTemplate.Engine.dll

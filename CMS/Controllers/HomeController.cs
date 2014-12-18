@@ -4,26 +4,35 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IBusinessOrder.Goods;
+using IBusinessOrder.CMS;
+using Toolkit.Fun;
 
 namespace CMS.Controllers
 {
     public class HomeController : Controller
     {
-        //
+        IPublish iPublish;
         // GET: /Home/
-        public IOPGoods opGoods = null;
-        public HomeController(IOPGoods opGoods) {
-            this.opGoods = opGoods;
+        public HomeController(IPublish ipublish)
+        {
+            this.iPublish = ipublish;
         }
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult CreateTemplate() 
+        public JsonResult CreateTemplate() 
         {
-            var p = new CMS.Common.Pub(opGoods);
-            p.Publish();
-            return null;
+            try
+            {
+                var b = iPublish.PublishGoods("sku");
+                return Json(b);
+            }
+            catch (Exception ex)
+            {
+                return Json(FunResult.GetError(ex.Message.ToString()));
+            }
+        
         }
     }
 }

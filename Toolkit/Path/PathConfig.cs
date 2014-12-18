@@ -14,7 +14,7 @@ namespace Toolkit.Path
        public static string GetTemplatePath() 
        {
            var path = AppDomain.CurrentDomain.BaseDirectory;
-           var template =System.IO.Path.Combine(path,System.Configuration.ConfigurationManager.AppSettings["TemplatePath"]);
+           var template = System.IO.Path.Combine(path, System.Configuration.ConfigurationManager.AppSettings["SaveTemplatePath"]);
            return template ;
        }
        /// <summary>

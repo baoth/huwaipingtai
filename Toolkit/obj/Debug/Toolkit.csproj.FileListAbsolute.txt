@@ -1,0 +1,5 @@
+F:\GithubMobile\huwaipingtai\Toolkit\bin\Debug\Toolkit.dll
+F:\GithubMobile\huwaipingtai\Toolkit\bin\Debug\Toolkit.pdb
+F:\GithubMobile\huwaipingtai\Toolkit\obj\Debug\ResolveAssemblyReference.cache
+F:\GithubMobile\huwaipingtai\Toolkit\obj\Debug\Toolkit.dll
+F:\GithubMobile\huwaipingtai\Toolkit\obj\Debug\Toolkit.pdb

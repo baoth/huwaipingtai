@@ -38,3 +38,4 @@ F:\GithubMobile\huwaipingtai\Tools\bin\Debug\Common.pdb
 F:\GithubMobile\huwaipingtai\Tools\obj\Debug\ResolveAssemblyReference.cache
 F:\GithubMobile\huwaipingtai\Tools\obj\Debug\BusinessTemplate.dll
 F:\GithubMobile\huwaipingtai\Tools\obj\Debug\BusinessTemplate.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\Tools\bin\Debug\VTemplate.Engine.dll

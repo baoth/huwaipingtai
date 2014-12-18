@@ -37,9 +37,11 @@ F:\GithubMobile\huwaipingtai\CMS\bin\DataModel.pdb
 F:\GithubMobile\huwaipingtai\CMS\bin\IBusinessOrder.pdb
 F:\GithubMobile\huwaipingtai\CMS\bin\Toolkit.pdb
 F:\GithubMobile\huwaipingtai\CMS\bin\BusinessTemplate.pdb
+F:\GithubMobile\huwaipingtai\CMS\bin\Autofac.xml
 F:\GithubMobile\huwaipingtai\CMS\bin\BusinessOrder.pdb
 F:\GithubMobile\huwaipingtai\CMS\bin\Common.pdb
 F:\GithubMobile\huwaipingtai\CMS\obj\Debug\ResolveAssemblyReference.cache
 F:\GithubMobile\huwaipingtai\CMS\obj\Debug\CMS.dll
 F:\GithubMobile\huwaipingtai\CMS\obj\Debug\CMS.pdb
-F:\GithubMobile\huwaipingtai\CMS\bin\Autofac.xml
+X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\System.Web.Mvc.dll
+X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\System.Web.Mvc.xml

@@ -5,7 +5,7 @@ using System.Text;
 using IBusinessOrder.Goods;
 using DataModel.CMS.Models;
 using Toolkit.Ext;
-namespace BusinessOrder.Goods
+namespace BusinessOrder.CMS
 {
     public class OPGoods : IOPGoods
     {
@@ -14,6 +14,12 @@ namespace BusinessOrder.Goods
             var path= Toolkit.Path.PathConfig.GetTemplatePath();
             var strTemplate = "mGoodsDetail.htm";
             return path.CombinePath(strTemplate);
+        }
+        public string GetGoodsGenerateFullPath() 
+        {
+            var path = Toolkit.Path.PathConfig.GetGeneratePath();
+
+            return path.CombinePath("Product");
         }
         public List<GoodsSizeDto> GetGoodsSize(string goodsSKU)
         {

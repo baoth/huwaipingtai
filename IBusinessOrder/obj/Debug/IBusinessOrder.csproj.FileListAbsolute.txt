@@ -8,3 +8,13 @@ F:\GithubMobile\huwaipingtai\IBusinessOrder\bin\Debug\Toolkit.pdb
 F:\GithubMobile\huwaipingtai\IBusinessOrder\obj\Debug\ResolveAssemblyReference.cache
 F:\GithubMobile\huwaipingtai\IBusinessOrder\obj\Debug\IBusinessOrder.dll
 F:\GithubMobile\huwaipingtai\IBusinessOrder\obj\Debug\IBusinessOrder.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\bin\Debug\IBusinessOrder.dll
+X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\bin\Debug\IBusinessOrder.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\bin\Debug\DataModel.dll
+X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\bin\Debug\QSmart.Core.dll
+X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\bin\Debug\Toolkit.dll
+X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\bin\Debug\DataModel.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\bin\Debug\Toolkit.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\obj\Debug\IBusinessOrder.csprojResolveAssemblyReference.cache
+X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\obj\Debug\IBusinessOrder.dll
+X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\obj\Debug\IBusinessOrder.pdb

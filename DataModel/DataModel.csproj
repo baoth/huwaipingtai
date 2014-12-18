@@ -49,10 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Goods\Goods.cs" />
     <Compile Include="Goods\GoodsCatalog.cs" />
     <Compile Include="CMSDto\GoodsColorDto.cs" />
     <Compile Include="CMSDto\GoodsDto.cs" />
     <Compile Include="CMSDto\GoodsSizeDto.cs" />
+    <Compile Include="Goods\GoodsColor.cs" />
+    <Compile Include="Goods\GoodsSize.cs" />
     <Compile Include="Order\Cart.cs" />
     <Compile Include="Order\Customer.cs" />
     <Compile Include="Order\CustomerAddress.cs" />
@@ -60,6 +63,8 @@
     <Compile Include="Order\CustomerOrderDto.cs" />
     <Compile Include="Order\Order.cs" />
     <Compile Include="Store\SKUStore.cs" />
+    <Compile Include="Template\Template.cs" />
+    <Compile Include="Template\TemplateGoods.cs" />
     <Compile Include="View\CartView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +72,7 @@
     <Content Include="DLL\QSmart.Core.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BaseInfo\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

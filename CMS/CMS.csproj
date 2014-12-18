@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Controllers\GoodsCatalogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

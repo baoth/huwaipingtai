@@ -17,10 +17,8 @@ namespace DataModel.Store
         [PrimaryKey]
         [StringMaxLength(32,VarCharType.varchar)] 
        public string Id { get; set; }
-       /// <summary>
-       /// 商家Id
-       /// </summary>
-       public int MerchantId { get; set; }
+
+       public int StockId { get; set; }
         /// <summary>
         /// 商品Id
         /// </summary>

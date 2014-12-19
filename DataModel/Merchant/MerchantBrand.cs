@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using QSmart.Core.Object;
 
-namespace DataModel.Section
+namespace DataModel
 {
     /// <summary>
-    /// 商家品牌关系表（在用）
+    /// 经销商品牌关系表（在用）
     /// </summary>
     public class MerchantBrand : QSmartEntity
     {

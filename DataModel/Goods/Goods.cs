@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using QSmart.Core.Object;
 
-namespace DataModel.Goods
+namespace DataModel
 {
     /// <summary>
     /// 商品表(在用)
@@ -14,6 +14,7 @@ namespace DataModel.Goods
        [PrimaryKey]
        [AutoIncrement]
         public int Id { get; set; }
+        public int GoodsCatalogId { get; set; }
         public int SizeGroupsId { get; set; }
         public int ColorGroupsId { get; set; }
         /// <summary>

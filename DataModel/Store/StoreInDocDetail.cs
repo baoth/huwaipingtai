@@ -15,6 +15,7 @@ namespace DataModel.Store
        /// 入库单Id
        /// </summary>
        public string StoreInDocId { get; set; }
+       public int GoodsAllocationId { get; set; }
        /// <summary>
        /// 颜色Id
        /// </summary>
@@ -23,6 +24,17 @@ namespace DataModel.Store
        /// 尺码Id
        /// </summary>
        public int SizeId { get; set; }
-       public int Count { get; set; }
+        /// <summary>
+        /// 数量
+        /// </summary>
+       public int Quantity { get; set; }
+       /// <summary>
+       /// 价格
+       /// </summary>
+       public decimal Price { get; set; }
+        /// <summary>
+        /// 总价
+        /// </summary>
+       public decimal SumMoney { get; set; }
     }
 }

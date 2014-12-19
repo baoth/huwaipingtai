@@ -7,6 +7,7 @@ using CMS.Models;
 using QSmart.Core.Object;
 using Toolkit.JsonHelp;
 using Toolkit.CommonModel;
+using DataModel;
 namespace CMS.Controllers
 {
     public class GoodsCatalogController : Controller
@@ -47,7 +48,7 @@ namespace CMS.Controllers
               
                 var type = Request["type"];
                 var data = Request["data"];
-                var model = JsonHelp.josnToObject<DataModel.Goods.GoodsCatalog>(data);
+                var model = JsonHelp.josnToObject<GoodsCatalog>(data);
                 switch (type)
                 {
                     case "1"://添加

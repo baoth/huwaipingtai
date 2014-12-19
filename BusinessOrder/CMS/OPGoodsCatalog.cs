@@ -75,12 +75,12 @@ namespace BusinessOrder.CMS
         }
 
 
-        public List<DataModel.Goods.GoodsCatalog> GetGoodsCatalogNotIsStopList()
+        public List<GoodsCatalog> GetGoodsCatalogNotIsStopList()
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format("select Id,Code,Level,Name,Pcode,IsStop from goodsCatalog where isStop=0 or isStop is null ");
             var dt = dbSession.Context.QueryTable(sql); ;
-            return dbSession.Context.ConversionEntity<DataModel.Goods.GoodsCatalog>(dt);
+            return dbSession.Context.ConversionEntity<GoodsCatalog>(dt);
         }
        
     }

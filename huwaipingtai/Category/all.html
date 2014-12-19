@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+    <title>全部分类</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">   
+    
+    <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/qsmart-mui-tab-1.0.0.js" type="text/javascript"></script>
+    <script src="../../Scripts/numeralInput.js" type="text/javascript"></script>
+  
+    <link href="../Content/Header.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/Footer.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.i-a-bh').on($.clickAction, function () {
+                var tg = $('.i-bh-tab');
+                if (tg.hasClass('on')) {
+                    tg.removeClass('on');
+                }
+                else {
+                    tg.addClass('on');
+                }
+            });
+            $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
+
+            BindEvent();
+
+        });
+        var BindEvent = function () {
+
+            $("div ul li .new-category-a").bind("click", function (e) {
+                SetCategory(this);
+            });
+
+            //获取焦点
+            $("#newkeyword").bind("focus", function () {
+                cancelHotWord();
+            });
+        };
+
+        var SetCategory = function (e) {
+            
+            if (!$(e).hasClass("new-on")) {
+                //先隐藏其他列 
+                $("div ul li .new-category-a.new-on").removeClass("new-on").siblings().hide();
+                $(e).addClass("new-on").siblings().show();
+            }
+
+        }
+        var cancelHotWord = function () {
+            $("#newkeyword").val("");
+        }
+       
+
+</script>
+
+<style  type="text/css">
+    .new-cate-srch {
+         padding: 10px 12px 0;
+    }
+    .new-cate-srch .new-srch-box {
+        width: auto;
+        margin-left: 0;
+        padding-right: 90px;
+        background-color: #fff;
+    }
+    .new-srch-box, .new-srch-box2 {
+        display: block;
+        position: relative;
+        width: 70%;
+        height: 30px;
+        margin-left: 35px;
+        border: 1px solid #999;
+    }
+    .new-cate-srch .new-srch-input {
+    margin-right: 0;
+    }
+    .new-srch-input {
+        width: 100%;
+        height: 30px;
+        margin-right: 30px;
+        border: 0;
+        border-radius: 0;
+        background: #fff;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: normal;
+        color: #c3c2c2;
+        text-indent: 10px;
+        vertical-align: top;
+        -webkit-appearance: none;
+    }
+    body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select {
+    margin: 0;
+    padding: 0;
+    }
+    .new-s-close {
+        position: absolute;
+        top: 0;
+        right: 55px;
+        width: 30px;
+        height: 30px;
+        background: url(../Content/images/icon.png) 8px -973px no-repeat;
+    }
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+    .new-s-srch {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        height: 30px;
+        border-left: 1px solid #ccc;
+        background: #f3f3f3;
+        background: -webkit-gradient(linear,left top,left bottom,from(#f7f7f7),to(#efefef));
+        background: -moz-linear-gradient(top,#f7f7f7,#efefef);
+    }
+    .new-srch-lst {
+        display: block;
+        padding: 0;
+        border: 1px solid #ccc;
+        border-top: none;
+        background-color: #fff;
+    }
+    .new-s-srch span {
+        display: block;
+        width: 50px;
+        height: 30px;
+        background: url(../Content/images/icon.png) 13px -1053px no-repeat;
+    }
+    
+    .new-ct {
+        min-height: 300px;
+        background-color: #fff;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .new-category {
+    padding: 30px 12px 20px;
+    }
+    .new-category .new-category-lst .new-category-li .new-category-a.new-on {
+        background: url(../Content/images/icon.png) 98% -893px no-repeat;
+    }
+   
+    .new-category .new-category-lst .new-category-li .new-category-a {
+        display: block;
+        padding: 11px 13px 10px;
+        background: url(../Content/images/icon.png) 98% -839px no-repeat;
+        font-size: 14px;
+        color: #6e6e6e;
+    }
+    .new-category .new-category-lst .new-category-li .new-category-a, .new-category .new-category2-lst .new-category2-li .new-category2-a {
+        border-bottom: 1px solid #ded6c9;
+    }
+    .new-category .new-category-lst .new-category-li .new-category-a .icon {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        margin: 0 5px 2px 0;
+        border-radius: 7px;
+        background-color: #e4393c;
+    }
+   
+    .new-category .new-category2-lst {
+        background-color: #fff;
+    }
+    ul, ol {
+     list-style: none;
+    }
+    .new-category .new-category2-lst .new-category2-li {
+        display: table;
+        width: 100%;
+    }
+    .new-category .new-category2-lst .new-category2-li .new-category2-a {
+        display: table-cell;
+        width: 33.9%;
+        padding: 10px 0;
+        font-size: .75em;
+        color: #6e6e6e;
+        text-align: center;
+    }
+    .new-category .new-category2-lst .new-category2-li .new-category2-a {
+        border-top: 1px solid #fff;
+    }
+    .new-category .new-category-lst .new-category-li .new-category-a, .new-category .new-category2-lst .new-category2-li .new-category2-a {
+        border-bottom: 1px solid #ded6c9;
+    }
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+   .new-category .new-category2-lst .new-category2-li .new-category2-a:first-child .new-bar {
+        border: none;
+        background: none;
+    }
+    .new-category .new-category2-lst .new-category2-li .new-category2-a .new-bar {
+        float: left;
+        width: 1px;
+        height: 12px;
+        margin-top: 3px;
+        border-bottom: 1px solid #fff;
+        background-color: #ded6c9;
+        vertical-align: middle;
+    }
+</style>
+</head
+<body>
+    <header>
+        <div class="i-bh-header">
+            <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
+            <h2>商品分类</h2>
+            <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
+        </div>
+        <div class="i-bh-tab">
+            <div class="i-tbl-type">
+                <a href="#" class="i-tbl-cell">
+                    <span></span>
+                    <p style="color:#6e6e6e;">首页</p>
+                </a>
+                <a href="#" class="i-tbl-cell">
+                    <span style="width:26px;background-position:0 -25px;"></span>
+                    <p style="color:#6e6e6e;">分类搜索</p>
+                </a>
+                <a href="#" class="i-tbl-cell">
+                    <span style="width:25px;background-position:-29px -25px"></span>
+                    <p style="color:#6e6e6e;">购物车</p>
+                </a>
+                <a href="#" class="i-tbl-cell">
+                    <span style="width:22px;background-position:-85px -25px"></span>
+                    <p style="color:#6e6e6e;">我的易购</p>
+                </a>
+            </div>
+        </div>
+    </header>
+
+   <div class="content">
+        <form action="/ware/search.action" id="searchForm">
+            <input name="sid" value="a386160a7fbc9348acb98aaaf1ff9915" type="hidden">
+        	<div class="new-cate-srch">
+			    <div class="new-srch-box">
+            	    <input name="keyword" id="newkeyword" type="text" required="" class="new-srch-input" value="Phone"><a href="javascript:void(0);" target="_self" onclick="cancelHotWord()" class="new-s-close"></a><a href="javascript:void(0)" target="_self" onclick="search_new()" class="new-s-srch"><span></span></a>
+                </div>
+			    <div class="new-srch-lst" id="shelper" style="display:none">
+			    </div>
+            </div>
+        </form>
+        <div class="new-ct">
+            <div class="new-category">
+
+                <ul class="new-category-lst">
+                    <li class="new-category-li">
+    			    <a href="javascript:void(0)" id="1318" class="new-category-a new-on"><span class="icon"></span>运动户外</a>
+    			     <ul class="new-category2-lst" id="category1318" style="opacity: 1;">
+    			           <li class="new-category2-li">
+    				            <a href="/products/1318-1462-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>户外装备</a>
+        				        <a href="/products/1318-1463-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>健身训练</a>
+        				        <a href="/products/1318-1464-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>纤体瑜伽</a>
+        				     </li>
+    				        <li class="new-category2-li">
+    				           <a href="/products/1318-1466-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>体育用品</a>
+        				       <a href="/products/1318-12099-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>运动鞋包</a>
+        				       <a href="/products/1318-12102-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>运动服饰</a>
+        				     </li>
+    				        <li class="new-category2-li">
+    				            <a href="/products/1318-12115-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>骑行运动</a>
+        				        <a href="/products/1318-2628-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>户外鞋服</a>
+        				        <a href="/products/1318-12147-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>垂钓用品</a>
+        				     </li>
+    				         <li class="new-category2-li">
+    				          <a href="/products/1318-12154-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>游泳用品</a>
+        				      <a href="javascript:void(0)" class="new-category2-a"><span class="new-bar"></span></a>
+    					      <a href="javascript:void(0)" class="new-category2-a"></a>
+    					    </li>
+                        
+                            </ul>
+                    </li>
+
+                    <li class="new-category-li">
+    			        <a href="javascript:void(0)" id="1672" class="new-category-a"><span class="icon"></span>礼品箱包</a>
+    			        <ul class="new-category2-lst" id="category1672" style="display: none;">
+    			    		<li class="new-category2-li">
+    				            <a href="/products/1672-2599-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>礼品</a>
+        				        <a href="/products/1672-2576-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>精品男包</a>
+        				        <a href="/products/1672-2575-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>潮流女包</a>
+        				    </li>
+    				    	<li class="new-category2-li">
+    				            <a href="/products/1672-2577-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>功能箱包</a>
+        				        <a href="/products/1672-12059-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>婚庆</a>
+        				        <a href="/products/1672-2615-000.html?resourceType=index_category&amp;resourceValue=&amp;sid=a386160a7fbc9348acb98aaaf1ff9915" class="new-category2-a"><span class="new-bar"></span>奢侈品</a>
+        				     </li>
+    				    </ul>
+                   </li>
+                </ul>
+            </div>
+        </div>
+   </div>
+
+  <footer>
+    <div class='i-footer'>
+        <div class='i-f-login'>
+            <a rel="nofollow" href='@ViewData["ActionL"]'>@ViewData["NameL"]</a>
+            <span class="i-bar2">|</span>
+            <a rel="nofollow" href='@ViewData["ActionR"]'>@ViewData["NameR"]</a>
+            <span class="i-back-top">
+                <a href="/FeedBack/Advice">反馈</a>
+                <span class="i-bar2">|</span>
+                <a href="#top">回到顶部</a>
+            </span>
+        </div>
+        <div class="i-f-section">
+            <a href="#">标准版</a>
+            <a href="#" class="on">触屏版</a>
+            <a href="#" id="toPcHome">电脑版</a>
+        </div>
+        <div class="i-f-section2">Copyright © 2014-2015 baoth.com 版权所有</div>
+    </div>
+</footer>
+</body></html>

@@ -32,21 +32,31 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="VTemplate.Engine">
+      <HintPath>..\Reflib\VTemplate.Engine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonModel\CResult.cs" />
     <Compile Include="Ext\HttpRequestBaseExt.cs" />
+    <Compile Include="Ext\ObjectExt.cs" />
     <Compile Include="Fun\FunResult.cs" />
     <Compile Include="Fun\VerifyCode.cs" />
     <Compile Include="HtmlFileCreator\MobileCreator.cs" />
+    <Compile Include="JsonHelp\JsonHelp.cs" />
+    <Compile Include="Path\PathConfig.cs" />
+    <Compile Include="PubCms\Document.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

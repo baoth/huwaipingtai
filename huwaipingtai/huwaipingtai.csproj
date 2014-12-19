@@ -59,6 +59,7 @@
     <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Content\bin\MySql.Data.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="QSmart.Core, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -96,12 +97,14 @@
   <ItemGroup>
     <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\GoodsSizeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FeedBackController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OutputOrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RegUserController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -110,6 +113,7 @@
     <Compile Include="整理类.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Category\all.html" />
     <Content Include="Content\bin\Autofac.Configuration.dll" />
     <Content Include="Content\bin\Autofac.dll" />
     <Content Include="Content\bin\Autofac.Integration.Mvc.dll" />
@@ -118,6 +122,8 @@
     <Content Include="Content\bin\QSmart.Core.dll" />
     <Content Include="Content\bin\System.Web.Mvc.dll" />
     <Content Include="Content\bin\System.Web.Mvc.xml" />
+    <Content Include="Content\Footer.css" />
+    <Content Include="Content\Header.css" />
     <Content Include="Content\home\Home.css" />
     <Content Include="Content\home\Layout.css" />
     <Content Include="Content\images\addToCart.png" />
@@ -127,6 +133,7 @@
     <Content Include="Content\images\bg_line3.png" />
     <Content Include="Content\images\home-icons.png" />
     <Content Include="Content\images\icon-shp-cart-remove.png" />
+    <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\icon2b.png" />
     <Content Include="Content\images\icon_chk.png" />
     <Content Include="Content\images\icon_chk2.png" />
@@ -212,6 +219,7 @@
     <Content Include="Product\1000000022\shelves01.css" />
     <Content Include="Product\1000000022\shelves01.js" />
     <Content Include="Product\1000000022\indexTemplate.html" />
+    <Content Include="Product\1000000022\storeInDoc.html" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -268,6 +276,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="List\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\NewFolder1\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -291,11 +301,12 @@
     <Content Include="Views\Shared\_FooterTypical.cshtml" />
     <Content Include="Views\Cart\addToCart.cshtml" />
     <Content Include="Views\User\home.cshtml" />
-    <Content Include="Views\Cart\Copy %282%29 of addToCart.cshtml" />
     <Content Include="Views\RegUser\mobileReg.cshtml" />
     <Content Include="Views\Home\index.cshtml" />
     <Content Include="Views\FeedBack\Advice.cshtml" />
     <Content Include="Views\FeedBack\AdviceSubmited.cshtml" />
+    <Content Include="Views\GoodsSize\index.cshtml" />
+    <Content Include="Views\GoodsSize\editSize.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

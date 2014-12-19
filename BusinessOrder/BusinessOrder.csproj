@@ -42,11 +42,18 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="VTemplate.Engine">
+      <HintPath>..\Reflib\VTemplate.Engine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CAddress\OPCustomerAddress.cs" />
     <Compile Include="Cart\OPCart.cs" />
+    <Compile Include="CMS\OPGoodsCatalog.cs" />
+    <Compile Include="CMS\Publish.cs" />
     <Compile Include="Enum\OrderStatusEnum.cs" />
+    <Compile Include="CMS\OPGoods.cs" />
+    <Compile Include="GoodsSize\GoodsSize.cs" />
     <Compile Include="Order\OPCustomerOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Store\OPStore.cs" />

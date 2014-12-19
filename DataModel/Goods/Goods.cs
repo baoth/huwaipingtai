@@ -6,30 +6,24 @@ using QSmart.Core.Object;
 
 namespace DataModel.Goods
 {
+    /// <summary>
+    /// 商品表(在用)
+    /// </summary>
     public class Goods : QSmartEntity
     {
        [PrimaryKey]
        [AutoIncrement]
         public int Id { get; set; }
+        public int SizeGroupsId { get; set; }
+        public int ColorGroupsId { get; set; }
         /// <summary>
-        /// 品牌
+        /// 品牌商
         /// </summary>
-        public string Brand { get; set; }
+        public int BrandId { get; set; }
         /// <summary>
-        /// 代码
+        /// 商品名称
         /// </summary>
-        public int GoodsCode { get; set; }
-        /// <summary>
-        /// 货品名称
-        /// </summary>
-        public string GoodsName { get; set; }
-        /// <summary>
-        /// 分类
-        /// </summary>
-        public int GoodsCatelogId { get; set; }
-        /// <summary>
-        /// 货品描述
-        /// </summary>
-        public string Describe { get; set; }
+        public string Name { get; set; }
+      
     }
 }

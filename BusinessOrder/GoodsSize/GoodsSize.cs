@@ -8,7 +8,7 @@ namespace BusinessOrder.GoodsSize
 {
    public class GoodsSize:IOPGoodsSize
     {
-        public bool Add(DataModel.GoodsSize goodsSize)
+       public bool Add(DataModel.ChiMa goodsSize)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace BusinessOrder.GoodsSize
             }
         }
 
-        public bool Update(DataModel.GoodsSize goodsSize)
+       public bool Update(DataModel.ChiMa goodsSize)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace BusinessOrder.GoodsSize
             try
             {
                 var dbSession = Common.DbFactory.CreateDbSession();
-                dbSession.Context.DeleteEntity(dbSession.CreateDeleteCommand<DataModel.GoodsSize>(Id));
+                dbSession.Context.DeleteEntity(dbSession.CreateDeleteCommand<DataModel.ChiMa>(Id));
                 dbSession.Context.SaveChange();
                 return true;
             }
@@ -53,12 +53,12 @@ namespace BusinessOrder.GoodsSize
             }
         }
 
-        public List<DataModel.GoodsSize> GetGoodsSizeList()
+        public List<DataModel.ChiMa> GetGoodsSizeList()
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format("select Id,GoodsId,Size from goodsSize ");
             var dt = dbSession.Context.QueryTable(sql); ;
-            return dbSession.Context.ConversionEntity<DataModel.GoodsSize>(dt);
+            return dbSession.Context.ConversionEntity<DataModel.ChiMa>(dt);
         }
     }
 }

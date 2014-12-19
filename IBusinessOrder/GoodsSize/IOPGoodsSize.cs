@@ -12,13 +12,13 @@ namespace IBusinessOrder.GoodsSize
         /// </summary>
         /// <param name="cart">实体类</param>       
         /// <returns>bool</returns>
-        bool Add(DataModel.GoodsSize goodsSize);
+        bool Add(DataModel.ChiMa goodsSize);
         /// <summary>
         /// 修改
         /// </summary>
         /// <param name="catalog">目录</param>
         /// <returns>bool</returns>
-        bool Update(DataModel.GoodsSize goodsSize);
+        bool Update(DataModel.ChiMa goodsSize);
         /// <summary>
         /// 删除
         /// </summary>
@@ -29,7 +29,7 @@ namespace IBusinessOrder.GoodsSize
         /// 获取所有的目录数据
         /// </summary>
         /// <returns></returns>
-        List<DataModel.GoodsSize> GetGoodsSizeList();
+        List<DataModel.ChiMa> GetGoodsSizeList();
        
     }
 }

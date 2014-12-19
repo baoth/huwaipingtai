@@ -9,7 +9,7 @@ namespace DataModel
     /// <summary>
     /// 入库单表
     /// </summary>
-    public class StoreInDoc : QSmartEntity
+    public class RuKu : QSmartEntity
     {
         /// <summary>
         ///主键 string 有子表方便存储关联
@@ -18,19 +18,19 @@ namespace DataModel
         [StringMaxLength(32,VarCharType.varchar)] 
        public string Id { get; set; }
 
-       public int StockId { get; set; }
+       public int CangKuId { get; set; }
         /// <summary>
         /// 商品Id
         /// </summary>
-       public int GoodsId { get; set; }
+       public int ShangPinId { get; set; }
         /// <summary>
         /// 入库时间
         /// </summary>
-       public DateTime InDate { get; set; }
+       public DateTime RiQi { get; set; }
         /// <summary>
         /// 入库人
         /// </summary>
-       public string InPersonor { get; set; }
+       public string RuKuRen { get; set; }
       
     }
 }

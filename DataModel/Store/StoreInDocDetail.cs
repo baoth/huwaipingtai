@@ -6,7 +6,7 @@ using QSmart.Core.Object;
 
 namespace DataModel
 {
-    public class StoreInDocDetail : QSmartEntity
+    public class RuKuMingXi : QSmartEntity
     {
        [PrimaryKey]
        [AutoIncrement]
@@ -14,27 +14,27 @@ namespace DataModel
        /// <summary>
        /// 入库单Id
        /// </summary>
-       public string StoreInDocId { get; set; }
-       public int GoodsAllocationId { get; set; }
+       public string RuKuId { get; set; }
+       public int HuoWeiId { get; set; }
        /// <summary>
        /// 颜色Id
        /// </summary>
-       public int ColorId { get; set; }
+       public int YanSeId { get; set; }
        /// <summary>
        /// 尺码Id
        /// </summary>
-       public int SizeId { get; set; }
+       public int ChiMaId { get; set; }
         /// <summary>
         /// 数量
         /// </summary>
-       public int Quantity { get; set; }
+       public int ShuLiang { get; set; }
        /// <summary>
        /// 价格
        /// </summary>
-       public decimal Price { get; set; }
+       public decimal DanJia { get; set; }
         /// <summary>
         /// 总价
         /// </summary>
-       public decimal SumMoney { get; set; }
+       public decimal JinEr { get; set; }
     }
 }

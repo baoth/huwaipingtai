@@ -25,12 +25,12 @@ namespace CMS.Models
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static string GetGoodsCatalogTree(List<GoodsCatalog> list)
+        public static string GetGoodsCatalogTree(List<ShangPinFenLei> list)
         { 
             string jsonStr=string.Empty;
             List<TreeModel> treeModelList = new List<TreeModel>();
-            var pList = list.FindAll(e => e.PCode == null || e.PCode == "").ToList();
-            foreach (GoodsCatalog item in pList)
+            var pList = list.FindAll(e => e.PBianMa == null || e.PBianMa == "").ToList();
+            foreach (ShangPinFenLei item in pList)
             {
                 TreeModel treemodel = new TreeModel();
                 treemodel.id = item.Id.ToString();
@@ -38,13 +38,13 @@ namespace CMS.Models
                 treemodel.state = "closed";
                 Dictionary<string, string> dic = new Dictionary<string, string>();
                 dic["id"] = item.Id.ToString();
-                dic["code"]=item.Code;
+                dic["code"]=item.BianMa;
                 dic["level"] = item.Level.ToString();
                 dic["name"] = item.Name;
                 dic["isstop"] = item.IsStop.ToString();
-                dic["pcode"] = item.PCode==null?"":item.PCode.ToString();
+                dic["pcode"] = item.PBianMa==null?"":item.PBianMa.ToString();
                 treemodel.attributes = dic;
-                var childList=list.FindAll(e=>e.PCode==item.Code);
+                var childList = list.FindAll(e => e.PBianMa == item.BianMa);
                 if (childList != null && childList.Count > 0)
                 {
                     var childData = ChildGoodsCatalogList(list, childList);
@@ -69,11 +69,11 @@ namespace CMS.Models
         /// <param name="list">原始数据列表</param>
         /// <param name="childList">子项数据列表</param>
         /// <returns>TreeModel List </returns>
-        private static List<TreeModel> ChildGoodsCatalogList(List<GoodsCatalog> list, List<GoodsCatalog> childList)
+        private static List<TreeModel> ChildGoodsCatalogList(List<ShangPinFenLei> list, List<ShangPinFenLei> childList)
         {
             List<TreeModel> treeModelList = new List<TreeModel>() ;
             if (childList == null || childList.Count == 0) return null;
-            foreach (GoodsCatalog item in childList)
+            foreach (ShangPinFenLei item in childList)
             {
                 TreeModel treeModel=new TreeModel ();
                 treeModel.id = item.Id.ToString();
@@ -81,13 +81,13 @@ namespace CMS.Models
                 treeModel.state = "closed";
                 Dictionary<string, string> dic = new Dictionary<string, string>();
                 dic["id"] = item.Id.ToString();
-                dic["code"] = item.Code;
+                dic["code"] = item.BianMa;
                 dic["level"] = item.Level.ToString();
                 dic["name"] = item.Name;
                 dic["isstop"] = item.IsStop.ToString();
-                dic["pcode"] =item.PCode==null?"": item.PCode.ToString();
+                dic["pcode"] =item.PBianMa==null?"": item.PBianMa.ToString();
                 treeModel.attributes = dic;
-                var child = list.FindAll(e=>e.PCode==item.Code);
+                var child = list.FindAll(e=>e.PBianMa==item.BianMa);
                 if (child != null && child.Count > 0)
                 {
                     var childData = ChildGoodsCatalogList(list, child);

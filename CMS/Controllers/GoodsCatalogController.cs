@@ -48,7 +48,7 @@ namespace CMS.Controllers
               
                 var type = Request["type"];
                 var data = Request["data"];
-                var model = JsonHelp.josnToObject<GoodsCatalog>(data);
+                var model = JsonHelp.josnToObject<ShangPinFenLei>(data);
                 switch (type)
                 {
                     case "1"://添加

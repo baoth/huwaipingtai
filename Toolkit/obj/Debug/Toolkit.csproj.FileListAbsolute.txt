@@ -9,3 +9,9 @@ X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\obj\Debug\Toolkit.dll
 X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\obj\Debug\Toolkit.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\bin\Debug\VTemplate.Engine.dll
 F:\GithubMobile\huwaipingtai\Toolkit\bin\Debug\VTemplate.Engine.dll
+E:\户外运动平台\huwaipingtai\Toolkit\bin\Debug\Toolkit.dll
+E:\户外运动平台\huwaipingtai\Toolkit\bin\Debug\Toolkit.pdb
+E:\户外运动平台\huwaipingtai\Toolkit\bin\Debug\VTemplate.Engine.dll
+E:\户外运动平台\huwaipingtai\Toolkit\obj\Debug\ResolveAssemblyReference.cache
+E:\户外运动平台\huwaipingtai\Toolkit\obj\Debug\Toolkit.dll
+E:\户外运动平台\huwaipingtai\Toolkit\obj\Debug\Toolkit.pdb

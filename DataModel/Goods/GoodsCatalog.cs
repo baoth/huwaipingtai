@@ -8,7 +8,7 @@ namespace DataModel
     /// <summary>
     /// 商品分类表(在用)
     /// </summary>
-    public class GoodsCatalog : QSmartEntity
+    public class ShangPinFenLei : QSmartEntity
     {
         [PrimaryKey]
         [AutoIncrement]
@@ -17,7 +17,7 @@ namespace DataModel
         /// 分类编码
         /// </summary>
         [StringMaxLength(2, VarCharType.nvarchar)]
-        public string Code{get;set;}
+        public string BianMa{get;set;}
         /// <summary>
         /// 分类层级
         /// </summary>
@@ -31,7 +31,7 @@ namespace DataModel
         /// 父级分类
         /// </summary>
         [StringMaxLength(2, VarCharType.nvarchar)]
-        public string PCode { get; set; }
+        public string PBianMa { get; set; }
         /// <summary>
         /// 停用 启用
         /// </summary>

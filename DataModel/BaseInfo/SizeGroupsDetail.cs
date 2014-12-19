@@ -10,12 +10,12 @@ namespace DataModel
     /// <summary>
     /// 尺码明细表 由品牌商维护（在用）
     /// </summary>
-    public class SizeGroupsDetail : QSmartEntity
+    public class ChiMaZuMingXi : QSmartEntity
     {
         [PrimaryKey]
         [AutoIncrement]
        public int Id { get; set; }
-       public int SizesGroupsId { get; set; }
-       public int SizesId { get; set; }
+       public int ChiMaZuId { get; set; }
+       public int ChiMaId { get; set; }
     }
 }

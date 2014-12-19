@@ -9,7 +9,7 @@ namespace DataModel
     /// <summary>
     /// 尺码（在用）
     /// </summary>
-    public class Sizes : QSmartEntity
+    public class ChiMa : QSmartEntity
     {
         [PrimaryKey]
         [AutoIncrement]

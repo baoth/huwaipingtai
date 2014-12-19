@@ -60,9 +60,6 @@
     <Compile Include="CMSDto\GoodsColorDto.cs" />
     <Compile Include="CMSDto\GoodsDto.cs" />
     <Compile Include="CMSDto\GoodsSizeDto.cs" />
-    <Compile Include="Goods\GoodsColor.cs" />
-    <Compile Include="Goods\GoodsSize.cs" />
-    <Compile Include="Merchant\MerchantBrand.cs" />
     <Compile Include="Order\Cart.cs" />
     <Compile Include="Order\Customer.cs" />
     <Compile Include="Order\CustomerAddress.cs" />

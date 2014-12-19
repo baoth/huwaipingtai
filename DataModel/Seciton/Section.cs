@@ -9,7 +9,7 @@ namespace DataModel
     /// <summary>
     /// 门店表(在用)
     /// </summary>
-   public class Section: QSmartEntity
+   public class MenDian: QSmartEntity
     {
        [PrimaryKey]
        [AutoIncrement]
@@ -17,7 +17,7 @@ namespace DataModel
        /// <summary>
        /// 经销商表
        /// </summary>
-       public int MerchantId { get; set; }
+       public int JingXiaoShangId { get; set; }
        /// <summary>
        /// 门店名称
        /// </summary>
@@ -31,6 +31,7 @@ namespace DataModel
        /// <summary>
        /// 手机
        /// </summary>
+       [StringMaxLength(20, VarCharType.varchar)]
        public string Phone { get; set; }
    }
 }

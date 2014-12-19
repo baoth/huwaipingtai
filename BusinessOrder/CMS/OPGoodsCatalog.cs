@@ -6,12 +6,13 @@ using Common;
 using QSmart.Core.Object;
 using DataModel.Order;
 using IBusinessOrder.CMS;
+using DataModel;
 namespace BusinessOrder.CMS
 {
     public class OPGoodsCatalog : IOPGoodsCatalog
     {
         
-        public bool Add(DataModel.Goods.GoodsCatalog catalog)
+        public bool Add(GoodsCatalog catalog)
         {
             try
             {
@@ -26,7 +27,7 @@ namespace BusinessOrder.CMS
             }
         }
 
-        public bool Update(DataModel.Goods.GoodsCatalog catalog)
+        public bool Update(GoodsCatalog catalog)
         {
             try
             {
@@ -46,7 +47,7 @@ namespace BusinessOrder.CMS
             try
             {
                 var dbSession = Common.DbFactory.CreateDbSession();
-                dbSession.Context.DeleteEntity(dbSession.CreateDeleteCommand<DataModel.Goods.GoodsCatalog>(Id));
+                dbSession.Context.DeleteEntity(dbSession.CreateDeleteCommand<GoodsCatalog>(Id));
                 dbSession.Context.SaveChange();
                 return true;
             }
@@ -56,21 +57,21 @@ namespace BusinessOrder.CMS
             }
         }
                
-        public List<DataModel.Goods.GoodsCatalog> GetGoodsCatalogChild(string code)
+        public List<GoodsCatalog> GetGoodsCatalogChild(string code)
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format("select Id,Code,Level,Name,Pcode,IsStop from goodsCatalog where code='{0}' or pcode='{0}'", code);
             var dt = dbSession.Context.QueryTable(sql); ;
-            return dbSession.Context.ConversionEntity<DataModel.Goods.GoodsCatalog>(dt);
+            return dbSession.Context.ConversionEntity<GoodsCatalog>(dt);
         }
 
 
-        public List<DataModel.Goods.GoodsCatalog> GetGoodsCatalogAllList()
+        public List<GoodsCatalog> GetGoodsCatalogAllList()
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format("select Id,Code,Level,Name,Pcode,IsStop from goodsCatalog ");
             var dt = dbSession.Context.QueryTable(sql); ;
-            return dbSession.Context.ConversionEntity<DataModel.Goods.GoodsCatalog>(dt);
+            return dbSession.Context.ConversionEntity<GoodsCatalog>(dt);
         }
 
 

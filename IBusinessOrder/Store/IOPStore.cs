@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DataModel.Store;
+using DataModel;
 
 namespace IBusinessOrder.Store
 {

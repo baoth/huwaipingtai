@@ -21,7 +21,7 @@ namespace BusinessTemplate
             builder.RegisterType<OPCustomerAddress>().As<IOPCustomerAddress>();
             builder.RegisterType<BusinessOrder.Cart.OPCart>().As<IBusinessOrder.Cart.IOPCart>();
             builder.RegisterType<BusinessOrder.Order.OPCustomerOrder>().As<IBusinessOrder.Order.IOPCustomerOrder>();
-            builder.RegisterType<BusinessOrder.Store.OPStore>().As<IOPStore>();
+            builder.RegisterType<BusinessOrder.OPStore>().As<IOPStore>();
             builder.RegisterType<BusinessOrder.CMS.OPGoods>().As<IOPGoods>();
             builder.RegisterType<BusinessOrder.CMS.Publish>().As<IPublish>();
             builder.RegisterType<BusinessOrder.CMS.OPGoodsCatalog>().As<IBusinessOrder.CMS.IOPGoodsCatalog>();

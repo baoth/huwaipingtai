@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using QSmart.Core.Object;
-namespace DataModel.Goods
+namespace DataModel
 {
     /// <summary>
     /// 商品上架表

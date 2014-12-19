@@ -49,17 +49,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseInfo\ColorGroups.cs" />
+    <Compile Include="BaseInfo\ColorGroupsDetail.cs" />
+    <Compile Include="BaseInfo\Colors.cs" />
+    <Compile Include="BaseInfo\SizeGroups.cs" />
+    <Compile Include="BaseInfo\Sizes.cs" />
+    <Compile Include="BaseInfo\SizeGroupsDetail.cs" />
+    <Compile Include="Goods\Goods.cs" />
     <Compile Include="Goods\GoodsCatalog.cs" />
     <Compile Include="CMSDto\GoodsColorDto.cs" />
     <Compile Include="CMSDto\GoodsDto.cs" />
     <Compile Include="CMSDto\GoodsSizeDto.cs" />
+    <Compile Include="Goods\GoodsColor.cs" />
+    <Compile Include="Goods\GoodsSize.cs" />
+    <Compile Include="Merchant\MerchantBrand.cs" />
     <Compile Include="Order\Cart.cs" />
     <Compile Include="Order\Customer.cs" />
     <Compile Include="Order\CustomerAddress.cs" />
     <Compile Include="Goods\GoodsShelves.cs" />
     <Compile Include="Order\CustomerOrderDto.cs" />
     <Compile Include="Order\Order.cs" />
+    <Compile Include="Brand\Brand.cs" />
+    <Compile Include="Merchant\Merchant.cs" />
+    <Compile Include="Seciton\SecitonOperator.cs" />
+    <Compile Include="Seciton\Section.cs" />
+    <Compile Include="Store\GoodsAllocation.cs" />
     <Compile Include="Store\SKUStore.cs" />
+    <Compile Include="Store\Store.cs" />
+    <Compile Include="Store\StoreInDoc.cs" />
+    <Compile Include="Store\StoreInDocDetail.cs" />
+    <Compile Include="Template\Template.cs" />
+    <Compile Include="Template\TemplateGoods.cs" />
     <Compile Include="View\CartView.cs" />
   </ItemGroup>
   <ItemGroup>

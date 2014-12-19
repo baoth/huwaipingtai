@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using QSmart.Core.Object;
-
-namespace DataModel.Goods
+namespace DataModel
 {
     /// <summary>
-    /// 商品分类表
+    /// 商品分类表(在用)
     /// </summary>
     public class GoodsCatalog : QSmartEntity
     {

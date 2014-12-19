@@ -24,12 +24,12 @@ namespace CMS.Models
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static string GetGoodsCatalogTree(List<DataModel.Goods.GoodsCatalog> list)
+        public static string GetGoodsCatalogTree(List<DataModel.GoodsCatalog> list)
         { 
             string jsonStr=string.Empty;
             List<TreeModel> treeModelList = new List<TreeModel>();
             var pList = list.FindAll(e => e.PCode == null || e.PCode == "").ToList();
-            foreach (DataModel.Goods.GoodsCatalog item in pList)
+            foreach (DataModel.GoodsCatalog item in pList)
             {
                 TreeModel treemodel = new TreeModel();
                 treemodel.id = item.Id.ToString();
@@ -68,11 +68,11 @@ namespace CMS.Models
         /// <param name="list">原始数据列表</param>
         /// <param name="childList">子项数据列表</param>
         /// <returns>TreeModel List </returns>
-        private static List<TreeModel> ChildGoodsCatalogList(List<DataModel.Goods.GoodsCatalog> list, List<DataModel.Goods.GoodsCatalog> childList)
+        private static List<TreeModel> ChildGoodsCatalogList(List<DataModel.GoodsCatalog> list, List<DataModel.GoodsCatalog> childList)
         {
             List<TreeModel> treeModelList = new List<TreeModel>() ;
             if (childList == null || childList.Count == 0) return null;
-            foreach (DataModel.Goods.GoodsCatalog item in childList)
+            foreach (DataModel.GoodsCatalog item in childList)
             {
                 TreeModel treeModel=new TreeModel ();
                 treeModel.id = item.Id.ToString();

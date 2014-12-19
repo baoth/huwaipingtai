@@ -6,8 +6,13 @@ using System.Web.Mvc;
 
 namespace huwaipingtai.Controllers
 {
-    public class GoodsSizeController : Controller
+    public class GoodsSizeController : BasicController
     {
+        IBusinessOrder.GoodsSize.IOPGoodsSize iopgoodssize;
+        public GoodsSizeController(IBusinessOrder.GoodsSize.IOPGoodsSize iopgoodssize)
+        {
+            this.iopgoodssize = iopgoodssize;
+        }
         //
         // GET: /GoodsSize/
 

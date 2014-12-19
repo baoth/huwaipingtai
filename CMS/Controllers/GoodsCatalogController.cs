@@ -47,7 +47,7 @@ namespace CMS.Controllers
               
                 var type = Request["type"];
                 var data = Request["data"];
-                var model = JsonHelp.josnToObject<DataModel.Goods.GoodsCatalog>(data);
+                var model = JsonHelp.josnToObject<DataModel.GoodsCatalog>(data);
                 switch (type)
                 {
                     case "1"://添加

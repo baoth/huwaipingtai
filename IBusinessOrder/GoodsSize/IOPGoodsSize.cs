@@ -30,6 +30,11 @@ namespace IBusinessOrder.GoodsSize
         /// </summary>
         /// <returns></returns>
         List<DataModel.GoodsSize> GetGoodsSizeList();
-       
+        /// <summary>
+        /// 获取货品的尺寸
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        DataModel.GoodsSize GetGoodsSizeModel(string id);
     }
 }

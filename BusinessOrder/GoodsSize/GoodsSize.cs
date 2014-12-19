@@ -60,5 +60,23 @@ namespace BusinessOrder.GoodsSize
             var dt = dbSession.Context.QueryTable(sql); ;
             return dbSession.Context.ConversionEntity<DataModel.GoodsSize>(dt);
         }
+
+
+        public DataModel.GoodsSize GetGoodsSizeModel(string id)
+        {
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var sql = string.Format("select Id,GoodsId,Size from goodsSize where Id='"+id+"' ");
+            var dt = dbSession.Context.QueryTable(sql);
+            if (dt.Rows.Count > 0)
+            { 
+                var list=dbSession.Context.ConversionEntity<DataModel.GoodsSize>(dt);
+                if (list != null && list.Count > 0)
+                { 
+                    return list[0];
+                }
+                return null;
+            }
+            return null;
+        }
     }
 }

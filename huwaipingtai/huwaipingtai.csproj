@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\GoodsSizeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FeedBackController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -300,6 +301,8 @@
     <Content Include="Views\Home\index.cshtml" />
     <Content Include="Views\FeedBack\Advice.cshtml" />
     <Content Include="Views\FeedBack\AdviceSubmited.cshtml" />
+    <Content Include="Views\GoodsSize\index.cshtml" />
+    <Content Include="Views\GoodsSize\editSize.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

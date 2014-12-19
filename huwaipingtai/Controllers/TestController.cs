@@ -19,19 +19,19 @@ namespace huwaipingtai.Controllers
         public ActionResult CreateTable() 
         {
             QSmartDatabaseClient db = DataBaseProvider.Create("db");
-            db.CreateTable<ColorGroups>(QSmartTableType.InnoDB);
-            db.CreateTable<ColorGroupsDetail>(QSmartTableType.InnoDB);
-            db.CreateTable<Colors>(QSmartTableType.InnoDB);
-            db.CreateTable<SizeGroups>(QSmartTableType.InnoDB);
-            db.CreateTable<SizeGroupsDetail>(QSmartTableType.InnoDB);
-            db.CreateTable<Sizes>(QSmartTableType.InnoDB);
+            //db.CreateTable<ColorGroups>(QSmartTableType.InnoDB);
+            //db.CreateTable<ColorGroupsDetail>(QSmartTableType.InnoDB);
+            //db.CreateTable<Colors>(QSmartTableType.InnoDB);
+            //db.CreateTable<SizeGroups>(QSmartTableType.InnoDB);
+            //db.CreateTable<SizeGroupsDetail>(QSmartTableType.InnoDB);
+            //db.CreateTable<Sizes>(QSmartTableType.InnoDB);
 
-            db.CreateTable<Brand>(QSmartTableType.InnoDB);
-            db.CreateTable<Goods>(QSmartTableType.InnoDB);
-            db.CreateTable<GoodsCatalog>(QSmartTableType.InnoDB);
+            //db.CreateTable<Brand>(QSmartTableType.InnoDB);
+            //db.CreateTable<Goods>(QSmartTableType.InnoDB);
+            //db.CreateTable<GoodsCatalog>(QSmartTableType.InnoDB);
 
-            db.CreateTable<Merchant>(QSmartTableType.InnoDB);
-            db.CreateTable<MerchantBrand>(QSmartTableType.InnoDB);
+            //db.CreateTable<Merchant>(QSmartTableType.InnoDB);
+            //db.CreateTable<MerchantBrand>(QSmartTableType.InnoDB);
 
             db.CreateTable<SecitonOperator>(QSmartTableType.InnoDB);
             db.CreateTable<Section>(QSmartTableType.InnoDB);

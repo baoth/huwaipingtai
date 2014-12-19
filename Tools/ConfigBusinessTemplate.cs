@@ -24,6 +24,8 @@ namespace BusinessTemplate
             builder.RegisterType<BusinessOrder.OPStore>().As<IOPStore>();
             builder.RegisterType<BusinessOrder.CMS.OPGoods>().As<IOPGoods>();
             builder.RegisterType<BusinessOrder.CMS.Publish>().As<IPublish>();
+            builder.RegisterType<BusinessOrder.CMS.OPGoodsCatalog>().As<IBusinessOrder.CMS.IOPGoodsCatalog>();
+            
         }
         public static IBusinessOrder.User.ILogon GetILogon()
         {

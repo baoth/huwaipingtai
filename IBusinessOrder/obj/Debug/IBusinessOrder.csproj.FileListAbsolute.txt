@@ -19,3 +19,4 @@ X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\obj\Debug\IBusinessOrder.cspr
 X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\obj\Debug\IBusinessOrder.dll
 X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\obj\Debug\IBusinessOrder.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\IBusinessOrder\bin\Debug\VTemplate.Engine.dll
+F:\GithubMobile\huwaipingtai\IBusinessOrder\bin\Debug\VTemplate.Engine.dll

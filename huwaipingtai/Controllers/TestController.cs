@@ -13,6 +13,12 @@ namespace huwaipingtai.Controllers
         {
             return View();
         }
+        public ActionResult CreateTable() 
+        {
+            QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            db.CreateTable<GoodsCatalog>(QSmartTableType.InnoDB);
+            return Content("ok");
+        }
 
     }
 }

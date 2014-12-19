@@ -1,0 +1,105 @@
+﻿ @@font-face
+    {
+        font-family:icons;
+        src:url(../Scripts/qsm-mui/iconfont_141111.ttf) format('truetype');
+        font-weight:400;
+        font-style:normal;
+    }
+    *
+    {
+        margin:0;
+        padding:0;
+    }
+    a
+    {
+        text-decoration:none;
+    }
+    body
+    {
+        line-height: 1.25em;
+        font-family: 'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;
+    }
+    .i-bh-header
+    {
+        position: relative;
+        height: 44px;
+        background: #e4393c;
+    }
+    .i-bh-header h2 
+    {
+        height: 44px;
+        line-height: 44px;
+        font-weight: normal;
+        font-size: 16px;
+        color: #fff;
+        text-align: center;
+    }
+    .i-a-back 
+    {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 30px;
+        height: 32px;
+    }
+    .i-a-back span 
+    {
+        display: inline-block;
+        width: 10px;
+        height: 18px;
+        margin-top: 6px;
+        background: url(../Content/images/icon2b.png) -60px 0 no-repeat;
+        background-size: 180px 180px;
+        text-indent: -9999px;
+    }
+    .i-a-bh 
+    {
+        position: absolute;
+        top: 6px;
+        right: 12px;
+        width: 37px;
+        height: 30px;
+    }
+    .i-a-bh span 
+    {
+        display: inline-block;
+        width: 21px;
+        height: 21px;
+        margin: 5px 0 0 13px;
+        background: url(../Content/images/icon2b.png) -125px -24px no-repeat;
+        background-size: 180px 180px;
+        text-indent: -9999px;
+    }
+    .i-bh-tab
+    {
+        border-bottom: 1px solid #d0cece;
+        background-color: #fff;
+        display:none;
+    }
+    .i-bh-tab.on
+    {
+        display:block;
+    }
+    .i-tbl-type 
+    {
+        display: table;
+        width: 100%;
+    }
+    .i-bh-tab .i-tbl-cell 
+    {
+        width: 25%;
+        padding: 9px 0;
+        font-size: 12px;
+        text-align: center;
+        display: table-cell;
+    }
+    .i-bh-tab .i-tbl-cell span
+    {
+        background: url(../Content/images/icon2b.png) -60px -25px no-repeat;
+        background-size: 180px 180px;
+        vertical-align: text-top;
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        color:#6e6e6e;
+    }

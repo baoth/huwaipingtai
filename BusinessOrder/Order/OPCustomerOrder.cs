@@ -5,7 +5,7 @@ using System.Text;
 using IBusinessOrder.Order;
 using DataModel.Order;
 using BusinessOrder.Enum;
-using DataModel.Goods;
+using DataModel;
 using Common.Fun;
 using Toolkit.CommonModel;
 using IBusinessOrder.Cart;

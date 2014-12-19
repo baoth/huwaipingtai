@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using QSmart.Core.Object;
 
-namespace DataModel.Store
+namespace DataModel
 {
     /// <summary>
     /// 入库单表

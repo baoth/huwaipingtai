@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using QSmart.Core.Object;
 
-namespace DataModel.BaseInfo
+namespace DataModel
 {
     /// <summary>
     /// 颜色组 品牌商维护（在用）

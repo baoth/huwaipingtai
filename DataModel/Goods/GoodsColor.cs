@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using QSmart.Core.Object;
-
-namespace DataModel.Goods
+namespace DataModel
 {
     public class GoodsColor : QSmartEntity
     {

@@ -71,7 +71,11 @@
     <Compile Include="Order\Order.cs" />
     <Compile Include="Brand\Brand.cs" />
     <Compile Include="Merchant\Merchant.cs" />
+    <Compile Include="Seciton\SecitonOperator.cs" />
+    <Compile Include="Seciton\Section.cs" />
+    <Compile Include="Store\GoodsAllocation.cs" />
     <Compile Include="Store\SKUStore.cs" />
+    <Compile Include="Store\Store.cs" />
     <Compile Include="Store\StoreInDoc.cs" />
     <Compile Include="Store\StoreInDocDetail.cs" />
     <Compile Include="Template\Template.cs" />

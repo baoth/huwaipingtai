@@ -8,4 +8,3 @@ X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\bin\Debug\Toolkit.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\obj\Debug\Toolkit.dll
 X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\obj\Debug\Toolkit.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\bin\Debug\VTemplate.Engine.dll
-X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\obj\Debug\Toolkit.csprojResolveAssemblyReference.cache

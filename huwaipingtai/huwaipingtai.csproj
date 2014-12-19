@@ -103,6 +103,7 @@
     <Compile Include="Controllers\OutputOrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RegUserController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,6 +214,7 @@
     <Content Include="Product\1000000022\shelves01.css" />
     <Content Include="Product\1000000022\shelves01.js" />
     <Content Include="Product\1000000022\indexTemplate.html" />
+    <Content Include="Product\1000000022\storeInDoc.html" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -270,6 +272,7 @@
     <Folder Include="List\" />
     <Folder Include="Models\" />
     <Folder Include="Views\NewFolder1\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

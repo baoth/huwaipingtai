@@ -5,8 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using QSmart.Core.DataBase;
 using QSmart.Core.Object;
+
+using DataModel;
 using DataModel.Order;
-using DataModel.Goods;
 
 namespace huwaipingtai.Controllers
 {

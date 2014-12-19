@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using QSmart.Core.Object;
 
-namespace DataModel.Seciton
+namespace DataModel
 {
     /// <summary>
     /// 门店表(在用)

@@ -111,6 +111,7 @@
     <Compile Include="整理类.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Category\all.html" />
     <Content Include="Content\bin\Autofac.Configuration.dll" />
     <Content Include="Content\bin\Autofac.dll" />
     <Content Include="Content\bin\Autofac.Integration.Mvc.dll" />
@@ -119,6 +120,8 @@
     <Content Include="Content\bin\QSmart.Core.dll" />
     <Content Include="Content\bin\System.Web.Mvc.dll" />
     <Content Include="Content\bin\System.Web.Mvc.xml" />
+    <Content Include="Content\Footer.css" />
+    <Content Include="Content\Header.css" />
     <Content Include="Content\home\Home.css" />
     <Content Include="Content\home\Layout.css" />
     <Content Include="Content\images\addToCart.png" />
@@ -128,6 +131,7 @@
     <Content Include="Content\images\bg_line3.png" />
     <Content Include="Content\images\home-icons.png" />
     <Content Include="Content\images\icon-shp-cart-remove.png" />
+    <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\icon2b.png" />
     <Content Include="Content\images\icon_chk.png" />
     <Content Include="Content\images\icon_chk2.png" />
@@ -292,7 +296,6 @@
     <Content Include="Views\Shared\_FooterTypical.cshtml" />
     <Content Include="Views\Cart\addToCart.cshtml" />
     <Content Include="Views\User\home.cshtml" />
-    <Content Include="Views\Cart\Copy %282%29 of addToCart.cshtml" />
     <Content Include="Views\RegUser\mobileReg.cshtml" />
     <Content Include="Views\Home\index.cshtml" />
     <Content Include="Views\FeedBack\Advice.cshtml" />

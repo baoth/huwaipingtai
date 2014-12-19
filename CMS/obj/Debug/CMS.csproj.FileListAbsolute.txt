@@ -44,3 +44,4 @@ F:\GithubMobile\huwaipingtai\CMS\obj\Debug\CMS.dll
 F:\GithubMobile\huwaipingtai\CMS\obj\Debug\CMS.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\System.Web.Mvc.dll
 X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\System.Web.Mvc.xml
+F:\GithubMobile\huwaipingtai\CMS\bin\Autofac.xml

@@ -51,3 +51,4 @@ F:\GithubMobile\huwaipingtai\huwaipingtai\obj\Debug\ResolveAssemblyReference.cac
 F:\GithubMobile\huwaipingtai\huwaipingtai\obj\Debug\huwaipingtai.dll
 F:\GithubMobile\huwaipingtai\huwaipingtai\obj\Debug\huwaipingtai.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\huwaipingtai\bin\VTemplate.Engine.dll
+F:\GithubMobile\huwaipingtai\huwaipingtai\bin\VTemplate.Engine.dll

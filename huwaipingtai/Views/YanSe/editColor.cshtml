@@ -166,67 +166,41 @@
     <body>
         @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", ViewData["title"] } })
       
-      <form action="updateAddress.action?sid=4776ad7142b83f39c5fa29a193641ea1" method="post" id="editSizeForm">
+      <form action="" method="post" id="editYanSeForm">
 					   
         <div class="new-ct shouhuo">
-            <div class="title">商品尺寸</div>
+            <div class="title">颜色</div>
              <div class="info-list">
             <div class="info pd">
         	    <div class="tbl-type">
-            	    <span class="tbl-cell w80"><span>商品尺寸：</span></span>
-                    <span class="tbl-cell"><span><input type="text" maxlength="20" class="new-input" name="goodsSize" id="goodsSize" value="@ViewData["Name"]" style="width:100%;"></span></span>
+            	    <span class="tbl-cell w80"><span>商品颜色：</span></span>
+                    <span class="tbl-cell"><span><input type="text" maxlength="20" class="new-input" name="yanSeName" id="yanSeName" value="@ViewData["Name"]" style="width:100%;"></span></span>
                 </div>
             </div>
-            <div class="info pd" style="display:none" id="sizeErrorMsg">
+            <div class="info pd" style="display:none" id="yanSeErrorMsg">
         	    <div class="tbl-type">
-            	    <span class="tbl-cell w80"><span style="color:red">商品尺寸不能为空</span></span>
+            	    <span class="tbl-cell w80"><span style="color:red">商品颜色不能为空</span></span>
                 </div>
             </div>
            
-		    @*<div class="info pd">
-        	<div class="tbl-type">
-            	<span class="tbl-cell w50"><span>商品：</span></span>
-                <span class="tbl-cell">                	
-                    <span class="new-input-span">
-                        <span class="new-sel-box new-p-re">
-                            <label id="goods_label"></label>
-                            <select name="Goods" id="Goods" class="new-select"  style="width:200px;">
-                            <option id="option_add_1" value="1">商品一</option>
-                            <option id="option_add_2" value="2">商品二</option>
-                            <option id="option_add_3" value="3">商品三</option>
-                            
-                            </select>
-                        </span>
-                    </span>
-                </span>
-            </div>
-          </div>        
-            <div class="info pd" style="display:none" id="goodsErrorMsg">
-        	    <div class="tbl-type">
-            	    <span class="tbl-cell w80"><span style="color:red">商品不能为空,请选择对应的商品！</span></span>
-                </div>
-            </div>
-           
-            </div>*@
-
 			<div style="display:none" >
-        	    <input id="goodsSizeId"  type="hidden" value="@ViewData["Id"]"/>                
+        	    <input id="yanSeNameId"  type="hidden" value="@ViewData["Id"]"/>                
                  <input  id="pageType" type="hidden" value="@ViewData["pageType"]"/>
             </div>       
-        <a href="javascript:submitEditSizeForm()" class="new-abtn-type mgn">保存</a>	
+        <a href="javascript:submitEditYanSeForm()" class="new-abtn-type mgn">保存</a>	
         </div>
 
         <script type="text/javascript">
 
-            var submitEditSizeForm = function () {
+            var submitEditYanSeForm = function () {
                 if (CheckValid() == false) return;
                 var url = "Save";
                 var data = {};
-                data.Name = $("#goodsSize").val();               
+                data.Name = $("#yanSeName").val();               
                 var type = GetPageType();
 
                 if (type == "2") {
-                    data.Id = $("#goodsSizeId").val();
+                    data.Id = $("#yanSeNameId").val();
                 }               
                 submitAjax(url, data, type);
 
@@ -242,7 +216,7 @@
                         d = eval('(' + d + ')');
                         if (d && d.IsSuccess) {
                            
-                            window.location = window.location.origin + "/GoodsSize/Index";
+                            window.location = window.location.origin + "/YanSe/Index";
                         }
                         else {
                             alert(d.Msg);
@@ -254,70 +228,21 @@
                 });
             };
 
-
-            $(document).ready(function () {
-               // BindEvent();
-               // InitData();
-            });
-    var BindEvent = function () {
-        $("#Goods").change(function (e, index) {
-            var obj = e.target;
-            var text = obj.options[obj.selectedIndex].text;
-            var value = obj.options[obj.selectedIndex].value;
-            $("#goods_label").html(text);
-            $("#GoodsId").val(value);
-        });
-    }
-
-    var InitData = function () {
-        var itemValue = $("#GoodsId").val();
-        
-        jsSelectValue($("#Goods")[0], itemValue);
-    }
-
-    function jsSelectValue(objSelect, objItemValue) {
-        var isExit = false;   
-        for (var i = 0; i < objSelect.options.length; i++) {
-            if (objSelect.options[i].value == objItemValue) {
-                objSelect.options[i].selected = true;
-                $("#goods_label").html(objSelect.options[i].text);
-                isExit = true;
-                break;
-            }
-        }
-        var type = GetPageType();
-        if (isExit == false) {
-            objSelect.selectedIndex = -1;
-            if (type == "1") {
-                objSelect.options[0].selected = true;
-                $("#goods_label").html(objSelect.options[0].text);
-            }
-        }
-        return isExit;
-    }
-
     var GetPageType = function () {
         var type = $("#pageType").val();
         return type;
     }
 
     var CheckValid = function () {
-        var goodsSize = $("#goodsSize").val();
-        if (goodsSize) {
-            $("#sizeErrorMsg").hide();
+        var yanSeName = $("#yanSeName").val();
+        if (yanSeName) {
+            $("#yanSeErrorMsg").hide();
         }
         else {
-            $("#sizeErrorMsg").show();
+            $("#yanSeErrorMsg").show();
             return false;
         }
-//        var goods = $("#goods_label").text();
-//        if (goods) {
-//            $("#goodsErrorMsg").hide();
-//        }
-//        else {
-//            $("#goodsErrorMsg").show();
-//            return false;
-//        }
+
         return true;
     }
 

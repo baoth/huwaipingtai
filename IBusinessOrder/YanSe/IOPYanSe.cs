@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IBusinessOrder.GoodsSize
+namespace IBusinessOrder.YanSe
 {
-    public interface IOPGoodsSize
+    public interface IOPYanSe
     {
         /// <summary>
         /// 添加
         /// </summary>
         /// <param name="cart">实体类</param>       
         /// <returns>bool</returns>
-        bool Add(DataModel.ChiMa goodsSize);
+        bool Add(DataModel.YanSe goodsSize);
         /// <summary>
         /// 修改
         /// </summary>
         /// <param name="catalog">目录</param>
         /// <returns>bool</returns>
-        bool Update(DataModel.ChiMa goodsSize);
+        bool Update(DataModel.YanSe goodsSize);
         /// <summary>
         /// 删除
         /// </summary>
@@ -29,12 +29,12 @@ namespace IBusinessOrder.GoodsSize
         /// 获取所有的目录数据
         /// </summary>
         /// <returns></returns>
-        List<DataModel.ChiMa> GetGoodsSizeList();
+        List<DataModel.YanSe> GetYanSeList();
         /// <summary>
         /// 获取货品的尺寸
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        DataModel.ChiMa GetGoodsSizeModel(string id);
+        DataModel.YanSe GetYanSeModel(string id);
     }
 }

@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using IBusinessOrder.GoodsSize;
 using QSmart.Core.Object;
-namespace BusinessOrder.GoodsSize
+using IBusinessOrder.YanSe;
+namespace BusinessOrder.YanSe
 {
-    public class GoodsSize : IOPGoodsSize
+    
+    public class OPYanSe:IOPYanSe
     {
-        public bool Add(DataModel.ChiMa goodsSize)
+        public bool Add(DataModel.YanSe yanSe)
         {
             try
             {
                 var dbSession = Common.DbFactory.CreateDbSession();
-                dbSession.Context.InsertEntity(goodsSize.CreateQSmartObject());
+                dbSession.Context.InsertEntity(yanSe.CreateQSmartObject());
                 dbSession.Context.SaveChange();
                 return true;
             }
@@ -23,12 +24,12 @@ namespace BusinessOrder.GoodsSize
             }
         }
 
-        public bool Update(DataModel.ChiMa goodsSize)
+        public bool Update(DataModel.YanSe yanSe)
         {
             try
             {
                 var dbSession = Common.DbFactory.CreateDbSession();
-                dbSession.Context.ModifyEntity(goodsSize.CreateQSmartObject());
+                dbSession.Context.ModifyEntity(yanSe.CreateQSmartObject());
                 dbSession.Context.SaveChange();
                 return true;
             }
@@ -43,7 +44,7 @@ namespace BusinessOrder.GoodsSize
             try
             {
                 var dbSession = Common.DbFactory.CreateDbSession();
-                dbSession.Context.DeleteEntity(dbSession.CreateDeleteCommand<DataModel.ChiMa>(Id));
+                dbSession.Context.DeleteEntity(dbSession.CreateDeleteCommand<DataModel.YanSe>(Id));
                 dbSession.Context.SaveChange();
                 return true;
             }
@@ -53,23 +54,23 @@ namespace BusinessOrder.GoodsSize
             }
         }
 
-        public List<DataModel.ChiMa> GetGoodsSizeList()
+        public List<DataModel.YanSe> GetYanSeList()
         {
             var dbSession = Common.DbFactory.CreateDbSession();
-            var sql = string.Format("select Id,Name from ChiMa ");
+            var sql = string.Format("select Id,Name from YanSe ");
             var dt = dbSession.Context.QueryTable(sql); ;
-            return dbSession.Context.ConversionEntity<DataModel.ChiMa>(dt);
+            return dbSession.Context.ConversionEntity<DataModel.YanSe>(dt);
         }
 
 
-        public DataModel.ChiMa GetGoodsSizeModel(string id)
+        public DataModel.YanSe GetYanSeModel(string id)
         {
             var dbSession = Common.DbFactory.CreateDbSession();
-            var sql = string.Format("select Id,Name from ChiMa where Id='" + id + "' ");
+            var sql = string.Format("select Id,Name from YanSe where Id='" + id + "' ");
             var dt = dbSession.Context.QueryTable(sql);
             if (dt.Rows.Count > 0)
             {
-                var list = dbSession.Context.ConversionEntity<DataModel.ChiMa>(dt);
+                var list = dbSession.Context.ConversionEntity<DataModel.YanSe>(dt);
                 if (list != null && list.Count > 0)
                 {
                     return list[0];
@@ -78,5 +79,8 @@ namespace BusinessOrder.GoodsSize
             }
             return null;
         }
+
+
+      
     }
 }

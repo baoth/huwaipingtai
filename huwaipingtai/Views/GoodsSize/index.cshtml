@@ -117,7 +117,7 @@
             });
             var LoadData = function () {
                 $.ajax({
-                    url: "GetGoodsSizeList",
+                    url: "/GoodsSize/GetGoodsSizeList",
                     data: {},
                     type: "POST",
                     dataType: "JSON",
@@ -157,7 +157,7 @@
                             + '                    <a href="javascript:void(0)" name="selSpan" id="selSpan{0}" style="width:100%"><span></span>{1}</a>'
                             + '                </span>'
                             + '                <span class="tbl-cell text-right">'
-                            + '                    <a href="editSize?type=2&id={0}" class="btn-update"><span></span>修改</a>'
+                            + '                    <a href="/GoodsSize/editSize?type=2&id={0}" class="btn-update"><span></span>修改</a>'
     					    + '               <a href="javascript:confirmDel({0})" class="btn-del"><span></span>删除</a>'
     					    + '                </span>'
                             + '            </span>'
@@ -170,7 +170,7 @@
             function confirmDel(id) {
                 if (confirm("确定删除吗")) {
                     $.ajax({
-                        url: "Save",
+                        url: "/GoodsSize/Save",
                         data: { data: "{'Id':" + id + "}", type: 3 },//3修改
                         type: "POST",
                         dataType: "JSON",
@@ -195,7 +195,7 @@
        <slidercontent>
         <div class="err_msg" id="errorMessage" style="display:block;color:red;margin-top:0.5em;margin-left:0.5em"></div>	
         <div class="new-ct">
-        <form action="updateOrderAddressTouch.action?sid=9f3728a53baaeb4e297bd8e8364ec88b" method="post" id="addressForm">
+        <form action="" method="post" id="addressForm">
     	
     	<div class="size-add">
         	<a href="editSize?type=1" class="btn-size">+添加商品尺码</a>

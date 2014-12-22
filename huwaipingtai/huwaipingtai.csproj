@@ -104,6 +104,7 @@
     <Compile Include="Controllers\OutputOrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RegUserController.cs" />
+    <Compile Include="Controllers\StorageInController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -277,7 +278,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="List\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\NewFolder1\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
@@ -308,6 +308,7 @@
     <Content Include="Views\FeedBack\AdviceSubmited.cshtml" />
     <Content Include="Views\GoodsSize\index.cshtml" />
     <Content Include="Views\GoodsSize\editSize.cshtml" />
+    <Content Include="Views\Storage\StorageIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

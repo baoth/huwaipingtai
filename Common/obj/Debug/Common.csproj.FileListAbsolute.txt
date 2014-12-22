@@ -14,3 +14,11 @@ F:\GithubMobile\huwaipingtai\Common\bin\Debug\DataModel.pdb
 F:\GithubMobile\huwaipingtai\Common\obj\Debug\ResolveAssemblyReference.cache
 F:\GithubMobile\huwaipingtai\Common\obj\Debug\Common.dll
 F:\GithubMobile\huwaipingtai\Common\obj\Debug\Common.pdb
+E:\户外运动平台\huwaipingtai\Common\bin\Debug\Common.dll
+E:\户外运动平台\huwaipingtai\Common\bin\Debug\Common.pdb
+E:\户外运动平台\huwaipingtai\Common\bin\Debug\DataModel.dll
+E:\户外运动平台\huwaipingtai\Common\bin\Debug\QSmart.Core.dll
+E:\户外运动平台\huwaipingtai\Common\bin\Debug\DataModel.pdb
+E:\户外运动平台\huwaipingtai\Common\obj\Debug\ResolveAssemblyReference.cache
+E:\户外运动平台\huwaipingtai\Common\obj\Debug\Common.dll
+E:\户外运动平台\huwaipingtai\Common\obj\Debug\Common.pdb

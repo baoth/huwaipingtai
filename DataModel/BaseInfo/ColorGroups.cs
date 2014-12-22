@@ -9,12 +9,12 @@ namespace DataModel
     /// <summary>
     /// 颜色组 品牌商维护（在用）
     /// </summary>
-    public class ColorGroups : QSmartEntity
+    public class YanSeZu : QSmartEntity
     {
         [PrimaryKey]
         [AutoIncrement]
         public int Id { get; set; }
-        public int BrandId { get; set;}
+        public int PinPaiId { get; set; }
         [StringMaxLength(50, VarCharType.nvarchar)]
         public string Name { get; set; }
     }

@@ -9,7 +9,7 @@ namespace DataModel
     /// <summary>
     /// 经销商信息  （在用）
     /// </summary>
-    public class Merchant : QSmartEntity
+    public class JingXiaoShang : QSmartEntity
     {
        [PrimaryKey]
        [AutoIncrement]

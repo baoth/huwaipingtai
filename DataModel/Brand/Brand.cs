@@ -7,9 +7,9 @@ using QSmart.Core.Object;
 namespace DataModel
 {
     /// <summary>
-    /// 品牌商表在用
+    /// 品牌表在用
     /// </summary>
-    public class Brand : QSmartEntity
+    public class PinPai : QSmartEntity
     {
         [PrimaryKey]
         [AutoIncrement]
@@ -17,8 +17,8 @@ namespace DataModel
         [StringMaxLength(50,VarCharType.nvarchar)]
         public string Name { get; set; }
         [StringMaxLength(150, VarCharType.nvarchar)]
-        public string Address { get; set;}
+        public string Logo { get; set;}
         [StringMaxLength(50, VarCharType.nvarchar)]
-        public string Phone { get; set; }
+        public string PinPaiShangId { get; set; }
     }
 }

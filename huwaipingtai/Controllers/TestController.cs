@@ -19,27 +19,29 @@ namespace huwaipingtai.Controllers
         public ActionResult CreateTable() 
         {
             QSmartDatabaseClient db = DataBaseProvider.Create("db");
-            db.CreateTable<ColorGroups>(QSmartTableType.InnoDB);
-            db.CreateTable<ColorGroupsDetail>(QSmartTableType.InnoDB);
-            db.CreateTable<Colors>(QSmartTableType.InnoDB);
-            db.CreateTable<SizeGroups>(QSmartTableType.InnoDB);
-            db.CreateTable<SizeGroupsDetail>(QSmartTableType.InnoDB);
-            db.CreateTable<Sizes>(QSmartTableType.InnoDB);
+            db.CreateTable<YanSeZu>(QSmartTableType.InnoDB);
+            db.CreateTable<YanSeZuMingXi>(QSmartTableType.InnoDB);
+            db.CreateTable<YanSe>(QSmartTableType.InnoDB);
+            db.CreateTable<ChiMaZu>(QSmartTableType.InnoDB);
+            db.CreateTable<ChiMaZuMingXi>(QSmartTableType.InnoDB);
+            db.CreateTable<ChiMa>(QSmartTableType.InnoDB);
 
-            db.CreateTable<Brand>(QSmartTableType.InnoDB);
-            db.CreateTable<Goods>(QSmartTableType.InnoDB);
-            db.CreateTable<GoodsCatalog>(QSmartTableType.InnoDB);
+            db.CreateTable<PinPai>(QSmartTableType.InnoDB);
+            db.CreateTable<ShangPin>(QSmartTableType.InnoDB);
+            db.CreateTable<ShangPinFenLei>(QSmartTableType.InnoDB);
 
-            db.CreateTable<Merchant>(QSmartTableType.InnoDB);
-            db.CreateTable<MerchantBrand>(QSmartTableType.InnoDB);
+            db.CreateTable<JingXiaoShang>(QSmartTableType.InnoDB);
+            
 
-            db.CreateTable<SecitonOperator>(QSmartTableType.InnoDB);
-            db.CreateTable<Section>(QSmartTableType.InnoDB);
+            db.CreateTable<CaoZuoYuan>(QSmartTableType.InnoDB);
+            db.CreateTable<MenDian>(QSmartTableType.InnoDB);
+            db.CreateTable<MenDian_CanZuoYuan_GuanLian>(QSmartTableType.InnoDB);
 
-            db.CreateTable<GoodsAllocation>(QSmartTableType.InnoDB);
-            db.CreateTable<Store>(QSmartTableType.InnoDB);
-            db.CreateTable<StoreInDoc>(QSmartTableType.InnoDB);
-            db.CreateTable<StoreInDocDetail>(QSmartTableType.InnoDB);
+            db.CreateTable<CangKu>(QSmartTableType.InnoDB);
+            db.CreateTable<HuoWei>(QSmartTableType.InnoDB);
+            
+            db.CreateTable<RuKu>(QSmartTableType.InnoDB);
+            db.CreateTable<RuKuMingXi>(QSmartTableType.InnoDB);
             return Content("ok");
         }
 

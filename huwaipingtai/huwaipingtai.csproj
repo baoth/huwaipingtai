@@ -220,6 +220,7 @@
     <Content Include="Product\1000000022\shelves01.js" />
     <Content Include="Product\1000000022\indexTemplate.html" />
     <Content Include="Product\1000000022\storeInDoc.html" />
+    <Content Include="Scripts\JsExtend.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />

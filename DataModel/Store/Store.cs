@@ -9,7 +9,7 @@ namespace DataModel
     /// <summary>
     /// 仓库 
     /// </summary>
-    public class Store : QSmartEntity
+    public class CangKu : QSmartEntity
     {
        [PrimaryKey]
        [AutoIncrement]
@@ -17,11 +17,11 @@ namespace DataModel
        /// <summary>
        /// 门店或者经销商Id
        /// </summary>
-       public int Section2MerchantId { get; set; }
+       public int MenDian { get; set; }
        /// <summary>
        /// 表示是门店还是经销商 
        /// </summary>
-       public int Tag { get; set; }
+       public int LeiXing { get; set; }
        /// <summary>
        /// 仓库名称
        /// </summary>
@@ -36,7 +36,7 @@ namespace DataModel
         ///仓库管理员 
         /// </summary>
        [StringMaxLength(50, VarCharType.varchar)]
-       public string Adminor { get; set; }
+       public string GuanLiYuan { get; set; }
      
       
 

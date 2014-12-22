@@ -9,12 +9,12 @@ namespace DataModel
    /// <summary>
    /// 颜色组明细（在用）
    /// </summary>
-    public class ColorGroupsDetail : QSmartEntity
+    public class YanSeZuMingXi : QSmartEntity
     {
         [PrimaryKey]
         [AutoIncrement]
        public int Id { get; set; }
-       public int ColorGroupsId { get; set; }
-       public int ColorsId { get; set; }
+        public int YanSeZuId { get; set; }
+       public int YanSeId { get; set; }
     }
 }

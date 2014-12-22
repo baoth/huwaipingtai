@@ -9,7 +9,7 @@ namespace DataModel
     /// <summary>
     /// 颜色（在用）
     /// </summary>
-    public class Colors : QSmartEntity
+    public class YanSe : QSmartEntity
     {
         [PrimaryKey]
         [AutoIncrement]

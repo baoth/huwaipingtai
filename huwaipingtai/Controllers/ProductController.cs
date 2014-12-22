@@ -42,7 +42,7 @@ namespace huwaipingtai.Controllers
         public ContentResult CreateTable()
         {
             QSmartDatabaseClient db = DataBaseProvider.Create("db");
-            //db.CreateTable<GoodsSize>(QSmartTableType.InnoDB);
+            db.CreateTable<ChiMa>(QSmartTableType.InnoDB);
             return Content("ok");
             
             //db.CreateTable<GoodsCatalog>(QSmartTableType.InnoDB);         

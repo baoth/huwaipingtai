@@ -34,11 +34,13 @@ namespace huwaipingtai.Controllers
                     ViewData["Size"] = model.Size;
                     ViewData["GoodsId"] = model.GoodsId;
                     ViewData["title"] = "商品尺寸编辑";
+                    ViewData["pageType"] = 2;
                 }
             }
             else
             {
                 ViewData["title"] = "商品尺寸添加";
+                ViewData["pageType"] = 1 ;
             }
             return View("editSize");
         }

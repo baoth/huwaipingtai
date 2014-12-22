@@ -9,11 +9,13 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
+        <script src="../../Scripts/json2.js" type="text/javascript"></script>
+
         <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
-        <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>      
-
+      
         <script type="text/javascript">
           
         </script>
@@ -164,7 +166,7 @@
     <body>
         @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", ViewData["title"] } })
       
-      <form action="updateAddress.action?sid=4776ad7142b83f39c5fa29a193641ea1" method="post" id="editAddressForm">
+      <form action="updateAddress.action?sid=4776ad7142b83f39c5fa29a193641ea1" method="post" id="editSizeForm">
 					   
         <div class="new-ct shouhuo">
             <div class="title">商品尺寸</div>
@@ -175,7 +177,7 @@
                     <span class="tbl-cell"><span><input type="text" maxlength="20" class="new-input" name="goodsSize" id="goodsSize" value="@ViewData["Size"]" style="width:100%;"></span></span>
                 </div>
             </div>
-            <div class="info pd" style="display:none" id="nameErrorMsg">
+            <div class="info pd" style="display:none" id="sizeErrorMsg">
         	    <div class="tbl-type">
             	    <span class="tbl-cell w80"><span style="color:red">商品尺寸不能为空</span></span>
                 </div>
@@ -187,9 +189,9 @@
                 <span class="tbl-cell">                	
                     <span class="new-input-span">
                         <span class="new-sel-box new-p-re">
-                            <label id="province_label">商品一</label>
-                            <select name="Goods" id="Goods" class="new-select" onchange="javascript:alert(1)"  style="width:200px;">
-                            <option selected="" id="option_add_1" value="1">商品一</option>
+                            <label id="goods_label"></label>
+                            <select name="Goods" id="Goods" class="new-select"  style="width:200px;">
+                            <option id="option_add_1" value="1">商品一</option>
                             <option id="option_add_2" value="2">商品二</option>
                             <option id="option_add_3" value="3">商品三</option>
                             
@@ -199,34 +201,132 @@
                 </span>
             </div>
           </div>        
-           
+            <div class="info pd" style="display:none" id="goodsErrorMsg">
+        	    <div class="tbl-type">
+            	    <span class="tbl-cell w80"><span style="color:red">商品不能为空,请选择对应的商品！</span></span>
+                </div>
+            </div>
            
             </div>
 
 			<div style="display:none" >
-        	    <input  type="hidden" value="@ViewData["Id"]"/>
-            </div>
-        <!--[D] 默认时加  new-abtn-default 把a标签换成span-->
+        	    <input id="goodsSizeId"  type="hidden" value="@ViewData["Id"]"/>
+                <input  id="GoodsId" type="hidden" value="@ViewData["GoodsId"]"/>
+                 <input  id="pageType" type="hidden" value="@ViewData["pageType"]"/>
+            </div>       
         <a href="javascript:submitEditSizeForm()" class="new-abtn-type mgn">下一步</a>	
         </div>
 
         <script type="text/javascript">
 
-    var submitEditSizeForm = function () {
-        spinerShow();
-        $("#editAddressForm").submit();
-        spinerHide();
-    }
+            var submitEditSizeForm = function () {
+                if (CheckValid() == false) return;
+                var url = "Save";
+                var data = {};
+                data.Size = $("#goodsSize").val();
+                var goodsSizeId = $("#GoodsId").val();
+                data.GoodsId = goodsSizeId;
+                
+                var type = GetPageType();
 
-    $(document).ready(function () {
-        BindEvent();
-    });
+                if (type == "2") {
+                    data.Id = $("#goodsSizeId").val();
+                }
+                else {
+                    data.GoodsId = 0;
+
+                }
+                submitAjax(url, data, type);
+
+            }
+            var submitAjax = function (url, data, type) {
+                var dataJson = JSON.stringify(data);
+                $.ajax({
+                    url: url,
+                    data: { data: dataJson, type: type },
+                    type: "POST",
+                    dataType: "JSON",
+                    success: function (d) {
+                        d = eval('(' + d + ')');
+                        if (d && d.IsSuccess) {
+                           
+                            window.location = window.location.origin + "/GoodsSize/Index";
+                        }
+                        else {
+                            alert(d.Msg);
+                        }
+                    },
+                    error: function (s) {
+                        alert("请求错误！");
+                    }
+                });
+            };
+            $(document).ready(function () {
+                BindEvent();
+                InitData();
+            });
     var BindEvent = function () {
-        $("#Goods").bind("onchange", function (e) {
-            debugger
-            alert(e);
+        $("#Goods").change(function (e, index) {
+            var obj = e.target;
+            var text = obj.options[obj.selectedIndex].text;
+            var value = obj.options[obj.selectedIndex].value;
+            $("#goods_label").html(text);
+            $("#GoodsId").val(value);
         });
     }
+
+    var InitData = function () {
+        var itemValue = $("#GoodsId").val();
+        debugger
+        jsSelectValue($("#Goods")[0], itemValue);
+    }
+
+    function jsSelectValue(objSelect, objItemValue) {
+        var isExit = false;   
+        for (var i = 0; i < objSelect.options.length; i++) {
+            if (objSelect.options[i].value == objItemValue) {
+                objSelect.options[i].selected = true;
+                $("#goods_label").html(objSelect.options[i].text);
+                isExit = true;
+                break;
+            }
+        }
+        var type = GetPageType();
+        if (isExit == false) {
+            objSelect.selectedIndex = -1;
+            if (type == "1") {
+                objSelect.options[0].selected = true;
+                $("#goods_label").html(objSelect.options[0].text);
+            }
+        }
+        return isExit;
+    }
+
+    var GetPageType = function () {
+        var type = $("#pageType").val();
+        return type;
+    }
+
+    var CheckValid = function () {
+        var goodsSize = $("#goodsSize").val();
+        if (goodsSize) {
+            $("#sizeErrorMsg").hide();
+        }
+        else {
+            $("#sizeErrorMsg").show();
+            return false;
+        }
+        var goods = $("#goods_label").text();
+        if (goods) {
+            $("#goodsErrorMsg").hide();
+        }
+        else {
+            $("#goodsErrorMsg").show();
+            return false;
+        }
+        return true;
+    }
+
     </script>
         </form>
       

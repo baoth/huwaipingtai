@@ -122,7 +122,6 @@
                     type: "POST",
                     dataType: "JSON",
                     success: function (d) {
-                        
                         if (d) {
                             var divs = CreateHtmlData(d);
                             $("#content").html("");
@@ -147,7 +146,7 @@
             }
 
             var GetHtml = function (obj) {
-                var size = obj["Size"];
+                var size = obj["Size"] == null ? "" : obj["Size"];
                 var id = obj["Id"];
                 var divs = '<div class="size-info">'
                             + '<div class="size-border">'
@@ -168,6 +167,27 @@
                 return divs.format(id,size);
             };
 
+            function confirmDel(id) {
+                if (confirm("确定删除吗")) {
+                    $.ajax({
+                        url: "Save",
+                        data: { data: "{'Id':" + id + "}", type: 3 },//3修改
+                        type: "POST",
+                        dataType: "JSON",
+                        success: function (d) {
+                            if (d) {
+                                LoadData();
+                            }
+                            else {
+                                alert("返回数据失败！");
+                            }
+                        },
+                        error: function (s) {
+                            alert("请求数据失败！");
+                        }
+                    });
+                }
+            }
         </script>
     </head>
     <body>
@@ -190,28 +210,15 @@
 </div>
 
        <script>
-    function selectAddress(addressId) {
-        $("#addressId").val(addressId);
-        spinerShow();
-        $("#addressForm").submit();
-        spinerHide();
-    }
-    function confirmDel(id) {
-        if (confirm("确定删除吗")) {
-            spinerShow();
-            $("#delHref" + id).click();
-            spinerHide();
-        }
-    }
+   
+   
     function keyDown(id) {
         $("a[name='selSpan']").removeClass("on");
         $("#selSpan" + id).addClass("on");
     }
     $(document).ready(function () {
         $("#background").css("height", $("#body").css("height")); ;
-        if ($("#parent1").text() != "" && $("#parent1").text() != null) {
-            $("#backUrl").attr("href", "javascript:backListener('parent1')");
-        }
+        
     });
 </script>
            

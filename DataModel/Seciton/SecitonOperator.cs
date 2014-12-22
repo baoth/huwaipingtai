@@ -7,20 +7,31 @@ using QSmart.Core.Object;
 namespace DataModel
 {
     /// <summary>
-    /// 门店操作表  （在用）
+    /// 操作员  （在用）
     /// </summary>
-    public class SecitonOperator : QSmartEntity
+    public class CaoZuoYuan : QSmartEntity
     {
 
         [PrimaryKey]
         [AutoIncrement]
       public int Id { get; set; }
-
-      public int SectionId { get; set; }
      [StringMaxLength(50, VarCharType.nvarchar)]
       public string LoginName { get; set; }
      [StringMaxLength(50, VarCharType.nvarchar)]
       public string Password { get; set; }
-
+        [StringMaxLength(20, VarCharType.nvarchar)]
+     public string Logo { get; set; }
     }
+    /// <summary>
+    /// 门店--操作员关联表
+    /// </summary>
+    public class MenDian_CanZuoYuan_GuanLian : QSmartEntity
+    {
+        [PrimaryKey]
+        [AutoIncrement]
+        public int Id { get; set; }
+        public int CaoZuoYuanId { get; set; }
+        public int MenDianId { get; set; }
+    }
+
 }

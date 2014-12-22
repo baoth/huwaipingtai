@@ -11,8 +11,8 @@ namespace BusinessOrder.CMS
 {
     public class OPGoodsCatalog : IOPGoodsCatalog
     {
-        
-        public bool Add(GoodsCatalog catalog)
+
+        public bool Add(ShangPinFenLei catalog)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace BusinessOrder.CMS
             }
         }
 
-        public bool Update(GoodsCatalog catalog)
+        public bool Update(ShangPinFenLei catalog)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace BusinessOrder.CMS
             try
             {
                 var dbSession = Common.DbFactory.CreateDbSession();
-                dbSession.Context.DeleteEntity(dbSession.CreateDeleteCommand<GoodsCatalog>(Id));
+                dbSession.Context.DeleteEntity(dbSession.CreateDeleteCommand<ShangPinFenLei>(Id));
                 dbSession.Context.SaveChange();
                 return true;
             }
@@ -56,31 +56,31 @@ namespace BusinessOrder.CMS
                 throw ex;
             }
         }
-               
-        public List<GoodsCatalog> GetGoodsCatalogChild(string code)
+
+        public List<ShangPinFenLei> GetGoodsCatalogChild(string code)
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format("select Id,Code,Level,Name,Pcode,IsStop from goodsCatalog where code='{0}' or pcode='{0}'", code);
             var dt = dbSession.Context.QueryTable(sql); ;
-            return dbSession.Context.ConversionEntity<GoodsCatalog>(dt);
+            return dbSession.Context.ConversionEntity<ShangPinFenLei>(dt);
         }
 
 
-        public List<GoodsCatalog> GetGoodsCatalogAllList()
+        public List<ShangPinFenLei> GetGoodsCatalogAllList()
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format("select Id,Code,Level,Name,Pcode,IsStop from goodsCatalog ");
             var dt = dbSession.Context.QueryTable(sql); ;
-            return dbSession.Context.ConversionEntity<GoodsCatalog>(dt);
+            return dbSession.Context.ConversionEntity<ShangPinFenLei>(dt);
         }
 
 
-        public List<GoodsCatalog> GetGoodsCatalogNotIsStopList()
+        public List<ShangPinFenLei> GetGoodsCatalogNotIsStopList()
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format("select Id,Code,Level,Name,Pcode,IsStop from goodsCatalog where isStop=0 or isStop is null ");
             var dt = dbSession.Context.QueryTable(sql); ;
-            return dbSession.Context.ConversionEntity<GoodsCatalog>(dt);
+            return dbSession.Context.ConversionEntity<ShangPinFenLei>(dt);
         }
        
     }

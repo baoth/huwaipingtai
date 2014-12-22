@@ -107,6 +107,7 @@
     <Compile Include="Controllers\StorageInController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\YanSeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,6 +231,7 @@
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\numeralInput.js" />
@@ -309,6 +311,8 @@
     <Content Include="Views\GoodsSize\index.cshtml" />
     <Content Include="Views\GoodsSize\editSize.cshtml" />
     <Content Include="Views\Storage\StorageIn.cshtml" />
+    <Content Include="Views\YanSe\editColor.cshtml" />
+    <Content Include="Views\YanSe\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

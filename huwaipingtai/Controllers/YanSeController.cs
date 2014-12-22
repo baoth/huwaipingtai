@@ -3,51 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Toolkit.CommonModel;
 using DataModel;
+using Toolkit.CommonModel;
 
 namespace huwaipingtai.Controllers
 {
-    public class GoodsSizeController : BasicController
+   
+    public class YanSeController : BasicController
     {
-        IBusinessOrder.GoodsSize.IOPGoodsSize iopgoodssize;
-        public GoodsSizeController(IBusinessOrder.GoodsSize.IOPGoodsSize iopgoodssize)
+        IBusinessOrder.YanSe.IOPYanSe iopyanse;
+        public YanSeController(IBusinessOrder.YanSe.IOPYanSe iopyanse)
         {
-            this.iopgoodssize = iopgoodssize;
+            this.iopyanse = iopyanse;
         }
         //
-        // GET: /GoodsSize/
+        // GET: /YanSe/
 
         public ActionResult Index()
         {
             return View("index");
         }
-        public ActionResult editSize()
+        public ActionResult editYanSe()
         {
             var id = Request["id"];
             if (id != null)
             {
-                var model = iopgoodssize.GetGoodsSizeModel(id.ToString());
+                var model = iopyanse.GetYanSeModel(id.ToString());
                 if (model != null)
                 {
                     ViewData["Id"] = model.Id;
-                    ViewData["Name"] = model.Name;
-                   // ViewData["GoodsId"] = model.GoodsId;
-                    ViewData["title"] = "商品尺寸编辑";
-                    ViewData["pageType"]="2";
+                    ViewData["Name"] = model.Name;                    
+                    ViewData["title"] = "颜色编辑";
+                    ViewData["pageType"] = "2";
                 }
             }
             else
             {
-                ViewData["title"] = "商品尺寸添加";
+                ViewData["title"] = "颜色添加";
                 ViewData["pageType"] = "1";
             }
-            return View("editSize");
+            return View("editColor");
         }
-        public ActionResult GetGoodsSizeList()
+        public ActionResult GetYanSeList()
         {
             string jsonStr = string.Empty;
-            var list = iopgoodssize.GetGoodsSizeList();
+            var list = iopyanse.GetYanSeList();
             jsonStr = JsonHelp.objectToJson(list);
             return Content(jsonStr);
         }
@@ -61,21 +61,21 @@ namespace huwaipingtai.Controllers
 
                 var type = Request["type"];
                 var data = Request["data"];
-                var model = JsonHelp.josnToObject<ChiMa>(data);
+                var model = JsonHelp.josnToObject<YanSe>(data);
                 switch (type)
                 {
                     case "1"://添加
-                        iopgoodssize.Add(model);
+                        iopyanse.Add(model);
                         r.IsSuccess = true;
                         r.Msg = "添加成功！";
                         break;
                     case "2"://修改
-                        iopgoodssize.Update(model);
+                        iopyanse.Update(model);
                         r.IsSuccess = true;
                         r.Msg = "修改成功！";
                         break;
                     case "3"://删除
-                        iopgoodssize.Delete(model.Id);
+                        iopyanse.Delete(model.Id);
                         r.IsSuccess = true;
                         r.Msg = "删除成功！";
                         break;

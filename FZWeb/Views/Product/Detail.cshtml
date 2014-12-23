@@ -1,0 +1,42 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />   
+    <link href="../../Scripts/qsm-mui/qsmart-mui.css" rel="stylesheet" type="text/css" />
+    
+    <title></title>
+    
+    
+    <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/qsmart-mui-tab-1.0.0.js" type="text/javascript"></script>
+    <script src="../../Scripts/numeralInput.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+    @Html.Partial("_HeaderTypical",new ViewDataDictionary{{"title","ahahha"}})
+    <div class='tbl-type'>
+                                <span class='tbl-cell'>商品金额</span>
+                                <span class='tbl-cell text-right'>@ViewData["Money"]</span>
+                            </div>
+                            <div class='tbl-type'>
+                                <span class='tbl-cell'>运&nbsp;&nbsp;&nbsp;&nbsp;费</span>
+                                <span class='tbl-cell text-right'>@ViewData["Fee"]</span>
+                            </div>
+                            <div class='tbl-type'>
+                                <span class='tbl-cell'>应付金额</span>
+                                <span class='tbl-cell text-right' style='color: #c00;'>@ViewData["Total"]</span>
+                            </div>
+                            @Html.Partial("_FooterTypical")
+</body>
+</html>

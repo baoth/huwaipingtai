@@ -1,0 +1,726 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />   
+    <link href="../../Scripts/qsm-mui/qsmart-mui.css" rel="stylesheet" type="text/css" />
+    
+    <title></title>
+    
+    
+    <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+      <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/qsmart-mui-tab-1.0.0.js" type="text/javascript"></script>
+    <script src="../../Scripts/numeralInput.js" type="text/javascript"></script>
+
+    <style type="text/css">
+        
+          
+        body {
+        min-width: 320px;
+        font-size: 1em;
+        font-family: 'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;
+        color: #000;
+        -webkit-text-size-adjust: none;
+        }
+        
+       
+       
+        .content
+        {           
+            text-align:left;  
+        }
+        ul
+        {
+           list-style-type:none;
+           left:3px;
+        }
+        li
+        {
+            width:100%;
+            text-align:left;
+        }
+        .product_image
+        {
+            text-align:center;
+            margin-left: -40px;
+            margin-right: 10px;
+        }
+                 
+        a {        
+        text-decoration: none;
+        }
+        
+        
+       .btn-color
+       {
+        display: inline-block;
+        min-width: 75px;
+        height: 30px;
+        border: 1px solid #999;
+        border-radius: 3px;
+        background-color: #f5f4f4;
+        background: -webkit-gradient(linear,0 0,0 100%,from(#fffeff),to(#f5f4f4));
+        line-height: 29px;
+        font-size: 14px;
+        color: #333;       
+        text-align: center; 
+         margin-top:5px;
+       }
+       .btn-color.on {
+        border: 1px solid #e4393c;
+        background: #e4393c;
+        color: #fff;
+      }
+     
+      .btn-add,.btn-del {
+        float: left;
+        width: 33px;
+        height: 34px;
+        border-right: 1px solid #999;
+        border-radius: 3px 0 0 3px;
+        background-color: #f5f4f4;
+        background: -webkit-gradient(linear,0 0,0 100%,from(#fffeff),to(#f5f4f4));
+        text-align: center;
+        display: inline-block;
+        height: 34px;
+        border: 1px solid #999;
+        border-radius: 3px;
+        line-height: 34px;
+       }
+       .btn-add span,.btn-del span {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background: url(../../Content/images/icon_detail.png) -85px -15px no-repeat;
+        background-size: 100px 100px;
+        }
+        
+        .quantity-input {
+        float: left;
+        width: 33px;
+        height: 35px;
+        line-height: 34px;
+        font-size: 14px;
+        color: #333;
+        background-color: #f5f4f4;
+        background: -webkit-gradient(linear,0 0,0 100%,from(#fffeff),to(#f5f4f4));
+        display: inline-block;       
+        border: 1px solid #999;
+        border-radius: 3px;
+        line-height: 34px;
+        text-align:center;
+        }
+        
+       .btn-del span {
+        background-position: -85px -34px;
+       }
+      
+       .btn
+       {
+        display: inline-block;
+        min-width: 75px;
+        height: 30px;
+        border: 1px solid #999;
+        border-radius: 3px;
+        background-color: #f5f4f4;
+        background: -webkit-gradient(linear,0 0,0 100%,from(#fffeff),to(#f5f4f4));
+        line-height: 29px;
+        font-size: 14px;
+        color: #333;       
+        text-align: center; 
+         margin-top:2px;
+       }
+       .btn_back
+       {
+           width:50px; height:30px; position:absolute;left: 5px; 
+       }
+       .btn_more
+       {
+         width:50px; height:30px;position:absolute;right: 5px;   
+       }
+       
+      
+        .content a {        
+        height: 35px;       
+        border-radius: 3px;
+        line-height: 35px;       
+        }
+       .content .title
+       {
+           margin: 0px;
+       }
+    </style>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        a
+        {
+            text-decoration:none;
+        }
+        body
+        {
+            line-height: 1.25em;
+            font-family: 'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;
+        }
+         .i-bh-header
+        {
+            position: relative;
+            height: 44px;
+            background: #e4393c;
+        }
+        .i-bh-header h2 
+        {
+            height: 44px;
+            line-height: 44px;
+            font-weight: normal;
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
+        }
+       
+        .i-a-back 
+        {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            width: 30px;
+            height: 32px;
+        }
+        .i-a-back span 
+            {
+                display: inline-block;
+                width: 10px;
+                height: 18px;
+                margin-top: 6px;
+                background: url(../../Content/images/icon2b.png) -60px 0 no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-a-bh 
+            {
+                position: absolute;
+                top: 6px;
+                right: 12px;
+                width: 37px;
+                height: 30px;
+            }
+            .i-a-bh span 
+            {
+                display: inline-block;
+                width: 21px;
+                height: 21px;
+                margin: 5px 0 0 13px;
+                background: url(../../Content/images/icon2b.png) -125px -24px no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-bh-tab
+            {
+                border-bottom: 1px solid #d0cece;
+                background-color: #fff;
+                display:none;
+            }
+            .i-bh-tab.on
+            {
+            	display:block;
+            }
+            .i-tbl-type 
+            {
+                display: table;
+                width: 100%;
+            }
+            .i-bh-tab .i-tbl-cell 
+            {
+                width: 25%;
+                padding: 9px 0;
+                font-size: 12px;
+                text-align: center;
+                display: table-cell;
+            }
+            .i-bh-tab .i-tbl-cell span
+            {
+            	background: url(../../Content/images/icon2b.png) -60px -25px no-repeat;
+                background-size: 180px 180px;
+                vertical-align: text-top;
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                color:#6e6e6e;
+            }
+            
+            
+    </style>
+
+    <!--底部按钮-->
+    <style type="text/css">
+        .detail-tbn2 .tbl-cell {
+        width: 50%;
+        text-align: center;
+        }
+        .tbl-cell {
+        display: table-cell;
+        } 
+        .detail-tbn2 {
+        padding: 5px 0;
+        background: #f1f1f5;
+        }   
+        .tbl-type {
+        display: table;
+        width: 100%;
+        }
+        .detail-tbn2 .tbl-cell a {
+        display: block;
+        height: 35px;
+        margin: 0 10px;
+        border-radius: 3px;
+        line-height: 35px;
+        color: #fff;
+        }  
+        
+        .btn-buy {
+        background: #c00;
+        }
+       
+       .btn-cart {
+        background: #6cb248;
+        }
+        
+        .btn-buy span, .btn-cart span, .btn-buy-def span, .btn-cart-def span {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+        background: url(../../Content/images/icon_detail.png) -74px 0 no-repeat;
+        background-size: 100px 100px;
+        vertical-align: -2px;
+        }
+        .btn-cart span {
+        background-position: -60px -27px;
+        }
+        
+       
+    </style>
+
+     <!--底部登陆信息样式-->
+    <style type="text/css">
+        .login-area {
+        padding-bottom: 1.8em;
+        text-align: center;
+        width: 100%;
+        max-width: 640px;
+        background-color: #fff;
+        margin: 0 auto;
+        }
+        .login-area .login {
+        padding: .55em .71em;
+        border-bottom: 1px solid #e5e5e5;
+        text-align: left;
+        }
+        .login-area a {
+        font-size: .85em;
+        color: #666;
+        }
+        .login-area .lg-bar {
+        display: inline-block;
+        margin: 0 2px;
+        color: #666;
+        }
+        .login-area .login {
+        padding: .55em .71em;
+        border-bottom: 1px solid #e5e5e5;
+        text-align: left;
+        }
+        .new-fr {
+        float: right;
+        }
+       .version {
+        padding: .71em 0 5px;
+        }
+        .version a {
+        padding: 0 1.16em;
+        color: #6e6e6e;
+        }
+        .version a.on {
+        color: #e6242b;
+        }
+        .copyright {
+        font-size: 12px;
+        color: #666;
+        }
+    </style>
+    <!-- 遮盖层-->
+    <style type="text/css">
+    .cart-pop {
+        position: absolute;
+        left: 30px;
+        bottom: 1px;
+        width: 228px;
+        height:150px;
+        background-color: rgba(0,0,0,.65);
+        color: #fff;
+        border-radius: 2px;
+        border: 1px solid #3d3c3b;
+        box-shadow: 1px 1px 1px rgba(0,0,0,.5);
+      }
+      .cart-pop .ico-succ {
+        padding: 11px 15px 9px 52px;
+        background: url(../../Content/images/icon_suc.png) 11px 20px no-repeat;
+        border-bottom: 1px solid rgba(130,128,127,.5);
+        text-shadow: 0 1px 0 rgba(0,0,0,1);
+      }
+      .cart-pop .cp-lnk {
+        display: table;
+        width: 100%;
+      }
+      .cart-pop .cp-lnk a {
+        display: table-cell;
+        width: 50%;
+        padding: 7px 0 9px;
+        font-size: 14px;
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0,0,0,1);
+        text-align: center;
+        }
+        .cart-pop .bar {
+        height: 17px;
+        margin-top: 4px;
+        background: rgba(130,128,127,.65);
+        }
+        .bar {
+        width: 1px;
+        height: 20px;
+        color: #c8c7cc;
+        vertical-align: top;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
+            Init();
+            BindEvent();
+        });
+        var Init = function () {
+            $("#txt_quantity").numeral();
+         }
+
+         var BindEvent = function () {
+             var txt_quantity = $("#txt_quantity");
+             $("#btn_quantityCut").bind("click", function () {
+                 QuantityCount(txt_quantity, "+");
+             });
+
+             $("#btn_quantityAdd").bind("click", function () {
+                 QuantityCount(txt_quantity, "-");
+             });
+             $("#btn_color a").live("click", function () {
+                 SetButtonCheck(this);
+                 HrefPage("10000000"); //10000000固定部分
+             });
+
+             $("#btn_size a").live("click", function () {
+                 SetButtonCheck(this);
+                 HrefPage("10000000");
+             });
+
+             $("#btn_back").bind("click", function () {
+                 back();
+             })
+
+             $("#btn_more").bind("click", function () {
+                 more();
+             });
+             $("#directorder").bind("click", function () {
+                 var sku = $("#ProductId").val();
+                 var quantity = $("#txt_quantity").val();
+                 $(this).attr("href", "/Cart/BuyDirect?sku=" + sku + "&quantity=" + quantity);
+             });
+             //添加购物车
+             $("#add_cart").bind("click", function () {
+                 var sku = $("#ProductId").val();
+                 var quantity = $("#txt_quantity").val();
+                 $(this).attr("href", "/Cart/Add?sku=" + sku + "&quantity=" + quantity);
+             });
+             $("#goCart").bind("click", function () {
+                 window.location = window.location.origin + '/Cart/index'
+             });
+         }
+         //数量计算
+         var QuantityCount = function (obj, type) {
+             var q = obj.val();
+             switch (type) {
+                 case "+":
+                     if (q) {
+                         q = parseInt(q);
+                         if (q > 0) {
+                             q--;
+                             obj.val(q);
+                         }
+                     }
+                     else {
+                         obj.val("0");
+                     }
+                     break;
+                 case "-":
+                     if (q) {
+                         q = parseInt(q);
+                         if (q >= 0) {
+                             q++;
+                             obj.val(q);
+                         }
+                     }
+                     else {
+                         obj.val("1");
+                     }
+                     break;
+             }
+         }
+         //设置选择按钮
+         var SetButtonCheck = function (obj) {
+             $(obj).addClass("btn-color on");
+             $(obj).attr("checked", true);
+             $(obj).siblings().each(function (e) {
+                 $(this).removeClass();
+                 $(this).addClass("btn-color");
+                 $(this).removeAttr("checked");
+
+             });
+         }
+         var HrefPage = function (path) {
+             var colorCode = $("#btn_color a[class='btn-color on']").attr("code");
+             var sizeCode = $("#btn_size a[class='btn-color on']").attr("code");
+             window.location.href ="../"+ path + colorCode + sizeCode + "/index.html"; ;
+         }
+
+         //返回
+         var back = function () {             
+             window.history.back();
+         }
+         var more = function () {
+             alert("无更多数据");
+         }
+         function sc1(DivId) {
+             var Div = $(DivId);
+             d$(DivId).style.top = (document.documentElement.scrollTop + (document.documentElement.clientHeight - d$(DivId).offsetHeight) / 2) + "px";
+             d$(DivId).style.left = (document.documentElement.scrollLeft + (document.documentElement.clientWidth - d$(DivId).offsetWidth) / 2) + "px";
+         }
+         function d$(id) {
+             return document.getElementById(id);
+         } 
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.i-a-bh').on('click', function () {
+                var tg = $('.i-bh-tab');
+                if (tg.hasClass('on')) {
+                    tg.removeClass('on');
+                }
+                else {
+                    tg.addClass('on');
+                }
+            });
+        });
+     </script>
+</head>
+<body>
+    
+       <header>
+            <div class='i-bh-header'>
+                <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
+                <h2>商品详细</h2>
+                <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
+            </div>
+            <div class='i-bh-tab'>
+                <div class='i-tbl-type'>
+                    <a href='#' class='i-tbl-cell'>
+                        <span></span>
+                        <p style='color:#6e6e6e;'>首页</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:26px;background-position:0 -25px;'></span>
+                        <p style='color:#6e6e6e;'>分类搜索</p>
+                    </a>
+                    <a href='#' id="product_cart" class='i-tbl-cell'>
+                        <span style='width:25px;background-position:-29px -25px'></span>
+                        <p style='color:#6e6e6e;'>购物车</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:22px;background-position:-85px -25px'></span>
+                        <p style='color:#6e6e6e;'>我的易购</p>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+       <div class="content">
+            <ul>
+             <li>
+                  <div id="tabpages">
+                   <div class='tab-scroller'>                       
+                        <div class='tab-item'><div class="c"><span id='Span1'></span></div></div>
+                        <div class='tab-item'><div class="c"><span id='Span2'></span></div></div>
+                        <div class='tab-item'><div class="c"><span id='Span3'></span></div></div>
+                        <div class='tab-item'><div class="c"><span id='Span4'></span></div></div>
+                        <ul><span id='Span5'></span></ul>
+                    </div>                
+                 </div>
+             </li>
+
+             <li style=" text-align:center;">
+                <div id="detail_discription" style=" font-size:large">加棉衣服</div>
+                <div style=" color:Red;font-size:large;">￥88.88</div>
+                 <hr  />
+             </li>
+             
+            
+             <li>
+                <div class="content title">
+                    颜色
+                </div>
+                <div id="btn_color">                  
+                  <a title="卡其色" code="1"  href="javascript:void(0)" class="btn-color on">卡其色</a>
+                  <a title="咖啡色" code="2"  href="javascript:void(0)" class="btn-color">咖啡色</a>
+                 
+                </div>
+                <hr style=" margin-top:2px" />
+             </li>
+             <li>
+                <div class="content title">
+                    尺码
+                </div>
+                <div id="btn_size">                    
+                    <a title="XL" code="1"  href="javascript:void(0)" class="btn-color on">XL</a>
+                    <a title="XXL" code="2"  href="javascript:void(0)" class="btn-color">XXL</a>
+                </div>
+                <hr style=" margin-top:2px"/>
+             </li>
+             <li style=" height:50px">
+                <div class="content title">购买数量</div>
+                <span class="add-del">                 
+                <a class="btn-add" id="btn_quantityCut"><span></span></a>
+                 <input id="txt_quantity" type="text" class="quantity-input" value="1"/>
+                <a class="btn-del"  id="btn_quantityAdd"><span></span></a>
+                </span>  
+                <span id="product_quantity" style=" position:absolute; right:5px">库存100件</span> 
+             </li>
+             <li>
+                <div id="product_image" class="product_image">
+                    <div>查看图文详情</div>
+                    <ul>
+                        <li>                            
+                            <img src="00001.jpg" style="width:100%"/>
+                        </li>
+                         <li>
+                            <img src="00002.jpg" style="width:100%"/>
+                        </li>
+                         <li>
+                            <img src="00003.jpg" style="width:100%"/>
+                        </li>
+                         <li><span style="font-size:large">细节展示</span></li>
+                         <li>                            
+                            <img src="00004.jpg" style="width:100%"/>
+                        </li>
+                    </ul>
+                </div>
+             </li>
+            </ul>
+                      
+       </div>
+
+      <div class="tbl-type detail-tbn2" id="cart1" style="position: fixed; left: 0px; bottom: 0px; z-index: 999; display: table;">
+    	   <div class="tbl-cell">                   
+               <a id="directorder" class="btn-buy"><span></span>立即购买</a>
+           </div>
+           <div class="tbl-cell">  
+                <a id="add_cart" class="btn-cart"><span></span>加入购物车</a>
+           </div>
+      </div>
+
+      <div class="login-area" id="footer">
+        	<div class="login">
+			<a rel="nofollow" href="#">
+					tzwe..
+        	</a>
+    		<span class="lg-bar">|</span>
+			<a rel="nofollow" href="#">退出</a>
+			<span class="new-fr">
+                <a href="#">反馈</a>
+                <span class="lg-bar">|</span>
+                <a href="#top">回到顶部</a>
+            </span>
+            </div>
+
+        	<div class="version"><a href="#">标准版</a><a href="javascript:void(0)" class="on">触屏版</a>
+				<a onclick="skip();" href="javascript:void(0);" id="toPcHome">电脑版</a>
+        	</div>
+        	<div id="clientArea">
+	        	<a href="#" id="toClient" class="openJD">客户端</a>
+        	</div>
+            <div class="copyright">Copyright © 2014-2015 baoth.com 版权所有</div>
+       </div>
+
+      <div style=" display:none">
+         <input type="hidden" id="ProductId" value="1000000011" />
+        
+      </div>
+
+      <div id="_mask" style="display:none;position:absolute;left:0px;top:0px;background-color:rgb(20, 20, 20);filter:alpha(opacity=60);opacity: 0.6;width:100%;height:1124px;z-index:9998;"></div>
+      <div class="cart-pop" id="cart" style=" display:none; position: absolute; bottom: 63px; z-index: 9999; left: 93px; -webkit-transform-origin: 0px 0px 0px; opacity: 1; -webkit-transform: scale(1, 1);">
+        <div class="ico-succ">
+            <span class="att-succ">添加成功！</span>
+            <span class="cart-succ">商品已成功加入购物车</span>
+        </div>
+        <div class="cp-lnk">
+            <a href="javascript:void(0)" onclick="$('#cart').hide();$('#_mask').hide();" id="stroll">再逛逛</a>                    
+            <a id="goCart"><span class="bar"></span>去购物车</a>
+        </div>
+       </div>
+</body>
+</html>
+
+<style type="text/css">
+        #tabpages
+        {
+        	width: 100%;            
+            height: 200px;           
+            background:#ccc;
+            text-align:center;
+        }
+        #tabpages span
+        {
+        	font-family:icons!important;
+        	font-size:100px;
+        }
+        .tab-scroller1
+        {
+        	height:100%;
+        }
+        .tab-item,#tabpages ul
+        {
+        	background:#fff;
+        }
+  </style>
+ <script type="text/javascript">
+     document.tab = new QsmartTab('tabpages', { 'callback': dd });
+    
+     function dd(a) {
+         console.log(a);
+     };
+     var kk = 0;
+     $('.ui-gotop').on('click', function () { document.tab.jump(kk); kk++; });
+
+     $('#Span1').html('<img src="00001.jpg" style="width:100%;height:150px"/>');
+     $('#Span2').html('<img src="00002.jpg" style="width:100%;height:150px;"/>');
+     $('#Span3').html('<img src="00003.jpg" style="width:100%;height:150px;"/>');
+     $('#Span4').html('<img src="00004.jpg" style="width:100%;height:150px;"/>');
+     $('#Span5').html('<img src="00001.jpg" style="width:100%;height:150px;"/>');
+
+    </script>

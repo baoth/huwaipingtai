@@ -1,0 +1,321 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        
+        <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+        
+        <style type="text/css">
+           .new-ct 
+            {
+                min-height: 203px;
+                background-color: #fff;
+            }
+            .title 
+            {
+                padding: 13px 10px 7px;
+                border-bottom: 1px solid #c8c7cc;
+                background: #f1f1f5;
+                font-size: 14px;
+                color: #666;
+            }
+            .info-pay-t
+            {
+                padding-left: 10px;
+                border-bottom: 1px solid #c8c7cc;
+            }
+            .info-pay
+            {
+                padding: 13px 10px 12px;
+                border-bottom: 1px solid #c8c7cc;
+            }
+            .info-pay.b-b-n
+            {
+                border-bottom: none;
+            }
+            .btn-radio 
+            {
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                padding: 0;
+                background: url(../Content/images/icon_order.png) -79px -50px no-repeat;
+                background-size: 100px 100px;
+                vertical-align: -5px;
+            }
+            .btn-radio.on 
+            {
+                background-position: -55px -50px;
+            }
+            .mgn 
+            {
+                margin: 15px 10px;
+            }
+            .new-abtn-type
+            {
+                display: block;
+                padding: 8px;
+                border-radius: 2px;
+                background-color: #c00;
+                font-size: 14px;
+                color: #fff;
+                text-align: center;
+            }
+            .i-date 
+            {
+                display: inline-block;
+                position: relative;
+                width: 240px;
+                padding: 8px 7px 7px;
+                border: 1px solid #c8c7cc;
+                background: #f4eaea;
+                font-size: 12px;
+                color: #333;
+            }
+            .i-btn-date 
+            {
+                position: absolute;
+                right: 0;
+                width: 30px;
+                height: 20px;
+                background: url(../Content/images/icon_order.png) -55px -27px no-repeat;
+                background-size: 100px 100px;
+            }
+        </style>
+    </head>
+    <body>
+        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "配送方式" } })
+        <div style="display:none;height: 583px; width: 100%; z-index: 1001; position: absolute; overflow: hidden; -webkit-transform-origin: 0px 0px; opacity: 1; -webkit-transform: scale(1, 1); background: rgba(0, 0, 0, 0.701961);" id="itbackground">
+        </div>
+        <div class='i-bd' style='width:100%'>
+            <div class='new-ct' style='width:100%;height:100%;float:left;'>
+                <div class='title'>送货时间</div>
+                <div class="info-pay-t">
+			        <div class="info-pay chooseTime b-b-n" data-index='1'>
+                        <a name="ptlistTime" id="Time1" class="btn-radio on"></a>
+					    <a href="javascript:triggerDateTime()">
+							<span class="i-date">  
+                                <span id="i-sendTime" data-date='' data-tsect='' data-send=''></span>
+								<span class="i-btn-date"></span> 
+							</span>
+						</a>
+                    </div>
+                </div>
+                <div class='title'>送货前电话确认</div>
+                <div class="info-pay-t">
+			        <div class="info-pay choosePhone" data-index='1'>
+                        <a name="ptlistPhone" id="Phone1" class="btn-radio on"></a>
+					    <span>否</span>
+                    </div>
+				    <div class="info-pay choosePhone b-b-n" data-index='2'>
+                        <a name="ptlistPhone" id="Phone2" class="btn-radio"></a>
+					    <span>是</span>
+                    </div>
+                </div>
+                <a href="javascript:submitForm()" class="new-abtn-type mgn">确认</a>
+                <input type="hidden" name="idTime" id="idTime" value="1">
+                <input type="hidden" name="idPhone" id="idPhone" value="1">
+            </div>
+        </div>
+        @Html.Partial("_FooterTypical")
+
+        <!--日期控件-->
+        <div class='i-datetimer' id="i-timer">
+            <div class="new-ct" style="height:100%;">
+	            <div class="title">
+        	        <span class="i-tbl-type">
+            	        <span class="tbl-cell" style="width:25%">时间段</span>
+    			        <span class="tbl-cell" style="width:25%" id='timesect1'>9:00-15:00</span>
+    			        <span class="tbl-cell" style="width:25%" id='timesect2'>15:00-19:00</span>
+    			        <span class="tbl-cell" style="width:25%" id='timesect3'>19:00-22:00</span>
+    			    </span>
+                </div>
+            </div>
+        </div>
+        <style type="text/css">
+            .i-datetimer
+            {
+            	display: none; 
+            	width: 100%; 
+            	height: auto; 
+            	position: absolute; 
+            	top: 44px; 
+            	z-index: 9999; 
+            	left: 0%;
+            }
+            .i-tbl-type 
+            {
+                display: table;
+                width: 100%;
+            }
+            .title .tbl-cell:first-child 
+            {
+                font-size: 14px;
+                color: #333;
+            }
+            .title .tbl-cell 
+            {
+                font-size: 12px;
+                color: #666;
+                text-align: center;
+            }
+            .i-info-dv .tbl-cell 
+            {
+                font-size: 12px;
+                color: #4d4c4c;
+                text-align: center;
+                vertical-align: middle;
+            }
+            .tbl-cell 
+            {
+                display: table-cell;
+            }
+            .i-info-dv
+            {
+            	border-bottom: 1px solid #c8c7cc;
+            	padding: 0;
+            }
+            .i-send-time
+            {
+            	display: block;
+                padding: 9px 10px 6px;
+                color: #000;
+                text-decoration: none;
+            }
+            .i-info-dv .i-send-time.on .icon 
+            {
+                width: 25px;
+                height: 24px;
+                background-position: 2px -56px;
+            }
+            .i-info-dv .i-send-time .icon 
+            {
+                display: inline-block;
+                width: 40px;
+                height: 24px;
+                background: url(../Content/images/icon_order.png) -56px -75px no-repeat;
+                background-size: 100px 100px;
+                vertical-align: top;
+            }
+        </style>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#itbackground').on($.clickAction, triggerDateTime);
+                $('.chooseTime').on($.clickAction, chooseTime);
+                $('.choosePhone').on($.clickAction, choosePhone);
+                initCourier();
+                createDateTimer();
+            });
+            function initCourier() {
+                if (window.sessionStorage.courierDate == undefined || window.sessionStorage.courierDate == '') {
+                    window.sessionStorage.courierDate = new Date().DateAdd('d', 1).Format('YYYY-M-D');
+                }
+                var defaultDate = new Date().StringToDate(window.sessionStorage.courierDate);
+                if (window.sessionStorage.courierTimeSect == undefined || window.sessionStorage.courierTimeSect == '') {
+                    window.sessionStorage.courierTimeSect = $('#timesect1').text();
+                }
+                var defaultTimeSect = window.sessionStorage.courierTimeSect;
+                
+                $('#i-sendTime').html(defaultDate.Format('YYYY-M-D (周W) ') + defaultTimeSect);
+                $('#i-sendTime').data('date', defaultDate.Format('YYYY-M-D')).data('tsect', defaultTimeSect);
+                var TimeIndex=window.sessionStorage.courierTimeType || 1;
+                $('#Time' + TimeIndex).parent().trigger($.clickAction);
+                var PhoneIndex = window.sessionStorage.courierPoneType || 1;
+                $('#Phone' + PhoneIndex).parent().trigger($.clickAction);
+            };
+            function createDateTimer() {
+                var defaultDateStr = window.sessionStorage.courierDate;
+                var defaultTimeSect = window.sessionStorage.courierTimeSect;
+                var sect = new Array();
+                sect['9:00-15:00'] = 1;
+                sect['15:00-19:00'] = 2;
+                sect['19:00-22:00'] = 3;
+                var ct = $('#i-timer .new-ct');
+                $('#i-timer .new-ct .i-info-dv').remove();
+                $('#i-timer .new-ct .new-abtn-type').remove();
+                var myDate = new Date();
+                var section = '';
+                var sendindex = 1;
+                for (var i = 1; i <= 7; i++) {
+                    var cdate = myDate.DateAdd('d', i);
+                    var cdatestr = cdate.Format('YYYY-M-D');
+                    
+                    section += "<div class='i-info-dv'><span class='i-tbl-type'>";
+                    section += "<span class='tbl-cell info' style='width:25%' data-date='" + cdatestr +
+                               "' data-week='" + cdate.Format('周W') + "'>" + cdate.Format('M-D 周W') + "</span>";
+                    section += "<span class='tbl-cell' style='width:25%'>" +
+                               "<a id='t" + cdatestr + "1' href='javascript:void(0)' name='hours' class='i-send-time' data-time='timesect1' data-send='" + sendindex + "'><span class='icon'></span></a>" +
+                               "</span>";
+                    sendindex++;
+                    section += "<span class='tbl-cell' style='width:25%'>" +
+                               "<a id='t" + cdatestr + "2' href='javascript:void(0)' name='hours' class='i-send-time' data-time='timesect2' data-send='" + sendindex + "'><span class='icon'></span></a>" +
+                               "</span>";
+                    sendindex++;
+                    section += "<span class='tbl-cell' style='width:25%'>" +
+                               "<a id='t" + cdatestr + "3' href='javascript:void(0)' name='hours' class='i-send-time' data-time='timesect3' data-send='" + sendindex + "'><span class='icon'></span></a>" +
+                               "</span>";
+                    sendindex++;
+                    section += "</span></div>";
+                }
+                ct.append(section);
+                ct.append("<a href='javascript:triggerDateTime()' class='new-abtn-type mgn'>确认</a>");
+                $('#t' + defaultDateStr + sect[defaultTimeSect]).addClass('on');
+                $('.i-send-time').on($.clickAction, selectTime);
+            };
+            function submitForm() {
+                window.sessionStorage.courierDate = $('#i-sendTime').data('date');
+                window.sessionStorage.courierTimeSect = $('#i-sendTime').data('tsect');
+                window.sessionStorage.courierTimeType = $('#idTime').val();
+                window.sessionStorage.courierPoneType = $('#idPhone').val();
+                window.sessionStorage.courierSend = $('#i-sendTime').data('send');
+                $('.i-a-back').trigger($.clickAction);
+            };
+            function selectTime() {
+                
+                $('.i-send-time').removeClass('on');
+                $(this).addClass('on');
+
+                var time = $('#' + $(this).data('time')).text();
+                
+                var infoobj = $(this).parent().siblings('.info');
+                var date = infoobj.data('date');
+                var week = infoobj.data('week');
+                $('#i-sendTime').html(date + ' (' + week + ') ' + time);
+                $('#i-sendTime').data('date', date).data('tsect', time).data('send', $(this).data('send'));
+            };
+            function triggerDateTime() {
+                var obj = $('#i-timer');
+                if (obj.css('display') == "none") {
+                    $("#itbackground").height($("body").height());
+                    $("#itbackground").show();
+                    obj.show();
+                } else {
+                    $("#itbackground").hide();
+                    obj.hide();
+                }
+            };
+            function chooseTime() {
+                var index = $(this).data('index');
+                $("#idTime").val(index);
+                $("[name='ptlistTime']").removeClass("on");
+                $('#Time' + index).addClass("on");
+            };
+            function choosePhone() {
+                var index = $(this).data('index');
+                $("#idPhone").val(index);
+                $("[name='ptlistPhone']").removeClass("on");
+                $('#Phone' + index).addClass("on");
+            };
+        </script>
+    </body>
+
+</html>

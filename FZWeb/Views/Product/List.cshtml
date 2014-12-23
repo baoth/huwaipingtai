@@ -1,0 +1,537 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />   
+    <link href="../../Scripts/qsm-mui/qsmart-mui.css" rel="stylesheet" type="text/css" />
+    
+    <title></title>
+    
+    
+    <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/qsmart-mui-tab-1.0.0.js" type="text/javascript"></script>
+    <script src="../../Scripts/numeralInput.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.i-a-bh').on('click', function () {
+                var tg = $('.i-bh-tab');
+                if (tg.hasClass('on')) {
+                    tg.removeClass('on');
+                }
+                else {
+                    tg.addClass('on');
+                }
+            });
+        });
+        </script>
+        <style type="text/css">
+            @@font-face
+            {
+        	    font-family:icons;
+        	    src:url(../Scripts/qsm-mui/iconfont_141111.ttf) format('truetype');
+        	    font-weight:400;
+        	    font-style:normal;
+            }
+            *
+            {
+            	margin:0;
+            	padding:0;
+            }
+            a
+            {
+            	text-decoration:none;
+            }
+            body
+            {
+            	line-height: 1.25em;
+            	font-family: 'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;
+            }
+            .i-bh-header
+            {
+                position: relative;
+                height: 44px;
+                background: #e4393c;
+            }
+            .i-bh-header h2 
+            {
+                height: 44px;
+                line-height: 44px;
+                font-weight: normal;
+                font-size: 16px;
+                color: #fff;
+                text-align: center;
+            }
+            .i-a-back 
+            {
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 30px;
+                height: 32px;
+            }
+            .i-a-back span 
+            {
+                display: inline-block;
+                width: 10px;
+                height: 18px;
+                margin-top: 6px;
+                background: url(../Content/images/icon2b.png) -60px 0 no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-a-bh 
+            {
+                position: absolute;
+                top: 6px;
+                right: 12px;
+                width: 37px;
+                height: 30px;
+            }
+            .i-a-bh span 
+            {
+                display: inline-block;
+                width: 21px;
+                height: 21px;
+                margin: 5px 0 0 13px;
+                background: url(../Content/images/icon2b.png) -125px -24px no-repeat;
+                background-size: 180px 180px;
+                text-indent: -9999px;
+            }
+            .i-bh-tab
+            {
+                border-bottom: 1px solid #d0cece;
+                background-color: #fff;
+                display:none;
+            }
+            .i-bh-tab.on
+            {
+            	display:block;
+            }
+            .i-tbl-type 
+            {
+                display: table;
+                width: 100%;
+            }
+            .i-bh-tab .i-tbl-cell 
+            {
+                width: 25%;
+                padding: 9px 0;
+                font-size: 12px;
+                text-align: center;
+                display: table-cell;
+            }
+            .i-bh-tab .i-tbl-cell span
+            {
+            	background: url(../Content/images/icon2b.png) -60px -25px no-repeat;
+                background-size: 180px 180px;
+                vertical-align: text-top;
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                color:#6e6e6e;
+            }
+            
+            
+            
+            .new-ct 
+            {
+                min-height: 300px;
+                background-color: #fff;
+            }
+            .title 
+            {
+                padding: 13px 10px 7px;
+                border-bottom: 1px solid #c8c7cc;
+                background: #f1f1f5;
+                font-size: 14px;
+                color: #666;
+            }
+            .info 
+            {
+                position: relative;
+                border-bottom: 1px solid #c8c7cc;
+            }
+            .info a 
+            {
+                display: block;
+                padding: 13px 30px 12px 10px;
+                color: #000;
+                text-decoration: none;
+            }
+            .info a::after
+            {
+            	content:'\e62a';
+            	font-family:icons!important;
+                position:absolute;
+                top:30%;
+                right:10px;
+            }
+            .info .text 
+            {
+                display: block;
+                font-size: 16px;
+                color: #333;
+            }
+            .total 
+            {
+                padding: 15px 0;
+                font-size: 14px;
+                color: #333;
+            }
+            .bg-border 
+            {
+                display: block;
+                position: relative;
+                height: 2px;
+                background: url(../Content/images/bg_line2.png) 0 0 repeat-x;
+                background-size: 6px 1px;
+            }
+            .bg-border .bg-sz 
+            {
+                position: absolute;
+                top: -8px;
+                right: 10px;
+                width: 30px;
+                height: 20px;
+                background: url(../Content/images/icon_order.png) -17px 0 no-repeat;
+                background-size: 100px 100px;
+            }
+            .total-count 
+            {
+                padding: 10px 30px;
+            }
+            .tbl-type 
+            {
+                display: table;
+                width: 100%;
+            }
+            .tbl-cell 
+            {
+                display: table-cell;
+            }
+            .text-right 
+            {
+                text-align: right;
+            }
+            .bg-border2 
+            {
+                display: block;
+                height: 7px;
+                background: url(../Content/images/bg_line.png) 0 0 repeat-x;
+                background-size: 10px 7px;
+            }
+            .mgn 
+            {
+                margin: 15px 10px;
+            }
+            .new-abtn-type
+            {
+                display: block;
+                padding: 8px;
+                border-radius: 2px;
+                background-color: #c00;
+                font-size: 14px;
+                color: #fff;
+                text-align: center;
+            }
+            
+            
+            
+            .i-footer 
+            {
+                margin-top: 20px;
+                background-color: #f3f2f2;
+                font-size: 14px;
+                color: #6e6e6e;
+                text-align: center;
+            }
+            .i-footer .i-f-login 
+            {
+                /*position: relative;*/
+                padding: 0 12px;
+                background-color: #a8a8a8;
+                line-height: 27px;
+                color: #fff;
+                text-align: left;
+                heigth: 27px;
+            }
+            .i-footer .i-f-login a 
+            {
+                color: #fff;
+            }
+            .i-footer .i-f-login .i-bar2 
+            {
+                margin: 0 5px;
+            }
+            .i-footer .i-f-login .i-back-top 
+            {
+                position: absolute;
+                right: 12px;
+            }
+            .i-footer .i-f-section, .i-footer .i-f-section2 
+            {
+                padding: 10px 0;
+            }
+            .i-footer .i-f-section a:first-child 
+            {
+                margin-left: 0;
+            }
+            .i-footer .i-f-section a 
+            {
+                margin-left: 20px;
+                color: #6e6e6e;
+            }
+            .i-footer .i-f-section .on 
+            {
+                color: #c30202;
+            }
+        </style>
+    <style type="text/css">       
+       
+        .content
+        {
+            margin: -10px 0px 0px -40px; 
+            text-align:left;  
+        }
+        ul
+        {
+           list-style-type:none;
+           left:3px;
+        }
+        li
+        {
+            width:100%;
+            text-align:left;
+        }
+          
+        a {        
+        text-decoration: none;
+        }
+        
+      
+      
+    </style>
+    <style type="text/css">
+        .module {
+        margin-right: 2%;
+        float: left;
+        background-color: #FFF;
+        padding: .7em .5em;
+        width: 42%;        
+        box-shadow: 0 1px 1px 0px rgba(0, 0, 0, .2);
+       }
+       ul, menu, dir {
+        display: block;
+        list-style-type:none;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 40px;
+      }
+      li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+     }
+     .imageLoad
+     {
+         width:119px;
+         height:119px;    
+     }
+     
+     .btn-more-show
+     {    
+         margin-top:5px;             
+         background:Gray;
+         font-size:large;  
+     }
+      
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Init();
+            BindEvent();
+        });
+        var Init = function () {
+           
+         }
+
+         var BindEvent = function () {             
+             
+             $("#btn_back").bind("click", function () {
+                 back();
+             })
+
+             $("#btn_more").bind("click", function () {
+                 more();
+             });
+            
+         }
+                 
+         //返回
+         var back = function () {
+             alert("暂时不能返回");
+         }
+         var more = function () {
+             alert("无更多数据");
+         }
+         
+    </script>
+</head>
+<body>
+       <header>
+            <div class='i-bh-header'>
+                <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
+                <h2>商品</h2>
+                <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
+            </div>
+            <div class='i-bh-tab'>
+                <div class='i-tbl-type'>
+                    <a href='#' class='i-tbl-cell'>
+                        <span></span>
+                        <p style='color:#6e6e6e;'>首页</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:26px;background-position:0 -25px;'></span>
+                        <p style='color:#6e6e6e;'>分类搜索</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:25px;background-position:-29px -25px'></span>
+                        <p style='color:#6e6e6e;'>购物车</p>
+                    </a>
+                    <a href='#' class='i-tbl-cell'>
+                        <span style='width:22px;background-position:-85px -25px'></span>
+                        <p style='color:#6e6e6e;'>我的易购</p>
+                    </a>
+                </div>
+            </div>
+        </header>
+       <div class="content">
+            <ul class="JShop-m-two-column-t">
+             <li>
+                  <div id="tabpages">
+                   <div class='tab-scroller'>                       
+                        <div class='tab-item'><div class="c"><span id='Span1'></span></div></div>
+                        <div class='tab-item'><div class="c"><span id='Span2'></span></div></div>
+                        <div class='tab-item'><div class="c"><span id='Span3'></span></div></div>
+                        <div class='tab-item'><div class="c"><span id='Span4'></span></div></div>
+                        <ul><span id='Span5'></span></ul>
+                    </div>                
+                 </div>
+             </li>
+             <li>
+                <div class="module">
+                  <a href="Detail" class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
+                      <p class="img">                          
+                          <img class="imageLoad" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
+                      </p>
+                      <p class="g-title"> 兽王2014新款男鞋商务休闲鞋 男士真皮手工皮鞋 BN110256 黑色 40</p>
+                      <p class="g-price">￥<span class="jdNum" jshop="price">99.00</span></p>
+                  </a>
+              </div>
+                <div class="module">
+                  <a href="Detail" class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
+                      <p class="img">
+                          <img class="imageLoad" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
+                      </p>
+                      <p class="g-title"> 兽王2014新款男鞋商务休闲鞋 男士真皮手工皮鞋 BN110256 黑色 40</p>
+                      <p class="g-price">￥<span class="jdNum" jshop="price">99.00</span></p>
+                  </a>
+              </div>
+                <div class="module">
+                  <a href="Detail" class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
+                      <p class="img">                          
+                          <img class="imageLoad" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
+                      </p>
+                      <p class="g-title"> 兽王2014新款男鞋商务休闲鞋 男士真皮手工皮鞋 BN110256 黑色 40</p>
+                      <p class="g-price">￥<span class="jdNum" jshop="price">99.00</span></p>
+                  </a>
+               </div>
+                <div class="module">
+                  <a href="Detail" class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
+                      <p class="img">
+                          <img class="imageLoad" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
+                      </p>
+                      <p class="g-title"> 兽王2014新款男鞋商务休闲鞋 男士真皮手工皮鞋 BN110256 黑色 40</p>
+                      <p class="g-price">￥<span class="jdNum" jshop="price">99.00</span></p>
+                  </a>
+              </div>
+             </li>
+            </ul>
+           <ul style=" text-align:center; margin-top:5px">
+                <li><a id="btn_moreShow" class="btn-more-show" ><span></span>查看更多</a></li>
+           </ul>
+                   
+       </div>
+
+      <footer>
+            <div class='i-footer'>
+                <div class='i-f-login'>
+                    <a rel="nofollow" href='#'>登陆</a>
+                    <span class="i-bar2">|</span>
+                    <a rel="nofollow" href="#">注册</a>
+                    <span class="i-back-top">
+                        <a href="javascript:void(0);">反馈</a>
+                        <span class="i-bar2">|</span>
+                        <a href="#top">回到顶部</a>
+                    </span>
+                </div>
+                <div class="i-f-section">
+                    <a href="#">标准版</a>
+                    <a href="#" class="on">触屏版</a>
+                    <a href="#" id="toPcHome">电脑版</a>
+                </div>
+                <div class="i-f-section2">Copyright © 2014-2015 baoth.com 版权所有</div>
+            </div>
+      </footer>
+    
+</body>
+</html>
+
+<style type="text/css">
+        #tabpages
+        {
+        	width: 100%;            
+            height: 200px;           
+            background:#ccc;
+            text-align:center;
+        }
+        #tabpages span
+        {
+        	font-family:icons!important;
+        	font-size:100px;
+        }
+        .tab-scroller1
+        {
+        	height:100%;
+        }
+        .tab-item,#tabpages ul
+        {
+        	background:#fff;
+        }
+  </style>
+ <script type="text/javascript">
+     document.tab = new QsmartTab('tabpages', { 'callback': dd });
+    
+     function dd(a) {
+         console.log(a);
+     };
+     var kk = 0;
+     $('.ui-gotop').on('click', function () { document.tab.jump(kk); kk++; });
+
+     $('#Span1').html('<img src="../../ProductImage/001/00001.jpg" style="width:100%"/>');
+     $('#Span2').html('<img src="../../ProductImage/001/00002.jpg" style="width:100%"/>');
+     $('#Span3').html('<img src="../../ProductImage/001/00003.jpg" style="width:100%"/>');
+     $('#Span4').html('<img src="../../ProductImage/001/00004.jpg" style="width:100%"/>');
+     $('#Span5').html('<img src="../../ProductImage/001/00001.jpg" style="width:100%"/>');
+
+    </script>

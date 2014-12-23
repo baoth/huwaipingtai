@@ -233,6 +233,7 @@
     <Content Include="Scripts\numeralInput.js" />
     <Content Include="Scripts\Order\addresss\address.js" />
     <Content Include="Scripts\qsm-mui\fx.js" />
+    <Content Include="Scripts\qsm-mui\iscroll.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-combox-1.0.0.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-combox-2.0.0.js" />
     <Content Include="Scripts\qsm-mui\qsmart-mui-detailpanel-1.0.0.js" />

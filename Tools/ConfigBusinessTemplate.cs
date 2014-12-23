@@ -27,6 +27,7 @@ namespace BusinessTemplate
             builder.RegisterType<BusinessOrder.CMS.OPGoodsCatalog>().As<IBusinessOrder.CMS.IOPGoodsCatalog>();
             builder.RegisterType<BusinessOrder.GoodsSize.OPGoodsSize>().As<IBusinessOrder.GoodsSize.IOPGoodsSize>();
             builder.RegisterType<BusinessOrder.YanSe.OPYanSe>().As<IBusinessOrder.YanSe.IOPYanSe>();
+            builder.RegisterType<BusinessOrder.StorageIn.StorageIn>().As<IBusinessOrder.StorageIn.IStorageIn>();
             
         }
         public static IBusinessOrder.User.ILogon GetILogon()

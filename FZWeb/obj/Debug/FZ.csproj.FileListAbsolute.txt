@@ -34,7 +34,6 @@ F:\GithubMobile\huwaipingtai\FZWeb\bin\BusinessTemplate.dll
 F:\GithubMobile\huwaipingtai\FZWeb\bin\DataModel.dll
 F:\GithubMobile\huwaipingtai\FZWeb\bin\EntityFramework.dll
 F:\GithubMobile\huwaipingtai\FZWeb\bin\IBusinessOrder.dll
-F:\GithubMobile\huwaipingtai\FZWeb\bin\MySql.Data.dll
 F:\GithubMobile\huwaipingtai\FZWeb\bin\Toolkit.dll
 F:\GithubMobile\huwaipingtai\FZWeb\bin\VTemplate.Engine.dll
 F:\GithubMobile\huwaipingtai\FZWeb\bin\BusinessOrder.dll
@@ -48,7 +47,3 @@ F:\GithubMobile\huwaipingtai\FZWeb\bin\EntityFramework.xml
 F:\GithubMobile\huwaipingtai\FZWeb\bin\BusinessOrder.pdb
 F:\GithubMobile\huwaipingtai\FZWeb\bin\Common.pdb
 F:\GithubMobile\huwaipingtai\FZWeb\obj\Debug\FZ.pdb
-F:\GithubMobile\huwaipingtai\FZWeb\bin\Autofac.Configuration.dll
-F:\GithubMobile\huwaipingtai\FZWeb\bin\Autofac.dll
-F:\GithubMobile\huwaipingtai\FZWeb\bin\Autofac.Integration.Mvc.dll
-F:\GithubMobile\huwaipingtai\FZWeb\bin\QSmart.Core.dll

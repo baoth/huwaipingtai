@@ -48,3 +48,7 @@ F:\GithubMobile\huwaipingtai\FZWeb\bin\EntityFramework.xml
 F:\GithubMobile\huwaipingtai\FZWeb\bin\BusinessOrder.pdb
 F:\GithubMobile\huwaipingtai\FZWeb\bin\Common.pdb
 F:\GithubMobile\huwaipingtai\FZWeb\obj\Debug\FZ.pdb
+F:\GithubMobile\huwaipingtai\FZWeb\bin\Autofac.Configuration.dll
+F:\GithubMobile\huwaipingtai\FZWeb\bin\Autofac.dll
+F:\GithubMobile\huwaipingtai\FZWeb\bin\Autofac.Integration.Mvc.dll
+F:\GithubMobile\huwaipingtai\FZWeb\bin\QSmart.Core.dll

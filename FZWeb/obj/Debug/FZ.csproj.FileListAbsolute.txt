@@ -34,7 +34,6 @@ F:\GithubMobile\huwaipingtai\FZWeb\bin\BusinessTemplate.dll
 F:\GithubMobile\huwaipingtai\FZWeb\bin\DataModel.dll
 F:\GithubMobile\huwaipingtai\FZWeb\bin\EntityFramework.dll
 F:\GithubMobile\huwaipingtai\FZWeb\bin\IBusinessOrder.dll
-F:\GithubMobile\huwaipingtai\FZWeb\bin\MySql.Data.dll
 F:\GithubMobile\huwaipingtai\FZWeb\bin\Toolkit.dll
 F:\GithubMobile\huwaipingtai\FZWeb\bin\VTemplate.Engine.dll
 F:\GithubMobile\huwaipingtai\FZWeb\bin\BusinessOrder.dll

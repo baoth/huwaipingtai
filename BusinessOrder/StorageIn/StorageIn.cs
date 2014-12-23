@@ -33,5 +33,17 @@ namespace BusinessOrder.StorageIn
               new ChiMa(){Name="4XL",Id=5}
             };
         }
+
+
+        public IList<HuoWei> GetHuoWei()
+        {
+            return new List<HuoWei>() { 
+                new HuoWei(){Id=1,Name="货位1"},
+                new HuoWei(){Id=1,Name="货位2"},
+                new HuoWei(){Id=1,Name="货位3"},
+                new HuoWei(){Id=1,Name="货位4"}
+
+            };
+        }
     }
 }

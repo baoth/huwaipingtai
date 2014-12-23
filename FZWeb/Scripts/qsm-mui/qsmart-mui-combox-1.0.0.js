@@ -171,8 +171,8 @@
             },
             dataType: options.datatype,
             success: function (data) {
-
-                var data = eval(data)[0];
+                var o = eval("["+data+"]");
+                var data =o.rows?o:o[0];
                 $.each(data.rows, function (index, item) { me._additem(item); });
                 me.total = data.total;
                 me.options.pageindex++;

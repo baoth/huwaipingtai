@@ -19,6 +19,10 @@ namespace IBusinessOrder.StorageIn
        /// </summary>
        /// <returns></returns>
        IList<DataModel.YanSe> GetColorByGoodsId(string gid);
-
+       /// <summary>
+       /// 获得货位
+       /// </summary>
+       /// <returns></returns>
+       IList<DataModel.HuoWei> GetHuoWei();
     }
 }

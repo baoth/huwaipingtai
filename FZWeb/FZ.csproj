@@ -127,6 +127,7 @@
     <Content Include="Content\images\bg_line.png" />
     <Content Include="Content\images\bg_line2.png" />
     <Content Include="Content\images\bg_line3.png" />
+    <Content Include="Content\images\datetab_filter_bg.png" />
     <Content Include="Content\images\home-icons.png" />
     <Content Include="Content\images\icon-shp-cart-remove.png" />
     <Content Include="Content\images\icon.png" />
@@ -327,7 +328,6 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>47153</DevelopmentServerPort>
           <DevelopmentServerPort>15870</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>

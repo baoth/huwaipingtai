@@ -22,6 +22,11 @@ namespace FZ.Controllers
             ViewData["Size"] = iStorageIn.GetSizeByGoodsId("gid");
             return View("StorageIn");
         }
+        public JsonResult GetHuoWei() 
+        {
+            var huoWeiList =iStorageIn.GetHuoWei();
+            return Json(new { rows = huoWeiList, total = huoWeiList.Count });
+        }
 
     }
 }

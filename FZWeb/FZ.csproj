@@ -96,14 +96,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BasicController.cs" />
-    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\GoodsSizeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\FeedBackController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
-    <Compile Include="Controllers\OutputOrderController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\RegUserController.cs" />
     <Compile Include="Controllers\StorageInController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -112,7 +106,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="整理类.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Category\all.html" />
@@ -232,59 +225,7 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
-    <Content Include="ProductImage\001\00001.jpg" />
-    <Content Include="ProductImage\001\00002.jpg" />
-    <Content Include="ProductImage\001\00003.jpg" />
-    <Content Include="ProductImage\001\00004.jpg" />
-    <Content Include="ProductImage\002\01.jpg" />
-    <Content Include="ProductImage\002\02.jpg" />
-    <Content Include="ProductImage\002\03.jpg" />
-    <Content Include="ProductImage\002\11.jpg" />
-    <Content Include="ProductImage\002\12.jpg" />
-    <Content Include="ProductImage\002\13.jpg" />
-    <Content Include="ProductImage\002\21.jpg" />
-    <Content Include="ProductImage\002\31.jpg" />
-    <Content Include="ProductImage\002\32.jpg" />
-    <Content Include="ProductImage\002\33.jpg" />
-    <Content Include="ProductImage\002\34.jpg" />
-    <Content Include="ProductImage\1119896\111989601.jpg" />
-    <Content Include="Product\1000000011\00001.jpg" />
-    <Content Include="Product\1000000011\00002.jpg" />
-    <Content Include="Product\1000000011\00003.jpg" />
-    <Content Include="Product\1000000011\00004.jpg" />
-    <Content Include="Product\1000000011\1000000011.jpg" />
-    <Content Include="Product\1000000011\index.html" />
-    <Content Include="Product\1000000012\00001.jpg" />
-    <Content Include="Product\1000000012\00002.jpg" />
-    <Content Include="Product\1000000012\00003.jpg" />
-    <Content Include="Product\1000000012\00004.jpg" />
-    <Content Include="Product\1000000012\1000000012.jpg" />
-    <Content Include="Product\1000000012\index.html" />
-    <Content Include="Product\1000000021\00001.jpg" />
-    <Content Include="Product\1000000021\00002.jpg" />
-    <Content Include="Product\1000000021\00003.jpg" />
-    <Content Include="Product\1000000021\00004.jpg" />
-    <Content Include="Product\1000000021\index.html" />
-    <Content Include="Product\1000000022\00001.jpg" />
-    <Content Include="Product\1000000022\00002.jpg" />
-    <Content Include="Product\1000000022\00003.jpg" />
-    <Content Include="Product\1000000022\00004.jpg" />
-    <Content Include="Product\1000000022\1.html" />
-    <Content Include="Product\1000000022\index.html" />
-    <Content Include="Product\1000000022\shelves01.css" />
-    <Content Include="Product\1000000022\shelves01.js" />
-    <Content Include="Product\1000000022\indexTemplate.html" />
-    <Content Include="Product\1000000022\storeInDoc.html" />
-    <Content Include="Product\shelves01.css" />
     <Content Include="Scripts\JsExtend.js" />
-    <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.5.1.js" />
-    <Content Include="Scripts\jquery-1.5.1.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.js" />
-    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
-    <Content Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
@@ -316,16 +257,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\MicrosoftAjax.js" />
-    <Content Include="Scripts\MicrosoftAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Web.config" />
@@ -334,7 +265,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="List\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -347,33 +277,15 @@
     <None Include="Content\mobiscroll-master\mobiscroll.treelist.jquery.json" />
     <None Include="Content\mobiscroll-master\README.md" />
     <None Include="Scripts\qsm-mui\iconfont_141111.ttf" />
-    <Content Include="Views\Product\Detail.cshtml" />
-    <Content Include="Views\Product\List.cshtml" />
-    <Content Include="Views\User\address.cshtml" />
-    <Content Include="Views\Order\index.cshtml" />
-    <Content Include="Views\Order\courier.cshtml" />
-    <Content Include="Views\Order\delivery.cshtml" />
-    <Content Include="Views\User\editAddress.cshtml" />
-    <Content Include="Views\Order\invoice.cshtml" />
-    <Content Include="Views\Order\pay.cshtml" />
-    <Content Include="Views\Order\goodlisting.cshtml" />
-    <Content Include="Views\OutputOrder\Detail.cshtml" />
-    <Content Include="Views\User\logon.cshtml" />
-    <Content Include="Views\Cart\cart.cshtml" />
     <Content Include="Views\Shared\_HeaderTypical.cshtml" />
     <Content Include="Views\Shared\_FooterTypical.cshtml" />
-    <Content Include="Views\Cart\addToCart.cshtml" />
-    <Content Include="Views\User\home.cshtml" />
-    <Content Include="Views\RegUser\mobileReg.cshtml" />
     <Content Include="Views\Home\index.cshtml" />
-    <Content Include="Views\FeedBack\Advice.cshtml" />
-    <Content Include="Views\FeedBack\AdviceSubmited.cshtml" />
     <Content Include="Views\GoodsSize\index.cshtml" />
     <Content Include="Views\GoodsSize\editSize.cshtml" />
     <Content Include="Views\StorageIn\StorageIn.cshtml" />
-    <Content Include="Views\Storage\StorageIn.cshtml" />
     <Content Include="Views\YanSe\editColor.cshtml" />
     <Content Include="Views\YanSe\index.cshtml" />
+    <Content Include="Views\User\logon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

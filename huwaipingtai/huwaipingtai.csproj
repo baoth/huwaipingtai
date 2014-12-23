@@ -97,17 +97,13 @@
   <ItemGroup>
     <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\GoodsSizeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FeedBackController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OutputOrderController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RegUserController.cs" />
-    <Compile Include="Controllers\StorageInController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\YanSeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -333,9 +329,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="List\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -348,8 +341,6 @@
     <None Include="Content\mobiscroll-master\mobiscroll.treelist.jquery.json" />
     <None Include="Content\mobiscroll-master\README.md" />
     <None Include="Scripts\qsm-mui\iconfont_141111.ttf" />
-    <Content Include="Views\Product\Detail.cshtml" />
-    <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\User\address.cshtml" />
     <Content Include="Views\Order\index.cshtml" />
     <Content Include="Views\Order\courier.cshtml" />
@@ -369,12 +360,6 @@
     <Content Include="Views\Home\index.cshtml" />
     <Content Include="Views\FeedBack\Advice.cshtml" />
     <Content Include="Views\FeedBack\AdviceSubmited.cshtml" />
-    <Content Include="Views\GoodsSize\index.cshtml" />
-    <Content Include="Views\GoodsSize\editSize.cshtml" />
-    <Content Include="Views\StorageIn\StorageIn.cshtml" />
-    <Content Include="Views\Storage\StorageIn.cshtml" />
-    <Content Include="Views\YanSe\editColor.cshtml" />
-    <Content Include="Views\YanSe\index.cshtml" />
     <Content Include="Views\Home\functionHome.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -134,6 +134,7 @@
     <Content Include="Content\images\bg_line.png" />
     <Content Include="Content\images\bg_line2.png" />
     <Content Include="Content\images\bg_line3.png" />
+    <Content Include="Content\images\defaultLink.jpg" />
     <Content Include="Content\images\home-icons.png" />
     <Content Include="Content\images\icon-shp-cart-remove.png" />
     <Content Include="Content\images\icon.png" />
@@ -374,6 +375,7 @@
     <Content Include="Views\Storage\StorageIn.cshtml" />
     <Content Include="Views\YanSe\editColor.cshtml" />
     <Content Include="Views\YanSe\index.cshtml" />
+    <Content Include="Views\Home\functionHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

@@ -15,16 +15,6 @@ namespace DataModel
        [AutoIncrement]
        public int Id { get; set; }
        /// <summary>
-       /// 登录名称
-       /// </summary>
-       [StringMaxLength(50, VarCharType.nvarchar)]
-       public string LoginName { get; set; }
-       /// <summary>
-       /// 登录密码
-       /// </summary>
-       [StringMaxLength(50, VarCharType.nvarchar)]
-       public string Password { get; set; }
-       /// <summary>
        /// 经销商名称
        /// </summary>
        [StringMaxLength(50,VarCharType.nvarchar)]

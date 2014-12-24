@@ -97,6 +97,7 @@
     <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\GoodsSizeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SizeGroupsController.cs" />
     <Compile Include="Controllers\StorageInController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -285,6 +286,7 @@
     <Content Include="Views\YanSe\editColor.cshtml" />
     <Content Include="Views\YanSe\index.cshtml" />
     <Content Include="Views\User\logon.cshtml" />
+    <Content Include="Views\SizeGroups\sizeGroups.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">
@@ -326,7 +328,6 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>47153</DevelopmentServerPort>
           <DevelopmentServerPort>15870</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>

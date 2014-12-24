@@ -52,6 +52,7 @@
     <Compile Include="Goods\IOPGoods.cs" />
     <Compile Include="Order\IOPCustomerOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SizeGroups\IOPSizeGroups.cs" />
     <Compile Include="StorageIn\StorageIn.cs" />
     <Compile Include="Store\IOPStore.cs" />
     <Compile Include="User\ILogon.cs" />

@@ -34,6 +34,6 @@ namespace IBusinessOrder.StorageIn
        /// <param name="userName">用户名</param>
        /// <param name="listRuKuMingXiDto"></param>
        /// <returns></returns>
-       CResult SaveStorageIn(string canKuId, string mainId, string userName, List<RuKuMingXiDto> listRuKuMingXiDto);
+       CResult SaveStorageIn(string canKuId, string mainId, string userName, string rukuDate, string shangPinId, List<RuKuMingXiDto> listRuKuMingXiDto);
     }
 }

@@ -31,12 +31,14 @@ namespace FZ.Controllers
         public JsonResult SaveStorageIn() 
         {
             var detail = Request["detail"];
-            var MainId = Request["MainId"];
-            var CangkuId = Request["CangkuId"];
-            var UserName = CurrentUserInfo.NickName;
+            var mainId = Request["MainId"];
+            var cangkuId = Request["CangkuId"];
+            var rukuDate = Request["rukuDate"];
+            var shangPinId = Request["shangPinId"];
+            var userName = CurrentUserInfo.NickName;
            //(detail);
             var listRuKuMingXiDto = JsonHelp.josnToObject<List<RuKuMingXiDto>>(detail);
-            var s = iStorageIn.SaveStorageIn(CangkuId, MainId, UserName, listRuKuMingXiDto);
+            var s = iStorageIn.SaveStorageIn(cangkuId, mainId, userName, rukuDate, shangPinId, listRuKuMingXiDto);
             return Json(s);
         }
     }

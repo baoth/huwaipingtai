@@ -51,19 +51,19 @@ namespace BusinessOrder.StorageIn
         /// </summary>
         /// <param name="listRuKuMingXiDto"></param>
         /// <returns></returns>
-        public CResult SaveStorageIn(string canKuId, string mainId, string userName, List<RuKuMingXiDto> listRuKuMingXiDto)
+        public CResult SaveStorageIn(string canKuId, string mainId, string userName, string rukuDate, string shangPinId, List<RuKuMingXiDto> listRuKuMingXiDto)
         {
             var strFormatMainSql = "INSERT INTO ruku(Id,CangkuId,ShangPinId,RiQi,RukuRen) values ('{0}','{1}','{2}','{3}','{4}')";
             var strFormatDetailSql ="insert into rukumingxi(RuKuId,HuoWeiId,YanSeId,ChiMaId,ShuLiang,DanJia,JinEr) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')";
             try
             {
-                var mainGuid = CommonFun.GetNewGuid();
+                var mainGuid =string.IsNullOrEmpty(mainId)? CommonFun.GetNewGuid():mainId;
                 var jiage = 0;
                 List<string> listDetailStr = new List<string>();
-                listDetailStr.Add(string.Format(strFormatMainSql,mainGuid,canKuId, mainId, userName));
+                listDetailStr.Add(string.Format(strFormatMainSql,mainGuid,canKuId, shangPinId,rukuDate, userName));
                 foreach (var item in listRuKuMingXiDto)
                 {
-                    listDetailStr.Add(string.Format(strFormatDetailSql, mainGuid, item.HWId, item.ColorId, item.SizeId, item.Num, item, 0, item.Num * jiage));
+                    listDetailStr.Add(string.Format(strFormatDetailSql, mainGuid, item.HWId, item.ColorId, item.SizeId, item.Num, 0, item.Num * jiage));
                 }
                 var dbSession = Common.DbFactory.CreateDbSession();
                 dbSession.Context.ExcuteNoQuery(listDetailStr);

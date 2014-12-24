@@ -279,7 +279,7 @@
 
                 return s.group ? [gr, option] : [option];
             },
-            onBeforeShow: function () {debugger
+            onBeforeShow: function () {
                 alert(1);
                 if (multiple && s.counter) {
                     s.headerText = function () {
@@ -378,7 +378,7 @@
             },
             onValueTap: onTap,
             onSelect: function (v) {
-                debugger
+                
                 alert(1);
                 setVal(v, true, true);
             },
@@ -394,7 +394,7 @@
                     elm.val(inst.temp[optIdx]).change();
                 }
             },
-            onDestroy: function () {debugger
+            onDestroy: function () {
                 input.remove();
                 elm.removeClass('dw-hsel').removeAttr('tabindex');
             }

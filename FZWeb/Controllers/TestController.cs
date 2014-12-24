@@ -36,7 +36,7 @@ namespace FZ.Controllers
 
             db.CreateTable<CaoZuoYuan>(QSmartTableType.InnoDB);
             db.CreateTable<MenDian>(QSmartTableType.InnoDB);
-            db.CreateTable<MenDian_CanZuoYuan_GuanLian>(QSmartTableType.InnoDB);
+            //db.CreateTable<MenDian_CanZuoYuan_GuanLian>(QSmartTableType.InnoDB);
 
             db.CreateTable<CangKu>(QSmartTableType.InnoDB);
             db.CreateTable<HuoWei>(QSmartTableType.InnoDB);
@@ -89,7 +89,8 @@ namespace FZ.Controllers
                                        "乒羽网鞋","专项运动鞋","训练鞋"}}, 
                 {1015,new List<string>{"羽绒服","运动背心","毛衫/线衫","运动配饰","棉服","运动裤","夹克/风衣","卫衣/套头衫",
                                        "T恤","套装","乒羽网服","训练服"}}
-            };                    
+            };
+            return null;     
         }
 
 

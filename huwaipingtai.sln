@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toolkit", "Toolkit\Toolkit.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FZ", "FZWeb\FZ.csproj", "{61D5BD98-8932-49CE-8809-75795EF99704}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS", "CMS\CMS.csproj", "{12BE8FE7-6777-4ECE-B06C-A74BC9E3531F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{61D5BD98-8932-49CE-8809-75795EF99704}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61D5BD98-8932-49CE-8809-75795EF99704}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61D5BD98-8932-49CE-8809-75795EF99704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12BE8FE7-6777-4ECE-B06C-A74BC9E3531F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12BE8FE7-6777-4ECE-B06C-A74BC9E3531F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12BE8FE7-6777-4ECE-B06C-A74BC9E3531F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12BE8FE7-6777-4ECE-B06C-A74BC9E3531F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

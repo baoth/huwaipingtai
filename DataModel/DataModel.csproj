@@ -75,6 +75,7 @@
     <Compile Include="Store\Store.cs" />
     <Compile Include="Store\StoreInDoc.cs" />
     <Compile Include="Store\StoreInDocDetail.cs" />
+    <Compile Include="Store\StoreInDocDto.cs" />
     <Compile Include="Template\Template.cs" />
     <Compile Include="Template\TemplateGoods.cs" />
     <Compile Include="View\CartView.cs" />

@@ -340,6 +340,7 @@ a
 	padding-top:10px;
 	vertical-align:middle;
 	width:25%;
+	font-size: 20px;
 	text-align:center
 }
 .titlef2{
@@ -505,6 +506,7 @@ a
 {
 	display: block;
 	height: 35px;
+	font-size:18px;
 	margin: 0 10px;
 	border-radius: 3px;
 	line-height: 35px;

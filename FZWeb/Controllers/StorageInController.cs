@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DataModel;
 using IBusinessOrder.StorageIn;
+using Toolkit.JsonHelp;
 
 namespace FZ.Controllers
 {
@@ -27,6 +28,13 @@ namespace FZ.Controllers
             var huoWeiList =iStorageIn.GetHuoWei();
             return Json(new { rows = huoWeiList, total = huoWeiList.Count });
         }
-
+        public JsonResult SaveStorageIn() 
+        {
+            var detail = Request["detail"];
+           //(detail);
+            var listRuKuMingXiDto = JsonHelp.josnToObject<List<RuKuMingXiDto>>(detail);
+            var s = iStorageIn.SaveStorageIn(listRuKuMingXiDto);
+            return Json(s);
+        }
     }
 }

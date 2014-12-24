@@ -1,0 +1,101 @@
+﻿<div id="searchForm">
+    <input value="" type="hidden">
+    <div class="bt-cate-srch">
+		<div class="bt-srch-box">
+            <input name="keyword" id="newkeyword" type="text" required="" class="bt-srch-input" value="Phone">
+            <a href="javascript:void(0);" target="_self" onclick="cancelHotWord()" class="bt-s-close"></a>
+            <a href="javascript:void(0)" target="_self" onclick="search_new()" class="bt-s-srch"><span></span></a>
+        </div>
+		<div class="bt-srch-lst" id="shelper" style="display:none">
+		</div>
+    </div>
+</div>
+<script type="text/javascript">
+    var cancelHotWord = function () {
+        $("#newkeyword").val("");
+    }
+</script>
+<style type="text/css">
+    *
+    {
+    	margin:0;
+    	padding:0;
+    }
+    .bt-cate-srch
+    {
+        padding: 10px 12px 0;
+    }
+    .bt-srch-box
+    {
+        display: block;
+        position: relative;
+        width: 70%;
+        height: 30px;
+        margin-left: 35px;
+        border: 1px solid #999;
+    }
+    .bt-cate-srch .bt-srch-box 
+    {
+        width: auto;
+        margin-left: 0;
+        padding-right: 90px;
+        background-color: #fff;
+    }
+    .bt-srch-input 
+    {
+        width: 100%;
+        height: 30px;
+        margin-right: 0;
+        border: 0;
+        border-radius: 0;
+        background: #fff;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: normal;
+        color: #c3c2c2;
+        text-indent: 10px;
+        vertical-align: top;
+        -webkit-appearance: none;
+    }
+    .bt-cate-srch a
+    {
+    	color: #000;
+        text-decoration: none;
+    }
+    .bt-s-close 
+    {
+        position: absolute;
+        top: 0;
+        right: 55px;
+        width: 30px;
+        height: 30px;
+        background: url(../Content/images/icon.png) 8px -973px no-repeat;
+    }
+    .bt-s-srch 
+    {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        height: 30px;
+        border-left: 1px solid #ccc;
+        background: #f3f3f3;
+        background: -webkit-gradient(linear,left top,left bottom,from(#f7f7f7),to(#efefef));
+        background: -moz-linear-gradient(top,#f7f7f7,#efefef);
+    }
+    .bt-s-srch span 
+    {
+        display: block;
+        width: 50px;
+        height: 30px;
+        background: url(../../Content/images/icon.png) 13px -1053px no-repeat;
+    }
+    .bt-srch-lst 
+    {
+        display: block;
+        padding: 0;
+        border: 1px solid #ccc;
+        border-top: none;
+        background-color: #fff;
+    }
+</style>

@@ -75,7 +75,7 @@
                     }
                 });
                 $('.btn-add').on($.clickAction, function () {
-                    debugger
+                    
                     var $number = $(this).prev();
                     var value = $number.val();
                     if (value) {
@@ -90,7 +90,7 @@
                     }
                 });
                 $('.btn-del').on($.clickAction, function () {
-                    debugger
+                    
                     var $number = $(this).next();
                     var value = $number.val();
                     if (value) {
@@ -139,7 +139,7 @@
         $('#test').hide();
         $('#test').show();
         $('.select-btn').bind($.clickAction, function () {
-            debugger
+            
             var refId = $(this).attr('refId');
             cb1 = new QsmartCombox(refId, { title: '货位信息', displaycolumn: ['Name'], dataurl: '/StorageIn/GetHuoWei', idcolumn: 'Id', columns: ['Id', 'Name'], pagesize: 20 }, refId); //, filtertext: '17', filters: ['DocNum'] 
             $('#' + refId).trigger($.clickAction);
@@ -305,7 +305,10 @@
         </ul>
     </div>
     <div style="display:none">
-        <input id="MainId" value=""/>
+        <input id="MainId" name="MainId" type="hidden" value=""/>
+        <input id="CangkuId"  name="CangkuId" type="hidden" value="1"/>
+        <input id="ShangPinId"   name="ShangPinId"  type="hidden" value="1" />
+
     </div>
     <div class="tbl-type btns">
         <div class="tbl-cell">                    

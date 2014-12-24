@@ -31,9 +31,12 @@ namespace FZ.Controllers
         public JsonResult SaveStorageIn() 
         {
             var detail = Request["detail"];
+            var MainId = Request["MainId"];
+            var CangkuId = Request["CangkuId"];
+            var UserName = CurrentUserInfo.NickName;
            //(detail);
             var listRuKuMingXiDto = JsonHelp.josnToObject<List<RuKuMingXiDto>>(detail);
-            var s = iStorageIn.SaveStorageIn(listRuKuMingXiDto);
+            var s = iStorageIn.SaveStorageIn(CangkuId, MainId, UserName, listRuKuMingXiDto);
             return Json(s);
         }
     }

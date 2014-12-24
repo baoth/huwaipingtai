@@ -129,13 +129,13 @@
             }
 
             $('.settings select').bind('change', function () {
-                debugger
+                
                 var demo = $('#demo').val();
 
                 if (!demo.match(/select/i)) {
                     $('.demo-test-' + demo).val('');
                 }
-                debugger
+                
                 $('.demo-test-' + demo).scroller('destroy').scroller($.extend(opt[demo], {
                     theme: $('#theme').val(),
                     mode: $('#mode').val(),

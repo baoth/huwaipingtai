@@ -29,7 +29,11 @@ namespace IBusinessOrder.StorageIn
        /// <summary>
        /// 保存入库单
        /// </summary>
+       /// <param name="canKuId">仓库Id</param>
+       /// <param name="mainId">主单Id</param>
+       /// <param name="userName">用户名</param>
+       /// <param name="listRuKuMingXiDto"></param>
        /// <returns></returns>
-       CResult SaveStorageIn(List<RuKuMingXiDto> listRuKuMingXiDto);
+       CResult SaveStorageIn(string canKuId, string mainId, string userName, List<RuKuMingXiDto> listRuKuMingXiDto);
     }
 }

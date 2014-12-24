@@ -5,6 +5,7 @@ using System.Text;
 using IBusinessOrder.StorageIn;
 using DataModel;
 using Toolkit.CommonModel;
+using Toolkit.Ext;
 namespace BusinessOrder.StorageIn
 {
     public class StorageIn : IStorageIn
@@ -50,11 +51,27 @@ namespace BusinessOrder.StorageIn
         /// </summary>
         /// <param name="listRuKuMingXiDto"></param>
         /// <returns></returns>
-        public CResult SaveStorageIn(List<RuKuMingXiDto> listRuKuMingXiDto)
+        public CResult SaveStorageIn(string canKuId, string mainId, string userName, List<RuKuMingXiDto> listRuKuMingXiDto)
         {
-            var strFormatMainSql = "INSERT INTO ruku(CangkuId,ShangPinId,RiQi,RukuRen) values ('{0}','{1}','{2}','{3}')";
+            var strFormatMainSql = "INSERT INTO ruku(Id,CangkuId,ShangPinId,RiQi,RukuRen) values ('{0}','{1}','{2}','{3}','{4}')";
             var strFormatDetailSql ="insert into rukumingxi(RuKuId,HuoWeiId,YanSeId,ChiMaId,ShuLiang,DanJia,JinEr) values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')";
-            
+            try
+            {
+                var mainGuid = CommonFun.GetNewGuid();
+                var jiage = 0;
+                List<string> listDetailStr = new List<string>();
+                listDetailStr.Add(string.Format(strFormatMainSql,mainGuid,canKuId, mainId, userName));
+                foreach (var item in listRuKuMingXiDto)
+                {
+                    listDetailStr.Add(string.Format(strFormatDetailSql, mainGuid, item.HWId, item.ColorId, item.SizeId, item.Num, item, 0, item.Num * jiage));
+                }
+                var dbSession = Common.DbFactory.CreateDbSession();
+                dbSession.Context.ExcuteNoQuery(listDetailStr);
+            }
+            catch (Exception ex)
+            {
+                Toolkit.Fun.FunResult.GetError(ex.Message.ToString());
+            }
             return Toolkit.Fun.FunResult.GetSuccess();
         }
     }

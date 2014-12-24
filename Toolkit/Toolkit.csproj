@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonModel\CResult.cs" />
+    <Compile Include="Ext\Common.cs" />
     <Compile Include="Ext\HttpRequestBaseExt.cs" />
     <Compile Include="Ext\ObjectExt.cs" />
     <Compile Include="Fun\FunResult.cs" />

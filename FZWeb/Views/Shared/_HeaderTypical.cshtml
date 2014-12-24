@@ -27,6 +27,7 @@
     </div>
 </header>
 <script type="text/javascript">
+    var widthchange;
     $(document).ready(function () {
         $('.i-a-bh').on($.clickAction, function () {
             var tg = $('.i-bh-tab');
@@ -36,6 +37,7 @@
             else {
                 tg.addClass('on');
             }
+            if (widthchange != undefined && typeof (widthchange) == "function") widthchange();
         });
         $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
     });

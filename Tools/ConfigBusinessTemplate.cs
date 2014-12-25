@@ -29,6 +29,7 @@ namespace BusinessTemplate
             builder.RegisterType<BusinessOrder.YanSe.OPYanSe>().As<IBusinessOrder.YanSe.IOPYanSe>();
             builder.RegisterType<BusinessOrder.StorageIn.StorageIn>().As<IBusinessOrder.StorageIn.IStorageIn>();
             builder.RegisterType<BusinessOrder.SizeGroups.OPSizeGroups>().As<IBusinessOrder.SizeGroups.IOPSizeGroups>();
+            builder.RegisterType<BusinessOrder.Shelves.OPShelves>().As<IBusinessOrder.Shelves.IOPShelves>();
             
         }
         public static IBusinessOrder.User.ILogon GetILogon()

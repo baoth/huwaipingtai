@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BasicController.cs" />
+    <Compile Include="Controllers\ShelvesController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\GoodsSizeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -294,6 +295,7 @@
     <Content Include="Views\Category\All.cshtml" />
     <Content Include="Views\Shared\_SearchTypical.cshtml" />
     <Content Include="Views\Category\Products.cshtml" />
+    <Content Include="Views\Shelves\Brand.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

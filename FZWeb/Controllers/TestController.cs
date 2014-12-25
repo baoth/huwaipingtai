@@ -237,6 +237,19 @@ namespace FZ.Controllers
             db.SaveChange();
             return Content("ok");
         }
+        public ActionResult shangpin()
+        {
+            QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "男士长袖圆韩版上衣" }.CreateQSmartObject());
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "V领T恤上衣" }.CreateQSmartObject());
+
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 2, YanSeZuId = 2, PinPaiId = 2, Name = "保暖情侣潮上衣" }.CreateQSmartObject());
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 2, YanSeZuId = 2, PinPaiId = 2, Name = "男士长袖POLO衣" }.CreateQSmartObject());
+
+
+            db.SaveChange();
+            return Content("ok");
+        }
 
     }
 }

@@ -42,7 +42,6 @@ F:\GithubMobile\huwaipingtai\FZWeb\bin\DataModel.pdb
 F:\GithubMobile\huwaipingtai\FZWeb\bin\IBusinessOrder.pdb
 F:\GithubMobile\huwaipingtai\FZWeb\bin\Toolkit.pdb
 F:\GithubMobile\huwaipingtai\FZWeb\bin\BusinessTemplate.pdb
-F:\GithubMobile\huwaipingtai\FZWeb\bin\Autofac.xml
 F:\GithubMobile\huwaipingtai\FZWeb\bin\EntityFramework.xml
 F:\GithubMobile\huwaipingtai\FZWeb\bin\BusinessOrder.pdb
 F:\GithubMobile\huwaipingtai\FZWeb\bin\Common.pdb

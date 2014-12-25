@@ -25,7 +25,11 @@ namespace FZ.Controllers
         }
         public ActionResult SizeGroups()
         {
-            return View("sizeGroups");
+            return View("SizeGroups");
+        }
+        public ActionResult SelectSize()
+        { 
+            return View("SelectSize");
         }
         public ActionResult editSize()
         {
@@ -52,7 +56,10 @@ namespace FZ.Controllers
         public ActionResult GetSizeGroupsList()
         {
             string jsonStr = string.Empty;
-            var list = iopSizeGroup.GetSizeGroupsList();
+            var pinpaiId=Request["pinpaiid"];
+            int ppId=0;
+            int.TryParse(pinpaiId,out ppId);
+            var list = iopSizeGroup.GetSizeGroupsModeListByPPId(ppId);
             jsonStr = JsonHelp.objectToJson(list); 
             return Content(jsonStr);
         }
@@ -94,4 +101,5 @@ namespace FZ.Controllers
         }
 
     }
+   
 }

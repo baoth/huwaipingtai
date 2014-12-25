@@ -288,7 +288,8 @@
     <Content Include="Views\YanSe\editColor.cshtml" />
     <Content Include="Views\YanSe\index.cshtml" />
     <Content Include="Views\User\logon.cshtml" />
-    <Content Include="Views\SizeGroups\sizeGroups.cshtml" />
+    <Content Include="Views\SizeGroups\SizeGroups.cshtml" />
+    <Content Include="Views\SizeGroups\SelectSize.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

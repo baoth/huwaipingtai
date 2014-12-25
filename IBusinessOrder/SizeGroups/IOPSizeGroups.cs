@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DataModel;
 
 namespace IBusinessOrder.SizeGroups
 {
@@ -36,5 +37,11 @@ namespace IBusinessOrder.SizeGroups
         /// <param name="id"></param>
         /// <returns></returns>
         DataModel.ChiMaZu GetSizeGroupsModel(string id);
+        /// <summary>
+        /// 根据品牌获取尺寸组信息
+        /// </summary>
+        /// <param name="pinPaiId"></param>
+        /// <returns></returns>
+        List<SizeGroupsMainModel> GetSizeGroupsModeListByPPId(int pinPaiId);
     }
 }

@@ -15,6 +15,10 @@ namespace FZ.Controllers
         {
             return View("All");
         }
+        public ActionResult Products()
+        {
+            return View("Products");
+        }
 
     }
 }

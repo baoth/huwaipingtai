@@ -295,7 +295,8 @@
     <Content Include="Views\Category\All.cshtml" />
     <Content Include="Views\Shared\_SearchTypical.cshtml" />
     <Content Include="Views\Category\Products.cshtml" />
-    <Content Include="Views\Shelves\Brand.cshtml" />
+    <Content Include="Views\Shelves\BrandList.cshtml" />
+    <Content Include="Views\Shelves\ProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

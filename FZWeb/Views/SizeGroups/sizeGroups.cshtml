@@ -1,0 +1,360 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+        <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>  
+
+        <script src="../../Scripts/JsExtend.js" type="text/javascript"></script>
+
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select {
+                margin: 0;
+                padding: 0;
+            }
+            .new-ct {
+                min-height: 300px;
+                background-color: #fff;
+            }
+            .size-add {
+                padding: 20px 10px;
+                border: 1px solid #c8c7cc;
+            }
+            .btn-size {
+                display: block;
+                height: 34px;
+                border: 1px solid #e4393c;
+                line-height: 34px;
+                color: #e4393c;
+                text-align: center;
+            }
+            .size-info {
+                padding-top: 20px;
+                background: #f1f1f5;
+            }
+            .size-border {
+                padding: 10px;
+                border-top: 1px solid #c8c7cc;
+                border-bottom: 1px solid #c8c7cc;
+                background: #fff;
+            }
+            .pd-tb10 {
+                 padding-bottom: 10px;
+            }
+            .size-border p:first-child {
+                color: #333;
+            }
+            .size-border p:last-child {
+                font-size: 14px;
+                color: #666;
+            }
+            .text-f14-c6 {
+                font-size: 14px;
+                color: #666;
+            }
+            .bg-border3 {
+                display: block;
+                height: 2px;
+                background: url(../../Content/images/bg_line3.png) 0 0 repeat-x;
+                background-size: 6px 1px;
+            }
+            .size-btn {
+                padding: 5px 0 0;
+            }
+            .tbl-type {
+                display: table;
+                width: 100%;
+            }
+            .tbl-cell {
+                display: table-cell;
+            }
+            .size-info .btn-chk, .size-info .btn-update, .size-info .btn-del {
+                display: inline-block;
+                height: 25px;
+                line-height: 25px;
+                font-size: 14px;
+                color: #666;
+            }
+            a {
+                color: #000;
+                text-decoration: none;
+            }
+            .size-info .btn-chk span, .size-info .btn-update span, .size-info .btn-del span {
+                display: inline-block;
+                width: 25px;
+                height: 25px;
+                margin-right: 10px;
+                background: url(../../Content/images/icon_order.png) -28px -54px no-repeat;
+                background-size: 100px 100px;
+                vertical-align: top;
+            }
+            .text-right {
+                 text-align: right;
+            }
+            .size-info .btn-update span {
+                background-position: -50px 0;
+            }
+            .size-info .btn-del span {
+                background-position: -76px 0;
+            }
+            
+             a {        
+            text-decoration: none;
+            }
+        
+        
+           .btn-color
+           {
+            display: inline-block;
+            min-width: 75px;
+            height: 30px;
+            border: 1px solid #999;
+            border-radius: 3px;
+            background-color: #f5f4f4;
+            background: -webkit-gradient(linear,0 0,0 100%,from(#fffeff),to(#f5f4f4));
+            line-height: 29px;
+            font-size: 14px;
+            color: #333;       
+            text-align: center; 
+            margin-top:5px;
+            margin-left: 5px;
+           }
+        </style>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                 LoadData();
+                BindEvent();
+            });
+            var BindEvent = function () {
+                $("#btn_add").bind("click", function (e) {
+                    SetEidtDisplay();
+                });
+                $("#btn_cancel").bind("click", function (e) {
+                    SetEidtHide();
+                });
+                $("#btn_save").bind("click", function (e) {
+                    SizeGroupAdd();
+                });
+            }
+            var SetEidtDisplay = function (e) {
+                $("#div_btnadd").hide();
+                $("#div_addEidt").show();
+            };
+            var SetEidtHide = function (e) {
+                $("#div_btnadd").show();
+                $("#div_addEidt").hide();
+            };
+            var SizeGroupAdd = function () {
+                var name = $("#txt_Name").val();
+                var pinPaiId = 1; //$("#txt_pinpaiid").val();
+                var url = "/SizeGroups/Save";
+                var data = { data: "{'Name':'" + name + "','PinPaiId':" + pinPaiId + "}", type: 1 };
+                submitAjax(url,data);
+            }
+
+            var submitAjax = function (url, data) {
+                $.ajax({
+                    url: url,
+                    data: data, //3修改
+                    type: "POST",
+                    dataType: "JSON",
+                    success: function (d) {                        
+                        if (d) {
+                            d = eval("(" + d + ")");
+                            if (d.IsSuccess) {
+
+                                SetEidtHide();
+                                LoadData();
+                            }
+                            else {
+                                alert("添加数据失败！");
+                            }
+                        }
+                        else {
+                            alert("返回数据失败！");
+                        }
+                    },
+                    error: function (s) {
+                        alert("请求数据失败！");
+                    }
+                });
+            };
+
+            var LoadData = function () {
+                var pinpaiId = $("#txt_pinpaiid").val();
+                $.ajax({
+                    url: "/SizeGroups/GetSizeGroupsList",
+                    data: {pinpaiId:pinpaiId},
+                    type: "POST",
+                    dataType: "JSON",
+                    success: function (d) {                        
+                        if (d) {
+                            var divs = CreateHtmlData(d);
+                            $("#content").html("");
+                            $("#content").html(divs);
+                        }
+                        else {
+                            alert("返回数据失败！");
+                        }
+                    },
+                    error: function (s) {
+                        alert("请求数据失败！");
+                    }
+                });
+            };
+            var CreateHtmlData = function (data) {
+                var obj = eval('(' + data + ')');
+                var divStr = "";
+                for (var i = 0, j = obj.length; i < j; i++) {
+                    divStr += GetHtml(obj[i]);
+                }
+                return divStr;
+            }
+
+            var GetHtml = function (obj) {
+                var name = obj["Name"] == null ? "" : obj["Name"];
+                var id = obj["Id"];
+                var divs = ' <div class="size-info">'
+                          + '  <div class="size-border"> '
+                          + '         <div class="size-btn">'
+                          + '             <span class="tbl-type">'
+                          + '                 <span class="tbl-cell">'
+                          + '                     <a href="javascript:void(0)" ondblclick="EidtSizeGroup({0})" name="nameSpan{0}" id="nameSpan{0}" style="width:100%"><span></span>{1}</a>'
+                          + '                     <span id="editName" style="display:none">'
+                          + '                          <input type="text"  value="" />'
+                          + '                     </span>'
+                          + '                 </span>'
+                          + '                 <span class="tbl-cell text-right">'
+                          + '                     <a href="/SizeGroups/SelectSize?zhimazuid={0}" class="btn-update"><span></span>导入</a>'
+    			          + '                      <a href="javascript:confirmDel({0})" class="btn-del"><span></span>删除</a>'
+    			          + '                 </span>'
+                          + '             </span>'
+                          + '         </div>'
+                          + '        <div class="bg-border3"></div>  '
+                          + '        <div id="btn_size"> '
+                          + '         {2}'
+                          + '         </div>'
+                          + '    </div>'
+                          + '</div>';
+                var detailHtml = "";
+                if (obj.detail) {
+                    for (var i = 0, j = obj.detail.length; i < j; i++) {
+                        detailHtml += GetSizeDetailHtml(obj.detail[i]);
+                    }
+                }                
+                return divs.format(id, name,detailHtml);
+            };
+
+            var GetSizeDetailHtml = function (obj) {
+                var name = obj["SizeName"] == null ? "" : obj["SizeName"];
+                var id = obj["Id"];
+                var sizeHtml = '<a title="{0}" code="{1}"  href="javascript:void(0)" class="btn-color">{0}</a>';
+                return sizeHtml.format(name,id); ;
+            }
+
+            function confirmDel(id) {
+                if (confirm("确定删除吗")) {
+                    $.ajax({
+                        url: "/SizeGroups/Save",
+                        data: { data: "{'Id':" + id + "}", type: 3 },//3修改
+                        type: "POST",
+                        dataType: "JSON",
+                        success: function (d) {
+                            if (d) {
+                                LoadData();
+                            }
+                            else {
+                                alert("返回数据失败！");
+                            }
+                        },
+                        error: function (s) {
+                            alert("请求数据失败！");
+                        }
+                    });
+                }
+            }
+        </script>
+    </head>
+    <body>
+        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "商品尺码分组" } })
+       <slidercontent>
+        <div class="err_msg" id="errorMessage" style="display:block;color:red;margin-top:0.5em;margin-left:0.5em"></div>	
+        <div class="new-ct">
+        <form action="" method="post" id="addressForm">
+    	
+    	<div class="size-add">
+            <div id="div_btnadd">                
+                <a href="#" id="btn_add" class="btn-size">+添加商品尺寸分组</a>
+            </div>
+        	
+            <div id="div_addEidt" style="display:none">
+                <span><input type="text" style="height:28px" id="txt_Name" /></span>
+                <span>
+                <a title="保存" id="btn_save"  href="javascript:void(0)" class="btn-color">保存</a>
+                <a title="取消" id="btn_cancel"  href="javascript:void(0)" class="btn-color">取消</a>
+                </span>
+            </div>
+        </div>    	
+    	<div class="err_msg" id="errorMessage" style="display:block;color:red;margin-bottom:0.5em;margin-top:0.5em;"></div>	
+
+        <div id="content">
+            <div class="size-info">
+                <div class="size-border"> 
+                        <div class="size-btn">
+                            <span class="tbl-type">
+                                <span class="tbl-cell">
+                                    <a href="javascript:void(0)" ondblclick="EidtSizeGroup({0})" name="nameSpan{0}" id="nameSpan{0}" style="width:100%"><span></span>尺寸组1</a>
+                                    <span id="editName" style="display:none">
+                                         <input type="text"  value="" />
+                                    </span>
+                                </span>
+                                <span class="tbl-cell text-right">
+                                    <a href="/SizeGroups/SelectSize?zhimazuid={0}" class="btn-update"><span></span>导入</a>
+    			                     <a href="javascript:confirmDel({0})" class="btn-del"><span></span>删除</a>
+    			                </span>
+                            </span>
+                        </div>
+                       <div class="bg-border3"></div>                       
+                       <div id="btn_size">                    
+                            <a title="XL" code="1"  href="javascript:void(0)" class="btn-color on">XL</a>
+                            <a title="XXL" code="2"  href="javascript:void(0)" class="btn-color">XXL</a>
+                        </div>
+                   </div>
+            </div>
+        </div>
+        <div style="display:none">
+            <input type="hidden" id="txt_pinpaiid" value="1" />
+        </div>
+    </form>
+</div>
+
+ <script>
+   
+   
+    function keyDown(id) {
+        $("a[name='selSpan']").removeClass("on");
+        $("#selSpan" + id).addClass("on");
+    }
+    $(document).ready(function () {
+        $("#background").css("height", $("#body").css("height")); ;
+        
+    });
+</script>
+           
+    @Html.Partial("_FooterTypical")
+    </body>
+
+</html>

@@ -49,9 +49,6 @@ namespace FZ.Controllers
         public ActionResult CategoryData()
         {
 
-            
-            
-
             //List<string> level1name = new List<string>{
             //    "服饰内衣","鞋靴","手机","家用电器","数码","电脑、办公","个护化妆",
             //    "图书","母婴","食品饮料","家居家装","汽车用品","礼品箱包","运动户外",

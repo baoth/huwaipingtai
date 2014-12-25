@@ -56,6 +56,8 @@
     <Compile Include="GoodsSize\OPGoodsSize.cs" />
     <Compile Include="Order\OPCustomerOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shelves\OPShelves.cs" />
+    <Compile Include="SizeGroups\OPSizeGroups.cs" />
     <Compile Include="StorageIn\StorageIn.cs" />
     <Compile Include="Store\OPStore.cs" />
     <Compile Include="User\OPLogon.cs" />

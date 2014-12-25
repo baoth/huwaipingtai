@@ -95,9 +95,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BasicController.cs" />
+    <Compile Include="Controllers\ShelvesController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\GoodsSizeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SizeGroupsController.cs" />
     <Compile Include="Controllers\StorageInController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -123,6 +125,7 @@
     <Content Include="Content\home\Layout.css" />
     <Content Include="Content\icon_order.png" />
     <Content Include="Content\images\addToCart.png" />
+    <Content Include="Content\images\arrow.png" />
     <Content Include="Content\images\bgdefault.png" />
     <Content Include="Content\images\bg_line.png" />
     <Content Include="Content\images\bg_line2.png" />
@@ -289,9 +292,14 @@
     <Content Include="Views\YanSe\editColor.cshtml" />
     <Content Include="Views\YanSe\index.cshtml" />
     <Content Include="Views\User\logon.cshtml" />
+    <Content Include="Views\SizeGroups\SizeGroups.cshtml" />
+    <Content Include="Views\SizeGroups\SelectSize.cshtml" />
     <Content Include="Views\Category\All.cshtml" />
     <Content Include="Views\Shared\_SearchTypical.cshtml" />
     <Content Include="Template\TCatelogAll.htm" />
+    <Content Include="Views\Category\Products.cshtml" />
+    <Content Include="Views\Shelves\BrandList.cshtml" />
+    <Content Include="Views\Shelves\ProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

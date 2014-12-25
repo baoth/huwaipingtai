@@ -44,6 +44,16 @@ namespace IBusinessOrder.CMS
         /// <returns></returns>
         List<ShangPinFenLei> GetGoodsCatalogNotIsStopList();
 
+        /// <summary>
+        /// 获取当前商品分类1级和2级
+        /// </summary>
+        /// <returns></returns>
+        List<ShangPinFenLei> GetGoodsCataLog12();
+        /// <summary>
+        /// 获取目录模版路径
+        /// </summary>
+        /// <returns></returns>
+        string GetGoodsCatalogTemplate();
      
     }
 }

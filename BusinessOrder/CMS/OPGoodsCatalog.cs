@@ -7,6 +7,7 @@ using QSmart.Core.Object;
 using DataModel.Order;
 using IBusinessOrder.CMS;
 using DataModel;
+using Toolkit.Ext;
 namespace BusinessOrder.CMS
 {
     public class OPGoodsCatalog : IOPGoodsCatalog
@@ -82,6 +83,31 @@ namespace BusinessOrder.CMS
             var dt = dbSession.Context.QueryTable(sql); ;
             return dbSession.Context.ConversionEntity<ShangPinFenLei>(dt);
         }
-       
+
+
+
+        /// <summary>
+        /// 获得商品分类的12级数据
+        /// </summary>
+        /// <returns></returns>
+        public List<ShangPinFenLei> GetGoodsCataLog12()
+        {
+            var listCataLog = new List<ShangPinFenLei>();
+            string sql = "select * from shangpinfenlei where Level=1 or Level=2";
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var dt = dbSession.Context.QueryTable(sql);
+            return dbSession.Context.ConversionEntity<ShangPinFenLei>(dt);
+        }
+        /// <summary>
+        /// 商品目录模版路径
+        /// </summary>
+        /// <param name="goodsSKU"></param>
+        /// <returns></returns>
+        public string GetGoodsCatalogTemplate()
+        {
+            var path = Toolkit.Path.PathConfig.GetTemplatePath();
+            var strTemplate = "TCatelogAll.htm";
+            return path.CombinePath(strTemplate);
+        }
     }
 }

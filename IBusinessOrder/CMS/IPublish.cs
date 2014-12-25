@@ -12,5 +12,10 @@ namespace IBusinessOrder.CMS
         /// 发布商品
         /// </summary>
        CResult PublishGoods(string goodsSKU);
+       /// <summary>
+       /// 发布目录模版
+       /// </summary>
+       /// <returns></returns>
+       CResult PublishCatalogTemplate();
     }
 }

@@ -99,6 +99,7 @@
     <Compile Include="Controllers\GoodsSizeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StorageInController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\YanSeController.cs" />
@@ -248,6 +249,7 @@
     <Content Include="Scripts\qsm-mui\zepto.touch.js" />
     <Content Include="Scripts\Spin\spin-min.js" />
     <Content Include="Scripts\Spin\spin.js" />
+    <Content Include="Template\Catalog.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -289,6 +291,7 @@
     <Content Include="Views\User\logon.cshtml" />
     <Content Include="Views\Category\All.cshtml" />
     <Content Include="Views\Shared\_SearchTypical.cshtml" />
+    <Content Include="Template\TCatelogAll.htm" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

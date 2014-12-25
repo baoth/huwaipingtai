@@ -14,6 +14,7 @@ namespace DataModel
        /// <summary>
        /// 入库单Id
        /// </summary>
+       [StringMaxLength(50,VarCharType.varchar)]
        public string RuKuId { get; set; }
        public int HuoWeiId { get; set; }
        /// <summary>

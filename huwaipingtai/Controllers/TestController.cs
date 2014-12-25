@@ -86,7 +86,7 @@ namespace huwaipingtai.Controllers
 
             db.CreateTable<CaoZuoYuan>(QSmartTableType.InnoDB);
             db.CreateTable<MenDian>(QSmartTableType.InnoDB);
-            db.CreateTable<MenDian_CanZuoYuan_GuanLian>(QSmartTableType.InnoDB);
+            //db.CreateTable<MenDian_CanZuoYuan_GuanLian>(QSmartTableType.InnoDB);
 
             db.CreateTable<CangKu>(QSmartTableType.InnoDB);
             db.CreateTable<HuoWei>(QSmartTableType.InnoDB);

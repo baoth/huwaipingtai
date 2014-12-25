@@ -16,7 +16,7 @@ namespace DataModel
         /// <summary>
         /// 分类编码
         /// </summary>
-        [StringMaxLength(2, VarCharType.nvarchar)]
+        [StringMaxLength(10, VarCharType.nvarchar)]
         public string BianMa{get;set;}
         /// <summary>
         /// 分类层级
@@ -30,7 +30,7 @@ namespace DataModel
         /// <summary>
         /// 父级分类
         /// </summary>
-        [StringMaxLength(2, VarCharType.nvarchar)]
+        [StringMaxLength(10, VarCharType.nvarchar)]
         public string PBianMa { get; set; }
         /// <summary>
         /// 停用 启用

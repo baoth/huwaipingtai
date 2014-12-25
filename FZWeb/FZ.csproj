@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BasicController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\GoodsSizeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SizeGroupsController.cs" />
@@ -108,7 +109,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Category\all.html" />
     <Content Include="Content\bin\Autofac.Configuration.dll" />
     <Content Include="Content\bin\Autofac.dll" />
     <Content Include="Content\bin\Autofac.Integration.Mvc.dll" />
@@ -290,6 +290,8 @@
     <Content Include="Views\User\logon.cshtml" />
     <Content Include="Views\SizeGroups\SizeGroups.cshtml" />
     <Content Include="Views\SizeGroups\SelectSize.cshtml" />
+    <Content Include="Views\Category\All.cshtml" />
+    <Content Include="Views\Shared\_SearchTypical.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

@@ -67,15 +67,15 @@
                             $(this).val(q);
                         }
                         else {
-                            $(this).val("1");
+                            $(this).val("0");
                         }
                     }
                     else {
-                        $(this).val("1");
+                        $(this).val("0");
                     }
                 });
                 $('.btn-add').on($.clickAction, function () {
-                    debugger
+                    
                     var $number = $(this).prev();
                     var value = $number.val();
                     if (value) {
@@ -86,22 +86,22 @@
                         }
                     }
                     else {
-                        $number.val("1");
+                        $number.val(0);
                     }
                 });
                 $('.btn-del').on($.clickAction, function () {
-                    debugger
+                    
                     var $number = $(this).next();
                     var value = $number.val();
                     if (value) {
                         value = parseInt(value);
-                        if (value > 1) {
+                        if (value >= 1) {
                             value--;
                             $number.val(value);
                         }
                     }
                     else {
-                        $number.val("1");
+                        $number.val(0);
                     }
                 });
             });
@@ -124,7 +124,7 @@
 
         var curr = new Date().getFullYear();
 
-        $('#test').scroller('destroy').scroller({
+        $('#rukuDateId').scroller('destroy').scroller({
             theme: 'wp light',
             preset: 'date',
             mode: 'scroller',
@@ -136,10 +136,10 @@
             dateOrder: 'yymmdd',
             animate: 'swing'
         });
-        $('#test').hide();
-        $('#test').show();
+        $('#rukuDateId').hide();
+        $('#rukuDateId').show();
         $('.select-btn').bind($.clickAction, function () {
-            debugger
+
             var refId = $(this).attr('refId');
             cb1 = new QsmartCombox(refId, { title: '货位信息', displaycolumn: ['Name'], dataurl: '/StorageIn/GetHuoWei', idcolumn: 'Id', columns: ['Id', 'Name'], pagesize: 20 }, refId); //, filtertext: '17', filters: ['DocNum'] 
             $('#' + refId).trigger($.clickAction);
@@ -149,24 +149,41 @@
             var detail = [];
             var data = $('.info-detail.selector');
             $.each(data, function (index, item) {
-                var store = {};
-                store.Color = $(this).find('.to-text3').text();
-                store.ColorId = $(this).find('.to-text3').data('id');
+                var color = $(this).find('.to-text3').text();
+                var colorId = $(this).find('.to-text3').data('id');
                 var sizes = $(this).find('.option-section');
                 $.each(sizes, function (index1, item1) {
+                    debugger
+                    var store = {};
+                    store.Color = color;
+                    store.ColorId = colorId;
                     store.SizeId = $(this).find('.titlef1').data('id');
                     store.Size = $(this).find('.titlef1').text();
                     store.Num = $(this).find('.new-input').val();
                     store.HWId = $(this).find('.huwei').data('id');
+                    if (store.Num&&store.Num != "0") {
+                        detail.push(store);
+                    }
                 })
-                detail.push(store);
+
             });
+            var mainId = $('#MainId').val();
+            var cangkuId = $('#CangkuId').val();
+            var rukuDate = $('#rukuDateId').val();
+            var shangPinId = $('#ShangPinId').val();
             $.ajax({
                 type: 'post',
-                data: { detail: JSON.stringify(detail) },
+                data: { detail: JSON.stringify(detail), MainId: mainId, CangkuId: cangkuId, rukuDate: rukuDate, shangPinId: shangPinId },
                 url: '/StorageIn/SaveStorageIn',
-                suceess: function () { 
-                    
+                error: function (xhr, errorType, error) {
+                    alert("请求异常,错误:" + error)
+                },
+                success: function (data, status, xhr) {
+                    if (data.IsSuccess) {
+                        alert("入库成功")
+                    } else {
+                        alert(data.Msg);
+                    }
                 }
             })
         });
@@ -216,22 +233,21 @@
                 </a>
                 <a href="#" class="i-tbl-cell">
                     <span style="width:26px;background-position:0 -25px;"></span>
-                    <p style="color:#6e6e6e;">分类搜索</p>
+                    <p style="color:#6e6e6e;">分类管理</p>
                 </a>
                 <a href="#" class="i-tbl-cell">
                     <span style="width:25px;background-position:-29px -25px"></span>
-                    <p style="color:#6e6e6e;">购物车</p>
+                    <p style="color:#6e6e6e;">商品管理</p>
                 </a>
                 <a href="#" class="i-tbl-cell">
                     <span style="width:22px;background-position:-85px -25px"></span>
-                    <p style="color:#6e6e6e;">我的易购</p>
+                    <p style="color:#6e6e6e;">字典管理</p>
                 </a>
             </div>
         </div>
     </header>
-
     <div class="content">
-        <ul>
+        <ul style="padding-bottom:32px">
             <li class="info-detail">
                 <div class="info">
                     <a href="#">
@@ -239,7 +255,7 @@
                     </a>
                    <!-- <span class="icon-arr"></span>-->
                 </div>
-                <p class="detail-title" id="title"><span><input type="text" class="datebox"  id="test"/> </span></p>
+                <p class="detail-title" id="title"><span><input type="text" class="datebox"  id="rukuDateId"/> </span></p>
             </li>
             <li class="bg-skape"></li>
             @{
@@ -274,7 +290,7 @@
                                                         <div class="option">
                                                             <span class="add-del">
                                                                 <a class="btn-del" id="minus"><span></span></a>
-                                                                <input type="text" class="new-input" value="1" id="number"/>
+                                                                <input type="text" class="new-input" value="0" id="number"/>
                                                                 <a class="btn-add" id="plus"><span></span></a>
                                                             </span>
                                                         </div>
@@ -305,14 +321,17 @@
         </ul>
     </div>
     <div style="display:none">
-        <input id="MainId" value=""/>
+        <input id="MainId" name="MainId" type="hidden" value=""/>
+        <input id="CangkuId"  name="CangkuId" type="hidden" value="1"/>
+        <input id="ShangPinId"   name="ShangPinId"  type="hidden" value="1" />
+
     </div>
     <div class="tbl-type btns">
         <div class="tbl-cell">                    
             <a id="addcart" class="btn-acart"><span></span>入库</a>
         </div>
     </div>
-
+    
 
 
 

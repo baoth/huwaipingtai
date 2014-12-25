@@ -155,5 +155,88 @@ namespace FZ.Controllers
             db.SaveChange();
             return Content("ok");
         }
+        /// <summary>
+        /// 品牌
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult pinpai()
+        {
+            QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            db.InsertEntity(new PinPai { Name = "丹杰仕",Logo="DANJIESHI" }.CreateQSmartObject());
+            db.InsertEntity(new PinPai { Name = "佐丹奴", Logo = "Giordano" }.CreateQSmartObject());
+            db.SaveChange();
+            return Content("ok");
+        }
+        /// <summary>
+        /// 颜色组 
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult yansezu()
+        {
+            QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            db.InsertEntity(new YanSeZu { Name = "丹杰仕组", PinPaiId = 1 }.CreateQSmartObject());
+            db.InsertEntity(new YanSeZu { Name = "佐丹奴组", PinPaiId = 2 }.CreateQSmartObject());
+            db.SaveChange();
+
+            return Content("ok");
+        }
+        /// <summary>
+        /// 颜色组明细
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult yansezumingxi()
+        {
+            QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            db.InsertEntity(new YanSeZuMingXi { YanSeZuId=1, YanSeId=1 }.CreateQSmartObject());
+            db.InsertEntity(new YanSeZuMingXi { YanSeZuId = 1, YanSeId = 2 }.CreateQSmartObject());
+            db.InsertEntity(new YanSeZuMingXi { YanSeZuId = 1, YanSeId = 3 }.CreateQSmartObject());
+            db.InsertEntity(new YanSeZuMingXi { YanSeZuId = 1, YanSeId = 4 }.CreateQSmartObject());
+            db.InsertEntity(new YanSeZuMingXi { YanSeZuId = 1, YanSeId = 5 }.CreateQSmartObject());
+
+            db.InsertEntity(new YanSeZuMingXi { YanSeZuId = 2, YanSeId = 1 }.CreateQSmartObject());
+            db.InsertEntity(new YanSeZuMingXi { YanSeZuId = 2, YanSeId = 2 }.CreateQSmartObject());
+            db.InsertEntity(new YanSeZuMingXi { YanSeZuId = 2, YanSeId = 3 }.CreateQSmartObject());
+            db.InsertEntity(new YanSeZuMingXi { YanSeZuId = 2, YanSeId = 4 }.CreateQSmartObject());
+            db.InsertEntity(new YanSeZuMingXi { YanSeZuId = 2, YanSeId = 5 }.CreateQSmartObject());
+
+            db.SaveChange();
+            return Content("ok");
+        }
+       /// <summary>
+       /// 尺码组
+       /// </summary>
+       /// <returns></returns>
+        public ActionResult zhimazu()
+        {
+            QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            db.InsertEntity(new ChiMaZu { Name = "丹杰仕尺码组", PinPaiId = 1 }.CreateQSmartObject());
+            db.InsertEntity(new ChiMaZu { Name = "佐丹奴尺码组", PinPaiId = 2 }.CreateQSmartObject());
+            db.SaveChange();
+
+            return Content("ok");
+        }
+        /// <summary>
+        /// 尺码组明细
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult chimazumingxi()
+        {
+            QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            db.InsertEntity(new ChiMaZuMingXi { ChiMaZuId = 1, ChiMaId = 1 }.CreateQSmartObject());
+            db.InsertEntity(new ChiMaZuMingXi { ChiMaZuId = 1, ChiMaId = 2 }.CreateQSmartObject());
+            db.InsertEntity(new ChiMaZuMingXi { ChiMaZuId = 1, ChiMaId = 3 }.CreateQSmartObject());
+            db.InsertEntity(new ChiMaZuMingXi { ChiMaZuId = 1, ChiMaId = 4 }.CreateQSmartObject());
+            db.InsertEntity(new ChiMaZuMingXi { ChiMaZuId = 1, ChiMaId = 5 }.CreateQSmartObject());
+
+            db.InsertEntity(new ChiMaZuMingXi { ChiMaZuId = 2, ChiMaId = 1 }.CreateQSmartObject());
+            db.InsertEntity(new ChiMaZuMingXi { ChiMaZuId = 2, ChiMaId = 2 }.CreateQSmartObject());
+            db.InsertEntity(new ChiMaZuMingXi { ChiMaZuId = 2, ChiMaId = 3 }.CreateQSmartObject());
+            db.InsertEntity(new ChiMaZuMingXi { ChiMaZuId = 2, ChiMaId = 4 }.CreateQSmartObject());
+            db.InsertEntity(new ChiMaZuMingXi { ChiMaZuId = 2, ChiMaId = 5 }.CreateQSmartObject());
+
+            db.SaveChange();
+            return Content("ok");
+        }
+
     }
 }

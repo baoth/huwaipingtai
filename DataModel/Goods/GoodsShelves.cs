@@ -6,23 +6,44 @@ using QSmart.Core.Object;
 namespace DataModel
 {
     /// <summary>
-    /// 商品上架表
+    /// 上架商品图册集
     /// </summary>
-    public class GoodsShelves : QSmartEntity
+    public class ShangJia_ShangPin_TuCe
     {
-        /// <summary>
-        /// 商品编码
-        /// </summary>
+        [AutoIncrement]
         [PrimaryKey]
-        public int Sku { get; set; }
-        /// <summary>
-        /// 商品描述
-        /// </summary>
+        public int Id { get; set; }
+        public int ShangPinId { get; set; }
+        [StringMaxLength(20, VarCharType.nvarchar)]
+        public string ImgName { get; set; }
+    }
+
+    /// <summary>
+    /// 详情页详情信息
+    /// </summary>
+    public class ShangJia_Sku_Info
+    {
+        [PrimaryKey]
+        [StringMaxLength(30, VarCharType.nvarchar)]
+        public string Sku { get; set; } //fenlei-shangpinid-yanse-chima
         [StringMaxLength(50, VarCharType.nvarchar)]
         public string Description { get; set; }
-        /// <summary>
-        /// 商品单价
-        /// </summary>
         public decimal Price { get; set; }
+        public int ShangPinId { get; set; }
+        public bool IsShangJia { get; set; }
+    }
+
+    /// <summary>
+    /// 详情页图头
+    /// </summary>
+    public class ShangJia_Sku_TuTou
+    {
+        [PrimaryKey]
+        [AutoIncrement]
+        public int Id { get; set; }
+        [StringMaxLength(30, VarCharType.nvarchar)]
+        public string Sku { get; set; }
+        [StringMaxLength(20, VarCharType.nvarchar)]
+        public string ImgName { get; set; }
     }
 }

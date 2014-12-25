@@ -9,12 +9,18 @@ namespace BusinessOrder.Shelves
     {
         public List<DataModel.PinPai> GetBrandList()
         {
-            return null;
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var sql = string.Format("select Id,Name,Logo,PinPaiShangId from PinPai ");
+            var dt = dbSession.Context.QueryTable(sql); ;
+            return dbSession.Context.ConversionEntity<DataModel.PinPai>(dt);
         }
 
-        public List<DataModel.ShangPin> GetBrandList(int pingpaiid)
+        public List<DataModel.ShangPin> GetProductList(int pingpaiid)
         {
-            return null;
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var sql = string.Format("select Id,Name,ShangPinFenLeiId,ChiMaZuId,YanSeZuId,PinPaiId from ShangPin where pinpaiid='{0}'", pingpaiid);
+            var dt = dbSession.Context.QueryTable(sql); ;
+            return dbSession.Context.ConversionEntity<DataModel.ShangPin>(dt);
         }
     }
 }

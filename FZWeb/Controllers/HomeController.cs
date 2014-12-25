@@ -47,6 +47,11 @@ namespace FZ.Controllers
             model4.FunctionName = "出库单";
             model4.FunctionUrl = "/StorageIn/Index";
             list.Add(model4);
+            
+            FunctionModel model5 = new FunctionModel();
+            model5.FunctionName = "商品上架";
+            model5.FunctionUrl = "/Shelves/BrandList";
+            list.Add(model5);
             return list;
         }
     }

@@ -17,6 +17,6 @@ namespace IBusinessOrder.Shelves
         /// 获取商品列表
         /// </summary>
         /// <returns></returns>
-        List<ShangPin> GetBrandList(int pingpaiid);
+        List<ShangPin> GetProductList(int pingpaiid);
     }
 }

@@ -23,8 +23,14 @@ namespace FZ.Controllers
         {
             return View("index");
         }
+
         public ActionResult SizeGroups()
         {
+            var yansezuid=Request["yansezuid"];
+            if (!string.IsNullOrEmpty(yansezuid))
+            {
+                ViewData["YanSeZuId"] = yansezuid;
+            }
             return View("SizeGroups");
         }
         public ActionResult SelectSize()

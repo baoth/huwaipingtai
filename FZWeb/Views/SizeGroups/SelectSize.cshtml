@@ -17,14 +17,19 @@
 
         <script type="text/javascript">
             $(document).ready(function () {
-               // InitData();
+                // InitData();
                 LoadData();
+                BindEvent();
 
             });
             var InitData = function () {
                
             }
-
+            var BindEvent = function () {
+                $("#btn_save").bind("click", function () { 
+                    
+                });
+            }
             var LoadData = function () {
                 var url = "/GoodsSize/GetGoodsSizeList";
                 var para = { };
@@ -37,7 +42,7 @@
                 var name = data["Name"] + "";
                 
                 var li = '<li class="rowli">'
-                         + '   <span id="checkIcon{0}" class="span-checkbox" codeid={0} onclick="changeSelected(this,{0})"></span>'
+                         + '   <span id="checkIcon{0}" class="span-checkbox" codeid={0} onclick="changeSelected(this)"></span>'
                          + '   <span class="spanSize">XXL</span>'
                          + '</li>';
                 var liHtml = li.format(id,name);
@@ -82,7 +87,7 @@
                 });
             }
            
-            function changeSelected(e,id) {
+            function changeSelected(e) {
                 var obj = $(e);               
                 if (obj.hasClass("checked")) {
                     obj.removeClass("checked");
@@ -93,7 +98,32 @@
                 }               
             }
 
-           
+            var SaveAjax = function (url, para) {
+                $.ajax({
+                    url: url,
+                    data: para,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data) {
+                            data = eval('(' + data + ')');
+                            if (data.IsSuccess) {
+                                
+                            }
+                            else {
+                                alert("保存失败！");
+                            }
+                        }
+                        else {
+                            alert("保存失败！");
+                        }
+                    },
+                    error: function () {
+                        alert("请求错误！");
+                    }
+
+                });
+            }
            
         </script>
 
@@ -191,7 +221,7 @@
          <div id="content" style="display:block">
 	          <ul id="RowContent">
                   <li class="rowli">
-                     <span id="checkIcon{0}" class="span-checkbox checked" codeid={0} onclick="changeSelected(this,{0})"></span> 
+                     <span id="checkIcon{0}" class="span-checkbox checked" codeid={0} onclick="changeSelected(this)"></span> 
                      <span class="spanSize">XXL</span>
                  </li>
               </ul>   
@@ -199,7 +229,7 @@
 
         <div class="tbl-type detail-tbn2" id="cart1" style="position: fixed; left: 0px; bottom: 0px; z-index: 999; display: table;">
     	   <div class="tbl-cell">                   
-               <a id="directorder" class="btn-Save"><span></span>确定</a>
+               <a id="btn_save" class="btn-Save"><span></span>确定</a>
            </div>
           
       </div>

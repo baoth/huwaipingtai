@@ -16,37 +16,62 @@
         <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
 
         <script type="text/javascript">
-            $(document).ready(function () {
-                // InitData();
-               // LoadData();
+            $(document).ready(function () {               
+                LoadData();
                 BindEvent();
 
             });
-            var InitData = function () {
-               
-            }
+
             var BindEvent = function () {
-                $("#btn_save").bind("click", function () { 
-                    
+                $("#btn_save").bind("click", function () {
+                    var url = "/Shelves/SaveShangJia_Sku_TuTou";
+                    var dataRow = [];
+                    var sku = $("#txt_sku").val();
+                    $("#RowContent a").each(function () {
+                        var aObj = $(this)
+                        var checked = aObj.attr("checked");
+                        if (checked == "1") {
+                            var row = {};
+                            row.ImgName = $(aObj.find("img")).attr("v");
+                            row.Sku = sku;
+                            dataRow.push(row);
+                        }
+
+                    })
+                    var dataJson = JSON.stringify(dataRow);
+                    var para = { data: dataJson };
+                    SaveAjax(url,para);
                 });
             }
             var LoadData = function () {
-                var url = "/GoodsSize/GetGoodsSizeList";
-                var para = { };
-                submitAjax(url, para);               
+                var url = "/Shelves/GetProductPhotoList";
+                var sku = $("#txt_sku").val();
+                var shangpinid = $("#txt_shangpinid").val();
+                var para = {Sku:sku,ShangPinId:shangpinid};
+                submitAjax(url, para);
             }
 
             var getHtml = function (data) {
-            
                 var id = data["Id"];
-                var name = data["Name"] + "";
-                
-                var li = '<li class="rowli">'
-                         + '   <span id="checkIcon{0}" class="span-checkbox" codeid={0} onclick="changeSelected(this)"></span>'
-                         + '   <span class="spanSize">XXL</span>'
-                         + '</li>';
-                var liHtml = li.format(id,name);
-                return liHtml;
+                var imgName = data["ImgName"];
+                var ishasImg = data["Sku"]; //判断是否选择图片标示
+                var checked = ishasImg == null ? 0 : 1;
+                var className = checked == 1 ? "span-checkbox checked" : "";
+                var sku = $("#txt_sku").val();
+                var rootPath = $("#txt_imgPth").val();
+                var imgFullPath = "../.." + rootPath + "/" + sku + imgName;
+
+                var divs = '<div class="module">'
+                         + '     <a href="#" onclick="changeSelected(this)" checked={1} >'
+                         + '         <p class="img">'
+                         + '             <img class="imageLoad" v={4} src="{2}">'
+                         + '             <span id="checkIcon{0}" class="{3}"></span>'
+                         + '         </p>'
+                         + '         <p class="g-title"> </p>'
+                         + '     </a>' 
+                         + '</div>';
+                var divHtml = divs.format(id, checked, imgFullPath, className, imgName);
+                return divHtml;
             }
 
             var submitAjax = function (url, para) {
@@ -56,23 +81,17 @@
                     type: "POST",
                     dataType: "json",
                     success: function (data) {
-
                         var lis = "";
                         if (data && data.length > 0) {
                             for (var i = 0, j = data.length; i < j; i++) {
                                 lis += getHtml(data[i]);
                             }
                         }
+
                         var objul = $("#RowContent");
                         if (lis) {
-                            var li = objul.find("li:last");
-                            if (li && li.length > 0) {
-                                objul.children().remove();
-                                objul.html(lis);
-                            }
-                            else {
-                                objul.html(lis);
-                            }                           
+                            objul.html("");
+                            objul.html(lis);                                              
                         }
                         else {
                             objul.html("");
@@ -132,7 +151,8 @@
                         if (data) {
                             data = eval('(' + data + ')');
                             if (data.IsSuccess) {
-                                
+                                LoadData();
+                                alert("保存成功！");
                             }
                             else {
                                 alert("保存失败！");
@@ -301,12 +321,12 @@
         @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "选择商品图片" } })
 
          <div id="content" style="display:block">
-	          <ul id="RowContent">
-                  <li class="rowli">                   
+	          <ul >
+                  <li id="RowContent" class="rowli">                   
                      <div class="module">
                           <a href="#" onclick="changeSelected(this)" checked=1 >
                               <p class="img">                          
-                                  <img class="imageLoad" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
+                                  <img class="imageLoad" src="../../ProductImage/001/00001.jpg">
                               
                                   <span id="checkIcon{0}" class="span-checkbox checked"></span> 
                               </p>
@@ -383,6 +403,8 @@
 
        <div style="display:none">
           <input type="hidden" id="txt_sku" value="@ViewData["Sku"]" />
+          <input type="hidden" id="txt_shangpinid" value="@ViewData["ShangPinId"]" />
+          <input  type="hidden" id="txt_imgPth" value="@ViewData["imgPath"]"/>
         
       </div>
     </body>

@@ -42,6 +42,7 @@ namespace DataModel
         [PrimaryKey]
         [AutoIncrement]
         public int Id { get; set; }
+        public int ShangJia_ShangPin_TuCeId { get; set; }
         [StringMaxLength(30, VarCharType.nvarchar)]
         public string Sku { get; set; }
         [StringMaxLength(20, VarCharType.nvarchar)]

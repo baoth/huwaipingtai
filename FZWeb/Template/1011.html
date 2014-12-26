@@ -1,6 +1,8 @@
-﻿<!DOCTYPE html>
+﻿
+ 
+<!DOCTYPE html>
 <html>
-    <head>
+	 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -12,6 +14,7 @@
         <script src="../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
         <script src="../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
         <link href="Catalog.css" rel="stylesheet" type="text/css" />
+         <link href="Catalog2.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript">
             var myScroll;
             $(document).ready(function () {
@@ -36,8 +39,9 @@
             };
         </script>
     </head>
-    <body>
-    <header>
+
+<body id="body">
+<header>
         <div class='i-bh-header'>
         <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
         <h2>商品分类</h2>
@@ -64,51 +68,95 @@
         </div>
     </div>
     </header>
-        <div id="wrapper">
-	        <div id="scroller" class="bt-category">
-                <ul class="bt-category-lst">
-                    <vt:function var="data" method="GetLevel1Catalog" name="给商品一级分类" v="1" />
-                    <vt:foreach item="catalog1" from="$data" index="i">
-                     <li class="bt-category-li">
-    			        <a href="javascript:void(0)" id="{$catalog1.Id}" class="bt-category-a"><span class="icon"></span>{$catalog1.Name}</a>
-                         <ul class="bt-category2-lst" id="category{$catalog1.Id}" style="display:none;">
-                            <vt:set var="isTrue" value="false" />
-                            <vt:function var="data1" method="GetLevel2Catalog" name="给商品二级分类" v="1" />
-                            <vt:foreach item="catalog2" from="$data1" index="j">
-                                <vt:expression var="r" args="$j"  expression="{0}%3" />
-                                <vt:if var="r" value="1" compare="=">
-                                    <vt:set var="isTrue" value="0" />
-                                    <li class="bt-category2-li">
-                                    <a href="{$catalog2.BianMa}.html" class="bt-category2-a"><span class="bt-bar"></span>{$catalog2.Name}</a>
-                                     <vt:set var="isTrue" value="0" />
-                                <vt:elseif value="2">
-                                        <a href="{$catalog2.BianMa}.html" class="bt-category2-a"><span class="bt-bar"></span>{$catalog2.Name}</a>
-                                         <vt:set var="isTrue" value="1" />
-                                <vt:else>
-                                    <a href="{$catalog2.BianMa}.html" class="bt-category2-a"><span class="bt-bar"></span>{$catalog2.Name}</a>
-                                    </li>
-                                    <vt:set var="isTrue" value="2" />
-                                </vt:if>
-                              
-                                  
-                            </vt:foreach>
-                            
-                            <vt:if var="isTrue" value="0">
-                                <a href="#" class="bt-category2-a"><span class="bt-bar"></span></a>
-                                <a href="#" class="bt-category2-a"><span class="bt-bar"></span></a>
-                                </li>
-                            <vt:elseif value="1">
-                                 <a href="#" class="bt-category2-a"><span class="bt-bar"></span></a>
-                                 </li>
-                            <vt:else>
-                            </vt:if>
-                        </ul>
-                    </li>
-                    </vt:foreach>
-                </ul>
-            </div>
-        </div>
-        <script type="text/javascript">
+<div class="list p-sort radius">
+    <div class="mc" >
+      <ul>
+         
+         
+		    <a href='/products/2'>
+			    <li class="first">
+				    <input type="hidden" value="衬衫"/>
+				    <strong class="name1">综合训练器</strong>
+				    <span class="menu-botton-arrow"></span>
+			    </li>
+		    </a>
+            
+		    <a href='/products/2'>
+			    <li class="first">
+				    <input type="hidden" value="衬衫"/>
+				    <strong class="name1">健身车/动感单车</strong>
+				    <span class="menu-botton-arrow"></span>
+			    </li>
+		    </a>
+            
+		    <a href='/products/2'>
+			    <li class="first">
+				    <input type="hidden" value="衬衫"/>
+				    <strong class="name1">跑步机</strong>
+				    <span class="menu-botton-arrow"></span>
+			    </li>
+		    </a>
+            
+		    <a href='/products/2'>
+			    <li class="first">
+				    <input type="hidden" value="衬衫"/>
+				    <strong class="name1">运动护具</strong>
+				    <span class="menu-botton-arrow"></span>
+			    </li>
+		    </a>
+            
+		    <a href='/products/2'>
+			    <li class="first">
+				    <input type="hidden" value="衬衫"/>
+				    <strong class="name1">其他大型器械</strong>
+				    <span class="menu-botton-arrow"></span>
+			    </li>
+		    </a>
+            
+		    <a href='/products/2'>
+			    <li class="first">
+				    <input type="hidden" value="衬衫"/>
+				    <strong class="name1">其他中小型器材</strong>
+				    <span class="menu-botton-arrow"></span>
+			    </li>
+		    </a>
+            
+		    <a href='/products/2'>
+			    <li class="first">
+				    <input type="hidden" value="衬衫"/>
+				    <strong class="name1">哑铃</strong>
+				    <span class="menu-botton-arrow"></span>
+			    </li>
+		    </a>
+            
+		    <a href='/products/2'>
+			    <li class="first">
+				    <input type="hidden" value="衬衫"/>
+				    <strong class="name1">仰卧板/收腹机</strong>
+				    <span class="menu-botton-arrow"></span>
+			    </li>
+		    </a>
+            
+		    <a href='/products/2'>
+			    <li class="first">
+				    <input type="hidden" value="衬衫"/>
+				    <strong class="name1">瑜伽舞蹈</strong>
+				    <span class="menu-botton-arrow"></span>
+			    </li>
+		    </a>
+            
+		    <a href='/products/2'>
+			    <li class="first">
+				    <input type="hidden" value="衬衫"/>
+				    <strong class="name1">武术搏击</strong>
+				    <span class="menu-botton-arrow"></span>
+			    </li>
+		    </a>
+            
+	    </ul>
+    </div>
+</div>
+<script>
     var widthchange;
     $(document).ready(function () {
         $('.i-a-bh').on($.clickAction, function () {
@@ -125,6 +173,4 @@
     });
 </script>
 </body>
-     
-   
 </html>

@@ -48,12 +48,13 @@ namespace IBusinessOrder.CMS
         /// 获取当前商品分类1级和2级
         /// </summary>
         /// <returns></returns>
-        List<ShangPinFenLei> GetGoodsCataLog12();
+        List<ShangPinFenLei> GetGoodsCataLog(List<int> levels);
+
         /// <summary>
         /// 获取目录模版路径
         /// </summary>
         /// <returns></returns>
-        string GetGoodsCatalogTemplate();
+        string GetGoodsCatalogTemplate(string templateName);
      
     }
 }

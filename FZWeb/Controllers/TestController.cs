@@ -19,7 +19,11 @@ namespace FZ.Controllers
 
         public ActionResult CreateTable() 
         {
+
             QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            db.CreateTable<ShangJia_ShangPin_TuCe>(QSmartTableType.InnoDB);
+            db.CreateTable<ShangJia_Sku_Info>(QSmartTableType.InnoDB);
+            db.CreateTable<ShangJia_Sku_TuTou>(QSmartTableType.InnoDB);
             db.CreateTable<YanSeZu>(QSmartTableType.InnoDB);
             db.CreateTable<YanSeZuMingXi>(QSmartTableType.InnoDB);
             db.CreateTable<YanSe>(QSmartTableType.InnoDB);

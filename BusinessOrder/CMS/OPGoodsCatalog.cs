@@ -87,13 +87,18 @@ namespace BusinessOrder.CMS
 
 
         /// <summary>
-        /// 获得商品分类的12级数据
+        /// 获得商品分类的级数据
         /// </summary>
         /// <returns></returns>
-        public List<ShangPinFenLei> GetGoodsCataLog12()
+        public List<ShangPinFenLei> GetGoodsCataLog(List<int> levels)
         {
             var listCataLog = new List<ShangPinFenLei>();
-            string sql = "select * from shangpinfenlei where Level=1 or Level=2";
+            string sWhere = " 1<>1 ";
+            for (int i = 0; i < levels.Count; i++)
+			{
+                sWhere += " or Level=" + levels[i] ;
+            }
+            string sql = "select * from shangpinfenlei where "+sWhere;
             var dbSession = Common.DbFactory.CreateDbSession();
             var dt = dbSession.Context.QueryTable(sql);
             return dbSession.Context.ConversionEntity<ShangPinFenLei>(dt);
@@ -103,11 +108,11 @@ namespace BusinessOrder.CMS
         /// </summary>
         /// <param name="goodsSKU"></param>
         /// <returns></returns>
-        public string GetGoodsCatalogTemplate()
+        public string GetGoodsCatalogTemplate(string templateName)
         {
             var path = Toolkit.Path.PathConfig.GetTemplatePath();
-            var strTemplate = "TCatelogAll.htm";
-            return path.CombinePath(strTemplate);
+            //var strTemplate = "TCatelogAll.htm";
+            return path.CombinePath(templateName);
         }
     }
 }

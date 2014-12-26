@@ -61,11 +61,10 @@ namespace BusinessOrder.CMS
             document.RegisterGlobalFunction("GetGoodsColor", GetGoodsColor);
             return document;
         }
-
-
+        /*带调整 应该把变化的路径提出来  放在控制层*/
         public CResult PublishCatalogTemplate()
         {
-            string pathTemplate = iOPGoodsCatalog.GetGoodsCatalogTemplate();
+            string pathTemplate = iOPGoodsCatalog.GetGoodsCatalogTemplate("TCatelogAll.htm");
             Document document = GetVTDocument(pathTemplate);
             TextWriter textWriter = new StringWriter();
             document.Render(textWriter);
@@ -73,13 +72,13 @@ namespace BusinessOrder.CMS
             string html = textWriter.ToString();
             var newPath = Toolkit.Path.PathConfig.GetGeneratePath("Template");
             File.WriteAllText(newPath + @"\List.html", html, Encoding.UTF8);
-            return FunResult.GetSuccess();
+            return PublishCatalog3Template();
         }
         private Document GetVTDocument(string template)
         {
             Document document = new Document(template,Encoding.UTF8);
             //document.SetValue("Goods", opGoods.GetGoods(goodsSKU));
-            var catalogList = iOPGoodsCatalog.GetGoodsCataLog12();
+            var catalogList = iOPGoodsCatalog.GetGoodsCataLog(new List<int>() {1,2 });
 
             //注册商品分类1对象
             UserDefinedFunction GetLevel1Catalog = (o) =>
@@ -106,6 +105,43 @@ namespace BusinessOrder.CMS
                 return list;
             };
             document.RegisterGlobalFunction("GetLevel2Catalog", GetLevel2Catalog);
+            return document;
+        }
+
+        public CResult PublishCatalog3Template() 
+        {
+            string pathTemplate = iOPGoodsCatalog.GetGoodsCatalogTemplate("TCatelog2.htm");
+            var listShangePinFeiLei = iOPGoodsCatalog.GetGoodsCataLog(new List<int>() { 2,3});
+            var list2ShangePinFeiLei = listShangePinFeiLei.Where(e => e.Level == 2).ToList();
+            foreach (var item in list2ShangePinFeiLei)
+            {
+                var list3ShangePinFeiLei = listShangePinFeiLei.Where(e => e.PBianMa == item.BianMa&&e.Level==3).ToList();
+                Document document = GetVTDocument(pathTemplate,list3ShangePinFeiLei);
+                TextWriter textWriter = new StringWriter();
+                document.Render(textWriter);
+                //把生成的静态内容写入到目标文件
+                string html = textWriter.ToString();
+                var newPath = Toolkit.Path.PathConfig.GetGeneratePath("Template");
+                File.WriteAllText(newPath + @"\"+item.BianMa+".html", html, Encoding.UTF8); 
+            }
+           
+            return FunResult.GetSuccess();
+        }
+        private Document GetVTDocument(string template,List<DataModel.ShangPinFenLei> listShangePinFeiLei)
+        {
+            Document document = new Document(template, Encoding.UTF8);
+            //注册商品分类3对象
+            UserDefinedFunction GetLevel3Catalog = (o) =>
+            {
+                /*预留吧 有可能根据商品分类来读取数据*/
+                var d = TemplateDocument.CurrentRenderingDocument;
+                var tag = d == null ? null : d.CurrentRenderingTag;
+                var Name = tag.Attributes.GetValue("name");
+                var Id = tag.Attributes.GetValue("id");
+                var list = listShangePinFeiLei;
+                return list;
+            };
+            document.RegisterGlobalFunction("GetLevel3Catalog", GetLevel3Catalog);
             return document;
         }
     }

@@ -30,6 +30,7 @@ namespace DataModel
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int ShangPinId { get; set; }
+        public int FeiLeiId { get; set; }
         public bool IsShangJia { get; set; }
     }
 

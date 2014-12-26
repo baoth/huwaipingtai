@@ -54,12 +54,12 @@
             var getHtml = function (data) {
                 var id = data["Id"];
                 var imgName = data["ImgName"];
-                var ishasImg = data["Sku"]; //判断是否选择图片标示
+                var ishasImg = data["ImgKey"]; //判断是否选择图片标示
                 var checked = ishasImg == null ? 0 : 1;
                 var className = checked == 1 ? "span-checkbox checked" : "";
                 var sku = $("#txt_sku").val();
                 var rootPath = $("#txt_imgPth").val();
-                var imgFullPath = "../.." + rootPath + "/" + sku + imgName;
+                var imgFullPath = "../.." + rootPath + "/" + sku +"/"+ imgName;
 
                 var divs = '<div class="module">'
                          + '     <a href="#" onclick="changeSelected(this)" checked={1} >'
@@ -81,6 +81,7 @@
                     type: "POST",
                     dataType: "json",
                     success: function (data) {
+                        debugger
                         var lis = "";
                         if (data && data.length > 0) {
                             for (var i = 0, j = data.length; i < j; i++) {

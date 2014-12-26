@@ -57,12 +57,12 @@ namespace DataModel
     /// <summary>
     /// 自定义模型（无表）
     /// </summary>
-    public class ShangJia_ShangPin_Sku_TuTouModel : QSmartEntity
+    public class ShangJia_ShangPin_Sku_TuTouDto
     {
         public int Id { get; set; }
         public int ShangPinId { get; set; }       
         public string ImgName { get; set; }
-        public string Sku { get; set; }
+        public string ImgKey { get; set; }
        
     }
 }

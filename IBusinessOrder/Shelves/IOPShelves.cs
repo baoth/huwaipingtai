@@ -24,7 +24,7 @@ namespace IBusinessOrder.Shelves
         /// <param name="shangpinid"></param>
         /// <param name="sku"></param>
         /// <returns></returns>
-        List<ShangJia_ShangPin_Sku_TuTouModel> GetProductPhotoList(int shangpinid,string sku);
+        List<ShangJia_ShangPin_Sku_TuTouDto> GetProductPhotoList(int shangpinid, string sku);
         /// <summary>
         /// 保存详细页图头信息
         /// </summary>

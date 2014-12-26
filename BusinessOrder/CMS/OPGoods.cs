@@ -15,11 +15,11 @@ namespace BusinessOrder.CMS
             var strTemplate = "mGoodsDetail.htm";
             return path.CombinePath(strTemplate);
         }
-        public string GetGoodsGenerateFullPath() 
+        public string GetGoodsGenerateFullPath(string fileName) 
         {
             var path = Toolkit.Path.PathConfig.GetGeneratePath();
 
-            return path.CombinePath("Product");
+            return path.CombinePath(fileName);
         }
         public List<GoodsSizeDto> GetGoodsSize(string goodsSKU)
         {

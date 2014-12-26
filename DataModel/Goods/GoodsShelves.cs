@@ -8,7 +8,7 @@ namespace DataModel
     /// <summary>
     /// 上架商品图册集
     /// </summary>
-    public class ShangJia_ShangPin_TuCe
+    public class ShangJia_ShangPin_TuCe : QSmartEntity
     {
         [AutoIncrement]
         [PrimaryKey]
@@ -21,7 +21,7 @@ namespace DataModel
     /// <summary>
     /// 详情页详情信息
     /// </summary>
-    public class ShangJia_Sku_Info
+    public class ShangJia_Sku_Info : QSmartEntity
     {
         [PrimaryKey]
         [StringMaxLength(30, VarCharType.nvarchar)]
@@ -30,13 +30,14 @@ namespace DataModel
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int ShangPinId { get; set; }
+        public int FeiLeiId { get; set; }
         public bool IsShangJia { get; set; }
     }
 
     /// <summary>
     /// 详情页图头
     /// </summary>
-    public class ShangJia_Sku_TuTou
+    public class ShangJia_Sku_TuTou : QSmartEntity
     {
         [PrimaryKey]
         [AutoIncrement]

@@ -10,13 +10,18 @@ namespace Toolkit.PubCms
         public Document(string templateContent)
             : base(templateContent)
         {
-            new VTemplate.Engine.TemplateDocument(templateContent);
+            //new VTemplate.Engine.TemplateDocument(templateContent);
         }
 
         public Document(string fileName, Encoding encod)
             : base(fileName, encod)
         {
-            new VTemplate.Engine.TemplateDocument(fileName, encod);
+            //new VTemplate.Engine.TemplateDocument(fileName, encod);
         }
+        //public Document()
+        //    : base(Guid.NewGuid().ToString(), Encoding.UTF8)
+        //{
+        //    //new VTemplate.Engine.TemplateDocument(Guid.NewGuid().ToString(), Encoding.UTF8);
+        //}
     }
 }

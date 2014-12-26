@@ -63,5 +63,15 @@ namespace FZ.Controllers
             }
         }
 
+        public ActionResult SelectImage()
+        {
+            var sku=Request["Sku"];
+            if (!string.IsNullOrEmpty(sku))
+            { 
+                ViewData["Sku"]=sku;
+            }
+            return View("SelectImage");
+        }
+
     }
 }

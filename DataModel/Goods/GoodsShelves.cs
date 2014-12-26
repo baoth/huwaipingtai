@@ -52,7 +52,7 @@ namespace DataModel
         /// <summary>
         /// 商品图册Id
         /// </summary>
-        public int TcId { get; set; }
+        public int ShangJia_ShangPin_TuCeId { get; set; }
     }
     /// <summary>
     /// 自定义模型（无表）

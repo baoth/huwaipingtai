@@ -29,7 +29,7 @@ namespace BusinessOrder.Shelves
         public List<DataModel.ShangJia_ShangPin_Sku_TuTouDto> GetProductPhotoList(int shangpinid, string imgKey)
         {
             var dbSession = Common.DbFactory.CreateDbSession();
-            var sql = string.Format("select a.Id,a.ShangPinId,a.ImgName,b.Sku from ShangJia_ShangPin_TuCe as a left join (select c.TcId, c.ImgKey,c.ImgName from ShangJia_Sku_TuTou as c where c.ImgKey='{1}')as b on a.id=b.TcId where a.ShangPinId='{0}' ", shangpinid, imgKey);
+            var sql = string.Format("select a.Id,a.ShangPinId,a.ImgName,b.Sku from ShangJia_ShangPin_TuCe as a left join (select c.ShangJia_ShangPin_TuCeId, c.ImgKey,c.ImgName from ShangJia_Sku_TuTou as c where c.ImgKey='{1}')as b on a.id=b.ShangJia_ShangPin_TuCeId where a.ShangPinId='{0}' ", shangpinid, imgKey);
           
             var dt = dbSession.Context.QueryTable(sql);
             var list = dt.ToList<DataModel.ShangJia_ShangPin_Sku_TuTouDto>() as List<DataModel.ShangJia_ShangPin_Sku_TuTouDto>;
@@ -44,7 +44,7 @@ namespace BusinessOrder.Shelves
             sqlList.Add("detete from ShangJia_Sku_TuTou where ImgKey='" + sku + "'");
             foreach(DataModel.ShangJia_Sku_TuTou item in list )
             {
-                sqlList.Add(string.Format(" insert into ShangJia_Sku_TuTou(TcId,ImgKey,ImgName) values('{0}','{1}','{2}')",item.TcId,item.ImgKey, item.ImgName));
+                sqlList.Add(string.Format(" insert into ShangJia_Sku_TuTou(ShangJia_ShangPin_TuCeId,ImgKey,ImgName) values('{0}','{1}','{2}')", item.ShangJia_ShangPin_TuCeId, item.ImgKey, item.ImgName));
             }
             dbSession.Context.ExcuteNoQuery(sqlList);
             return true;

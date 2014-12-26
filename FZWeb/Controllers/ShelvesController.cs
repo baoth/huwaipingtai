@@ -92,6 +92,9 @@ namespace FZ.Controllers
                 var sku = Request["Sku"];
                 var shangpinid = Request["ShangPinId"];
                 int id;
+                // sku = "1-1-1-1-1";
+                 //shangpinid = "1";
+
                 int.TryParse(shangpinid, out id);
                 var list = iopshelves.GetProductPhotoList(id, sku);
                 var json = JsonHelp.objectToJson(list);

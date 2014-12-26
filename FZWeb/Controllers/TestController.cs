@@ -19,7 +19,11 @@ namespace FZ.Controllers
 
         public ActionResult CreateTable() 
         {
+
             QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            db.CreateTable<ShangJia_ShangPin_TuCe>(QSmartTableType.InnoDB);
+            db.CreateTable<ShangJia_Sku_Info>(QSmartTableType.InnoDB);
+            db.CreateTable<ShangJia_Sku_TuTou>(QSmartTableType.InnoDB);
             db.CreateTable<YanSeZu>(QSmartTableType.InnoDB);
             db.CreateTable<YanSeZuMingXi>(QSmartTableType.InnoDB);
             db.CreateTable<YanSe>(QSmartTableType.InnoDB);
@@ -48,9 +52,6 @@ namespace FZ.Controllers
 
         public ActionResult CategoryData()
         {
-
-            
-            
 
             //List<string> level1name = new List<string>{
             //    "服饰内衣","鞋靴","手机","家用电器","数码","电脑、办公","个护化妆",

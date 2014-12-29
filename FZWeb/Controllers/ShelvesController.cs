@@ -69,10 +69,11 @@ namespace FZ.Controllers
         {
             var sku=Request["Sku"];
             var shangpinid = Request["ShangPinId"];
+           // ViewData["Sku"] = "1-1-1-1-1";
             if (!string.IsNullOrEmpty(sku))
-            { 
-                ViewData["Sku"]=sku;
-            }
+            {
+                ViewData["Sku"] = sku;//sku;
+            }         
             if (!string.IsNullOrEmpty(shangpinid))
             {
                 ViewData["ShangPinId"] = shangpinid;
@@ -89,14 +90,14 @@ namespace FZ.Controllers
         {
             try
             {
-                var sku = Request["Sku"];
+                var imgKey = Request["ImgKey"];
                 var shangpinid = Request["ShangPinId"];
                 int id;
-                // sku = "1-1-1-1-1";
-                 //shangpinid = "1";
-
+               // imgKey = "1-1-1-1";
+               // shangpinid = "1";
+                
                 int.TryParse(shangpinid, out id);
-                var list = iopshelves.GetProductPhotoList(id, sku);
+                var list = iopshelves.GetProductPhotoList(id, imgKey);
                 var json = JsonHelp.objectToJson(list);
                 return Content(json);
             }

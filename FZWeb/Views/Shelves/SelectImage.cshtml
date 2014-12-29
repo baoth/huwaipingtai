@@ -32,22 +32,26 @@
                         var checked = aObj.attr("checked");
                         if (checked == "1") {
                             var row = {};
+                            row.ShangJia_ShangPin_TuCeId = aObj.attr("tuceid");
                             row.ImgName = $(aObj.find("img")).attr("v");
-                            row.Sku = sku;
+                            row.ImgKey = sku.substring(0, sku.lastIndexOf('-')); //截取 sku
                             dataRow.push(row);
                         }
 
                     })
+                    
                     var dataJson = JSON.stringify(dataRow);
                     var para = { data: dataJson };
-                    SaveAjax(url,para);
+                    SaveAjax(url, para);
                 });
             }
             var LoadData = function () {
                 var url = "/Shelves/GetProductPhotoList";
                 var sku = $("#txt_sku").val();
+                sku = sku.substring(0, sku.lastIndexOf('-'));
                 var shangpinid = $("#txt_shangpinid").val();
-                var para = {Sku:sku,ShangPinId:shangpinid};
+                var ShangJia_ShangPin_TuCeId = $("#");
+                var para = { Sku: sku, ShangPinId: shangpinid };
                 submitAjax(url, para);
             }
 
@@ -59,18 +63,18 @@
                 var className = checked == 1 ? "span-checkbox checked" : "";
                 var sku = $("#txt_sku").val();
                 var rootPath = $("#txt_imgPth").val();
-                var imgFullPath = "../.." + rootPath + "/" + sku +"/"+ imgName;
-
+                var imgFullPath = "../.." + rootPath + "/" + sku + "/" + imgName;
+                var shangJia_ShangPin_TuCeId = data["ShangJia_ShangPin_TuCeId"];
                 var divs = '<div class="module">'
-                         + '     <a href="#" onclick="changeSelected(this)" checked={1} >'
+                         + '     <a href="#" onclick="changeSelected(this)" tuceid={5} checked={1} >'
                          + '         <p class="img">'
                          + '             <img class="imageLoad" v={4} src="{2}">'
                          + '             <span id="checkIcon{0}" class="{3}"></span>'
                          + '         </p>'
                          + '         <p class="g-title"> </p>'
-                         + '     </a>' 
+                         + '     </a>'
                          + '</div>';
-                var divHtml = divs.format(id, checked, imgFullPath, className, imgName);
+                var divHtml = divs.format(id, checked, imgFullPath, className, imgName,shangJia_ShangPin_TuCeId);
                 return divHtml;
             }
 
@@ -81,7 +85,7 @@
                     type: "POST",
                     dataType: "json",
                     success: function (data) {
-                        debugger
+                        
                         var lis = "";
                         if (data && data.length > 0) {
                             for (var i = 0, j = data.length; i < j; i++) {
@@ -96,8 +100,9 @@
                         }
                         else {
                             objul.html("");
-
                         }
+                        var count = CountSelectImg();
+                        $("#selectCount").html("<font color='red'>已择" + count + "张</font>"); 
                        
                     },
                     error: function () {
@@ -149,8 +154,9 @@
                     type: "POST",
                     dataType: "json",
                     success: function (data) {
+                        
                         if (data) {
-                            data = eval('(' + data + ')');
+                           
                             if (data.IsSuccess) {
                                 LoadData();
                                 alert("保存成功！");
@@ -324,71 +330,7 @@
          <div id="content" style="display:block">
 	          <ul >
                   <li id="RowContent" class="rowli">                   
-                     <div class="module">
-                          <a href="#" onclick="changeSelected(this)" checked=1 >
-                              <p class="img">                          
-                                  <img class="imageLoad" src="../../ProductImage/001/00001.jpg">
-                              
-                                  <span id="checkIcon{0}" class="span-checkbox checked"></span> 
-                              </p>
-                              <p class="g-title"> </p>                     
-                          </a>
-                     </div>
-
-                      <div class="module">
-                          <a href="#" onclick="changeSelected(this)" checked=1 class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
-                              <p class="img">                          
-                                  <img class="imageLoad"  src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
-                              
-                                  <span id="checkIcon{0}" class="span-checkbox checked" codeid={0} "></span> 
-                              </p>
-                              <p class="g-title"> </p>                     
-                          </a>
-                     </div>
-
-                      <div class="module">
-                          <a href="#" onclick="changeSelected(this)" checked=1 class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
-                              <p class="img">                          
-                                  <img class="imageLoad" onclick="javascript:void()" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
-                              
-                                  <span id="checkIcon{0}" class="span-checkbox checked" codeid={0} "></span> 
-                              </p>
-                              <p class="g-title"> </p>                     
-                          </a>
-                     </div>
-
-                      <div class="module">
-                          <a href="#" onclick="changeSelected(this)" checked=1 class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
-                              <p class="img">                          
-                                  <img class="imageLoad" onclick="javascript:void()" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
-                              
-                                  <span id="checkIcon{0}" class="span-checkbox checked" codeid={0} "></span> 
-                              </p>
-                              <p class="g-title"> </p>                     
-                          </a>
-                     </div>
-               
-                   <div class="module">
-                              <a href="#" onclick="changeSelected(this)" checked=1 class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
-                                  <p class="img">                          
-                                      <img class="imageLoad" onclick="javascript:void()" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
-                              
-                                      <span id="checkIcon{0}" class="span-checkbox checked" codeid={0} "></span> 
-                                  </p>
-                                  <p class="g-title"> </p>                     
-                              </a>
-                         </div>
-
-                          <div class="module">
-                              <a href="#" onclick="changeSelected(this)"  class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
-                                  <p class="img">                          
-                                      <img class="imageLoad" onclick="javascript:void()" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
-                              
-                                      <span id="checkIcon{0}"  codeid={0} "></span> 
-                                  </p>
-                                  <p class="g-title"> </p>                     
-                              </a>
-                         </div>
+                    
                  </li>
               </ul>   
          </div>

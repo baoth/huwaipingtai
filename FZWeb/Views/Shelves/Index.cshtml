@@ -32,6 +32,18 @@
                     }
                     myScroll.refresh();
                 });
+                $('.btn-switch').on($.clickAction, function () {
+                    var me = $(this);
+                    var refId = me.attr('refId');
+                    if (me.hasClass('on')) {
+                        me.removeClass('on');
+                        $('#' + refId).hide();
+                    }
+                    else {
+                        me.addClass('on');
+                        $('#' + refId).show();
+                    }
+                });
             });
             widthchange = function () {
                 $("#wrapper").css('top', $("header").height());
@@ -62,134 +74,72 @@
                                 <span class="text">商品描述</span>
                             </a>
                         </div>
-                        <p class="detail-title" id="title"><span><textarea rows="3" cols="1" title="请填写描述" style="width: 90%;margin: 5px;"></textarea> </span></p></li>
-                    <li class="bg-skape"></li>    
-                    <li>
-                        <div class="info">
+                        <p class="detail-title" id="title"><span><textarea rows="3" cols="1" title="请填写描述" style="width: 90%;margin: 5px;"></textarea> </span></p>
+                        </div>
+                    </li>
+                   
+                    <li class="bg-skape"></li>  
+                    <li class="info-detail selector">
+                        <div class="info border-b-none">
+                        <a class="btn-switch" refid="temp1">
+				            <span class="s-block">
+                                <span class="title12">SKU：</span>
+                                <span class="content"><span class="to-text3" id="sh-color" data-id="1">SKU</span></span>
+                                <span class="icon-arr"></span>
+                            </span>
+                        </a>
+                        <div class="detail-option" id="temp1" style="display:block">
                             <div class="info splitLine">
-                                <a href="#">
+                                <a href="#" style=" padding-bottom: 10px;">
                                     <span class="text">规格</span>
                                     <input type="text" style="width: 70%;line-height: 25px;margin-left: 20px;">
                                 </a>
                             </div>
                              <div class="info splitLine">
-                                <a href="#">
+                                <a href="#" style="padding-bottom: 10px;padding-top: 10px;">
                                     <span class="text">价格</span>
-                                    <input type="text" style="width: 70%;line-height: 25px;margin-left: 20px;">
+                                    <input type="text" style="width: 70%;line-height: 25px;margin-left: 20px;/* border-bottom: 10px; */">
                                 </a>
                             </div>
-                            <div class="info splitLine">
+                            <div class="info splitLine" style="line-height: 2em;text-align: center;">
                                 <a id="addcart" class="btn-shangjia"><span></span>上架</a>
                             </div>
                         </div>
+                     </div>    
                     </li>
                     <li class="bg-skape"></li>  
-                    
+                    <li class="info-detail selector">
+                        <div class="info border-b-none">
+                        <a class="btn-switch" refid="temp2">
+				            <span class="s-block">
+                                <span class="title12">颜色：</span>
+                                <span class="content"><span class="to-text3" id="sh-color" data-id="1">红</span></span>
+                                <span class="icon-arr"></span>
+                            </span>
+                        </a>
+                        <div class="detail-option" id="temp2" style="display:block">
+                            <div class="info">
+                            <a href="#">
+                                <span class="text">显示图片</span>
+                            
+                            </a>
+                            <span class="menu-botton-arrow"></span>
+                            </div>
+                        </div>
+                     </div>    
+                    </li>
                              
                 </ul>
+
+            </div>
+            <div class="tbl-type btns">
+                <div class="tbl-cell">                    
+                <a id="addcart" class="btn-acart"><span></span>全部上架</a>
+                </div>
+                 <div class="tbl-cell">                    
+                <a id="addcart" class="btn-dbuy"><span></span>全部下架</a>
+                </div>
             </div>
         </div>
     </body>
-    <style>
-        #wrapper 
-        {
-	        position: absolute;
-	        z-index: 1;
-	        top: 90px;
-	        bottom:0;
-	        left: 0;
-	        width: 100%;
-	        background: #fff;
-	        overflow: hidden;
-        }
-        #scroller 
-        {
-	        position: absolute;
-	        z-index: 100;
-	        -webkit-tap-highlight-color: rgba(0,0,0,0);
-	        width: 100%;
-	        -webkit-transform: translateZ(0);
-	        -moz-transform: translateZ(0);
-	        -ms-transform: translateZ(0);
-	        -o-transform: translateZ(0);
-	        transform: translateZ(0);
-	        -webkit-touch-callout: none;
-	        -webkit-user-select: none;
-	        -moz-user-select: none;
-	        -ms-user-select: none;
-	        user-select: none;
-	        -webkit-text-size-adjust: none;
-	        -moz-text-size-adjust: none;
-	        -ms-text-size-adjust: none;
-	        -o-text-size-adjust: none;
-	        text-size-adjust: none;
-        }
-        .bt-category-lst 
-        {
-	        list-style: none;
-	        padding: 0;
-	        margin: 0;
-	        width: 100%;
-	        text-align: left;
-        }
-        .bt-category .bt-category-lst .bt-category-li .bt-category-a.bt-on {
-            background: url(../../Content/images/icon.png) 98% -893px no-repeat;
-        }
-        .bt-category .bt-category-lst .bt-category-li .bt-category-a {
-            display: block;
-            padding: 11px 13px 10px;
-            background: url(../../Content/images/icon.png) 98% -839px no-repeat;
-            font-size: 14px;
-            color: #6e6e6e;
-        }
-        .bt-category .bt-category-lst .bt-category-li .bt-category-a, .bt-category .bt-category2-lst .bt-category2-li .bt-category2-a {
-            border-bottom: 1px solid #ded6c9;
-        }
-        .bt-category .bt-category-lst .bt-category-li .bt-category-a .icon {
-            display: inline-block;
-            width: 7px;
-            height: 7px;
-            margin: 0 5px 2px 0;
-            border-radius: 7px;
-            background-color: #e4393c;
-        }
-        .bt-category .bt-category2-lst {
-            background-color: #fff;
-        }
-        .bt-category .bt-category2-lst .bt-category2-li {
-            display: table;
-            width: 100%;
-        }
-        .bt-category .bt-category2-lst .bt-category2-li .bt-category2-a {
-            display: table-cell;
-            width: 33.9%;
-            padding: 10px 0;
-            font-size: .75em;
-            color: #6e6e6e;
-            text-align: center;
-        }
-        .bt-category .bt-category2-lst .bt-category2-li .bt-category2-a {
-            border-top: 1px solid #fff;
-        }
-        .bt-category .bt-category-lst .bt-category-li .bt-category-a, .bt-category .bt-category2-lst .bt-category2-li .bt-category2-a {
-            border-bottom: 1px solid #ded6c9;
-        }
-        a {
-            color: #000;
-            text-decoration: none;
-        }
-        .bt-category .bt-category2-lst .bt-category2-li .bt-category2-a:first-child .bt-bar {
-            border: none;
-            background: none;
-        }
-        .bt-category .bt-category2-lst .bt-category2-li .bt-category2-a .bt-bar {
-            float: left;
-            width: 1px;
-            height: 12px;
-            margin-top: 3px;
-            border-bottom: 1px solid #fff;
-            background-color: #ded6c9;
-            vertical-align: middle;
-        }
-    </style>
 </html>

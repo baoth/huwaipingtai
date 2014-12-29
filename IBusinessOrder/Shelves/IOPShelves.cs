@@ -18,5 +18,24 @@ namespace IBusinessOrder.Shelves
         /// </summary>
         /// <returns></returns>
         List<ShangPin> GetProductList(int pingpaiid);
+        /// <summary>
+        /// 根据商品和SKU获取对应的商品照片
+        /// </summary>
+        /// <param name="shangpinid"></param>
+        /// <param name="sku"></param>
+        /// <returns></returns>
+        List<ShangJia_ShangPin_Sku_TuTouDto> GetProductPhotoList(int shangpinid, string sku);
+        /// <summary>
+        /// 保存详细页图头信息
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        bool SaveShangJia_Sku_TuTou(List<ShangJia_Sku_TuTou> list);
+        /// <summary>
+        /// 根据sku码删除
+        /// </summary>
+        /// <param name="sku"></param>
+        /// <returns></returns>
+        bool DeleteShangJia_Sku_TuTou(string sku);
     }
 }

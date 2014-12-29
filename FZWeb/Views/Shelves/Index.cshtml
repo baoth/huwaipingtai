@@ -1,0 +1,145 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+        <script src=@Url.Content("../../Scripts/qsm-mui/iscroll.js") type="text/javascript"></script>
+        <script src=@Url.Content("../../Scripts/qsm-mui/zepto-1.1.4.min.js") type="text/javascript"></script>
+        <script src=@Url.Content("../../Scripts/qsm-mui/fx.js") type="text/javascript"></script>
+        <script src=@Url.Content("../../Scripts/qsm-mui/zepto.selector.js") type="text/javascript"></script>
+        <script src=@Url.Content("../../Scripts/qsm-mui/zepto.touch.js") type="text/javascript"></script>
+        <script type="text/javascript">
+            var myScroll;
+            $(document).ready(function () {
+                $("#wrapper").css('top', $("header").height());
+                myScroll = new IScroll('#wrapper', { mouseWheel: true });
+                document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+                $(".bt-category-lst .bt-category-a").on($.clickAction, function () {
+                    var $el = $(this);
+                    if (!$el.hasClass("bt-on")) {
+                        //先隐藏其他列 
+                        $(".bt-category-lst .bt-category-a.bt-on").removeClass("bt-on").siblings().hide();
+                        $el.addClass("bt-on").siblings().show();
+                    }
+                    else {
+                        $el.removeClass("bt-on").siblings().hide();
+                    }
+                    myScroll.refresh();
+                });
+                $('.btn-switch').on($.clickAction, function () {
+                    var me = $(this);
+                    var refId = me.attr('refId');
+                    if (me.hasClass('on')) {
+                        me.removeClass('on');
+                        $('#' + refId).hide();
+                    }
+                    else {
+                        me.addClass('on');
+                        $('#' + refId).show();
+                    }
+                });
+            });
+            widthchange = function () {
+                $("#wrapper").css('top', $("header").height());
+            };
+        </script>
+         <link href==@Url.Content("../../Content/Shelves.css")  rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "商品分类" } })
+        <div id="wrapper">
+	        <div id="scroller" class="bt-category">
+                <ul style="padding-bottom:32px">
+                    <li class="info-detail">
+                        <div class="info">
+                            <a href="#">
+                                <span class="text">图片库</span>
+                            
+                            </a>
+                            <span class="menu-botton-arrow"></span>
+                        </div>
+                  
+                    </li>
+                    <li class="bg-skape"></li>
+                    <li>
+                        <div class="info">
+                            <div class="info splitLine">
+                            <a href="#">
+                                <span class="text">商品描述</span>
+                            </a>
+                        </div>
+                        <p class="detail-title" id="title"><span><textarea rows="3" cols="1" title="请填写描述" style="width: 90%;margin: 5px;"></textarea> </span></p>
+                        </div>
+                    </li>
+                   
+                    <li class="bg-skape"></li>  
+                    <li class="info-detail selector">
+                        <div class="info border-b-none">
+                        <a class="btn-switch" refid="temp1">
+				            <span class="s-block">
+                                <span class="title12">SKU：</span>
+                                <span class="content"><span class="to-text3" id="sh-color" data-id="1">SKU</span></span>
+                                <span class="icon-arr"></span>
+                            </span>
+                        </a>
+                        <div class="detail-option" id="temp1" style="display:block">
+                            <div class="info splitLine">
+                                <a href="#" style=" padding-bottom: 10px;">
+                                    <span class="text">规格</span>
+                                    <input type="text" style="width: 70%;line-height: 25px;margin-left: 20px;">
+                                </a>
+                            </div>
+                             <div class="info splitLine">
+                                <a href="#" style="padding-bottom: 10px;padding-top: 10px;">
+                                    <span class="text">价格</span>
+                                    <input type="text" style="width: 70%;line-height: 25px;margin-left: 20px;/* border-bottom: 10px; */">
+                                </a>
+                            </div>
+                            <div class="info splitLine" style="line-height: 2em;text-align: center;">
+                                <a id="addcart" class="btn-shangjia"><span></span>上架</a>
+                            </div>
+                        </div>
+                     </div>    
+                    </li>
+                    <li class="bg-skape"></li>  
+                    <li class="info-detail selector">
+                        <div class="info border-b-none">
+                        <a class="btn-switch" refid="temp2">
+				            <span class="s-block">
+                                <span class="title12">颜色：</span>
+                                <span class="content"><span class="to-text3" id="sh-color" data-id="1">红</span></span>
+                                <span class="icon-arr"></span>
+                            </span>
+                        </a>
+                        <div class="detail-option" id="temp2" style="display:block">
+                            <div class="info">
+                            <a href="#">
+                                <span class="text">显示图片</span>
+                            
+                            </a>
+                            <span class="menu-botton-arrow"></span>
+                            </div>
+                        </div>
+                     </div>    
+                    </li>
+                             
+                </ul>
+
+            </div>
+            <div class="tbl-type btns">
+                <div class="tbl-cell">                    
+                <a id="addcart" class="btn-acart"><span></span>全部上架</a>
+                </div>
+                 <div class="tbl-cell">                    
+                <a id="addcart" class="btn-dbuy"><span></span>全部下架</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

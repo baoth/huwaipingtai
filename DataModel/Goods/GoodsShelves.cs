@@ -52,6 +52,18 @@ namespace DataModel
         /// <summary>
         /// 商品图册Id
         /// </summary>
-        public int TcId { get; set; }
+        public int ShangJia_ShangPin_TuCeId { get; set; }
+    }
+    /// <summary>
+    /// 自定义模型（无表）
+    /// </summary>
+    public class ShangJia_ShangPin_Sku_TuTouDto
+    {
+        public int Id { get; set; }
+        public int ShangPinId { get; set; }       
+        public string ImgName { get; set; }
+        public string ImgKey { get; set; }
+        public int ShangJia_ShangPin_TuCeId { set; get; }
+       
     }
 }

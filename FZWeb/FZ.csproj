@@ -228,6 +228,7 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\Shelves.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\JsExtend.js" />
     <Content Include="Scripts\json2.js" />
@@ -302,6 +303,7 @@
     <Content Include="Views\Category\Products.cshtml" />
     <Content Include="Views\Shelves\BrandList.cshtml" />
     <Content Include="Views\Shelves\ProductList.cshtml" />
+    <Content Include="Views\Shelves\Index.cshtml" />
     <Content Include="Views\Shelves\SelectImage.cshtml" />
   </ItemGroup>
   <ItemGroup>

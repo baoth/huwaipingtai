@@ -45,7 +45,6 @@ namespace DataModel
         [PrimaryKey]
         [AutoIncrement]
         public int Id { get; set; }
-        public int ShangJia_ShangPin_TuCeId { get; set; }
         [StringMaxLength(30, VarCharType.nvarchar)]
         public string ImgKey { get; set; } //fenleiId-shangpinid-mendianId-yanse
         [StringMaxLength(20, VarCharType.nvarchar)]

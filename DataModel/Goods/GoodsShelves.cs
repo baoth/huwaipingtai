@@ -13,7 +13,9 @@ namespace DataModel
         [AutoIncrement]
         [PrimaryKey]
         public int Id { get; set; }
+        public int FeiLeiId { get; set; }
         public int ShangPinId { get; set; }
+        public int MenDianId { get; set; }
         [StringMaxLength(20, VarCharType.nvarchar)]
         public string ImgName { get; set; }
     }
@@ -25,12 +27,13 @@ namespace DataModel
     {
         [PrimaryKey]
         [StringMaxLength(30, VarCharType.nvarchar)]
-        public string Sku { get; set; } //fenlei-shangpinid-yanse-chima
+        public string Sku { get; set; } //fenleiId-shangpinid-mendianId-yanse-chima
         [StringMaxLength(50, VarCharType.nvarchar)]
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int ShangPinId { get; set; }
         public int FeiLeiId { get; set; }
+        public int MenDianId { get; set; }
         public bool IsShangJia { get; set; }
     }
 
@@ -44,8 +47,23 @@ namespace DataModel
         public int Id { get; set; }
         public int ShangJia_ShangPin_TuCeId { get; set; }
         [StringMaxLength(30, VarCharType.nvarchar)]
-        public string Sku { get; set; }
+        public string ImgKey { get; set; } //fenleiId-shangpinid-mendianId-yanse
         [StringMaxLength(20, VarCharType.nvarchar)]
         public string ImgName { get; set; }
+        /// <summary>
+        /// 商品图册Id
+        /// </summary>
+        public int ShangJia_ShangPin_TuCeId { get; set; }
+    }
+    /// <summary>
+    /// 自定义模型（无表）
+    /// </summary>
+    public class ShangJia_ShangPin_Sku_TuTouDto
+    {
+        public int Id { get; set; }
+        public int ShangPinId { get; set; }       
+        public string ImgName { get; set; }
+        public string ImgKey { get; set; }
+       
     }
 }

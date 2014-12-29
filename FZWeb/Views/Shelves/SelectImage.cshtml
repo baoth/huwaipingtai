@@ -19,11 +19,18 @@
             $(document).ready(function () {               
                 LoadData();
                 BindEvent();
-
+                SetScroll();
             });
+
+            var SetScroll = function () {
+                $("#wrapper").css('top', $("header").height());
+                var myScroll = new IScroll('#wrapper', { mouseWheel: true });
+                document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+            }
 
             var BindEvent = function () {
                 $("#btn_save").bind("click", function () {
+                    
                     var url = "/Shelves/SaveShangJia_Sku_TuTou";
                     var dataRow = [];
                     var sku = $("#txt_sku").val();
@@ -51,7 +58,7 @@
                 sku = sku.substring(0, sku.lastIndexOf('-'));
                 var shangpinid = $("#txt_shangpinid").val();
                 var ShangJia_ShangPin_TuCeId = $("#");
-                var para = { Sku: sku, ShangPinId: shangpinid };
+                var para = { ImgKey: sku, ShangPinId: shangpinid };
                 submitAjax(url, para);
             }
 
@@ -212,6 +219,7 @@
             background: url(/../../Content/images/shp-cart-icon-sprites.png?a=3) no-repeat 0 0;
             background-size: 50px 100px;
             position: absolute;
+            margin-left: 10px;
            }         
             
            .rowli
@@ -288,17 +296,51 @@
         a {        
         text-decoration: none;
         }
+        
+         #wrapper 
+        {	       
+	        z-index: 1;
+	        top: 90px;
+	        bottom:0;
+	        left: 0;
+	        width: 100%;
+	        background: #fff;
+	        overflow: hidden;
+        }
+        #scroller 
+        {
+	        position: absolute;
+	        z-index: 100;
+	        -webkit-tap-highlight-color: rgba(0,0,0,0);
+	        width: 100%;
+	        -webkit-transform: translateZ(0);
+	        -moz-transform: translateZ(0);
+	        -ms-transform: translateZ(0);
+	        -o-transform: translateZ(0);
+	        transform: translateZ(0);
+	        -webkit-touch-callout: none;
+	        -webkit-user-select: none;
+	        -moz-user-select: none;
+	        -ms-user-select: none;
+	        user-select: none;
+	        -webkit-text-size-adjust: none;
+	        -moz-text-size-adjust: none;
+	        -ms-text-size-adjust: none;
+	        -o-text-size-adjust: none;
+	        text-size-adjust: none;
+        }
     </style>
 
     <style type="text/css">
         .module {        
         float: left;
-        background-color: #FFF;
-        padding: .7em .5em;
-        width: 37%;        
+        background-color: #FFF;        
+        width: 45%;        
         box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .2);       
-        margin-left: 10px;
-        margin-top: 10px;
+        margin-left: 2%;
+        margin-top: 1%;
+        margin-right: 2%;
+        border-bottom: 1px solid rgba(0, 0, 0, .2);
        }
        ul, menu, dir {
         display: block;
@@ -327,10 +369,12 @@
     <body>
         @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "选择商品图片" } })
 
-         <div id="content" style="display:block">
+         <div id="wrapper" style="display:block">
 	          <ul >
                   <li id="RowContent" class="rowli">                   
                     
+                    
+
                  </li>
               </ul>   
          </div>

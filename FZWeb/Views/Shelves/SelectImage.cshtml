@@ -17,6 +17,7 @@
 
         <script type="text/javascript">
             $(document).ready(function () {               
+
                 LoadData();
                 BindEvent();
                 SetScroll();
@@ -72,19 +73,32 @@
                 var rootPath = $("#txt_imgPth").val();
                 var imgFullPath = "../.." + rootPath + "/" + sku + "/" + imgName;
                 var shangJia_ShangPin_TuCeId = data["ShangJia_ShangPin_TuCeId"];
-                var divs = '<div class="module">'
-                         + '     <a href="#" onclick="changeSelected(this)" tuceid={5} checked={1} >'
-                         + '         <p class="img">'
-                         + '             <img class="imageLoad" v={4} src="{2}">'
-                         + '             <span id="checkIcon{0}" class="{3}"></span>'
-                         + '         </p>'
-                         + '         <p class="g-title"> </p>'
-                         + '     </a>'
-                         + '</div>';
-                var divHtml = divs.format(id, checked, imgFullPath, className, imgName,shangJia_ShangPin_TuCeId);
+//                var divs = '<div class="module">'
+//                         + '     <a href="#" onclick="changeSelected(this)" tuceid={5} checked={1} >'
+//                         + '         <p class="img">'
+//                         + '             <img class="imageLoad" v={4} src="{2}">'
+//                         + '             <span id="checkIcon{0}" class="{3}"></span>'
+//                         + '         </p>'
+//                         + '         <p class="g-title"> </p>'
+//                         + '     </a>'
+//                         + '</div>';
+
+                var divs = ' <li> '                           
+                           + '    <a href="#" onclick="changeSelected(this)" tuceid={5} checked={1} >'
+                           +'        <span id="checkIcon{0}" class="{3}"></span> ' 
+                           + '       <img v={4} src="{2}" alt="">'
+                           + '     </a>'                          
+			               +'</li>';
+                var divHtml = divs.format(id, checked, imgFullPath, className, imgName, shangJia_ShangPin_TuCeId);
                 return divHtml;
             }
-
+            var getEmptyLi = function (icount) {
+                var li = "";
+                for (var i = 0; i < icount; i++) {
+                    li += "<li></li>";
+                }
+                return li;
+            }
             var submitAjax = function (url, para) {
                 $.ajax({
                     url: url,
@@ -92,7 +106,7 @@
                     type: "POST",
                     dataType: "json",
                     success: function (data) {
-                        
+
                         var lis = "";
                         if (data && data.length > 0) {
                             for (var i = 0, j = data.length; i < j; i++) {
@@ -103,14 +117,17 @@
                         var objul = $("#RowContent");
                         if (lis) {
                             objul.html("");
-                            objul.html(lis);                                              
+                            var icount = 3 - data.length % 3
+                            var emptyLi = getEmptyLi(icount);
+                            lis += emptyLi;
+                            objul.html(lis);
                         }
                         else {
                             objul.html("");
                         }
                         var count = CountSelectImg();
-                        $("#selectCount").html("<font color='red'>已择" + count + "张</font>"); 
-                       
+                        $("#selectCount").html("<font color='red'>已择" + count + "张</font>");
+
                     },
                     error: function () {
                         alert("请求错误！");
@@ -145,7 +162,7 @@
             var CountSelectImg = function () {
                 
                 var count = 0;
-                $("#RowContent .module a").each(function (e) {
+                $("#RowContent li a").each(function (e) {
                     var checked = $(this).attr("checked")
                     if (checked == "1") {
                         count++;
@@ -214,8 +231,7 @@
             display: block;
             width: 20px;
             height: 20px;
-            margin-top: -110px;
-            margin-left: 70px;
+            margin-top: 10px;
             background: url(/../../Content/images/shp-cart-icon-sprites.png?a=3) no-repeat 0 0;
             background-size: 50px 100px;
             position: absolute;
@@ -365,18 +381,145 @@
       
     </style>
 
+    <style type="text/css">
+        *
+        {
+            margin: 0;
+            padding: 0;   
+         }
+        .box {
+            position: relative;           
+        }
+        section, nav, aside, menu {
+            display: block;
+        }
+        .box ul {
+            overflow: hidden;
+            padding: 0 5px;
+            width: 100%;
+            z-index: 2;
+            box-sizing: border-box;
+        }
+        ol, ul, li {
+            list-style: none;
+        }
+        .box li:nth-child(3n+1) {
+            clear: both;
+        }
+        .box2 li {
+             padding-bottom: 5px;
+        }
+        .box li {
+            float: left;
+            display: block;
+            width: 33.333%;
+            padding: 0 5px;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+        .box li a {
+        width: 100%;
+        }
+        a:link, a:visited, a:hover, a:active {
+            color: #727272;
+        }
+        a {
+            text-decoration: none!important;
+            color: #727272;
+            outline: none;
+        }
+        .box li span:nth-child(1) {
+            font-size: 0;
+            
+            display: block;
+        }
+        .box li img {
+            width: 100%;
+            min-height: 66px;
+        }
+        .box li span em {
+            font-size: 0.75rem;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            display: block;
+            width: 100%;
+            padding-right: 4px;
+            color: #FFFFFF;
+            text-align: right;
+            background: rgba(0,0,0,0.5);
+            box-sizing: border-box;
+        }
+        
+    </style>
+
     </head>
     <body>
         @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "选择商品图片" } })
 
          <div id="wrapper" style="display:block">
-	          <ul >
-                  <li id="RowContent" class="rowli">                   
-                    
-                    
+            
+            <section class="box box2">
+	          <ul id="RowContent" >
+                 
 
-                 </li>
-              </ul>   
+                <li> 
+                    <a href="http://m.kankan.com/v/86/86894.shtml?new=1">
+                        <span id="checkIcon" class="span-checkbox checked"></span>
+                        <img src="http://images.movie.xunlei.com/gallery/1240/c2c50ec033627fa41c337a2f2eb743f6.jpg" alt="风云再起">
+                                           
+                     </a>                			         
+                    
+			    </li>
+
+                <li>
+				     <a href="http://m.kankan.com/v/86/86894.shtml?new=1">
+                     <span id="checkIcon" class="span-checkbox checked"></span> 
+                     <span>
+                     <img src="http://images.movie.xunlei.com/gallery/1240/c2c50ec033627fa41c337a2f2eb743f6.jpg" alt="风云再起">
+                    
+                     </span>
+                     </a>
+			    </li>
+                <li>
+				     <a href="http://m.kankan.com/v/86/86894.shtml?new=1">
+                     <span>
+                     <img src="http://images.movie.xunlei.com/gallery/1240/c2c50ec033627fa41c337a2f2eb743f6.jpg" alt="风云再起">
+                    
+                     </span>
+                     </a>
+			    </li>
+
+                
+                <li>
+				     <a href="http://m.kankan.com/v/86/86894.shtml?new=1">
+                     <span>
+                     <img src="http://images.movie.xunlei.com/gallery/1240/c2c50ec033627fa41c337a2f2eb743f6.jpg" alt="风云再起">
+                    
+                     </span>
+                     </a>
+			    </li>
+
+                <li>
+				     <a href="http://m.kankan.com/v/86/86894.shtml?new=1">
+                     <span>
+                     <img src="http://images.movie.xunlei.com/gallery/1240/c2c50ec033627fa41c337a2f2eb743f6.jpg" alt="风云再起">
+                    
+                     </span>
+                     </a>
+			    </li>
+                <li>
+				     <a href="http://m.kankan.com/v/86/86894.shtml?new=1">
+                     <span>
+                     <img src="http://images.movie.xunlei.com/gallery/1240/c2c50ec033627fa41c337a2f2eb743f6.jpg" alt="风云再起">
+                    
+                     </span>
+                     </a>
+			    </li>
+
+                
+              </ul>  
+             </section> 
          </div>
 
         <div class="tbl-type detail-tbn2" id="cart1" style="position: fixed; left: 0px; bottom: 0px; z-index: 999; display: table;">

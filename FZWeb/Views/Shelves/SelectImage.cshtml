@@ -17,13 +17,21 @@
 
         <script type="text/javascript">
             $(document).ready(function () {               
+
                 LoadData();
                 BindEvent();
-
+                SetScroll();
             });
+
+            var SetScroll = function () {
+                $("#wrapper").css('top', $("header").height());
+                var myScroll = new IScroll('#wrapper', { mouseWheel: true });
+                document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+            }
 
             var BindEvent = function () {
                 $("#btn_save").bind("click", function () {
+                    
                     var url = "/Shelves/SaveShangJia_Sku_TuTou";
                     var dataRow = [];
                     var sku = $("#txt_sku").val();
@@ -32,22 +40,26 @@
                         var checked = aObj.attr("checked");
                         if (checked == "1") {
                             var row = {};
+                            row.ShangJia_ShangPin_TuCeId = aObj.attr("tuceid");
                             row.ImgName = $(aObj.find("img")).attr("v");
-                            row.Sku = sku;
+                            row.ImgKey = sku.substring(0, sku.lastIndexOf('-')); //截取 sku
                             dataRow.push(row);
                         }
 
                     })
+                    
                     var dataJson = JSON.stringify(dataRow);
                     var para = { data: dataJson };
-                    SaveAjax(url,para);
+                    SaveAjax(url, para);
                 });
             }
             var LoadData = function () {
                 var url = "/Shelves/GetProductPhotoList";
                 var sku = $("#txt_sku").val();
+                sku = sku.substring(0, sku.lastIndexOf('-'));
                 var shangpinid = $("#txt_shangpinid").val();
-                var para = {Sku:sku,ShangPinId:shangpinid};
+                var ShangJia_ShangPin_TuCeId = $("#");
+                var para = { ImgKey: sku, ShangPinId: shangpinid };
                 submitAjax(url, para);
             }
 
@@ -59,21 +71,34 @@
                 var className = checked == 1 ? "span-checkbox checked" : "";
                 var sku = $("#txt_sku").val();
                 var rootPath = $("#txt_imgPth").val();
-                var imgFullPath = "../.." + rootPath + "/" + sku +"/"+ imgName;
+                var imgFullPath = "../.." + rootPath + "/" + sku + "/" + imgName;
+                var shangJia_ShangPin_TuCeId = data["ShangJia_ShangPin_TuCeId"];
+//                var divs = '<div class="module">'
+//                         + '     <a href="#" onclick="changeSelected(this)" tuceid={5} checked={1} >'
+//                         + '         <p class="img">'
+//                         + '             <img class="imageLoad" v={4} src="{2}">'
+//                         + '             <span id="checkIcon{0}" class="{3}"></span>'
+//                         + '         </p>'
+//                         + '         <p class="g-title"> </p>'
+//                         + '     </a>'
+//                         + '</div>';
 
-                var divs = '<div class="module">'
-                         + '     <a href="#" onclick="changeSelected(this)" checked={1} >'
-                         + '         <p class="img">'
-                         + '             <img class="imageLoad" v={4} src="{2}">'
-                         + '             <span id="checkIcon{0}" class="{3}"></span>'
-                         + '         </p>'
-                         + '         <p class="g-title"> </p>'
-                         + '     </a>' 
-                         + '</div>';
-                var divHtml = divs.format(id, checked, imgFullPath, className, imgName);
+                var divs = ' <li> '                           
+                           + '    <a href="javascription:;" onclick="changeSelected(this)" tuceid={5} checked={1} >'
+                           +'        <span id="checkIcon{0}" class="{3}"></span> ' 
+                           + '       <img v={4} src="{2}" alt="">'
+                           + '     </a>'                          
+			               +'</li>';
+                var divHtml = divs.format(id, checked, imgFullPath, className, imgName, shangJia_ShangPin_TuCeId);
                 return divHtml;
             }
-
+            var getEmptyLi = function (icount) {
+                var li = "";
+                for (var i = 0; i < icount; i++) {
+                    li += "<li></li>";
+                }
+                return li;
+            }
             var submitAjax = function (url, para) {
                 $.ajax({
                     url: url,
@@ -81,7 +106,7 @@
                     type: "POST",
                     dataType: "json",
                     success: function (data) {
-                        debugger
+
                         var lis = "";
                         if (data && data.length > 0) {
                             for (var i = 0, j = data.length; i < j; i++) {
@@ -92,13 +117,17 @@
                         var objul = $("#RowContent");
                         if (lis) {
                             objul.html("");
-                            objul.html(lis);                                              
+                            var icount = 3 - data.length % 3
+                            var emptyLi = getEmptyLi(icount);
+                            lis += emptyLi;
+                            objul.html(lis);
                         }
                         else {
                             objul.html("");
-
                         }
-                       
+                        var count = CountSelectImg();
+                        $("#selectCount").html("<font color='red'>已选择" + count + "张</font>");
+
                     },
                     error: function () {
                         alert("请求错误！");
@@ -115,7 +144,7 @@
                     obj.removeAttr("class");
                     $(e).removeAttr("checked");
                     count--;
-                    $("#selectCount").html("<font color='red'>已择" + count + "张</font>");       
+                    $("#selectCount").html("<font color='red'>已选择" + count + "张</font>");       
                 }
                 else {                   
                     if (count >= 5) {
@@ -126,14 +155,14 @@
                     obj.addClass("span-checkbox checked");
                     $(e).attr("checked", 1);
                     count++;
-                    $("#selectCount").html("<font color='red'>已择" + count + "张</font>");          
+                    $("#selectCount").html("<font color='red'>已选择" + count + "张</font>");          
                 }               
             }
 
             var CountSelectImg = function () {
                 
                 var count = 0;
-                $("#RowContent .module a").each(function (e) {
+                $("#RowContent li a").each(function (e) {
                     var checked = $(this).attr("checked")
                     if (checked == "1") {
                         count++;
@@ -149,8 +178,9 @@
                     type: "POST",
                     dataType: "json",
                     success: function (data) {
+                        
                         if (data) {
-                            data = eval('(' + data + ')');
+                           
                             if (data.IsSuccess) {
                                 LoadData();
                                 alert("保存成功！");
@@ -201,11 +231,11 @@
             display: block;
             width: 20px;
             height: 20px;
-            margin-top: -110px;
-            margin-left: 70px;
+            margin-top: 10px;
             background: url(/../../Content/images/shp-cart-icon-sprites.png?a=3) no-repeat 0 0;
             background-size: 50px 100px;
             position: absolute;
+            margin-left: 10px;
            }         
             
            .rowli
@@ -282,17 +312,51 @@
         a {        
         text-decoration: none;
         }
+        
+         #wrapper 
+        {	       
+	        z-index: 1;
+	        top: 90px;
+	        bottom:0;
+	        left: 0;
+	        width: 100%;
+	        background: #fff;
+	        overflow: hidden;
+        }
+        #scroller 
+        {
+	        position: absolute;
+	        z-index: 100;
+	        -webkit-tap-highlight-color: rgba(0,0,0,0);
+	        width: 100%;
+	        -webkit-transform: translateZ(0);
+	        -moz-transform: translateZ(0);
+	        -ms-transform: translateZ(0);
+	        -o-transform: translateZ(0);
+	        transform: translateZ(0);
+	        -webkit-touch-callout: none;
+	        -webkit-user-select: none;
+	        -moz-user-select: none;
+	        -ms-user-select: none;
+	        user-select: none;
+	        -webkit-text-size-adjust: none;
+	        -moz-text-size-adjust: none;
+	        -ms-text-size-adjust: none;
+	        -o-text-size-adjust: none;
+	        text-size-adjust: none;
+        }
     </style>
 
     <style type="text/css">
         .module {        
         float: left;
-        background-color: #FFF;
-        padding: .7em .5em;
-        width: 37%;        
+        background-color: #FFF;        
+        width: 45%;        
         box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .2);       
-        margin-left: 10px;
-        margin-top: 10px;
+        margin-left: 2%;
+        margin-top: 1%;
+        margin-right: 2%;
+        border-bottom: 1px solid rgba(0, 0, 0, .2);
        }
        ul, menu, dir {
         display: block;
@@ -317,80 +381,88 @@
       
     </style>
 
+    <style type="text/css">
+        *
+        {
+            margin: 0;
+            padding: 0;   
+         }
+        .box {
+            position: relative;           
+        }
+        section, nav, aside, menu {
+            display: block;
+        }
+        .box ul {
+            overflow: hidden;
+            padding: 0 5px;
+            width: 100%;
+            z-index: 2;
+            box-sizing: border-box;
+        }
+        ol, ul, li {
+            list-style: none;
+        }
+        .box li:nth-child(3n+1) {
+            clear: both;
+        }
+        .box2 li {
+             padding-bottom: 5px;
+        }
+        .box li {
+            float: left;
+            display: block;
+            width: 33.333%;
+            padding: 0 5px;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+        .box li a {
+        width: 100%;
+        }
+        a:link, a:visited, a:hover, a:active {
+            color: #727272;
+        }
+        a {
+            text-decoration: none!important;
+            color: #727272;
+            outline: none;
+        }
+        .box li span:nth-child(1) {
+            font-size: 0;
+            
+            display: block;
+        }
+        .box li img {
+            width: 100%;
+            min-height: 66px;
+        }
+        .box li span em {
+            font-size: 0.75rem;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            display: block;
+            width: 100%;
+            padding-right: 4px;
+            color: #FFFFFF;
+            text-align: right;
+            background: rgba(0,0,0,0.5);
+            box-sizing: border-box;
+        }
+        
+    </style>
+
     </head>
     <body>
         @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "选择商品图片" } })
 
-         <div id="content" style="display:block">
-	          <ul >
-                  <li id="RowContent" class="rowli">                   
-                     <div class="module">
-                          <a href="#" onclick="changeSelected(this)" checked=1 >
-                              <p class="img">                          
-                                  <img class="imageLoad" src="../../ProductImage/001/00001.jpg">
-                              
-                                  <span id="checkIcon{0}" class="span-checkbox checked"></span> 
-                              </p>
-                              <p class="g-title"> </p>                     
-                          </a>
-                     </div>
-
-                      <div class="module">
-                          <a href="#" onclick="changeSelected(this)" checked=1 class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
-                              <p class="img">                          
-                                  <img class="imageLoad"  src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
-                              
-                                  <span id="checkIcon{0}" class="span-checkbox checked" codeid={0} "></span> 
-                              </p>
-                              <p class="g-title"> </p>                     
-                          </a>
-                     </div>
-
-                      <div class="module">
-                          <a href="#" onclick="changeSelected(this)" checked=1 class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
-                              <p class="img">                          
-                                  <img class="imageLoad" onclick="javascript:void()" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
-                              
-                                  <span id="checkIcon{0}" class="span-checkbox checked" codeid={0} "></span> 
-                              </p>
-                              <p class="g-title"> </p>                     
-                          </a>
-                     </div>
-
-                      <div class="module">
-                          <a href="#" onclick="changeSelected(this)" checked=1 class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
-                              <p class="img">                          
-                                  <img class="imageLoad" onclick="javascript:void()" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
-                              
-                                  <span id="checkIcon{0}" class="span-checkbox checked" codeid={0} "></span> 
-                              </p>
-                              <p class="g-title"> </p>                     
-                          </a>
-                     </div>
-               
-                   <div class="module">
-                              <a href="#" onclick="changeSelected(this)" checked=1 class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
-                                  <p class="img">                          
-                                      <img class="imageLoad" onclick="javascript:void()" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
-                              
-                                      <span id="checkIcon{0}" class="span-checkbox checked" codeid={0} "></span> 
-                                  </p>
-                                  <p class="g-title"> </p>                     
-                              </a>
-                         </div>
-
-                          <div class="module">
-                              <a href="#" onclick="changeSelected(this)"  class="J_ping" report-eventid="Jshop_ProductID" report-eventparam="1_1006674766_282334">
-                                  <p class="img">                          
-                                      <img class="imageLoad" onclick="javascript:void()" src="../../ProductImage/001/00001.jpg" srcset="../../ProductImage/001/00001.jpg" srcd="../../ProductImage/001/00001.jpg">
-                              
-                                      <span id="checkIcon{0}"  codeid={0} "></span> 
-                                  </p>
-                                  <p class="g-title"> </p>                     
-                              </a>
-                         </div>
-                 </li>
-              </ul>   
+         <div id="wrapper" style="display:block">
+            
+            <section class="box box2">
+	          <ul id="RowContent" >
+              </ul>  
+             </section> 
          </div>
 
         <div class="tbl-type detail-tbn2" id="cart1" style="position: fixed; left: 0px; bottom: 0px; z-index: 999; display: table;">

@@ -63,6 +63,7 @@ namespace DataModel
         public int ShangPinId { get; set; }       
         public string ImgName { get; set; }
         public string ImgKey { get; set; }
+        public int ShangJia_ShangPin_TuCeId { set; get; }
        
     }
 }

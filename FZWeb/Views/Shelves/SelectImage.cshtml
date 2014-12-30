@@ -126,7 +126,7 @@
                             objul.html("");
                         }
                         var count = CountSelectImg();
-                        $("#selectCount").html("<font color='red'>已择" + count + "张</font>");
+                        $("#selectCount").html("<font color='red'>已选择" + count + "张</font>");
 
                     },
                     error: function () {
@@ -144,7 +144,7 @@
                     obj.removeAttr("class");
                     $(e).removeAttr("checked");
                     count--;
-                    $("#selectCount").html("<font color='red'>已择" + count + "张</font>");       
+                    $("#selectCount").html("<font color='red'>已选择" + count + "张</font>");       
                 }
                 else {                   
                     if (count >= 5) {
@@ -155,7 +155,7 @@
                     obj.addClass("span-checkbox checked");
                     $(e).attr("checked", 1);
                     count++;
-                    $("#selectCount").html("<font color='red'>已择" + count + "张</font>");          
+                    $("#selectCount").html("<font color='red'>已选择" + count + "张</font>");          
                 }               
             }
 

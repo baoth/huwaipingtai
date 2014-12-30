@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataModel;
+using DataModel.Goods;
 
 namespace IBusinessOrder.Shelves
 {
@@ -37,5 +38,13 @@ namespace IBusinessOrder.Shelves
         /// <param name="sku"></param>
         /// <returns></returns>
         bool DeleteShangJia_Sku_TuTou(string sku);
+
+        /// <summary>
+        /// 根据门店获取商品上架信息
+        /// </summary>
+        /// <param name="mendian"></param>
+        /// <returns></returns>
+        IList<GoodsShelvesDto> GetGoodsShelvesDto(string mendian,int goodsId);
+        IList<GoodsShelvesDto> GetGoodsShelvesColor(IList<GoodsShelvesDto> goodsShelvesDto);
     }
 }

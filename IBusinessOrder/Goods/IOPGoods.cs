@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataModel.CMS.Models;
+using DataModel.Goods;
 
 namespace IBusinessOrder.Goods
 {

@@ -18,6 +18,13 @@ namespace FZ.Controllers
         }
         public ActionResult Index()
         {
+            var mendian = "1";
+            var goodsId = 4;
+            var dto = iopshelves.GetGoodsShelvesDto(mendian, goodsId);
+            ViewData["GoodsSKUS"] = dto;
+
+            var colorDto = iopshelves.GetGoodsShelvesColor(dto);
+            ViewData["ColorSKUS"] = colorDto;
             return View();
         }
         public ActionResult BrandList()
@@ -134,5 +141,9 @@ namespace FZ.Controllers
             }
         }
 
+        public ActionResult GoodsImageList() 
+        {
+            return View("ImageList");
+        }
     }
 }

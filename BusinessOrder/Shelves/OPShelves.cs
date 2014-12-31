@@ -145,18 +145,29 @@ namespace BusinessOrder.Shelves
         public CResult SetUpShelves(List<string> skus, string desc,string price)
         {
             /*1、插入上架表*/
-            var insertFormatSql = @" insert into shangjia_sku_info('sku','Description','Price','ShangPinId','IsShangeJia','FeileiId') 
+            var insertFormatSql = @" INSERT INTO shangjia_sku_info
+                            ( sku ,
+                              Description ,
+                              Price ,
+                              ShangPinId ,
+                              IsShangJia,
+                              FenLeiId
+                            ) 
                             values('{0}','{1}','{2}','{3}','{4}','{5}')";
             List<string> listStr = new List<string>();
             foreach (var item in skus)
             {
                 //mendianId-fenleiId-shangpinid-yanse-chima
-                listStr.Add(string.Format(insertFormatSql,item,desc,price));
+                var arrIds = item.Split('-');
+                listStr.Add(string.Format(insertFormatSql,item,desc,price,arrIds[2],1,arrIds[1]));
             }
             var db = Common.DbFactory.CreateDbSession();
             db.Context.ExcuteNoQuery(listStr);
             return FunResult.GetSuccess();
 
         }
+
+
+      
     }
 }

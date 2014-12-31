@@ -50,6 +50,6 @@ namespace IBusinessOrder.Shelves
 
         CResult PutawayGoods(string sku);
 
-        CResult SetUpShelves(List<string> sku, string desc,string mendianId,string price);
+        CResult SetUpShelves(List<string> sku, string desc,string price);
     }
 }

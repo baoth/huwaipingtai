@@ -14,8 +14,6 @@
         <script src=@Url.Content("../../Scripts/qsm-mui/fx.js") type="text/javascript"></script>
         <script src=@Url.Content("../../Scripts/qsm-mui/zepto.selector.js") type="text/javascript"></script>
         <script src=@Url.Content("../../Scripts/qsm-mui/zepto.touch.js") type="text/javascript"></script>
-@*        <link href="../../Scripts/qsm-mui/qsmart-mui.css" rel="stylesheet" type="text/css" />
-        <script src="../../Scripts/qsm-mui/qsmart-mui-combox-1.0.0.js" type="text/javascript"></script>*@
         <script type="text/javascript">
             var myScroll;
             $(document).ready(function () {
@@ -47,15 +45,20 @@
                     }
                 });
                 $('li .btn-shangjia').on($.clickAction, function () {
+                    debugger
                     /*描述*/
                     var desc = $('#titleDescId').val();
+                    /*sku*/
                     var sku = $(this).attr('sku');
+                    /*价格*/
+                    var id = "p-" + sku;
+                    var price = $('#' + id).val();
                     $.ajax({
                         url: '/Shelves/SetShelves',
                         type: 'post',
-                        params:{sku:sku,desc:desc},
-                        success: function () {
-                            debugger
+                        data: { sku: sku, desc: desc, price: price },
+                        success: function (data, at) {
+                            alert(data.Msg);
                         }
                     });
                 });
@@ -121,7 +124,7 @@
                              <div class="info splitLine">
                                 <a href="#" style="padding-bottom: 10px;padding-top: 10px;">
                                     <span class="text">价格</span>
-                                    <input type="text" style="width: 70%;line-height: 25px;margin-left: 20px;"/>
+                                    <input type="text" id="p-@item.SKU" style="width: 70%;line-height: 25px;margin-left: 20px;"/>
                                 </a>
                             </div>
                             <div class="info splitLine" style="line-height: 2em;text-align: center;">

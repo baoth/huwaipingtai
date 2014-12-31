@@ -47,7 +47,7 @@ select YanSeZuId from  shangpin where Id='{0}'))", colorId);
 
         public GoodsDto GetGoods(string goodsSKU)
         {
-            var sql = @"
+            var sql = string.Format(@"
             select
                 a.Name,
                 b.Sku,
@@ -56,7 +56,7 @@ select YanSeZuId from  shangpin where Id='{0}'))", colorId);
                 from  shangpin a
                 left join shangjia_sku_info b on a.Id=b.ShangPinId
                 where Sku='{0}'            
-            ";
+            ",goodsSKU);
             var db = Common.DbFactory.CreateDbSession();
             var dt = db.Context.QueryTable(sql);
             var o1 = dt.ToList<GoodsDto>()[0]; 

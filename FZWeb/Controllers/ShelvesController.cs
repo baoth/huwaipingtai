@@ -153,13 +153,13 @@ namespace FZ.Controllers
                 var sku = Request["sku"];
                 var price = Request["price"];
                 var mendianId = "1";
-                var bShelves = iopshelves.SetUpShelves(new List<string>() { sku }, goodsDesc, mendianId,price);
+                var bShelves = iopshelves.SetUpShelves(new List<string>() { sku }, goodsDesc,price);
                 iPublist.PublishGoods(sku);
-                return Json(bShelves);
+                return Json(bShelves,JsonRequestBehavior.AllowGet);
             }
             catch(Exception ex)
             {
-                return Json(FunResult.GetError(ex.Message.ToString()));
+                return Json(FunResult.GetError(ex.Message.ToString()),JsonRequestBehavior.AllowGet);
             }
         }
     }

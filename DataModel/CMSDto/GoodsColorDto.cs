@@ -12,6 +12,6 @@ namespace DataModel.CMS.Models
     {
         public string Name { get; set; }
         public bool IsDefalut { get; set; }
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
 }

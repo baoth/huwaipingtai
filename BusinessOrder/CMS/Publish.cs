@@ -23,7 +23,7 @@ namespace BusinessOrder.CMS
         public CResult PublishGoods(string goodsSKU)
         {
             string pathTemplate = this.opGoods.GetGoodsCurTemplate("1231");
-            Document document = GetVTDocument("goodId", pathTemplate);
+            Document document = GetVTDocument(goodsSKU, pathTemplate);
             TextWriter textWriter = new StringWriter();
             document.Render(textWriter);
             //把生成的静态内容写入到目标文件
@@ -44,7 +44,7 @@ namespace BusinessOrder.CMS
                 var tag = d == null ? null : d.CurrentRenderingTag;
                 var goodsName = tag.Attributes.GetValue("name");
                 var goodsId = tag.Attributes.GetValue("id");
-                return opGoods.GetGoodsSize(goodsId);
+                return opGoods.GetGoodsSize(goodsSKU);
             };
             document.RegisterGlobalFunction("GetGoodsSize", GetGoodsSize);
             //注册商品颜色对象
@@ -56,7 +56,7 @@ namespace BusinessOrder.CMS
                 var goodsName = tag.Attributes.GetValue("name");
                 var goodsId = tag.Attributes.GetValue("id");
                 //返回结果
-                return opGoods.GetGoodsColor(goodsId);
+                return opGoods.GetGoodsColor(goodsSKU);
             };
             document.RegisterGlobalFunction("GetGoodsColor", GetGoodsColor);
             return document;

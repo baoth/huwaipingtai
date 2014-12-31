@@ -53,7 +53,6 @@ namespace BusinessOrder.Shelves
             dbSession.Context.ExcuteNoQuery(sql);
             return true;
         }
-
         /// <summary>
         /// 获取商品信息为上架
         /// </summary>
@@ -80,14 +79,32 @@ namespace BusinessOrder.Shelves
             var db = Common.DbFactory.CreateDbSession();
             DataTable dt= db.Context.QueryTable(sql);
             var ents=dt.ToList<GoodsShelvesDto>();
+            var strArrSku= "";
             foreach (var item in ents)
 	        {
                 item.SKU = mendian + "-" + item.ShangPinFenLeiId + "-" + item.Id + "-" + item.YanseId + "-" + item.ChiMaId;
+                strArrSku +=strArrSku==""?("'"+item.SKU+"'"):",'"+item.SKU+"'";
 	        }
+            /*由于有编码匹配 考虑关联查询（没有解决mysql中int变字符叠加 拼串的问题 ）
+             *查询数据库一次，将sku的价格拿到  在反补到商品上架传输类中
+            */
+            var skuListStr =string.Format("select * from shangjia_sku_info where sku in({0})",strArrSku);
+            var dtSangJia = db.Context.QueryTable(skuListStr);
+            var dicSKU = new Dictionary<string, string>();
+            foreach (DataRow dr in dtSangJia.Rows)
+            {
+                var price = dr["Price"].ToString();
+                dicSKU.Add(dr["Sku"].ToString(), price);
+            }
+            foreach (var item in ents)
+            {
+                if (dicSKU.ContainsKey(item.SKU))
+                {
+                    item.Price = dicSKU[item.SKU];
+                }
+            }
             return ents;
         }
-
-
         public IList<GoodsShelvesDto> GetGoodsShelvesColor(IList<GoodsShelvesDto> goodsShelvesDto)
         {
            
@@ -114,6 +131,11 @@ namespace BusinessOrder.Shelves
                 }
             }
             return listColor;
+        }
+
+        public bool PutawayGoods(string sku)
+        {
+            return true;
         }
     }
 }

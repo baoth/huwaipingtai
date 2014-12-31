@@ -46,5 +46,7 @@ namespace IBusinessOrder.Shelves
         /// <returns></returns>
         IList<GoodsShelvesDto> GetGoodsShelvesDto(string mendian,int goodsId);
         IList<GoodsShelvesDto> GetGoodsShelvesColor(IList<GoodsShelvesDto> goodsShelvesDto);
+
+        bool PutawayGoods(string sku);
     }
 }

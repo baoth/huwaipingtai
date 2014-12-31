@@ -19,7 +19,9 @@ namespace DataModel.Goods
        public string Yanse { get; set; }
        public string Name { get; set; }
        public string PinPaiName { get; set; }
+       public string ColorSKU { get; set; }
        public string SKU { get; set; }
+       public string Price { get; set; }
     }
 
 }

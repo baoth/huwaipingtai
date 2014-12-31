@@ -136,12 +136,8 @@ namespace FZ.Controllers
         }
         public ActionResult UploadImage()
         {
-            var sku = Request["Sku"];
-            var shangpinid = Request["ShangPinId"];           
-            if (!string.IsNullOrEmpty(sku))
-            {
-                ViewData["Sku"] = sku;
-            }
+            
+            var shangpinid = Request["ShangPinId"];
             if (!string.IsNullOrEmpty(shangpinid))
             {
                 ViewData["ShangPinId"] = shangpinid;
@@ -170,12 +166,19 @@ namespace FZ.Controllers
                 //    fileName = fileName.Substring(fileName.LastIndexOf("\\") + 1);
                 //}
                 var root = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
-                var sku =Request["Sku"];                
+               
+                var shangpinid = Request["ShangPinId"];
+
+                var savePath = Server.MapPath("~" + root + "/" + shangpinid);
+                if (!System.IO.Directory.Exists(savePath))
+                {
+                    System.IO.Directory.CreateDirectory(savePath);
+                }
                 //保存到相对路径下。
-                imageUpLoad.SaveAs(Server.MapPath("~" + root + "/" + sku + "/" + saveFileName));
+                imageUpLoad.SaveAs(Server.MapPath("~" + root + "/" + shangpinid + "/" + saveFileName));
                 ShangJia_ShangPin_TuCe model = new ShangJia_ShangPin_TuCe();
                 model.ImgName = saveFileName;
-                var shangpinid = Request["ShangPinId"];
+              
                 int spid = 0;
                 int.TryParse(shangpinid, out spid);
                 model.ShangPinId = spid;
@@ -185,14 +188,34 @@ namespace FZ.Controllers
                 iopshelves.SaveShangJia_ShangPin_TuCe(list);
 
                 //return RedirectToAction("action","controller",new {参数1=xx，参数2=xxx})               
-                return RedirectToAction("UploadImage", "Shelves", new { Sku = sku, ShangPinId = shangpinid });
+                return RedirectToAction("UploadImage", "Shelves", new {  ShangPinId = shangpinid });
             }
             catch (Exception ex)
             {
                 return RedirectToAction("UploadImage");
             }
            
-        } 
+        }
+
+        public ActionResult GetProductPhotoListByShangpinId()
+        {
+            try
+            {
+                
+                var shangpinid = Request["ShangPinId"];
+                int id;
+                
+                int.TryParse(shangpinid, out id);
+                var list = iopshelves.GetProductPhotoList(id);
+                var json = JsonHelp.objectToJson(list);
+                return Content(json);
+            }
+            catch (Exception ex)
+            {
+                return Content("");
+            }
+
+        }
 
     }
 }

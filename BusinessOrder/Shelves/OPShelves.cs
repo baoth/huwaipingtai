@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using IBusinessOrder.Shelves;
 using Toolkit.Ext;
+using System.Data;
 namespace BusinessOrder.Shelves
 {
     public class OPShelves:IOPShelves
@@ -31,6 +32,15 @@ namespace BusinessOrder.Shelves
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format("select a.Id,a.ShangPinId,a.ImgName,a.Id as ShangJia_ShangPin_TuCeId,b.ImgKey from ShangJia_ShangPin_TuCe as a left join (select c.Id,c.ShangJia_ShangPin_TuCeId, c.ImgKey,c.ImgName from ShangJia_Sku_TuTou as c where c.ImgKey='{1}')as b on a.id=b.ShangJia_ShangPin_TuCeId where a.ShangPinId='{0}' ", shangpinid, imgKey);
           
+            var dt = dbSession.Context.QueryTable(sql);
+            var list = dt.ToList<DataModel.ShangJia_ShangPin_Sku_TuTouDto>() as List<DataModel.ShangJia_ShangPin_Sku_TuTouDto>;
+            return list;
+        }
+        public List<DataModel.ShangJia_ShangPin_Sku_TuTouDto> GetProductPhotoList(int shangpinid)
+        {
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var sql = string.Format("select a.Id,a.ShangPinId,a.ImgName,a.Id as ShangJia_ShangPin_TuCeId,b.ImgKey from ShangJia_ShangPin_TuCe as a left join  ShangJia_Sku_TuTou as b on a.id=b.ShangJia_ShangPin_TuCeId where a.ShangPinId='{0}' ", shangpinid);
+
             var dt = dbSession.Context.QueryTable(sql);
             var list = dt.ToList<DataModel.ShangJia_ShangPin_Sku_TuTouDto>() as List<DataModel.ShangJia_ShangPin_Sku_TuTouDto>;
             return list;
@@ -70,6 +80,27 @@ namespace BusinessOrder.Shelves
             dbSession.Context.ExcuteNoQuery(sqlList);
             return true;
         }
+
+        public List<string> GetSelectImgByImgkey(string imgKey)
+        {
+            List<string> list = new List<string>();
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var sql = string.Format("select a.Id,a.ShangPinId,a.ImgName,a.Id as ShangJia_ShangPin_TuCeId,b.ImgKey from ShangJia_Sku_TuTou as b  left join ShangJia_ShangPin_TuCe as a  on a.id=b.ShangJia_ShangPin_TuCeId where b.ImgKey='{0}' ' ", imgKey);
+
+            var dt = dbSession.Context.QueryTable(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                foreach (DataRow rows in dt.Rows)
+                {
+                    var path = "/" + rows["ShangPinId"] + "/" + rows["ImgName"]; ;
+                    list.Add(path);
+                }
+            }
+            return list;
+        }
+
+
+
 
        
     }

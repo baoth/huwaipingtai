@@ -48,12 +48,10 @@
                 return true;
             }
             var LoadData = function () {
-                var url = "/Shelves/GetProductPhotoList";
-                var sku = $("#txt_sku").val();
-                sku = sku.substring(0, sku.lastIndexOf('-'));
+                var url = "/Shelves/GetProductPhotoListByShangpinId";                
                 var shangpinid = $("#txt_shangpinid").val();
                 var ShangJia_ShangPin_TuCeId = $("#");
-                var para = { ImgKey: sku, ShangPinId: shangpinid };
+                var para = {ShangPinId: shangpinid };
                 submitAjax(url, para);
             }
 
@@ -63,9 +61,9 @@
                 var ishasImg = data["ImgKey"]; //判断是否选择图片标示
                 var checked = ishasImg == null ? 0 : 1;
                 var className = checked == 1 ? "span-checkbox checked" : "";
-                var sku = $("#txt_sku").val();
+                var shangpid = data["ShangPinId"];
                 var rootPath = $("#txt_imgPath").val();
-                var imgFullPath = "../.." + rootPath + "/" + sku + "/" + imgName;
+                var imgFullPath = "../.." + rootPath + "/" + shangpid + "/" + imgName;
                 var shangJia_ShangPin_TuCeId = data["ShangJia_ShangPin_TuCeId"];
 
                 var divs = ' <li> '                           

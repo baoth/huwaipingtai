@@ -69,20 +69,10 @@
                 var ishasImg = data["ImgKey"]; //判断是否选择图片标示
                 var checked = ishasImg == null ? 0 : 1;
                 var className = checked == 1 ? "span-checkbox checked" : "";
-                var sku = $("#txt_sku").val();
+                var shangpinid = $("#txt_shangpinid").val();
                 var rootPath = $("#txt_imgPth").val();
-                var imgFullPath = "../.." + rootPath + "/" + sku + "/" + imgName;
+                var imgFullPath = "../.." + rootPath + "/" + shangpinid + "/" + imgName;
                 var shangJia_ShangPin_TuCeId = data["ShangJia_ShangPin_TuCeId"];
-//                var divs = '<div class="module">'
-//                         + '     <a href="#" onclick="changeSelected(this)" tuceid={5} checked={1} >'
-//                         + '         <p class="img">'
-//                         + '             <img class="imageLoad" v={4} src="{2}">'
-//                         + '             <span id="checkIcon{0}" class="{3}"></span>'
-//                         + '         </p>'
-//                         + '         <p class="g-title"> </p>'
-//                         + '     </a>'
-//                         + '</div>';
-
                 var divs = ' <li> '                           
                            + '    <a href="javascription:;" onclick="changeSelected(this)" tuceid={5} checked={1} >'
                            +'        <span id="checkIcon{0}" class="{3}"></span> ' 

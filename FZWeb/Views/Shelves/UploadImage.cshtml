@@ -30,36 +30,28 @@
             }
 
             var BindEvent = function () {
-                $("#btn_save").bind("click", function () {
-                    
-                    var url = "/Shelves/SaveShangJia_Sku_TuTou";
-                    var dataRow = [];
-                    var sku = $("#txt_sku").val();
-                    $("#RowContent a").each(function () {
-                        var aObj = $(this)
-                        var checked = aObj.attr("checked");
-                        if (checked == "1") {
-                            var row = {};
-                            row.ShangJia_ShangPin_TuCeId = aObj.attr("tuceid");
-                            row.ImgName = $(aObj.find("img")).attr("v");
-                            row.ImgKey = sku.substring(0, sku.lastIndexOf('-')); //截取 sku
-                            dataRow.push(row);
-                        }
-
-                    })
-                    
-                    var dataJson = JSON.stringify(dataRow);
-                    var para = { data: dataJson };
-                    SaveAjax(url, para);
+                //上传
+                $("#btn_upload").bind("click", function () {
+                    if (CheckUpload()) {
+                        form.submit();
+                    }
                 });
             }
+
+            var CheckUpload = function () {
+           
+                var value = $("#imageUpLoad").val();
+                if (value == "") {
+                    alert("请选择要上传的图片！");
+                    return false;
+                }
+                return true;
+            }
             var LoadData = function () {
-                var url = "/Shelves/GetProductPhotoList";
-                var sku = $("#txt_sku").val();
-                sku = sku.substring(0, sku.lastIndexOf('-'));
+                var url = "/Shelves/GetProductPhotoListByShangpinId";                
                 var shangpinid = $("#txt_shangpinid").val();
                 var ShangJia_ShangPin_TuCeId = $("#");
-                var para = { ImgKey: sku, ShangPinId: shangpinid };
+                var para = {ShangPinId: shangpinid };
                 submitAjax(url, para);
             }
 
@@ -69,12 +61,13 @@
                 var ishasImg = data["ImgKey"]; //判断是否选择图片标示
                 var checked = ishasImg == null ? 0 : 1;
                 var className = checked == 1 ? "span-checkbox checked" : "";
-                var shangpinid = $("#txt_shangpinid").val();
-                var rootPath = $("#txt_imgPth").val();
-                var imgFullPath = "../.." + rootPath + "/" + shangpinid + "/" + imgName;
+                var shangpid = data["ShangPinId"];
+                var rootPath = $("#txt_imgPath").val();
+                var imgFullPath = "../.." + rootPath + "/" + shangpid + "/" + imgName;
                 var shangJia_ShangPin_TuCeId = data["ShangJia_ShangPin_TuCeId"];
+
                 var divs = ' <li> '                           
-                           + '    <a href="javascription:;" onclick="changeSelected(this)" tuceid={5} checked={1} >'
+                           + '    <a href="javascription:;"  tuceid={5} checked={1} >'
                            +'        <span id="checkIcon{0}" class="{3}"></span> ' 
                            + '       <img v={4} src="{2}" alt="">'
                            + '     </a>'                          
@@ -116,7 +109,7 @@
                             objul.html("");
                         }
                         var count = CountSelectImg();
-                        $("#selectCount").html("<font color='red'>已选择" + count + "张</font>");
+                        //$("#selectCount").html("<font color='red'>已选择" + count + "张</font>");
 
                     },
                     error: function () {
@@ -126,28 +119,7 @@
                 });
             }
 
-            function changeSelected(e) {
-                
-                var count = CountSelectImg();
-                var obj = $(e).find("span");
-                if (obj.hasClass("checked")) {
-                    obj.removeAttr("class");
-                    $(e).removeAttr("checked");
-                    count--;
-                    $("#selectCount").html("<font color='red'>已选择" + count + "张</font>");       
-                }
-                else {                   
-                    if (count >= 5) {
-                        alert("最多选择5个！");
-                        return;
-                    }
-
-                    obj.addClass("span-checkbox checked");
-                    $(e).attr("checked", 1);
-                    count++;
-                    $("#selectCount").html("<font color='red'>已选择" + count + "张</font>");          
-                }               
-            }
+           
 
             var CountSelectImg = function () {
                 
@@ -160,36 +132,7 @@
                 })
                 return count;
             }
-
-            var SaveAjax = function (url, para) {
-                $.ajax({
-                    url: url,
-                    data: para,
-                    type: "POST",
-                    dataType: "json",
-                    success: function (data) {
-                        
-                        if (data) {
-                           
-                            if (data.IsSuccess) {
-                                LoadData();
-                                alert("保存成功！");
-                            }
-                            else {
-                                alert("保存失败！");
-                            }
-                        }
-                        else {
-                            alert("保存失败！");
-                        }
-                    },
-                    error: function () {
-                        alert("请求错误！");
-                    }
-
-                });
-            }
-           
+            
         </script>
 
        
@@ -442,10 +385,33 @@
         }
         
     </style>
-
+  
+    @*上传样式*@    
+    <style type="text/css">
+    .divUpload 
+    {
+        padding: 20px 10px;
+        border: 1px solid #c8c7cc;
+        margin: 10px;
+    }
+   
+    </style>
     </head>
     <body>
-        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "选择商品图片" } })
+        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "上传商品图片" } })
+         <div class="divUpload">
+                <form id="form" runat="server" action="/Shelves/FileUpLoad" method="post" enctype="multipart/form-data">
+                    <input type="file" id="imageUpLoad" name="imageUpLoad" />
+                    <input type="button"  id="btn_upload" value="上传" />   
+                    
+                     <div style="display:none">
+                      <input type="hidden" id="txt_sku" name="Sku" value="@ViewData["Sku"]" />
+                      <input type="hidden" id="txt_shangpinid" name="ShangPinId" value="@ViewData["ShangPinId"]" />
+                      <input  type="hidden" id="txt_imgPath" name="ImagPath" value="@ViewData["imgPath"]"/>
+        
+                    </div>              
+                </form> 
+         </div>
 
          <div id="wrapper" style="display:block">
             
@@ -455,7 +421,7 @@
              </section> 
          </div>
 
-        <div class="tbl-type detail-tbn2" id="cart1" style="position: fixed; left: 0px; bottom: 0px; z-index: 999; display: table;">
+        <div class="tbl-type detail-tbn2" id="cart1" style="position: fixed; left: 0px; bottom: 0px; z-index: 999; display: table;display:none; ">
     	   <div class="tbl-cell">                   
               <span id="selectCount"></span>
            </div>
@@ -464,12 +430,7 @@
            </div>
       </div>
 
-       <div style="display:none">
-          <input type="hidden" id="txt_sku" value="@ViewData["Sku"]" />
-          <input type="hidden" id="txt_shangpinid" value="@ViewData["ShangPinId"]" />
-          <input  type="hidden" id="txt_imgPth" value="@ViewData["imgPath"]"/>
-        
-      </div>
+      
     </body>
 
 </html>

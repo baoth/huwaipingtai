@@ -321,6 +321,7 @@
     <Content Include="Views\Shelves\Index.cshtml" />
     <Content Include="Views\Shelves\SelectImage.cshtml" />
     <Content Include="Views\Shelves\ImageList.cshtml" />
+    <Content Include="Views\Shelves\UploadImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

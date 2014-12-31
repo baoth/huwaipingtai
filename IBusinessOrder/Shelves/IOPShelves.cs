@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using DataModel;
 using DataModel.Goods;
+using Toolkit.CommonModel;
 
 namespace IBusinessOrder.Shelves
 {
@@ -47,6 +48,8 @@ namespace IBusinessOrder.Shelves
         IList<GoodsShelvesDto> GetGoodsShelvesDto(string mendian,int goodsId);
         IList<GoodsShelvesDto> GetGoodsShelvesColor(IList<GoodsShelvesDto> goodsShelvesDto);
 
-        bool PutawayGoods(string sku);
+        CResult PutawayGoods(string sku);
+
+        CResult SetUpShelves(List<string> sku, string desc,string mendianId,string price);
     }
 }

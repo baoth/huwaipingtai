@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-         <link href==@Url.Content("../../Content/Shelves.css")  rel="stylesheet" type="text/css" />
+         <link href=@Url.Content("../../Content/Shelves.css")  rel="stylesheet" type="text/css" />
         <script src=@Url.Content("../../Scripts/qsm-mui/iscroll.js") type="text/javascript"></script>
         <script src=@Url.Content("../../Scripts/qsm-mui/zepto-1.1.4.min.js") type="text/javascript"></script>
         <script src=@Url.Content("../../Scripts/qsm-mui/fx.js") type="text/javascript"></script>
@@ -47,15 +47,20 @@
                     }
                 });
                 $('li .btn-shangjia').on($.clickAction, function () {
-                    debugger
+                    /*描述*/
+                    var desc = $('#titleDescId').val();
                     var sku = $(this).attr('sku');
-                    alert(sku);
+                    $.ajax({
+                        url: '/Shelves/SetShelves',
+                        type: 'post',
+                        params:{sku:sku,desc:desc},
+                        success: function () {
+                            debugger
+                        }
+                    });
                 });
-                //                var cb1 = {};
-                //                debugger
-                //                cb1 = new QsmartCombox('tupianLi', { title: '选择图片', displaycolumn: ['Name'], dataurl: '/Shelves/GoodsImageList', idcolumn: 'Id', columns: ['Id', 'Name'], pagesize: 20 }, 'tupianLi'); //, filtertext: '17', filters: ['DocNum'] 
                 $('li:first').bind($.clickAction, function () {
-                    window.open("/Shelves/GoodsImageList");
+                    //                    window.open("/Shelves/GoodsImageList");
                 });
             });
          
@@ -86,7 +91,7 @@
                                 <span class="text" style="color: #333;">商品描述</span>
                             </a>
                         </div>
-                        <p class="detail-title" id="title"><span><textarea rows="3" cols="1" title="请填写描述" style="width: 90%;margin: 5px;"></textarea> </span></p>
+                        <p class="detail-title" id="title"><span><textarea rows="3" id="titleDescId" cols="1" title="请填写描述" style="width: 90%;margin: 5px;"></textarea> </span></p>
                         </div>
                     </li>
                      

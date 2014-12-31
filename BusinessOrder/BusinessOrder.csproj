@@ -51,6 +51,7 @@
     <Compile Include="Cart\OPCart.cs" />
     <Compile Include="CMS\OPGoodsCatalog.cs" />
     <Compile Include="CMS\Publish.cs" />
+    <Compile Include="CMS\副本 OPGoods.cs" />
     <Compile Include="Enum\OrderStatusEnum.cs" />
     <Compile Include="CMS\OPGoods.cs" />
     <Compile Include="GoodsSize\OPGoodsSize.cs" />

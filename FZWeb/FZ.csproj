@@ -254,6 +254,9 @@
     <Content Include="Scripts\Spin\spin-min.js" />
     <Content Include="Scripts\Spin\spin.js" />
     <Content Include="Template\Catalog.css" />
+    <Content Include="Template\mGoodsDetail.htm" />
+    <Content Include="Template\shelves01.css" />
+    <Content Include="Template\shelves01.js" />
     <Content Include="Template\TCatelog2.htm" />
     <Content Include="Template\Catalog2.css" />
     <Content Include="Web.config">

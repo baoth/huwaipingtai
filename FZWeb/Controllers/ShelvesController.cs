@@ -6,15 +6,19 @@ using System.Web.Mvc;
 using Toolkit.JsonHelp;
 using DataModel;
 using Toolkit.CommonModel;
+using Toolkit.Fun;
+using IBusinessOrder.CMS;
 
 namespace FZ.Controllers
 {
     public class ShelvesController : BasicController
     {
         IBusinessOrder.Shelves.IOPShelves iopshelves;
-        public ShelvesController(IBusinessOrder.Shelves.IOPShelves iopshelves)
+        IPublish iPublist;
+        public ShelvesController(IBusinessOrder.Shelves.IOPShelves iopshelves,IPublish ipublish)
         {
             this.iopshelves = iopshelves;
+            this.iPublist = ipublish;
         }
         public ActionResult Index()
         {
@@ -40,7 +44,6 @@ namespace FZ.Controllers
             }
             return View("ProductList");
         }
-        
         public ActionResult GetBrandList()
         {
             try
@@ -54,7 +57,6 @@ namespace FZ.Controllers
                 return Content("");
             }
         }
-
         public ActionResult GetProductList()
         {
             try
@@ -71,7 +73,6 @@ namespace FZ.Controllers
                 return Content("");
             }
         }
-
         public ActionResult SelectImage()
         {
             var sku=Request["Sku"];
@@ -92,7 +93,6 @@ namespace FZ.Controllers
             }
             return View("SelectImage");
         }
-
         public ActionResult GetProductPhotoList()
         {
             try
@@ -114,7 +114,6 @@ namespace FZ.Controllers
             }
 
         }
-
         public ActionResult SaveShangJia_Sku_TuTou()
         {
             CResult r = new CResult();
@@ -141,10 +140,27 @@ namespace FZ.Controllers
                 return Json(r);
             }
         }
-
         public ActionResult GoodsImageList() 
         {
             return View("ImageList");
+        }
+
+        public JsonResult SetShelves() 
+        {
+            try
+            {
+                var goodsDesc = Request["desc"];
+                var sku = Request["sku"];
+                var price = Request["price"];
+                var mendianId = "1";
+                var bShelves = iopshelves.SetUpShelves(new List<string>() { sku }, goodsDesc, mendianId,price);
+                iPublist.PublishGoods(sku);
+                return Json(bShelves);
+            }
+            catch(Exception ex)
+            {
+                return Json(FunResult.GetError(ex.Message.ToString()));
+            }
         }
     }
 }

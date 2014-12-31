@@ -37,5 +37,11 @@ namespace IBusinessOrder.Shelves
         /// <param name="sku"></param>
         /// <returns></returns>
         bool DeleteShangJia_Sku_TuTou(string sku);
+        /// <summary>
+        /// 保存图册
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        bool SaveShangJia_ShangPin_TuCe(List<ShangJia_ShangPin_TuCe> list);
     }
 }

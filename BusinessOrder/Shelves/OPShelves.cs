@@ -57,5 +57,20 @@ namespace BusinessOrder.Shelves
             dbSession.Context.ExcuteNoQuery(sql);
             return true;
         }
+
+
+        public bool SaveShangJia_ShangPin_TuCe(List<DataModel.ShangJia_ShangPin_TuCe> list)
+        {
+            var dbSession = Common.DbFactory.CreateDbSession();
+            List<string> sqlList = new List<string>();            
+            foreach (DataModel.ShangJia_ShangPin_TuCe item in list)
+            {
+                sqlList.Add(string.Format(" insert into ShangJia_ShangPin_TuCe(ShangPinId,ImgName) values('{0}','{1}')", item.ShangPinId, item.ImgName));
+            }
+            dbSession.Context.ExcuteNoQuery(sqlList);
+            return true;
+        }
+
+       
     }
 }

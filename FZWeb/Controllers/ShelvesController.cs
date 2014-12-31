@@ -134,6 +134,65 @@ namespace FZ.Controllers
                 return Json(r);
             }
         }
+        public ActionResult UploadImage()
+        {
+            var sku = Request["Sku"];
+            var shangpinid = Request["ShangPinId"];           
+            if (!string.IsNullOrEmpty(sku))
+            {
+                ViewData["Sku"] = sku;
+            }
+            if (!string.IsNullOrEmpty(shangpinid))
+            {
+                ViewData["ShangPinId"] = shangpinid;
+            }
+            var imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
+            if (!string.IsNullOrEmpty(imgPath))
+            {
+                ViewData["imgPath"] = imgPath;
+            }
+           
+            return View("UploadImage");
+        }
+        public ActionResult  FileUpLoad(HttpPostedFileBase imageUpLoad)
+        {
+            try
+            {
+                List<ShangJia_ShangPin_TuCe> list = new List<ShangJia_ShangPin_TuCe>();
+                string fileName = imageUpLoad.FileName;
+                string expandName = fileName.Substring(fileName.LastIndexOf('.') + 1);
+                Guid guid = Guid.NewGuid();
+                var saveFileName = guid + "." + expandName;
+
+                ////转换只取得文件名，去掉路径。
+                //if (fileName.LastIndexOf("\\") > -1)
+                //{
+                //    fileName = fileName.Substring(fileName.LastIndexOf("\\") + 1);
+                //}
+                var root = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
+                var sku =Request["Sku"];                
+                //保存到相对路径下。
+                imageUpLoad.SaveAs(Server.MapPath("~" + root + "/" + sku + "/" + saveFileName));
+                ShangJia_ShangPin_TuCe model = new ShangJia_ShangPin_TuCe();
+                model.ImgName = saveFileName;
+                var shangpinid = Request["ShangPinId"];
+                int spid = 0;
+                int.TryParse(shangpinid, out spid);
+                model.ShangPinId = spid;
+               
+                list.Add(model);
+
+                iopshelves.SaveShangJia_ShangPin_TuCe(list);
+
+                //return RedirectToAction("action","controller",new {参数1=xx，参数2=xxx})               
+                return RedirectToAction("UploadImage", "Shelves", new { Sku = sku, ShangPinId = shangpinid });
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("UploadImage");
+            }
+           
+        } 
 
     }
 }

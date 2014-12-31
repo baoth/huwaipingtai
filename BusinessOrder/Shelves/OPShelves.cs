@@ -83,16 +83,21 @@ namespace BusinessOrder.Shelves
 
         public List<string> GetSelectImgByImgkey(string imgKey)
         {
+            //
+            var rootPath = AppDomain.CurrentDomain.BaseDirectory;
+            rootPath = rootPath.Substring(0,rootPath.LastIndexOf('\\'));
+            var imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
             List<string> list = new List<string>();
             var dbSession = Common.DbFactory.CreateDbSession();
-            var sql = string.Format("select a.Id,a.ShangPinId,a.ImgName,a.Id as ShangJia_ShangPin_TuCeId,b.ImgKey from ShangJia_Sku_TuTou as b  left join ShangJia_ShangPin_TuCe as a  on a.id=b.ShangJia_ShangPin_TuCeId where b.ImgKey='{0}' ' ", imgKey);
+            var sql = string.Format("select a.Id,a.ShangPinId,a.ImgName,a.Id as ShangJia_ShangPin_TuCeId,b.ImgKey from ShangJia_Sku_TuTou as b  left join ShangJia_ShangPin_TuCe as a  on a.id=b.ShangJia_ShangPin_TuCeId where b.ImgKey='{0}' ", imgKey);
 
             var dt = dbSession.Context.QueryTable(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
                 foreach (DataRow rows in dt.Rows)
                 {
-                    var path = "/" + rows["ShangPinId"] + "/" + rows["ImgName"]; ;
+                    var path = rootPath + imgPath+"/" + rows["ShangPinId"] + "/" + rows["ImgName"];
+                    path = path.Replace("\\","/");
                     list.Add(path);
                 }
             }

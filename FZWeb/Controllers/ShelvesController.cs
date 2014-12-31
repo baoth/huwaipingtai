@@ -217,5 +217,11 @@ namespace FZ.Controllers
 
         }
 
+        public ActionResult GetSelectImgByImgkey()
+        {
+            var list=iopshelves.GetSelectImgByImgkey("1-1-1-1");
+            return null;
+        }
+
     }
 }

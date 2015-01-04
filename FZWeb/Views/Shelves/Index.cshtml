@@ -62,15 +62,16 @@
                         }
                     });
                 });
-                $('.detail-option').bind($.clickAction, function () {
-                    var id = $(this).attr("id").replace('temp', ''); //ColorSKU 不包含尺码
-                    var shangpinId = $('#shangpinid').val(); //商品Id
-                    alert(shangpinId);
+                $('.selectTuHead .detail-option').bind($.clickAction, function () {
+                    debugger
+                    var skuColor = $(this).attr("id").replace('temp', ''); //ColorSKU 不包含尺码
+                    var shangpinId = $('#shangpinid').val();//商品Id
+                    alert(22);
                 });
                 $('#tupiankuId').bind($.clickAction, function () {
                     var shangpinId = $('#shangpinid').val(); //商品Id
-                    alert(shangpinId);
-                    // window.location = window.location.origin + "/"; 
+
+                    alert(1);
                 });
             });
          
@@ -150,7 +151,7 @@
                         foreach (var item in listColorSKU)
                         {
                             var temp2 = "temp" + item.SKU;
-                            <li class="info-detail selector">
+                            <li class="info-detail selector selectTuHead">
                                 <div class="info border-b-none">
                                 <a class="btn-switch" refid="@temp2">
 				                    <span class="s-block">

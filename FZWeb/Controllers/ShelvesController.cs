@@ -39,13 +39,14 @@ namespace FZ.Controllers
         }
         public ActionResult ProductList()
         {
-            var pingpaiid=Request["pinpaiid"];
+            var pingpaiid = Request["pinpaiid"];
             if (!string.IsNullOrEmpty(pingpaiid))
             {
                 ViewData["pinpaiid"] = pingpaiid;
             }
             return View("ProductList");
         }
+
         public ActionResult GetBrandList()
         {
             try
@@ -59,13 +60,14 @@ namespace FZ.Controllers
                 return Content("");
             }
         }
+
         public ActionResult GetProductList()
         {
             try
             {
                 int id;
-                var pingpaiid=Request["pingpaiid"];
-                int.TryParse(pingpaiid,out id);
+                var pingpaiid = Request["pingpaiid"];
+                int.TryParse(pingpaiid, out id);
                 var list = iopshelves.GetProductList(id);
                 var jsonStr = JsonHelp.objectToJson(list);
                 return Content(jsonStr);
@@ -75,26 +77,28 @@ namespace FZ.Controllers
                 return Content("");
             }
         }
+
         public ActionResult SelectImage()
         {
-            var sku=Request["Sku"];
+            var sku = Request["Sku"];
             var shangpinid = Request["ShangPinId"];
-           // ViewData["Sku"] = "1-1-1-1-1";
+            // ViewData["Sku"] = "1-1-1-1-1";
             if (!string.IsNullOrEmpty(sku))
             {
                 ViewData["Sku"] = sku;//sku;
-            }         
+            }
             if (!string.IsNullOrEmpty(shangpinid))
             {
                 ViewData["ShangPinId"] = shangpinid;
             }
             var imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
             if (!string.IsNullOrEmpty(imgPath))
-            { 
-                ViewData["imgPath"]=imgPath;
+            {
+                ViewData["imgPath"] = imgPath;
             }
             return View("SelectImage");
         }
+
         public ActionResult GetProductPhotoList()
         {
             try
@@ -102,9 +106,9 @@ namespace FZ.Controllers
                 var imgKey = Request["ImgKey"];
                 var shangpinid = Request["ShangPinId"];
                 int id;
-               // imgKey = "1-1-1-1";
-               // shangpinid = "1";
-                
+                // imgKey = "1-1-1-1";
+                // shangpinid = "1";
+
                 int.TryParse(shangpinid, out id);
                 var list = iopshelves.GetProductPhotoList(id, imgKey);
                 var json = JsonHelp.objectToJson(list);
@@ -112,10 +116,11 @@ namespace FZ.Controllers
             }
             catch (Exception ex)
             {
-                return Content("");               
+                return Content("");
             }
 
         }
+
         public ActionResult SaveShangJia_Sku_TuTou()
         {
             CResult r = new CResult();
@@ -142,9 +147,93 @@ namespace FZ.Controllers
                 return Json(r);
             }
         }
-        public ActionResult GoodsImageList() 
+        public ActionResult UploadImage()
         {
-            return View("ImageList");
+
+            var shangpinid = Request["ShangPinId"];
+            if (!string.IsNullOrEmpty(shangpinid))
+            {
+                ViewData["ShangPinId"] = shangpinid;
+            }
+            var imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
+            if (!string.IsNullOrEmpty(imgPath))
+            {
+                ViewData["imgPath"] = imgPath;
+            }
+
+            return View("UploadImage");
+        }
+        public ActionResult FileUpLoad(HttpPostedFileBase imageUpLoad)
+        {
+            try
+            {
+                List<ShangJia_ShangPin_TuCe> list = new List<ShangJia_ShangPin_TuCe>();
+                string fileName = imageUpLoad.FileName;
+                string expandName = fileName.Substring(fileName.LastIndexOf('.') + 1);
+                Guid guid = Guid.NewGuid();
+                var saveFileName = guid + "." + expandName;
+
+                ////转换只取得文件名，去掉路径。
+                //if (fileName.LastIndexOf("\\") > -1)
+                //{
+                //    fileName = fileName.Substring(fileName.LastIndexOf("\\") + 1);
+                //}
+                var root = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
+
+                var shangpinid = Request["ShangPinId"];
+
+                var savePath = Server.MapPath("~" + root + "/" + shangpinid);
+                if (!System.IO.Directory.Exists(savePath))
+                {
+                    System.IO.Directory.CreateDirectory(savePath);
+                }
+                //保存到相对路径下。
+                imageUpLoad.SaveAs(Server.MapPath("~" + root + "/" + shangpinid + "/" + saveFileName));
+                ShangJia_ShangPin_TuCe model = new ShangJia_ShangPin_TuCe();
+                model.ImgName = saveFileName;
+
+                int spid = 0;
+                int.TryParse(shangpinid, out spid);
+                model.ShangPinId = spid;
+
+                list.Add(model);
+
+                iopshelves.SaveShangJia_ShangPin_TuCe(list);
+
+                //return RedirectToAction("action","controller",new {参数1=xx，参数2=xxx})               
+                return RedirectToAction("UploadImage", "Shelves", new { ShangPinId = shangpinid });
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("UploadImage");
+            }
+
+        }
+
+        public ActionResult GetProductPhotoListByShangpinId()
+        {
+            try
+            {
+
+                var shangpinid = Request["ShangPinId"];
+                int id;
+
+                int.TryParse(shangpinid, out id);
+                var list = iopshelves.GetProductPhotoList(id);
+                var json = JsonHelp.objectToJson(list);
+                return Content(json);
+            }
+            catch (Exception ex)
+            {
+                return Content("");
+            }
+
+        }
+
+        public ActionResult GetSelectImgByImgkey()
+        {
+            var list = iopshelves.GetSelectImgByImgkey("1-1-1-1");
+            return null;
         }
 
         public JsonResult SetShelves() 

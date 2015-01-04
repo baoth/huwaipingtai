@@ -34,7 +34,7 @@
                     
                     var url = "/Shelves/SaveShangJia_Sku_TuTou";
                     var dataRow = [];
-                    var sku = $("#txt_sku").val();
+                    var imgKey = $("#txt_sku").val();
                     $("#RowContent a").each(function () {
                         var aObj = $(this)
                         var checked = aObj.attr("checked");
@@ -42,7 +42,7 @@
                             var row = {};
                             row.ShangJia_ShangPin_TuCeId = aObj.attr("tuceid");
                             row.ImgName = $(aObj.find("img")).attr("v");
-                            row.ImgKey = sku.substring(0, sku.lastIndexOf('-')); //截取 sku
+                            row.ImgKey = imgKey; //.substring(0, sku.lastIndexOf('-')); //截取 sku
                             dataRow.push(row);
                         }
 
@@ -55,11 +55,11 @@
             }
             var LoadData = function () {
                 var url = "/Shelves/GetProductPhotoList";
-                var sku = $("#txt_sku").val();
-                sku = sku.substring(0, sku.lastIndexOf('-'));
+                var imgKey = $("#txt_sku").val();
+                
                 var shangpinid = $("#txt_shangpinid").val();
                 var ShangJia_ShangPin_TuCeId = $("#");
-                var para = { ImgKey: sku, ShangPinId: shangpinid };
+                var para = { ImgKey: imgKey, ShangPinId: shangpinid };
                 submitAjax(url, para);
             }
 
@@ -465,7 +465,7 @@
       </div>
 
        <div style="display:none">
-          <input type="hidden" id="txt_sku" value="@ViewData["Sku"]" />
+          <input type="hidden" id="txt_sku" value="@ViewData["ImgKey"]" />
           <input type="hidden" id="txt_shangpinid" value="@ViewData["ShangPinId"]" />
           <input  type="hidden" id="txt_imgPth" value="@ViewData["imgPath"]"/>
         

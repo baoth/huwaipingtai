@@ -21,6 +21,7 @@
                 myScroll = new IScroll('#wrapper', { mouseWheel: true });
                 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
                 $(".bt-category-lst .bt-category-a").on($.clickAction, function () {
+                    debugger
                     var $el = $(this);
                     if (!$el.hasClass("bt-on")) {
                         //先隐藏其他列 

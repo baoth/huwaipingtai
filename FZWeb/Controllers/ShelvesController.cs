@@ -6,18 +6,31 @@ using System.Web.Mvc;
 using Toolkit.JsonHelp;
 using DataModel;
 using Toolkit.CommonModel;
+using Toolkit.Fun;
+using IBusinessOrder.CMS;
 
 namespace FZ.Controllers
 {
     public class ShelvesController : BasicController
     {
         IBusinessOrder.Shelves.IOPShelves iopshelves;
-        public ShelvesController(IBusinessOrder.Shelves.IOPShelves iopshelves)
+        IPublish iPublist;
+        public ShelvesController(IBusinessOrder.Shelves.IOPShelves iopshelves,IPublish ipublish)
         {
             this.iopshelves = iopshelves;
+            this.iPublist = ipublish;
         }
         public ActionResult Index()
         {
+            var mendian = "1";
+            var goodsId = 4;
+            ViewData["shangpinid"] = goodsId;
+            ViewData["mendianid"] = mendian;
+            var dto = iopshelves.GetGoodsShelvesDto(mendian, goodsId);
+            ViewData["GoodsSKUS"] = dto;
+
+            var colorDto = iopshelves.GetGoodsShelvesColor(dto);
+            ViewData["ColorSKUS"] = colorDto;
             return View();
         }
         public ActionResult BrandList()
@@ -33,7 +46,6 @@ namespace FZ.Controllers
             }
             return View("ProductList");
         }
-        
         public ActionResult GetBrandList()
         {
             try
@@ -47,7 +59,6 @@ namespace FZ.Controllers
                 return Content("");
             }
         }
-
         public ActionResult GetProductList()
         {
             try
@@ -64,7 +75,6 @@ namespace FZ.Controllers
                 return Content("");
             }
         }
-
         public ActionResult SelectImage()
         {
             var sku=Request["Sku"];
@@ -85,7 +95,6 @@ namespace FZ.Controllers
             }
             return View("SelectImage");
         }
-
         public ActionResult GetProductPhotoList()
         {
             try
@@ -107,7 +116,6 @@ namespace FZ.Controllers
             }
 
         }
-
         public ActionResult SaveShangJia_Sku_TuTou()
         {
             CResult r = new CResult();
@@ -134,94 +142,28 @@ namespace FZ.Controllers
                 return Json(r);
             }
         }
-        public ActionResult UploadImage()
+        public ActionResult GoodsImageList() 
         {
-            
-            var shangpinid = Request["ShangPinId"];
-            if (!string.IsNullOrEmpty(shangpinid))
-            {
-                ViewData["ShangPinId"] = shangpinid;
-            }
-            var imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
-            if (!string.IsNullOrEmpty(imgPath))
-            {
-                ViewData["imgPath"] = imgPath;
-            }
-           
-            return View("UploadImage");
+            return View("ImageList");
         }
-        public ActionResult  FileUpLoad(HttpPostedFileBase imageUpLoad)
+
+        public JsonResult SetShelves() 
         {
             try
             {
-                List<ShangJia_ShangPin_TuCe> list = new List<ShangJia_ShangPin_TuCe>();
-                string fileName = imageUpLoad.FileName;
-                string expandName = fileName.Substring(fileName.LastIndexOf('.') + 1);
-                Guid guid = Guid.NewGuid();
-                var saveFileName = guid + "." + expandName;
-
-                ////转换只取得文件名，去掉路径。
-                //if (fileName.LastIndexOf("\\") > -1)
-                //{
-                //    fileName = fileName.Substring(fileName.LastIndexOf("\\") + 1);
-                //}
-                var root = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
-               
-                var shangpinid = Request["ShangPinId"];
-
-                var savePath = Server.MapPath("~" + root + "/" + shangpinid);
-                if (!System.IO.Directory.Exists(savePath))
-                {
-                    System.IO.Directory.CreateDirectory(savePath);
-                }
-                //保存到相对路径下。
-                imageUpLoad.SaveAs(Server.MapPath("~" + root + "/" + shangpinid + "/" + saveFileName));
-                ShangJia_ShangPin_TuCe model = new ShangJia_ShangPin_TuCe();
-                model.ImgName = saveFileName;
-              
-                int spid = 0;
-                int.TryParse(shangpinid, out spid);
-                model.ShangPinId = spid;
-               
-                list.Add(model);
-
-                iopshelves.SaveShangJia_ShangPin_TuCe(list);
-
-                //return RedirectToAction("action","controller",new {参数1=xx，参数2=xxx})               
-                return RedirectToAction("UploadImage", "Shelves", new {  ShangPinId = shangpinid });
+                var goodsDesc = Request["desc"];
+                var sku = Request["sku"];
+                var price = Request["price"];
+                var mendianId = "1";
+                var bShelves = iopshelves.SetUpShelves(new List<string>() { sku }, goodsDesc,price);
+                iPublist.PublishGoods(sku);
+                return Json(bShelves,JsonRequestBehavior.AllowGet);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                return RedirectToAction("UploadImage");
+                return Json(FunResult.GetError(ex.Message.ToString()),JsonRequestBehavior.AllowGet);
             }
-           
         }
-
-        public ActionResult GetProductPhotoListByShangpinId()
-        {
-            try
-            {
-                
-                var shangpinid = Request["ShangPinId"];
-                int id;
-                
-                int.TryParse(shangpinid, out id);
-                var list = iopshelves.GetProductPhotoList(id);
-                var json = JsonHelp.objectToJson(list);
-                return Content(json);
-            }
-            catch (Exception ex)
-            {
-                return Content("");
-            }
-
-        }
-
-        public ActionResult GetSelectImgByImgkey()
-        {
-            var list=iopshelves.GetSelectImgByImgkey("1-1-1-1");
-            return null;
-        }
-
     }
 }
+

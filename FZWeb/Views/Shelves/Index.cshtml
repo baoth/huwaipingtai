@@ -1,14 +1,14 @@
 ﻿@{
     Layout = null;
 }
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
+         <link href=@Url.Content("../../Content/Shelves.css")  rel="stylesheet" type="text/css" />
         <script src=@Url.Content("../../Scripts/qsm-mui/iscroll.js") type="text/javascript"></script>
         <script src=@Url.Content("../../Scripts/qsm-mui/zepto-1.1.4.min.js") type="text/javascript"></script>
         <script src=@Url.Content("../../Scripts/qsm-mui/fx.js") type="text/javascript"></script>
@@ -44,23 +44,50 @@
                         $('#' + refId).show();
                     }
                 });
+                $('li .btn-shangjia').on($.clickAction, function () {
+                    debugger
+                    /*描述*/
+                    var desc = $('#titleDescId').val();
+                    /*sku*/
+                    var sku = $(this).attr('sku');
+                    /*价格*/
+                    var id = "p-" + sku;
+                    var price = $('#' + id).val();
+                    $.ajax({
+                        url: '/Shelves/SetShelves',
+                        type: 'post',
+                        data: { sku: sku, desc: desc, price: price },
+                        success: function (data, at) {
+                            alert(data.Msg);
+                        }
+                    });
+                });
+                $('.detail-option').bind($.clickAction, function () {
+                    var id = $(this).attr("id").replace('temp', ''); //ColorSKU 不包含尺码
+                    var shangpinId = $('#shangpinid').val();//商品Id
+                    alert(22);
+                });
+                $('#tupiankuId').bind($.clickAction, function () {
+                    var shangpinId = $('#shangpinid').val(); //商品Id
+                    alert(1);
+                });
             });
-            widthchange = function () {
-                $("#wrapper").css('top', $("header").height());
-            };
+         
         </script>
-         <link href==@Url.Content("../../Content/Shelves.css")  rel="stylesheet" type="text/css" />
+        
+
     </head>
     <body>
+        <input type="hidden" id="shangpinid" value="@ViewData["shangpinid"]"/>
+        <input type="hidden" id="mendianid" value="@ViewData["mendianid"]"/>
         @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "商品分类" } })
         <div id="wrapper">
 	        <div id="scroller" class="bt-category">
                 <ul style="padding-bottom:32px">
-                    <li class="info-detail">
+                    <li id="tupianLi" class="info-detail">
                         <div class="info">
-                            <a href="#">
-                                <span class="text">图片库</span>
-                            
+                            <a id="tupiankuId" href="#">
+                                <span class="text" style="color:Black">图片库</span>
                             </a>
                             <span class="menu-botton-arrow"></span>
                         </div>
@@ -71,73 +98,90 @@
                         <div class="info">
                             <div class="info splitLine">
                             <a href="#">
-                                <span class="text">商品描述</span>
+                                <span class="text" style="color: #333;">商品描述</span>
                             </a>
                         </div>
-                        <p class="detail-title" id="title"><span><textarea rows="3" cols="1" title="请填写描述" style="width: 90%;margin: 5px;"></textarea> </span></p>
+                        <p class="detail-title" id="title"><span><textarea rows="3" id="titleDescId" cols="1" title="请填写描述" style="width: 90%;margin: 5px;"></textarea> </span></p>
                         </div>
                     </li>
-                   
+                     
                     <li class="bg-skape"></li>  
-                    <li class="info-detail selector">
-                        <div class="info border-b-none">
-                        <a class="btn-switch" refid="temp1">
+                     @{
+                        var listSKU= (List<DataModel.Goods.GoodsShelvesDto>)ViewData["GoodsSKUS"];
+                        foreach (var item in listSKU)
+                        {
+                            var refid = "temp-" + item.SKU;
+                            var shangjiaid = "shangjiaid" + item.SKU;
+                            <li class="info-detail selector">
+                                                                                                                                                                                                                                        <div class="info border-b-none">
+                        <a class="btn-switch" refid="@refid">
 				            <span class="s-block">
                                 <span class="title12">SKU：</span>
-                                <span class="content"><span class="to-text3" id="sh-color" data-id="1">SKU</span></span>
+                                <span class="content"><span class="to-text3" id="sh-color" data-id="@item.SKU">@item.Yanse&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@item.ChiMa</span></span>
                                 <span class="icon-arr"></span>
                             </span>
                         </a>
-                        <div class="detail-option" id="temp1" style="display:block">
-                            <div class="info splitLine">
+                        <div class="detail-option" id="@refid" style="display:block">
+                           @* <div class="info splitLine">
                                 <a href="#" style=" padding-bottom: 10px;">
                                     <span class="text">规格</span>
                                     <input type="text" style="width: 70%;line-height: 25px;margin-left: 20px;">
                                 </a>
-                            </div>
+                            </div>*@
                              <div class="info splitLine">
                                 <a href="#" style="padding-bottom: 10px;padding-top: 10px;">
                                     <span class="text">价格</span>
-                                    <input type="text" style="width: 70%;line-height: 25px;margin-left: 20px;/* border-bottom: 10px; */">
+                                    <input type="text" id="p-@item.SKU" style="width: 70%;line-height: 25px;margin-left: 20px;"/>
                                 </a>
                             </div>
                             <div class="info splitLine" style="line-height: 2em;text-align: center;">
-                                <a id="addcart" class="btn-shangjia"><span></span>上架</a>
+                                <a id="@shangjiaid" sku="@item.SKU" class="btn-shangjia"><span></span>上架</a>
                             </div>
                         </div>
                      </div>    
-                    </li>
-                    <li class="bg-skape"></li>  
-                    <li class="info-detail selector">
-                        <div class="info border-b-none">
-                        <a class="btn-switch" refid="temp2">
-				            <span class="s-block">
-                                <span class="title12">颜色：</span>
-                                <span class="content"><span class="to-text3" id="sh-color" data-id="1">红</span></span>
-                                <span class="icon-arr"></span>
-                            </span>
-                        </a>
-                        <div class="detail-option" id="temp2" style="display:block">
-                            <div class="info">
-                            <a href="#">
-                                <span class="text">显示图片</span>
+                            </li>
+                            <li class="bg-skape"></li>  
+                        }
+                    }
+
+                    @{
+                        var listColorSKU = (List<DataModel.Goods.GoodsShelvesDto>)ViewData["ColorSKUS"];
+                        foreach (var item in listColorSKU)
+                        {
+                            var temp2 = "temp" + item.SKU;
+                            <li class="info-detail selector">
+                                <div class="info border-b-none">
+                                <a class="btn-switch" refid="@temp2">
+				                    <span class="s-block">
+                                        <span class="title12">颜色：</span>
+                                        <span class="content"><span class="to-text3" id="sh-color" data-id="@item.SKU">@item.Yanse</span></span>
+                                        <span class="icon-arr"></span>
+                                    </span>
+                                </a>
+                                <div class="detail-option" id="@temp2" style="display:block">
+                                    <div class="info">
+                                    <a href="#">
+                                        <span class="text">显示图片</span>
                             
-                            </a>
-                            <span class="menu-botton-arrow"></span>
-                            </div>
-                        </div>
-                     </div>    
-                    </li>
-                             
+                                    </a>
+                                    <span class="menu-botton-arrow"></span>
+                                    </div>
+                                </div>
+                             </div>    
+                            </li>
+                            <li class="bg-skape"></li>
+                        }
+                    }
+                  
                 </ul>
 
             </div>
             <div class="tbl-type btns">
                 <div class="tbl-cell">                    
-                <a id="addcart" class="btn-acart"><span></span>全部上架</a>
+                <a id="addAllcart" class="btn-acart"><span></span>全部上架</a>
                 </div>
                  <div class="tbl-cell">                    
-                <a id="addcart" class="btn-dbuy"><span></span>全部下架</a>
+                <a id="addAllxiacart" class="btn-dbuy"><span></span>全部下架</a>
                 </div>
             </div>
         </div>

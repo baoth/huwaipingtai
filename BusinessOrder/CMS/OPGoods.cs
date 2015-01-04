@@ -21,39 +21,53 @@ namespace BusinessOrder.CMS
 
             return path.CombinePath(fileName);
         }
-        public List<GoodsSizeDto> GetGoodsSize(string goodsSKU)
+        public IList<GoodsSizeDto> GetGoodsSize(string goodsSKU)
         {
-            return new List<GoodsSizeDto> { 
-                new GoodsSizeDto() {Id="",Name= "藏青色" },
-                new GoodsSizeDto() {Id="",Name= "卡其色",IsDefalut=true },
-                new GoodsSizeDto() {Id="",Name= "浅灰色" },
-                new GoodsSizeDto() {Id="",Name= "深灰色" },
-            };
+            var arrIds = goodsSKU.Split('-');
+            var colorId = arrIds[2];
+            var sql =string.Format(@"select * from  yanse where Id in (
+select SizesId from  sizegroupsdetail where SizesGroupsId in (
+select ChiMaZuId from  shangpin where Id='{0}'))", colorId);
+            var db  = Common.DbFactory.CreateDbSession();
+            var dt  = db.Context.QueryTable(sql);
+            return dt.ToList<GoodsSizeDto>();
         }
 
-        public List<GoodsColorDto> GetGoodsColor(string goodsSKU)
+        public IList<GoodsColorDto> GetGoodsColor(string goodsSKU)
         {
-            return new List<GoodsColorDto> { 
-                new GoodsColorDto() {Id="",Name= "M" },
-                new GoodsColorDto() {Id="",Name= "L" },
-                new GoodsColorDto() {Id="",Name= "XL" },
-                new GoodsColorDto() {Id="",Name= "XXL" },
-                new GoodsColorDto() {Id="",Name= "XXXL" },
-                new GoodsColorDto() {Id="",Name= "4XL" },
-                new GoodsColorDto() {Id="",Name= "5XL" } 
-            };
+            var arrIds = goodsSKU.Split('-');
+            var colorId = arrIds[2];
+            var sql = string.Format(@"select * from  yanse where Id in (
+select YanSeId from  yansezumingxi where YanSeZuId in (
+select YanSeZuId from  shangpin where Id='{0}'))", colorId);
+            var db = Common.DbFactory.CreateDbSession();
+            var dt = db.Context.QueryTable(sql);
+            return dt.ToList<GoodsColorDto>();
         }
 
         public GoodsDto GetGoods(string goodsSKU)
         {
+            var sql = string.Format(@"
+            select
+                a.Name,
+                b.Sku,
+                b.Description,
+                b.Price
+                from  shangpin a
+                left join shangjia_sku_info b on a.Id=b.ShangPinId
+                where Sku='{0}'            
+            ",goodsSKU);
+            var db = Common.DbFactory.CreateDbSession();
+            var dt = db.Context.QueryTable(sql);
+            var o1 = dt.ToList<GoodsDto>()[0]; 
             var o = new GoodsDto()
             {
-                DiapalyPrice = "¥3699.00",
-                Price = 3699,
-                Id = 1,
-                Desc = "TZ.mall 2014 男装修身  格子 条纹 加绒 加厚 免烫保暖长袖衬衫 男 MS01藏青色 L",
-                Brand = "TZ.mall",
-                DonationDesc = "TZ.mall 秋冬保暖纯棉袜子 秋冬保暖必需品 赠品拍下不发货 随机发放颜色 袜子 均码 X  1",
+                DiapalyPrice = "¥" + o1.Price,
+                Price = o1.Price,
+                Id = o1.Id,
+                Desc =o1.Desc,//"TZ.mall 2014 男装修身  格子 条纹 加绒 加厚 免烫保暖长袖衬衫 男 MS01藏青色 L",
+                Brand = o1.DiapalyPrice,//"TZ.mall",
+                DonationDesc = o1.DonationDesc,//"TZ.mall 秋冬保暖纯棉袜子 秋冬保暖必需品 赠品拍下不发货 随机发放颜色 袜子 均码 X  1",
                 Ecoupons = ""
 
             };

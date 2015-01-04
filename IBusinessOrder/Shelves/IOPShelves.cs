@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataModel;
+using DataModel.Goods;
+using Toolkit.CommonModel;
 
 namespace IBusinessOrder.Shelves
 {
@@ -26,12 +28,6 @@ namespace IBusinessOrder.Shelves
         /// <returns></returns>
         List<ShangJia_ShangPin_Sku_TuTouDto> GetProductPhotoList(int shangpinid, string sku);
         /// <summary>
-        /// 根据商品获取商品照片
-        /// </summary>
-        /// <param name="shangpinid"></param>
-        /// <returns></returns>
-        List<ShangJia_ShangPin_Sku_TuTouDto> GetProductPhotoList(int shangpinid);
-        /// <summary>
         /// 保存详细页图头信息
         /// </summary>
         /// <param name="list"></param>
@@ -43,18 +39,17 @@ namespace IBusinessOrder.Shelves
         /// <param name="sku"></param>
         /// <returns></returns>
         bool DeleteShangJia_Sku_TuTou(string sku);
+
         /// <summary>
-        /// 保存图册
+        /// 根据门店获取商品上架信息
         /// </summary>
-        /// <param name="list"></param>
+        /// <param name="mendian"></param>
         /// <returns></returns>
-        bool SaveShangJia_ShangPin_TuCe(List<ShangJia_ShangPin_TuCe> list);
-        /// <summary>
-        /// 根据imgKey获取选择的图片(imgKey根据Sku截取获得)
-        /// </summary>
-        /// <param name="sku">Sku码</param>
-        /// <returns></returns>
-        List<string> GetSelectImgByImgkey(string imgKey);
-       
+        IList<GoodsShelvesDto> GetGoodsShelvesDto(string mendian,int goodsId);
+        IList<GoodsShelvesDto> GetGoodsShelvesColor(IList<GoodsShelvesDto> goodsShelvesDto);
+
+        CResult PutawayGoods(string sku);
+
+        CResult SetUpShelves(List<string> sku, string desc,string price);
     }
 }

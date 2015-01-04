@@ -42,7 +42,7 @@ namespace BusinessOrder.Shelves
         public List<DataModel.ShangJia_ShangPin_Sku_TuTouDto> GetProductPhotoList(int shangpinid)
         {
             var dbSession = Common.DbFactory.CreateDbSession();
-            var sql = string.Format("select a.Id,a.ShangPinId,a.ImgName,a.Id as ShangJia_ShangPin_TuCeId,b.ImgKey from ShangJia_ShangPin_TuCe as a left join  ShangJia_Sku_TuTou as b on a.id=b.ShangJia_ShangPin_TuCeId where a.ShangPinId='{0}' ", shangpinid);
+            var sql = string.Format("select distinct a.Id,a.ShangPinId,a.ImgName,a.Id as ShangJia_ShangPin_TuCeId,case when b.ImgKey is null then b.ImgKey else 1 end as ImgKey  from ShangJia_ShangPin_TuCe as a left join  ShangJia_Sku_TuTou as b on a.id=b.ShangJia_ShangPin_TuCeId  where a.ShangPinId='{0}' ", shangpinid);
 
             var dt = dbSession.Context.QueryTable(sql);
             var list = dt.ToList<DataModel.ShangJia_ShangPin_Sku_TuTouDto>() as List<DataModel.ShangJia_ShangPin_Sku_TuTouDto>;

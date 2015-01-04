@@ -14,3 +14,4 @@ E:\户外运动平台\huwaipingtai\DataModel\bin\Debug\DataModel.pdb
 E:\户外运动平台\huwaipingtai\DataModel\obj\Debug\ResolveAssemblyReference.cache
 E:\户外运动平台\huwaipingtai\DataModel\obj\Debug\DataModel.dll
 E:\户外运动平台\huwaipingtai\DataModel\obj\Debug\DataModel.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache

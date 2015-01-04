@@ -63,15 +63,15 @@
                     });
                 });
                 $('.selectTuHead .detail-option').bind($.clickAction, function () {
-                    debugger
+
                     var skuColor = $(this).attr("id").replace('temp', ''); //ColorSKU 不包含尺码
-                    var shangpinId = $('#shangpinid').val();//商品Id
-                    alert(22);
+                    var shangpinId = $('#shangpinid').val(); //商品Id
+                    window.location = window.location.origin + "/Shelves/SelectImage?ShangPinId=" + shangpinId + "&ImgKey=" + skuColor;
                 });
                 $('#tupiankuId').bind($.clickAction, function () {
                     var shangpinId = $('#shangpinid').val(); //商品Id
+                    window.location = window.location.origin + "/Shelves/UploadImage?ShangPinId=" + shangpinId;
 
-                    alert(1);
                 });
             });
          

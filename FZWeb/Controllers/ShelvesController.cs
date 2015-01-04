@@ -80,12 +80,12 @@ namespace FZ.Controllers
 
         public ActionResult SelectImage()
         {
-            var sku = Request["Sku"];
+            var ImgKey = Request["ImgKey"];
             var shangpinid = Request["ShangPinId"];
             // ViewData["Sku"] = "1-1-1-1-1";
-            if (!string.IsNullOrEmpty(sku))
+            if (!string.IsNullOrEmpty(ImgKey))
             {
-                ViewData["Sku"] = sku;//sku;
+                ViewData["ImgKey"] = ImgKey;//sku;
             }
             if (!string.IsNullOrEmpty(shangpinid))
             {

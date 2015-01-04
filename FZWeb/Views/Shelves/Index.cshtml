@@ -64,12 +64,13 @@
                 });
                 $('.detail-option').bind($.clickAction, function () {
                     var id = $(this).attr("id").replace('temp', ''); //ColorSKU 不包含尺码
-                    var shangpinId = $('#shangpinid').val();//商品Id
-                    alert(22);
+                    var shangpinId = $('#shangpinid').val(); //商品Id
+                    alert(shangpinId);
                 });
                 $('#tupiankuId').bind($.clickAction, function () {
                     var shangpinId = $('#shangpinid').val(); //商品Id
-                    alert(1);
+                    alert(shangpinId);
+                    // window.location = window.location.origin + "/"; 
                 });
             });
          

@@ -62,8 +62,14 @@
                         }
                     });
                 });
-                $('li:first').bind($.clickAction, function () {
-                    //                    window.open("/Shelves/GoodsImageList");
+                $('.detail-option').bind($.clickAction, function () {
+                    var id = $(this).attr("id").replace('temp', ''); //ColorSKU 不包含尺码
+                    var shangpinId = $('#shangpinid').val();//商品Id
+                    alert(22);
+                });
+                $('#tupiankuId').bind($.clickAction, function () {
+                    var shangpinId = $('#shangpinid').val(); //商品Id
+                    alert(1);
                 });
             });
          
@@ -72,14 +78,15 @@
 
     </head>
     <body>
-        <input id="tupianId" type="hidden" value=""/>
+        <input type="hidden" id="shangpinid" value="@ViewData["shangpinid"]"/>
+        <input type="hidden" id="mendianid" value="@ViewData["mendianid"]"/>
         @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "商品分类" } })
         <div id="wrapper">
 	        <div id="scroller" class="bt-category">
                 <ul style="padding-bottom:32px">
                     <li id="tupianLi" class="info-detail">
                         <div class="info">
-                            <a href="#">
+                            <a id="tupiankuId" href="#">
                                 <span class="text" style="color:Black">图片库</span>
                             </a>
                             <span class="menu-botton-arrow"></span>

@@ -24,6 +24,8 @@ namespace FZ.Controllers
         {
             var mendian = "1";
             var goodsId = 4;
+            ViewData["shangpinid"] = goodsId;
+            ViewData["mendianid"] = mendian;
             var dto = iopshelves.GetGoodsShelvesDto(mendian, goodsId);
             ViewData["GoodsSKUS"] = dto;
 

@@ -123,9 +123,8 @@
                     type: "POST",
                     dataType: "JSON",
                     success: function (d) {
-
                         if (d) {
-                            var divs = CreateHtmlData(d);
+                            var divs = CreateHtmlData(d,pingpaiid);
                             $("#ulContent").html("");
                             $("#ulContent").html(divs);
                         }
@@ -138,26 +137,26 @@
                     }
                 });
             };
-            var CreateHtmlData = function (data) {
+            var CreateHtmlData = function (data, pingpaiid) {
                 var obj = eval('(' + data + ')');
                 var divStr = "";
                 for (var i = 0, j = obj.length; i < j; i++) {
-                    divStr += GetHtml(obj[i]);
+                    divStr += GetHtml(obj[i], pingpaiid);
                 }
                 return divStr;
             }
 
-            var GetHtml = function (obj) {
+            var GetHtml = function (obj, pingpaiid) {
                 var name = obj["Name"] == null ? "" : obj["Name"];
                 var id = obj["Id"];
-                var divs = ' <a href="/Shelves/GetProductList1?pinpaiid={0}">'
+                var divs = ' <a href="/Shelves/Index?shangpinid={0}&pingpaiid={2}">'
 			               +'    <li class="first">'
 				           +'        <input type="hidden" class="str1" value="{1}">'
 				           +'        <strong class="name1">{1}</strong>'
 				           +'        <span class="menu-botton-arrow"></span>'
 			               +'    </li>'
 		                   + '</a> ';
-                return divs.format(id, name);
+                return divs.format(id, name,pingpaiid);
             };
 
         </script>

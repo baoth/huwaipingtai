@@ -20,16 +20,16 @@ namespace BusinessOrder.CMS
             opGoods = iopgoods;
             iOPGoodsCatalog = iopgoodscatalog;
         }
-        public CResult PublishGoods(string goodsSKU)
+        public CResult PublishGoods(string goodsSKU,string newPath)
         {
-            string pathTemplate = this.opGoods.GetGoodsCurTemplate("1231");
+            string pathTemplate = this.opGoods.GetGoodsCurTemplate("1231");//模块以后根据不同商品改变 现在就一个
             Document document = GetVTDocument(goodsSKU, pathTemplate);
             TextWriter textWriter = new StringWriter();
             document.Render(textWriter);
             //把生成的静态内容写入到目标文件
             string html = textWriter.ToString();
-            var newPath = Toolkit.Path.PathConfig.GetGeneratePath("Product");
-            File.WriteAllText(newPath+@"\1000000022\1.html", html, Encoding.UTF8);
+          
+            File.WriteAllText(newPath+string.Format(@"\{0}.html",goodsSKU), html, Encoding.UTF8);
             return FunResult.GetSuccess();
         }
         private Document GetVTDocument(string goodsSKU, string fileName)
@@ -143,6 +143,11 @@ namespace BusinessOrder.CMS
             };
             document.RegisterGlobalFunction("GetLevel3Catalog", GetLevel3Catalog);
             return document;
+        }
+
+        public CResult PublishGoods(string goodsSKU)
+        {
+            throw new NotImplementedException();
         }
     }
 }

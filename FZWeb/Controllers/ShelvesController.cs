@@ -23,10 +23,12 @@ namespace FZ.Controllers
         public ActionResult Index()
         {
             var mendian = "1";
-            var goodsId = 4;
+            //var goodsId = 4;
+            var goodsId = Request["shangpinid"];
+            var pingpaiId = Request["pingpaiid"];
             ViewData["shangpinid"] = goodsId;
             ViewData["mendianid"] = mendian;
-            var dto = iopshelves.GetGoodsShelvesDto(mendian, goodsId);
+            var dto = iopshelves.GetGoodsShelvesDto(mendian, int.Parse(goodsId));
             ViewData["GoodsSKUS"] = dto;
 
             var colorDto = iopshelves.GetGoodsShelvesColor(dto);
@@ -245,7 +247,8 @@ namespace FZ.Controllers
                 var price = Request["price"];
                 var mendianId = "1";
                 var bShelves = iopshelves.SetUpShelves(new List<string>() { sku }, goodsDesc,price);
-                iPublist.PublishGoods(sku);
+                var newPath = Toolkit.Path.PathConfig.GetGeneratePath("Product");
+                iPublist.PublishGoods(sku,newPath);
                 return Json(bShelves,JsonRequestBehavior.AllowGet);
             }
             catch(Exception ex)

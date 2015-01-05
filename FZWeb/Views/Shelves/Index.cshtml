@@ -17,6 +17,7 @@
         <script type="text/javascript">
             var myScroll;
             $(document).ready(function () {
+                debugger
                 $("#wrapper").css('top', $("header").height());
                 myScroll = new IScroll('#wrapper', { mouseWheel: true });
                 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);

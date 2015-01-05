@@ -25,10 +25,11 @@ namespace BusinessOrder.CMS
         {
             var arrIds = goodsSKU.Split('-');
             var colorId = arrIds[2];
-            var sql =string.Format(@"select * from  yanse where Id in (
+            var sql =string.Format(@"select * from  chima where Id in (
 select SizesId from  sizegroupsdetail where SizesGroupsId in (
 select ChiMaZuId from  shangpin where Id='{0}'))", colorId);
             var db  = Common.DbFactory.CreateDbSession();
+          
             var dt  = db.Context.QueryTable(sql);
             return dt.ToList<GoodsSizeDto>();
         }

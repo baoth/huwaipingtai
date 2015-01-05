@@ -71,7 +71,7 @@
                 var className = checked == 1 ? "span-checkbox checked" : "";
                 var shangpinid = $("#txt_shangpinid").val();
                 var rootPath = $("#txt_imgPth").val();
-                var imgFullPath = "../.." + rootPath + "/" + shangpinid + "/" + imgName;
+                var imgFullPath =rootPath + shangpinid + "/" + imgName;
                 var shangJia_ShangPin_TuCeId = data["ShangJia_ShangPin_TuCeId"];
                 var divs = ' <li> '                           
                            + '    <a href="javascription:;" onclick="changeSelected(this)" tuceid={5} checked={1} >'

@@ -91,7 +91,7 @@ namespace FZ.Controllers
             {
                 ViewData["ShangPinId"] = shangpinid;
             }
-            var imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
+            var imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgPath"];
             if (!string.IsNullOrEmpty(imgPath))
             {
                 ViewData["imgPath"] = imgPath;
@@ -155,7 +155,7 @@ namespace FZ.Controllers
             {
                 ViewData["ShangPinId"] = shangpinid;
             }
-            var imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
+            var imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgPath"];
             if (!string.IsNullOrEmpty(imgPath))
             {
                 ViewData["imgPath"] = imgPath;
@@ -178,17 +178,19 @@ namespace FZ.Controllers
                 //{
                 //    fileName = fileName.Substring(fileName.LastIndexOf("\\") + 1);
                 //}
-                var root = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
+                var saveRootPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
 
                 var shangpinid = Request["ShangPinId"];
 
-                var savePath = Server.MapPath("~" + root + "/" + shangpinid);
+                var savePath =saveRootPath + shangpinid;//物理路径
                 if (!System.IO.Directory.Exists(savePath))
                 {
                     System.IO.Directory.CreateDirectory(savePath);
                 }
                 //保存到相对路径下。
-                imageUpLoad.SaveAs(Server.MapPath("~" + root + "/" + shangpinid + "/" + saveFileName));
+                //Server.MapPath("~" + root + "/" + shangpinid + "/" + saveFileName)
+                var saveFilePath = savePath + "/" + saveFileName;
+                imageUpLoad.SaveAs(saveFilePath);
                 ShangJia_ShangPin_TuCe model = new ShangJia_ShangPin_TuCe();
                 model.ImgName = saveFileName;
 

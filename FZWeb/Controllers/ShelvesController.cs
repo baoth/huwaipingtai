@@ -8,6 +8,7 @@ using DataModel;
 using Toolkit.CommonModel;
 using Toolkit.Fun;
 using IBusinessOrder.CMS;
+using Toolkit.Ext;
 
 namespace FZ.Controllers
 {
@@ -172,25 +173,29 @@ namespace FZ.Controllers
                 string expandName = fileName.Substring(fileName.LastIndexOf('.') + 1);
                 Guid guid = Guid.NewGuid();
                 var saveFileName = guid + "." + expandName;
-
-                ////转换只取得文件名，去掉路径。
-                //if (fileName.LastIndexOf("\\") > -1)
-                //{
-                //    fileName = fileName.Substring(fileName.LastIndexOf("\\") + 1);
-                //}
-                var saveRootPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
-
                 var shangpinid = Request["ShangPinId"];
 
-                var savePath =saveRootPath + shangpinid;//物理路径
+                var saveOrgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebOrgImgRealPath"];//;WebOrgImgRealPath
+                //原图
+                var savePath = saveOrgPath + shangpinid;//物理路径
                 if (!System.IO.Directory.Exists(savePath))
                 {
                     System.IO.Directory.CreateDirectory(savePath);
                 }
-                //保存到相对路径下。
-                //Server.MapPath("~" + root + "/" + shangpinid + "/" + saveFileName)
+                //保存到相对路径下。               
                 var saveFilePath = savePath + "/" + saveFileName;
                 imageUpLoad.SaveAs(saveFilePath);
+                //缩小图    
+                var saveRootPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
+                var saveSmallPath = saveRootPath + shangpinid;//物理路径
+                if (!System.IO.Directory.Exists(saveSmallPath))
+                {
+                    System.IO.Directory.CreateDirectory(saveSmallPath);
+                }
+                var saveSmallFilePath = saveSmallPath + "/" + saveFileName;
+                ImageSmall.MakeThumbnail(saveFilePath, saveSmallFilePath, 220, 220, "Cut");
+
+               
                 ShangJia_ShangPin_TuCe model = new ShangJia_ShangPin_TuCe();
                 model.ImgName = saveFileName;
 

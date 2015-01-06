@@ -118,16 +118,11 @@
             <li>
                 <div id="tabpages" class="qsm-mui-tab" style="overflow: hidden;">
                     <div id="banner-content" class="qsm-mui-tab-scroller" style="height: 100%; position: relative; width: 6745px; left: 0px; top: 0px;">
-                        <vt:function var="imgs" method="GetTuTou" name="给商品颜色图片" v="1" />
-                        <vt:foreach item="img" from="$imgs" index="i">
-                                <vt:expression var="r" args="$i"  expression="({0}-1)*1349" />
-                                <div class="qsm-mui-tab-item item-0" data-index="0" style="width: 1349px; height: 200px; position: absolute; left: {$r}px; top: 0px; float: left; padding: 0px; margin: 0px;">
-                                      <img src="{$img}">    
-                                </div>
-                        </vt:foreach>
+                        
+                        
                     </div>
                     <div class="price-detail">
-            	        <span class="price" id="price">{$Goods.DiapalyPrice}</span>
+            	        <span class="price" id="price">¥12.00</span>
                         <a class="btn-attention" id="attention"><span></span></a>
                     </div>   
                 </div> 
@@ -140,18 +135,18 @@
                     </a>
                     <span class="icon-arr"></span>
                 </div>
-                <p class="detail-title" id="title"><span>{$Goods.Description}&nbsp;&nbsp;&nbsp;&nbsp;{$Goods.Color}&nbsp;&nbsp;&nbsp;&nbsp;{$Goods.Size}</span></p>
+                <p class="detail-title" id="title"><span>adsfadsfasdfsadfsadfsadf&nbsp;&nbsp;&nbsp;&nbsp;黑色&nbsp;&nbsp;&nbsp;&nbsp;S</span></p>
                 <p class="pi" id="promotion" style=" ">促销信息：<span> </span></p>
-                <p class="pi-detail" id="vender" style="">服务：<span>由{$Goods.JingXiaoShang}{$Goods.MenDianName}负责发货，并提供售后服务。</span></p>
+                <p class="pi-detail" id="vender" style="">服务：<span>由服饰负责发货，并提供售后服务。</span></p>
                 <div class="info gifts">
                     <span class="gift-content">
-                        <span id="giftslist" style="display:{$Goods.IsDispalyDonationDesc}">
+                        <span id="giftslist" style="display:none">
                             <span class="title12">赠品：</span>
-                            <span class="content"><a href="" data-sku="" class="link-event btn-hf">{$Goods.DonationDesc}</a></span>
+                            <span class="content"><a href="" data-sku="" class="link-event btn-hf"></a></span>
                         </span>
-				        <span id="couponslist"  style="display:{$Goods.IsDispalyEcoupons}">
+				        <span id="couponslist"  style="display:none">
                             <span class="title12">赠券：</span>
-                            <span class="content">{$Goods.Ecoupons}</span>
+                            <span class="content"></span>
                         </span>
 				    </span> 
                     <span class="icon-arr"></span>
@@ -167,39 +162,67 @@
                         </span>
 				        <span class="s-block">
                             <span class="title12">颜色：</span>
-                            <span class="content"><span class="to-text3" id="sh-color">{$Goods.Color}</span></span>
+                            <span class="content"><span class="to-text3" id="sh-color">黑色</span></span>
                         </span>
 					    <span class="s-block">
                             <span class="title12">尺寸：</span>
-                            <span class="content"><span class="to-text3" id="sh-size">{$Goods.Size}</span></span>
+                            <span class="content"><span class="to-text3" id="sh-size">S</span></span>
                         </span>  
 				        <span class="icon-arr"></span>
                     </a>
                     <div class="detail-option" id="infos-detail" style="display:block;">
 					    <div class="option-section mt-10">
                             <span class="titlef1">颜色：</span>
-                             <vt:function var="data" method="GetGoodsColor" name="给商品颜色" v="1" />
+                             
                             <div class="option" id="color">
-                                 <vt:foreach item="pic" from="$data" index="i">
-                                    <vt:if var="pic.Id" value="$Goods.ColorId">
-                                         <a href="#" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10 on">{$pic.Name}</a>&nbsp;
-                                    <vt:else>
-                                         <a href="{$Goods.PrGoodsSKU}-{$pic.Id}-{$Goods.SizeId}.html" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10">{$pic.Name}</a>&nbsp;
-                                    </vt:if>
-                                </vt:foreach>
+                                 
+                                    
+                                         <a href="1-1-1-1-1.html" data-sku="1" title="红色" class="btn-hf btn-color-op mb-10">红色</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="#" data-sku="2" title="黑色" class="btn-hf btn-color-op mb-10 on">黑色</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-3-1.html" data-sku="3" title="藏蓝色" class="btn-hf btn-color-op mb-10">藏蓝色</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-4-1.html" data-sku="4" title="白色" class="btn-hf btn-color-op mb-10">白色</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-5-1.html" data-sku="5" title="墨绿色" class="btn-hf btn-color-op mb-10">墨绿色</a>&nbsp;
+                                    
+                                
                             </div>
                         </div>
 						<div class="option-section mt-10">
                             <span class="titlef1">尺寸：</span>
-                            <vt:function var="data" method="GetGoodsSize" name="给商品尺码" v="1" />
+                            
                             <div class="option" id="size">
-                               <vt:foreach item="pic" from="$data" index="i">
-                                    <vt:if var="pic.Id" value="$Goods.SizeId">
-                                         <a href="#" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10 on">{$pic.Name}</a>&nbsp;
-                                    <vt:else>
-                                         <a href="{$Goods.PrGoodsSKU}-{$Goods.ColorId}-{$pic.Id}.html" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10">{$pic.Name}</a>&nbsp;
-                                    </vt:if>
-                                </vt:foreach>
+                               
+                                    
+                                         <a href="#" data-sku="1" title="S" class="btn-hf btn-color-op mb-10 on">S</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-2-2.html" data-sku="2" title="M" class="btn-hf btn-color-op mb-10">M</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-2-3.html" data-sku="3" title="L" class="btn-hf btn-color-op mb-10">L</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-2-4.html" data-sku="4" title="XL" class="btn-hf btn-color-op mb-10">XL</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-2-5.html" data-sku="5" title="XXL" class="btn-hf btn-color-op mb-10">XXL</a>&nbsp;
+                                    
+                                
                             </div>
                         </div>
                         <div class="option-section mt-10">

@@ -50,7 +50,7 @@ namespace FZ.Controllers
             
             FunctionModel model5 = new FunctionModel();
             model5.FunctionName = "商品上架";
-            model5.FunctionUrl = "/Shelves/BrandList";
+            model5.FunctionUrl = "/MenDian/List";
             list.Add(model5);
             return list;
         }

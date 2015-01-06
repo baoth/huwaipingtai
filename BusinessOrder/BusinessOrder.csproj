@@ -55,6 +55,7 @@
     <Compile Include="Enum\OrderStatusEnum.cs" />
     <Compile Include="CMS\OPGoods.cs" />
     <Compile Include="GoodsSize\OPGoodsSize.cs" />
+    <Compile Include="MenDian\OPMenDian.cs" />
     <Compile Include="Order\OPCustomerOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shelves\OPShelves.cs" />

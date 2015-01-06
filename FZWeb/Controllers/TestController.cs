@@ -238,6 +238,10 @@ namespace FZ.Controllers
             db.SaveChange();
             return Content("ok");
         }
+        /// <summary>
+        /// 商品
+        /// </summary>
+        /// <returns></returns>
         public ActionResult shangpin()
         {
             QSmartDatabaseClient db = DataBaseProvider.Create("db");
@@ -248,6 +252,30 @@ namespace FZ.Controllers
             db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 2, YanSeZuId = 2, PinPaiId = 2, Name = "男士长袖POLO衣" }.CreateQSmartObject());
 
 
+            db.SaveChange();
+            return Content("ok");
+        }
+        /// <summary>
+        /// 经销商
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult jingxiaoshang()
+        {
+            QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            db.InsertEntity(new JingXiaoShang { Name = "北京服装经销商",Address="北京 海淀",Phone="010-666666" }.CreateQSmartObject());
+            
+            db.SaveChange();
+            return Content("ok");
+        }
+        /// <summary>
+        /// 门店
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult mendian()
+        {
+            QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            db.InsertEntity(new MenDian { Name = "北京大红门服装店", JingXiaoShangId=1, Address = "北京", Phone = "010-666666" }.CreateQSmartObject());
+            db.InsertEntity(new MenDian { Name = "北京西单服装店", JingXiaoShangId = 1, Address = "北京", Phone = "010-666666" }.CreateQSmartObject());
             db.SaveChange();
             return Content("ok");
         }

@@ -17,6 +17,7 @@ namespace DataModel.CMS.Models
         public string Color { get; set; }
         public string Size { get; set; }
         public decimal Price { get; set; }
+        public string PrGoodsSKU { get; set; }
         public string DiapalyPrice { get; set; }
         public string Description { get; set; }
         public string Brand { get; set; }

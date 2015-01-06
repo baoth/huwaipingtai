@@ -175,16 +175,16 @@
                         </span>  
 				        <span class="icon-arr"></span>
                     </a>
-                    <div class="detail-option" id="infos-detail" style="display: none;">
+                    <div class="detail-option" id="infos-detail" style="display:block;">
 					    <div class="option-section mt-10">
                             <span class="titlef1">颜色：</span>
                              <vt:function var="data" method="GetGoodsColor" name="给商品颜色" v="1" />
                             <div class="option" id="color">
                                  <vt:foreach item="pic" from="$data" index="i">
                                     <vt:if var="pic.Id" value="$Goods.ColorId">
-                                         <a href="" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10 on">{$pic.Name}</a>&nbsp;
+                                         <a href="#" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10 on">{$pic.Name}</a>&nbsp;
                                     <vt:else>
-                                         <a href="" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10">{$pic.Name}</a>&nbsp;
+                                         <a href="{$Goods.PrGoodsSKU}-{$pic.Id}-{$Goods.SizeId}.html" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10">{$pic.Name}</a>&nbsp;
                                     </vt:if>
                                 </vt:foreach>
                             </div>
@@ -195,9 +195,9 @@
                             <div class="option" id="size">
                                <vt:foreach item="pic" from="$data" index="i">
                                     <vt:if var="pic.Id" value="$Goods.SizeId">
-                                         <a href="" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10 on">{$pic.Name}</a>&nbsp;
+                                         <a href="#" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10 on">{$pic.Name}</a>&nbsp;
                                     <vt:else>
-                                         <a href="" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10">{$pic.Name}</a>&nbsp;
+                                         <a href="{$Goods.PrGoodsSKU}-{$Goods.ColorId}-{$pic.Id}.html" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10">{$pic.Name}</a>&nbsp;
                                     </vt:if>
                                 </vt:foreach>
                             </div>

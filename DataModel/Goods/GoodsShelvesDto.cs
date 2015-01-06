@@ -21,7 +21,12 @@ namespace DataModel.Goods
        public string PinPaiName { get; set; }
        public string ColorSKU { get; set; }
        public string SKU { get; set; }
+       public int IsShangJia { get; set; }
        public string Price { get; set; }
     }
-
+   public class GoodsShelvesParamsDto {
+       public string sku { get; set; }
+       public string desc { get; set; }
+       public string price { get; set; }
+   }
 }

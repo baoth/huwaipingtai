@@ -141,17 +141,25 @@ namespace BusinessOrder.Shelves
             */
             var skuListStr =string.Format("select * from shangjia_sku_info where sku in({0})",strArrSku);
             var dtSangJia = db.Context.QueryTable(skuListStr);
-            var dicSKU = new Dictionary<string, string>();
+            var dicSKU2Price = new Dictionary<string, string>();
+            var dicSKU2ShangJia = new Dictionary<string, int>();
             foreach (DataRow dr in dtSangJia.Rows)
             {
                 var price = dr["Price"].ToString();
-                dicSKU.Add(dr["Sku"].ToString(), price);
+                var isShangJia=dr["IsShangJia"].ToString().ToLower()=="true"?1:0;
+                dicSKU2Price.Add(dr["Sku"].ToString(), price);
+                dicSKU2ShangJia.Add(dr["Sku"].ToString(), isShangJia);
+                
             }
             foreach (var item in ents)
             {
-                if (dicSKU.ContainsKey(item.SKU))
+                if (dicSKU2Price.ContainsKey(item.SKU))
                 {
-                    item.Price = dicSKU[item.SKU];
+                    item.Price = dicSKU2Price[item.SKU];
+                }
+                if (dicSKU2ShangJia.ContainsKey(item.SKU))
+                {
+                    item.IsShangJia = dicSKU2ShangJia[item.SKU];
                 }
             }
             return ents;
@@ -208,6 +216,7 @@ namespace BusinessOrder.Shelves
             {
                 //mendianId-fenleiId-shangpinid-yanse-chima
                 var arrIds = item.Split('-');
+                listStr.Add(string.Format("delete from shangjia_sku_info where sku='{0}'",item));
                 listStr.Add(string.Format(insertFormatSql,item,desc,price,arrIds[2],1,arrIds[1]));
             }
             var db = Common.DbFactory.CreateDbSession();
@@ -217,6 +226,41 @@ namespace BusinessOrder.Shelves
         }
 
 
-       
+
+
+
+        public CResult SetAllShelves(IList<GoodsShelvesParamsDto> goodsShelvesParamsDtos)
+        {
+            /*1、插入上架表*/
+            var insertFormatSql = @" INSERT INTO shangjia_sku_info
+                            ( sku ,
+                              Description ,
+                              Price ,
+                              ShangPinId ,
+                              IsShangJia,
+                              FenLeiId
+                            ) 
+                            values('{0}','{1}','{2}','{3}','{4}','{5}')";
+            var listStr = new List<string>();
+            foreach (var item in goodsShelvesParamsDtos)
+            {
+                listStr.Add(string.Format(" delete from shangjia_sku_info where sku='{0}'", item.sku));
+                //mendianId-fenleiId-shangpinid-yanse-chima
+                var arrIds = item.sku.Split('-');
+                listStr.Add(string.Format(insertFormatSql, item.sku,item.desc, item.price, arrIds[2], 1, arrIds[1]));
+            }
+            var db = Common.DbFactory.CreateDbSession();
+            db.Context.ExcuteNoQuery(listStr);
+            return FunResult.GetSuccess();
+        }
+
+
+        public CResult SetDownShelves(string skus)
+        {
+            var sqlFormat = "update shangjia_sku_info set IsShangJia=0 where  sku in('{0}')";
+            var db = Common.DbFactory.CreateDbSession();
+            db.Context.ExcuteNoQuery(string.Format(sqlFormat,skus.Replace(",","','")));
+            return FunResult.GetSuccess();
+        }
     }
 }

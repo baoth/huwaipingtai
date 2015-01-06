@@ -9,6 +9,7 @@ using Toolkit.CommonModel;
 using Toolkit.Fun;
 using IBusinessOrder.CMS;
 using Toolkit.Ext;
+using DataModel.Goods;
 
 namespace FZ.Controllers
 {
@@ -263,6 +264,36 @@ namespace FZ.Controllers
                 return Json(FunResult.GetError(ex.Message.ToString()),JsonRequestBehavior.AllowGet);
             }
         }
+
+        public JsonResult SetAllShelves() 
+        {
+            var data = Request["data"];
+            var shelvesParamsDtos = Toolkit.JsonHelp.JsonHelp.josnToObject<List<GoodsShelvesParamsDto>>(data);
+            var bShelves = iopshelves.SetAllShelves(shelvesParamsDtos);
+            var newPath = Toolkit.Path.PathConfig.GetGeneratePath("Product");
+            foreach (var item in shelvesParamsDtos)
+            {
+                iPublist.PublishGoods(item.sku, newPath);
+            }
+            return Json(bShelves, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SetDownShelves()
+        {
+           
+            var skus = Request["data"];
+            var bShelves = iopshelves.SetDownShelves(skus);
+            var newPath = Toolkit.Path.PathConfig.GetGeneratePath("Product");
+            var skuArr = skus.Split(',');
+            foreach (var item in skuArr)
+            {
+                if (string.IsNullOrEmpty(item)) continue;
+                var filePath=newPath.CombinePath(string.Format(@"{0}.html",item));
+                if (System.IO.File.Exists(filePath)) {
+                    System.IO.File.Delete(filePath);
+                }
+            }
+            return Json(bShelves, JsonRequestBehavior.AllowGet);
+        }   
     }
 }
 

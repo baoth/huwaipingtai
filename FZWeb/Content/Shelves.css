@@ -567,6 +567,18 @@ textarea {
     background: #6cb248;
     width:100px;
 }
+.btn-xiajia 
+{
+    color:White;
+    margin-top:10px;
+    margin-bottom:10px;
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+    font-family:@华文宋体;
+    background:#c00;
+    width:100px;
+}
 .btn-shangjia span
 {
     display: inline-block;

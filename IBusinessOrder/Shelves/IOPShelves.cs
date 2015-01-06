@@ -69,5 +69,10 @@ namespace IBusinessOrder.Shelves
         CResult PutawayGoods(string sku);
 
         CResult SetUpShelves(List<string> sku, string desc,string price);
+        CResult SetAllShelves(IList<GoodsShelvesParamsDto> goodsShelvesParamsDtos);
+        CResult SetDownShelves(string skus);
+        //List<DataModel.ShangJia_ShangPin_Sku_TuTouDto> GetProductPhotoList(int shangpinid);
+        //List<string> GetSelectImgByImgkey(string imgKey);
+        //bool SaveShangJia_ShangPin_TuCe(List<DataModel.ShangJia_ShangPin_TuCe> list);
     }
 }

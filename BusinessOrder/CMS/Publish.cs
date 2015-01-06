@@ -9,31 +9,35 @@ using System.IO;
 using VTemplate.Engine;
 using Toolkit.CommonModel;
 using Toolkit.Fun;
+using IBusinessOrder.Shelves;
 namespace BusinessOrder.CMS
 {
     public class Publish : IPublish
     {
         public IOPGoods opGoods = null;
         public IOPGoodsCatalog iOPGoodsCatalog = null;
-        public Publish(IOPGoods iopgoods, IOPGoodsCatalog iopgoodscatalog)
+        public IOPShelves iOPShelves=null;
+        public Publish(IOPGoods iopgoods, IOPGoodsCatalog iopgoodscatalog, IOPShelves iopshelves)
         {
             opGoods = iopgoods;
             iOPGoodsCatalog = iopgoodscatalog;
+            iOPShelves = iopshelves;
         }
-        public CResult PublishGoods(string goodsSKU)
+        public CResult PublishGoods(string goodsSKU,string newPath)
         {
-            string pathTemplate = this.opGoods.GetGoodsCurTemplate("1231");
+            string pathTemplate = this.opGoods.GetGoodsCurTemplate("1231");//模块以后根据不同商品改变 现在就一个
             Document document = GetVTDocument(goodsSKU, pathTemplate);
             TextWriter textWriter = new StringWriter();
             document.Render(textWriter);
             //把生成的静态内容写入到目标文件
             string html = textWriter.ToString();
-            var newPath = Toolkit.Path.PathConfig.GetGeneratePath("Product");
-            File.WriteAllText(newPath+@"\1000000022\1.html", html, Encoding.UTF8);
+          
+            File.WriteAllText(newPath+string.Format(@"\{0}.html",goodsSKU), html, Encoding.UTF8);
             return FunResult.GetSuccess();
         }
         private Document GetVTDocument(string goodsSKU, string fileName)
         {
+            var colorSKU = goodsSKU.Substring(0, goodsSKU.LastIndexOf('-'));
             Document document = new Document(fileName, Encoding.UTF8);
             document.SetValue("Goods", opGoods.GetGoods(goodsSKU));
             //注册商品尺码对象
@@ -47,6 +51,18 @@ namespace BusinessOrder.CMS
                 return opGoods.GetGoodsSize(goodsSKU);
             };
             document.RegisterGlobalFunction("GetGoodsSize", GetGoodsSize);
+            UserDefinedFunction GetTuTou = (o) =>
+            {
+                /*预留吧 有可能根据商品分类来读取数据*/
+                var d = TemplateDocument.CurrentRenderingDocument;
+                var tag = d == null ? null : d.CurrentRenderingTag;
+                var goodsName = tag.Attributes.GetValue("name");
+                var goodsId = tag.Attributes.GetValue("id");
+                var imgs = iOPShelves.GetSelectImgByImgkey(colorSKU);
+                return imgs;
+            };
+
+            document.RegisterGlobalFunction("GetTuTou", GetTuTou);
             //注册商品颜色对象
             UserDefinedFunction GetGoodsColor = (o) =>
             {
@@ -143,6 +159,11 @@ namespace BusinessOrder.CMS
             };
             document.RegisterGlobalFunction("GetLevel3Catalog", GetLevel3Catalog);
             return document;
+        }
+
+        public CResult PublishGoods(string goodsSKU)
+        {
+            throw new NotImplementedException();
         }
     }
 }

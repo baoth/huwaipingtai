@@ -9,6 +9,7 @@ using Toolkit.CommonModel;
 using Toolkit.Fun;
 using IBusinessOrder.CMS;
 using Toolkit.Ext;
+using DataModel.Goods;
 
 namespace FZ.Controllers
 {
@@ -24,10 +25,12 @@ namespace FZ.Controllers
         public ActionResult Index()
         {
             var mendian = "1";
-            var goodsId = 4;
+            //var goodsId = 4;
+            var goodsId = Request["shangpinid"];
+            var pingpaiId = Request["pingpaiid"];
             ViewData["shangpinid"] = goodsId;
             ViewData["mendianid"] = mendian;
-            var dto = iopshelves.GetGoodsShelvesDto(mendian, goodsId);
+            var dto = iopshelves.GetGoodsShelvesDto(mendian, int.Parse(goodsId));
             ViewData["GoodsSKUS"] = dto;
 
             var colorDto = iopshelves.GetGoodsShelvesColor(dto);
@@ -252,7 +255,8 @@ namespace FZ.Controllers
                 var price = Request["price"];
                 var mendianId = "1";
                 var bShelves = iopshelves.SetUpShelves(new List<string>() { sku }, goodsDesc,price);
-                iPublist.PublishGoods(sku);
+                var newPath = Toolkit.Path.PathConfig.GetGeneratePath("Product");
+                iPublist.PublishGoods(sku,newPath);
                 return Json(bShelves,JsonRequestBehavior.AllowGet);
             }
             catch(Exception ex)
@@ -260,6 +264,36 @@ namespace FZ.Controllers
                 return Json(FunResult.GetError(ex.Message.ToString()),JsonRequestBehavior.AllowGet);
             }
         }
+
+        public JsonResult SetAllShelves() 
+        {
+            var data = Request["data"];
+            var shelvesParamsDtos = Toolkit.JsonHelp.JsonHelp.josnToObject<List<GoodsShelvesParamsDto>>(data);
+            var bShelves = iopshelves.SetAllShelves(shelvesParamsDtos);
+            var newPath = Toolkit.Path.PathConfig.GetGeneratePath("Product");
+            foreach (var item in shelvesParamsDtos)
+            {
+                iPublist.PublishGoods(item.sku, newPath);
+            }
+            return Json(bShelves, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SetDownShelves()
+        {
+           
+            var skus = Request["data"];
+            var bShelves = iopshelves.SetDownShelves(skus);
+            var newPath = Toolkit.Path.PathConfig.GetGeneratePath("Product");
+            var skuArr = skus.Split(',');
+            foreach (var item in skuArr)
+            {
+                if (string.IsNullOrEmpty(item)) continue;
+                var filePath=newPath.CombinePath(string.Format(@"{0}.html",item));
+                if (System.IO.File.Exists(filePath)) {
+                    System.IO.File.Delete(filePath);
+                }
+            }
+            return Json(bShelves, JsonRequestBehavior.AllowGet);
+        }   
     }
 }
 

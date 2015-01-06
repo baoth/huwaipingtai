@@ -14,13 +14,16 @@
         <script src=@Url.Content("../../Scripts/qsm-mui/fx.js") type="text/javascript"></script>
         <script src=@Url.Content("../../Scripts/qsm-mui/zepto.selector.js") type="text/javascript"></script>
         <script src=@Url.Content("../../Scripts/qsm-mui/zepto.touch.js") type="text/javascript"></script>
+        <script src=@Url.Content("../../Scripts/json2.js") type="text/javascript"></script>
         <script type="text/javascript">
             var myScroll;
             $(document).ready(function () {
+                debugger
                 $("#wrapper").css('top', $("header").height());
                 myScroll = new IScroll('#wrapper', { mouseWheel: true });
                 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
                 $(".bt-category-lst .bt-category-a").on($.clickAction, function () {
+                    debugger
                     var $el = $(this);
                     if (!$el.hasClass("bt-on")) {
                         //先隐藏其他列 
@@ -53,6 +56,11 @@
                     /*价格*/
                     var id = "p-" + sku;
                     var price = $('#' + id).val();
+                    if (!price) {
+                        var errorMsg = $(this).attr("errormsg");
+                        alert("请填写" + errorMsg + "的上架价格！");
+                        return;
+                    }
                     $.ajax({
                         url: '/Shelves/SetShelves',
                         type: 'post',
@@ -72,6 +80,77 @@
                     var shangpinId = $('#shangpinid').val(); //商品Id
                     window.location = window.location.origin + "/Shelves/UploadImage?ShangPinId=" + shangpinId;
 
+                });
+                /*全部上架*/
+                $('#addAllcart').bind($.clickAction, function () {
+                    var shangjia = $('li .btn-shangjia');
+                    var data = [];
+                    $.each(shangjia, function (key, value) {
+                        /*描述*/
+                        var desc = $('#titleDescId').val();
+                        /*sku*/
+                        var sku = $(this).attr('sku');
+                        /*价格*/
+                        var id = "p-" + sku;
+                        var price = $('#' + id).val();
+                        if (!price) {
+                            var errorMsg = $(this).attr("errormsg");
+                            alert("请填写"+errorMsg+"的上架价格！");
+                            return;
+                        }
+                        data.push({ desc: desc, sku: sku, price: price });
+                    });
+                    if (data.length == 0) {
+                        alert('没有要上架的产品！');
+                        return;
+                    }
+                    $.ajax({
+                        url: '/Shelves/SetAllShelves',
+                        type: 'post',
+                        data: { data: JSON.stringify(data) },
+                        success: function () {
+                            window.location.reload(); 
+                        },
+                        error: function () {
+                            alert("发布失败")
+                        }
+                    });
+                });
+                /*全部下架*/
+                $('#addAllxiacart').bind($.clickAction, function () {
+                    var shangjia = $('li .btn-shangjia');
+                    var data = [];
+                    $.each(shangjia, function (key, value) {
+                        /*sku*/
+                        var sku = $(this).attr('sku');
+                        data.push(sku);
+                    });
+                    $.ajax({
+                        url: '/Shelves/SetDownShelves',
+                        type: 'post',
+                        data: { data: data.join(',') },
+                        success: function () {
+                            window.location.reload(); 
+                        },
+                        error: function () {
+                            alert("下架失败")
+                        }
+                    });
+                });
+                /*下架*/
+                $('li .btn-xiajia').on($.clickAction, function () {
+                    var sku = $(this).attr('sku');
+                    $.ajax({
+                        url: '/Shelves/SetDownShelves',
+                        type: 'post',
+                        data: { data: sku },
+                        success: function (data, at) {
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("下架失败")
+                        }
+                    });
                 });
             });
          
@@ -99,7 +178,7 @@
                     <li>
                         <div class="info">
                             <div class="info splitLine">
-                            <a href="#">
+                            <a href="javascript:void(0)">
                                 <span class="text" style="color: #333;">商品描述</span>
                             </a>
                         </div>
@@ -113,10 +192,17 @@
                         foreach (var item in listSKU)
                         {
                             var refid = "temp-" + item.SKU;
-                            var shangjiaid = "shangjiaid" + item.SKU;
+                            var shangjiaid = "shangjia#" + item.SKU;
+                            var xiajiaid = "xiajiaid#" + item.SKU;
+                            var bUp = "none"; var bDown = "none";
+                            if(item.IsShangJia==1){
+                                bDown  = "block";
+                            }else{
+                                bUp = "block";
+                            }
                             <li class="info-detail selector">
                                                                                                                                                                                                                                         <div class="info border-b-none">
-                        <a class="btn-switch" refid="@refid">
+                        <a class="btn-switch" href="javascript:void(0)"  refid="@refid">
 				            <span class="s-block">
                                 <span class="title12">SKU：</span>
                                 <span class="content"><span class="to-text3" id="sh-color" data-id="@item.SKU">@item.Yanse&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@item.ChiMa</span></span>
@@ -124,20 +210,16 @@
                             </span>
                         </a>
                         <div class="detail-option" id="@refid" style="display:block">
-                           @* <div class="info splitLine">
-                                <a href="#" style=" padding-bottom: 10px;">
-                                    <span class="text">规格</span>
-                                    <input type="text" style="width: 70%;line-height: 25px;margin-left: 20px;">
-                                </a>
-                            </div>*@
                              <div class="info splitLine">
-                                <a href="#" style="padding-bottom: 10px;padding-top: 10px;">
+                                <a href="javascript:void(0)" style="padding-bottom: 10px;padding-top: 10px;">
                                     <span class="text">价格</span>
-                                    <input type="text" id="p-@item.SKU" style="width: 70%;line-height: 25px;margin-left: 20px;"/>
+                                    <input type="text" id="p-@item.SKU" value="@item.Price"  style="width: 70%;line-height: 25px;margin-left: 20px;"/>
                                 </a>
                             </div>
+                            
                             <div class="info splitLine" style="line-height: 2em;text-align: center;">
-                                <a id="@shangjiaid" sku="@item.SKU" class="btn-shangjia"><span></span>上架</a>
+                                <a id="@shangjiaid" sku="@item.SKU" errorMsg="&nbsp; @item.Yanse &nbsp;@item.ChiMa  &nbsp;" class="btn-shangjia" style="display:@bUp"><span></span>上架</a>
+                                <a id="@xiajiaid" sku="@item.SKU" errorMsg="&nbsp; @item.Yanse &nbsp;@item.ChiMa  &nbsp;" class="btn-xiajia" style="display:@bDown"><span></span>下架</a>
                             </div>
                         </div>
                      </div>    
@@ -153,7 +235,7 @@
                             var temp2 = "temp" + item.SKU;
                             <li class="info-detail selector selectTuHead">
                                 <div class="info border-b-none">
-                                <a class="btn-switch" refid="@temp2">
+                                <a class="btn-switch" href="javascript:void(0)" refid="@temp2">
 				                    <span class="s-block">
                                         <span class="title12">颜色：</span>
                                         <span class="content"><span class="to-text3" id="sh-color" data-id="@item.SKU">@item.Yanse</span></span>
@@ -162,7 +244,7 @@
                                 </a>
                                 <div class="detail-option" id="@temp2" style="display:block">
                                     <div class="info">
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <span class="text">显示图片</span>
                             
                                     </a>

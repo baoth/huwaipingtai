@@ -11,9 +11,14 @@ namespace DataModel.CMS.Models
     public class GoodsDto
     {
         public int Id { get; set; }
+        public string Name { get; set; }
+        public int ColorId { get; set;}
+        public int SizeId { get; set; }
+        public string Color { get; set; }
+        public string Size { get; set; }
         public decimal Price { get; set; }
         public string DiapalyPrice { get; set; }
-        public string Desc { get; set; }
+        public string Description { get; set; }
         public string Brand { get; set; }
         public string DonationDesc { get; set; }
         public string Ecoupons { get; set; }

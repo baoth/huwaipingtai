@@ -21,32 +21,32 @@ namespace FZ.Controllers
         {
 
             QSmartDatabaseClient db = DataBaseProvider.Create("db");
-            db.CreateTable<ShangJia_ShangPin_TuCe>(QSmartTableType.InnoDB);
-            db.CreateTable<ShangJia_Sku_Info>(QSmartTableType.InnoDB);
-            db.CreateTable<ShangJia_Sku_TuTou>(QSmartTableType.InnoDB);
-            db.CreateTable<YanSeZu>(QSmartTableType.InnoDB);
-            db.CreateTable<YanSeZuMingXi>(QSmartTableType.InnoDB);
-            db.CreateTable<YanSe>(QSmartTableType.InnoDB);
-            db.CreateTable<ChiMaZu>(QSmartTableType.InnoDB);
-            db.CreateTable<ChiMaZuMingXi>(QSmartTableType.InnoDB);
-            db.CreateTable<ChiMa>(QSmartTableType.InnoDB);
+            //db.CreateTable<ShangJia_ShangPin_TuCe>(QSmartTableType.InnoDB);
+            //db.CreateTable<ShangJia_Sku_Info>(QSmartTableType.InnoDB);
+            //db.CreateTable<ShangJia_Sku_TuTou>(QSmartTableType.InnoDB);
+            //db.CreateTable<YanSeZu>(QSmartTableType.InnoDB);
+            //db.CreateTable<YanSeZuMingXi>(QSmartTableType.InnoDB);
+            //db.CreateTable<YanSe>(QSmartTableType.InnoDB);
+            //db.CreateTable<ChiMaZu>(QSmartTableType.InnoDB);
+            //db.CreateTable<ChiMaZuMingXi>(QSmartTableType.InnoDB);
+            //db.CreateTable<ChiMa>(QSmartTableType.InnoDB);
 
-            db.CreateTable<PinPai>(QSmartTableType.InnoDB);
-            db.CreateTable<ShangPin>(QSmartTableType.InnoDB);
-            db.CreateTable<ShangPinFenLei>(QSmartTableType.InnoDB);
+            //db.CreateTable<PinPai>(QSmartTableType.InnoDB);
+           db.CreateTable<ShangPin>(QSmartTableType.InnoDB);
+            //db.CreateTable<ShangPinFenLei>(QSmartTableType.InnoDB);
 
-            db.CreateTable<JingXiaoShang>(QSmartTableType.InnoDB);
+            //db.CreateTable<JingXiaoShang>(QSmartTableType.InnoDB);
             
 
-            db.CreateTable<CaoZuoYuan>(QSmartTableType.InnoDB);
-            db.CreateTable<MenDian>(QSmartTableType.InnoDB);
-            //db.CreateTable<MenDian_CanZuoYuan_GuanLian>(QSmartTableType.InnoDB);
+            //db.CreateTable<CaoZuoYuan>(QSmartTableType.InnoDB);
+            //db.CreateTable<MenDian>(QSmartTableType.InnoDB);
+            ////db.CreateTable<MenDian_CanZuoYuan_GuanLian>(QSmartTableType.InnoDB);
 
-            db.CreateTable<CangKu>(QSmartTableType.InnoDB);
-            db.CreateTable<HuoWei>(QSmartTableType.InnoDB);
+            //db.CreateTable<CangKu>(QSmartTableType.InnoDB);
+            //db.CreateTable<HuoWei>(QSmartTableType.InnoDB);
             
-            db.CreateTable<RuKu>(QSmartTableType.InnoDB);
-            db.CreateTable<RuKuMingXi>(QSmartTableType.InnoDB);
+            //db.CreateTable<RuKu>(QSmartTableType.InnoDB);
+            //db.CreateTable<RuKuMingXi>(QSmartTableType.InnoDB);
             return Content("ok");
         }
 
@@ -245,8 +245,12 @@ namespace FZ.Controllers
         public ActionResult shangpin()
         {
             QSmartDatabaseClient db = DataBaseProvider.Create("db");
-            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "棉衣" }.CreateQSmartObject());
-            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "韩版修身棉袄" }.CreateQSmartObject());
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "中长款连帽棉服男装" }.CreateQSmartObject());
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "韩版修身男装棉袄" }.CreateQSmartObject());
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "时尚羊羔绒棉服外套" }.CreateQSmartObject());
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "可脱卸大毛领连帽棉衣" }.CreateQSmartObject());
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "时尚连帽棉服" }.CreateQSmartObject());
+
 
             db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 2, YanSeZuId = 2, PinPaiId = 2, Name = "保暖情侣潮上衣" }.CreateQSmartObject());
             db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 2, YanSeZuId = 2, PinPaiId = 2, Name = "男士长袖POLO衣" }.CreateQSmartObject());

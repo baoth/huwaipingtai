@@ -62,14 +62,29 @@ select YanSeZuId from  shangpin where Id='{0}'))", colorId);
             var db = Common.DbFactory.CreateDbSession();
             var sqlColor = string.Format("select * from yanse where id='{0}'", skuArr[3]);
             var colorDt = db.Context.QueryTable(sqlColor);
+            /*颜色*/
             var color = colorDt.ToList<GoodsColorDto>()[0]; 
             var sqlSize = string.Format("select * from chima where id='{0}'", skuArr[4]);
+            /*尺寸*/
             var sizeDt = db.Context.QueryTable(sqlSize);
             var size = sizeDt.ToList<GoodsSizeDto>()[0]; 
+            /*门店和经销商*/
+            var sqlMendian = string.Format(@"select 
+                a.Id,
+                a.JingXiaoShangId,
+                a.Name as MenDianName,
+                b.name as JingXiaoShang
+                from mendian a
+                left join jingxiaoshang  b on a.JingXiaoShangId=b.Id where a.Id='{0}'", skuArr[0]);
+            var mendianDt = db.Context.QueryTable(sqlMendian);
+            var mendian = mendianDt.ToList<GoodsDto>()[0];
+
             var dt = db.Context.QueryTable(sql);
             var o1 = dt.ToList<GoodsDto>()[0]; 
             var o = new GoodsDto()
             {
+                JingXiaoShang=mendian.JingXiaoShang,
+                MenDianName=mendian.MenDianName,
                 DiapalyPrice = "¥" + o1.Price,
                 Price = o1.Price,
                 Id = o1.Id,

@@ -315,6 +315,7 @@
     <Content Include="Views\Shelves\ImageList.cshtml" />
     <Content Include="Views\Shelves\UploadImage.cshtml" />
     <Content Include="Views\MenDian\List.cshtml" />
+    <Content Include="Views\Test\UploadImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

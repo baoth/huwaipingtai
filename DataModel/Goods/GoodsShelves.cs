@@ -53,6 +53,10 @@ namespace DataModel
         /// 商品图册Id
         /// </summary>
         public int ShangJia_ShangPin_TuCeId { get; set; }
+        /// <summary>
+        /// 显示为默认值
+        /// </summary>
+        public bool IsDefault { set; get; }
     }
     /// <summary>
     /// 自定义模型（无表）

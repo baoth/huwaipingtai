@@ -26,5 +26,23 @@ namespace Toolkit.Path
            var p=System.Configuration.ConfigurationManager.AppSettings["GenerateFullPath"];;
            return string.IsNullOrEmpty(path) ? p : p.CombinePath(path);
        }
+       /// <summary>
+       /// 缩放图路径
+       /// </summary>
+       /// <returns></returns>
+       public static string GetWebSmallImagPath()
+       {
+           var path = System.Configuration.ConfigurationManager.AppSettings["WebImgPath"];
+           return path;
+       }
+       /// <summary>
+       /// 原图路径
+       /// </summary>
+       /// <returns></returns>
+       public static string GetWebOrgImagPath()
+       {
+           var path = System.Configuration.ConfigurationManager.AppSettings["WebOrgImgPath"];
+           return path;
+       }
     }
 }

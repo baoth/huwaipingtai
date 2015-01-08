@@ -7,6 +7,7 @@ using Common;
 using QSmart.Core.Object;
 using QSmart.Core.DataBase;
 using System.Data;
+using Toolkit.Path;
 namespace BusinessOrder.Cart
 {
    public class OPCart:IOPCart
@@ -113,7 +114,8 @@ namespace BusinessOrder.Cart
 
                 //List<DataModel.View.CartView> list = db.Context.QueryEntity<DataModel.View.CartView>(Query);
 
-                var sql = string.Format("select Id,Sku,CustomerId,Actived,Quantity,Description,Price  from cartView where customerId='{0}' ", customerId);
+                var rootPath = PathConfig.GetWebSmallImagPath();
+                var sql = string.Format("select Id,Sku,CustomerId,Actived,Quantity,Description,Price,concat('" + rootPath + "',ShangPinId,'/',ImgName) as ImgUrl   from cartView where customerId='{0}' ", customerId);
                 DataTable dt = db.Context.QueryTable(sql);
                 var list = db.Context.ConversionEntity<DataModel.View.CartView>(dt);
               

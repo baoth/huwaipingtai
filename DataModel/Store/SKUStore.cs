@@ -7,7 +7,7 @@ namespace DataModel
 {
   public  class SKUStore
     {
-      public int SKU { get; set; }
+      public string SKU { get; set; }
       public int StoreCount { get; set; }
   }
 }

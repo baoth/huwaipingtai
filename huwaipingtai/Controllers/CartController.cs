@@ -43,13 +43,12 @@ namespace huwaipingtai.Controllers
             var customerId = this.CurrentUserInfo.Id;
 
             DataModel.Order.Cart model = new DataModel.Order.Cart();
-            var pid = Request["sku"];
+            var sku = Request["sku"];
             var quantity = Request["quantity"];
             int q;
             int.TryParse(quantity, out q);
             var actived = true;
-            int sku;
-            int.TryParse(pid, out sku);
+           
             model.Sku = sku;
             model.Quantity = q;
             model.Actived = actived;
@@ -68,13 +67,12 @@ namespace huwaipingtai.Controllers
             var customerId = this.CurrentUserInfo.Id;
           
             DataModel.Order.Cart model = new DataModel.Order.Cart();
-            var pid = Request["sku"];
+            var sku = Request["sku"];
             var quantity = Request["quantity"];
             int q;
             int.TryParse(quantity, out q);
             var actived = true;
-            int sku;
-            int.TryParse(pid, out sku);
+            
             model.Sku = sku;
             model.Quantity = q;
             model.Actived = actived;

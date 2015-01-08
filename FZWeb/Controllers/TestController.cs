@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using QSmart.Core.DataBase;
 using QSmart.Core.Object;
 using DataModel;
+using Toolkit.Ext;
 
 namespace FZ.Controllers
 {
@@ -282,6 +283,56 @@ namespace FZ.Controllers
             db.InsertEntity(new MenDian { Name = "北京西单服装店", JingXiaoShangId = 1, Address = "北京", Phone = "010-666666" }.CreateQSmartObject());
             db.SaveChange();
             return Content("ok");
+        }
+
+        public ActionResult UploadImage()
+        {
+            return View("UploadImage");
+        }
+        public ActionResult FileUpLoad(HttpPostedFileBase imageUpLoad)
+        {
+            try
+            {
+                var width = Request["imgWidth"];
+                int w;
+                int.TryParse(width,out w);
+                var heith = Request["imgHeigth"];
+                int h;
+                int.TryParse(heith,out h);
+
+                List<ShangJia_ShangPin_TuCe> list = new List<ShangJia_ShangPin_TuCe>();
+                string fileName = imageUpLoad.FileName;
+                string expandName = fileName.Substring(fileName.LastIndexOf('.') + 1);
+                Guid guid = Guid.NewGuid();
+                var saveFileName = guid + "." + expandName;
+                
+                var saveOrgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebOrgImgRealPath"]+"test\\";//;WebOrgImgRealPath
+                //原图
+                var savePath = saveOrgPath;//物理路径
+                if (!System.IO.Directory.Exists(savePath))
+                {
+                    System.IO.Directory.CreateDirectory(savePath);
+                }
+                //保存到相对路径下。               
+                var saveFilePath = savePath + "/" + saveFileName;
+                imageUpLoad.SaveAs(saveFilePath);
+                //缩小图    
+                var saveRootPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"] + "test\\";
+                var saveSmallPath = saveRootPath;//物理路径
+                if (!System.IO.Directory.Exists(saveSmallPath))
+                {
+                    System.IO.Directory.CreateDirectory(saveSmallPath);
+                }
+                var saveSmallFilePath = saveSmallPath + "/" + saveFileName;
+                ImageSmall.MakeThumbnail(saveFilePath, saveSmallFilePath, w, h, "HW");
+
+                return Content("OK");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("UploadImage");
+            }
+
         }
 
     }

@@ -324,7 +324,7 @@ namespace FZ.Controllers
                     System.IO.Directory.CreateDirectory(saveSmallPath);
                 }
                 var saveSmallFilePath = saveSmallPath + "/" + saveFileName;
-                ImageSmall.MakeThumbnail(saveFilePath, saveSmallFilePath, w,h, "Cut");
+                ImageSmall.MakeThumbnail(saveFilePath, saveSmallFilePath, w, h, "HW");
 
                 return Content("OK");
             }

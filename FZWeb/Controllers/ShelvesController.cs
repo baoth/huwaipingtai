@@ -28,9 +28,11 @@ namespace FZ.Controllers
             //var goodsId = 4;
             var goodsId = Request["shangpinid"];
             var pingpaiId = Request["pingpaiid"];
+            var gid = int.Parse(goodsId);
+            ViewData["goodsDesc"] = iopshelves.GetGoodsShelevsDesc(gid);
             ViewData["shangpinid"] = goodsId;
             ViewData["mendianid"] = mendian;
-            var dto = iopshelves.GetGoodsShelvesDto(mendian, int.Parse(goodsId));
+            var dto = iopshelves.GetGoodsShelvesDto(mendian, gid);
             ViewData["GoodsSKUS"] = dto;
 
             var colorDto = iopshelves.GetGoodsShelvesColor(dto);

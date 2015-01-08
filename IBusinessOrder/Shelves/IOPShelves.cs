@@ -64,12 +64,39 @@ namespace IBusinessOrder.Shelves
         /// <param name="mendian"></param>
         /// <returns></returns>
         IList<GoodsShelvesDto> GetGoodsShelvesDto(string mendian,int goodsId);
+        /// <summary>
+        /// 给上架商品的描述
+        /// </summary>
+        /// <param name="googdId"></param>
+        /// <returns></returns>
+        string GetGoodsShelevsDesc(int googdId);
+        /// <summary>
+        /// 给商品上架的颜色
+        /// </summary>
+        /// <param name="goodsShelvesDto"></param>
+        /// <returns></returns>
         IList<GoodsShelvesDto> GetGoodsShelvesColor(IList<GoodsShelvesDto> goodsShelvesDto);
-
+        
         CResult PutawayGoods(string sku);
-
+        /// <summary>
+        /// 商品上架
+        /// </summary>
+        /// <param name="sku"></param>
+        /// <param name="desc"></param>
+        /// <param name="price"></param>
+        /// <returns></returns>
         CResult SetUpShelves(List<string> sku, string desc,string price);
+        /// <summary>
+        /// 全部上架
+        /// </summary>
+        /// <param name="goodsShelvesParamsDtos"></param>
+        /// <returns></returns>
         CResult SetAllShelves(IList<GoodsShelvesParamsDto> goodsShelvesParamsDtos);
+        /// <summary>
+        /// 下架 和 全部下架
+        /// </summary>
+        /// <param name="skus"></param>
+        /// <returns></returns>
         CResult SetDownShelves(string skus);
         //List<DataModel.ShangJia_ShangPin_Sku_TuTouDto> GetProductPhotoList(int shangpinid);
         //List<string> GetSelectImgByImgkey(string imgKey);

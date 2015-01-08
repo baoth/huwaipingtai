@@ -12,6 +12,7 @@ namespace DataModel.CMS.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string SKU { get; set; }
         public string JingXiaoShang { get; set; }
         public string MenDianName { get; set; }
         public int ColorId { get; set;}
@@ -19,7 +20,7 @@ namespace DataModel.CMS.Models
         public string Color { get; set; }
         public string Size { get; set; }
         public decimal Price { get; set; }
-        public string PrGoodsSKU { get; set; }
+        public string PrGoodsSKU { get; set; }////sku前缀 不包含颜色和尺码
         public string DiapalyPrice { get; set; }
         public string Description { get; set; }
         public string Brand { get; set; }

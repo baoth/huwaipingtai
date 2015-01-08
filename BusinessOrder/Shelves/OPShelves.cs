@@ -262,5 +262,15 @@ namespace BusinessOrder.Shelves
             db.Context.ExcuteNoQuery(string.Format(sqlFormat,skus.Replace(",","','")));
             return FunResult.GetSuccess();
         }
+        public string GetGoodsShelevsDesc(int googdId)
+        {
+            var sql = string.Format("select  * from shangjia_sku_info where shangpinId='{0}'  limit 1", googdId);
+            var db = Common.DbFactory.CreateDbSession();
+            var dt= db.Context.QueryTable(sql);
+            if (dt != null && dt.Rows.Count > 0) {
+                return dt.Rows[0]["Description"].ToString();
+            }
+            return "";
+        }
     }
 }

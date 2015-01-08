@@ -264,7 +264,7 @@
             //添加购物车directbuy addcart
             $("#addcart").bind("click", function () {
                 var sku = $("#ProductId").val();
-                var quantity = $("#txt_quantity").val();
+                var quantity = $("#number").val();
                 $(this).attr("href", "/Cart/Add?sku=" + sku + "&quantity=" + quantity);
             });
             $("#directbuy").bind("click", function () {

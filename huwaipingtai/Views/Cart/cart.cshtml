@@ -38,8 +38,8 @@
             }
 
             var getHtml = function (data) {
-
-                var sku = data["Sku"];
+                var carId=data["Id"];
+                var sku = data["Sku"]+"";
                 var price = data["Price"] + "";
                 price = price.formatCurrency();
                 var quantity = data["Quantity"];
@@ -55,7 +55,7 @@
                     Description = "";
                 }
                 var cartId = data["Id"];
-                var imgUrl = data["ImgUrl"];
+                var imgUrl = data["ImgUrl"] ==null ? "" : data["ImgUrl"];
                 var li = '<li id="product{0}">'
 	            + '<div class="items">'
                 + ' <div class="cart-check-wrapper"> '
@@ -73,9 +73,9 @@
                 + '       <div class="cart-opt"> '
                 + '          <div class="cart-quantity-wrapper"> '
                 + '              <input type="hidden" id="limitSukNum{0}" value="200"> '
-                + '              <a class="cart-quantity-decrease disabled" id="subnum{0}" href="javascript:subQuantityBybutton({0})">-</a> '
-                + '              <input type="text" class="quantity" size="4" onchange="QuqntityChange({0},this.value)"   value="{2}" name="num" id="num{0}">  '
-                + '              <a class="quantity-increase" id="addnum{0}" href="javascript:addQuantityBybutton({0})">+</a> '
+                + '              <a class="cart-quantity-decrease disabled" id="subnum{0}" href="javascript:subQuantityBybutton(\'{0}\')">-</a> '
+                + '              <input type="text" class="quantity" size="4" onchange="QuqntityChange(\'{0}\',this.value)"   value="{2}" name="num" id="num{0}">  '
+                + '              <a class="quantity-increase" id="addnum{0}" href="javascript:addQuantityBybutton(\'{0}\')">+</a> '
                 + '          </div>'
                 + '          <a class="cart-icon-remove" href="javascript:deleteCartWare({5})"></a> '
                 + '      </div> '
@@ -142,7 +142,7 @@
                 }
             }
             var DeleteData = function (productId) {
-                var url = "Delete";
+                var url = "/Cart/Delete";
                 var para = {pid: productId };
                 submitAjax(url,para);              
             }
@@ -158,7 +158,7 @@
                     //obj.addClass("checked");
                     check = 1;
                 }
-                var url = "UpdateActived";
+                var url = "/Cart/UpdateActived";
                 var pStr = id + "," + check;
                 var para ={para:pStr};
 
@@ -267,10 +267,14 @@
             }
 
             function addQuantityBybutton(productid) {
+                
                 var q = $("#num" + productid).val();
-                if (q) {
+                if (q && q != undefined) {
                     q = parseInt(q);
                     q++;
+                }
+                else {
+                    q = 1;
                 }
                 $("#num" + productid).val(q);
                 $("#num" + productid).attr("value",q);
@@ -278,11 +282,14 @@
             }
             function subQuantityBybutton(productid) {
                 var q = $("#num" + productid).val();
-                if (q) {
+                if (q && q != undefined) {
                     q = parseInt(q);
                     if (q > 1) {
                         q--;
                     }
+                }
+                else {
+                    q = "1";
                 }
                 $("#num" + productid).val(q);
                 $("#num" + productid).attr("value", q);

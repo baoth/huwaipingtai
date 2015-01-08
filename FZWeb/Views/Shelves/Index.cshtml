@@ -16,11 +16,11 @@
         <script src=@Url.Content("../../Scripts/qsm-mui/zepto.touch.js") type="text/javascript"></script>
         <script src=@Url.Content("../../Scripts/json2.js") type="text/javascript"></script>
         <script type="text/javascript">
-            var myScroll;
+//            var myScroll;
             $(document).ready(function () {
                 debugger
-                $("#wrapper").css('top', $("header").height());
-                myScroll = new IScroll('#wrapper', { mouseWheel: true });
+//                $("#wrapper").css('top', $("header").height());
+//                myScroll = new IScroll('#wrapper', { mouseWheel: true });
                 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
                 $(".bt-category-lst .bt-category-a").on($.clickAction, function () {
                     debugger
@@ -36,6 +36,7 @@
                     myScroll.refresh();
                 });
                 $('.btn-switch').on($.clickAction, function () {
+                    debugger
                     var me = $(this);
                     var refId = me.attr('refId');
                     if (me.hasClass('on')) {
@@ -65,8 +66,12 @@
                         url: '/Shelves/SetShelves',
                         type: 'post',
                         data: { sku: sku, desc: desc, price: price },
-                        success: function (data, at) {
-                            alert(data.Msg);
+                        success: function () {
+                            alert("上架成功！");
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("上架失败")
                         }
                     });
                 });
@@ -95,7 +100,7 @@
                         var price = $('#' + id).val();
                         if (!price) {
                             var errorMsg = $(this).attr("errormsg");
-                            alert("请填写"+errorMsg+"的上架价格！");
+                            alert("请填写" + errorMsg + "的上架价格！");
                             return;
                         }
                         data.push({ desc: desc, sku: sku, price: price });
@@ -109,10 +114,11 @@
                         type: 'post',
                         data: { data: JSON.stringify(data) },
                         success: function () {
-                            window.location.reload(); 
+                            alert("上架成功！");
+                            window.location.reload();
                         },
                         error: function () {
-                            alert("发布失败")
+                            alert("上架失败")
                         }
                     });
                 });
@@ -130,7 +136,8 @@
                         type: 'post',
                         data: { data: data.join(',') },
                         success: function () {
-                            window.location.reload(); 
+                            alert("下架成功！");
+                            window.location.reload();
                         },
                         error: function () {
                             alert("下架失败")
@@ -145,6 +152,7 @@
                         type: 'post',
                         data: { data: sku },
                         success: function (data, at) {
+                            alert("下架成功！");
                             window.location.reload();
                         },
                         error: function () {
@@ -178,11 +186,11 @@
                     <li>
                         <div class="info">
                             <div class="info splitLine">
-                            <a href="javascript:void(0)">
+                            <a href="javascript:void(0)" style="padding-left:0px">
                                 <span class="text" style="color: #333;">商品描述</span>
                             </a>
                         </div>
-                        <p class="detail-title" id="title"><span><textarea rows="3" id="titleDescId" cols="1" title="请填写描述" style="width: 90%;margin: 5px;"></textarea> </span></p>
+                        <p class="detail-title" id="title"><span><textarea rows="3" id="titleDescId" cols="20" title="请填写描述" style="width: 90%;margin: 5px;">@ViewData["goodsDesc"]</textarea> </span></p>
                         </div>
                     </li>
                      
@@ -202,7 +210,7 @@
                             }
                             <li class="info-detail selector">
                                                                                                                                                                                                                                         <div class="info border-b-none">
-                        <a class="btn-switch" href="javascript:void(0)"  refid="@refid">
+                        <a class="btn-switch on" href="javascript:void(0)"  refid="@refid">
 				            <span class="s-block">
                                 <span class="title12">SKU：</span>
                                 <span class="content"><span class="to-text3" id="sh-color" data-id="@item.SKU">@item.Yanse&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@item.ChiMa</span></span>
@@ -235,7 +243,7 @@
                             var temp2 = "temp" + item.SKU;
                             <li class="info-detail selector selectTuHead">
                                 <div class="info border-b-none">
-                                <a class="btn-switch" href="javascript:void(0)" refid="@temp2">
+                                <a class="btn-switch bt-on" href="javascript:void(0)" refid="@temp2">
 				                    <span class="s-block">
                                         <span class="title12">颜色：</span>
                                         <span class="content"><span class="to-text3" id="sh-color" data-id="@item.SKU">@item.Yanse</span></span>

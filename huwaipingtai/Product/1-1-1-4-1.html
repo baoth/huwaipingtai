@@ -264,7 +264,7 @@
             //添加购物车directbuy addcart
             $("#addcart").bind("click", function () {
                 var sku = $("#ProductId").val();
-                var quantity = $("#txt_quantity").val();
+                var quantity = $("#number").val();
                 $(this).attr("href", "/Cart/Add?sku=" + sku + "&quantity=" + quantity);
             });
             $("#directbuy").bind("click", function () {
@@ -282,7 +282,7 @@
         </div>
         <div class="i-bh-tab">
             <div class="i-tbl-type">
-                <a href="#" class="i-tbl-cell">
+                <a href="/Home/Index" class="i-tbl-cell">
                     <span></span>
                     <p style="color:#6e6e6e;">首页</p>
                 </a>
@@ -290,11 +290,11 @@
                     <span style="width:26px;background-position:0 -25px;"></span>
                     <p style="color:#6e6e6e;">分类搜索</p>
                 </a>
-                <a href="#" class="i-tbl-cell">
+                <a href="/cart/Index" class="i-tbl-cell">
                     <span style="width:25px;background-position:-29px -25px"></span>
                     <p style="color:#6e6e6e;">购物车</p>
                 </a>
-                <a href="#" class="i-tbl-cell">
+                <a href="/User/Home" class="i-tbl-cell">
                     <span style="width:22px;background-position:-85px -25px"></span>
                     <p style="color:#6e6e6e;">我的易购</p>
                 </a>
@@ -310,7 +310,7 @@
                         <ul>
                         
                         
-                         <li><img src="http://localhost:15870/Product/Images/n1/1/65b8a042-6f34-4243-bf4c-eac4a96919d5.jpg"></img> </li>
+                         <li><img src="http://localhost:28342/Product/Images/n1/1/65b8a042-6f34-4243-bf4c-eac4a96919d5.jpg"></img> </li>
                         
                         </ul>
                     </div>
@@ -342,7 +342,7 @@
                             <span class="content"></span>
                         </span>
 				    </span> 
-                    <span class="icon-arr"></span>
+                   
                 </div>
             </li>
             <li class="bg-skape"></li>
@@ -418,12 +418,12 @@
                                 
                             </div>
                         </div>
-                        <div class="option-section mt-10">
+                        <div class="option-section mt-10" style="padding-bottom:20px;">
                             <span class="titlef1">数量：</span>
                             <div class="option">
                                 <span class="add-del">
                                     <a class="btn-del" id="minus" "=""><span></span></a>
-                                    <input type="text" class="new-input" value="1" id="number" "=""/>
+                                    <input type="text" class="new-input" value="1" id="number"/>
                                     <a class="btn-add" id="plus" "=""><span></span></a>
                                 </span>
                             </div>

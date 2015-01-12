@@ -132,6 +132,7 @@
     <Content Include="Content\images\bg_line3.png" />
     <Content Include="Content\images\defaultLink.jpg" />
     <Content Include="Content\images\home-icons.png" />
+    <Content Include="Content\images\icon-fov.png" />
     <Content Include="Content\images\icon-shp-cart-remove.png" />
     <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\icon2b.png" />
@@ -272,6 +273,7 @@
     <Content Include="Product\1000000022\shelves01.js" />
     <Content Include="Product\1000000022\indexTemplate.html" />
     <Content Include="Product\1000000022\storeInDoc.html" />
+    <Content Include="Product\goods.css" />
     <Content Include="Product\shelves01.css" />
     <Content Include="Scripts\JsExtend.js" />
     <Content Include="Scripts\json2.js" />

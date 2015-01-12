@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.Configuration;
+using Toolkit.Path;
 
 namespace huwaipingtai.Controllers
 {
@@ -26,6 +27,8 @@ namespace huwaipingtai.Controllers
                 {
                     ViewData["NickName"] = this.CurrentUserInfo.NickName;
                 }
+                string webImgPath = PathConfig.WebGenerateHtmlPath();
+                ViewData["ImgPath"] = webImgPath;
             }
            
             return View("cart");
@@ -43,13 +46,12 @@ namespace huwaipingtai.Controllers
             var customerId = this.CurrentUserInfo.Id;
 
             DataModel.Order.Cart model = new DataModel.Order.Cart();
-            var pid = Request["sku"];
+            var sku = Request["sku"];
             var quantity = Request["quantity"];
             int q;
             int.TryParse(quantity, out q);
             var actived = true;
-            int sku;
-            int.TryParse(pid, out sku);
+           
             model.Sku = sku;
             model.Quantity = q;
             model.Actived = actived;
@@ -68,13 +70,12 @@ namespace huwaipingtai.Controllers
             var customerId = this.CurrentUserInfo.Id;
           
             DataModel.Order.Cart model = new DataModel.Order.Cart();
-            var pid = Request["sku"];
+            var sku = Request["sku"];
             var quantity = Request["quantity"];
             int q;
             int.TryParse(quantity, out q);
             var actived = true;
-            int sku;
-            int.TryParse(pid, out sku);
+            
             model.Sku = sku;
             model.Quantity = q;
             model.Actived = actived;

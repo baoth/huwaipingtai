@@ -18,6 +18,7 @@ namespace BusinessTemplate
         /*注册业务模版 与接口对应关系*/
         public static void SetupResolveRules(ContainerBuilder builder)
         {
+
             builder.RegisterType<OPCustomerAddress>().As<IOPCustomerAddress>();
             builder.RegisterType<BusinessOrder.Cart.OPCart>().As<IBusinessOrder.Cart.IOPCart>();
             builder.RegisterType<BusinessOrder.Order.OPCustomerOrder>().As<IBusinessOrder.Order.IOPCustomerOrder>();
@@ -30,6 +31,7 @@ namespace BusinessTemplate
             builder.RegisterType<BusinessOrder.StorageIn.StorageIn>().As<IBusinessOrder.StorageIn.IStorageIn>();
             builder.RegisterType<BusinessOrder.SizeGroups.OPSizeGroups>().As<IBusinessOrder.SizeGroups.IOPSizeGroups>();
             builder.RegisterType<BusinessOrder.Shelves.OPShelves>().As<IBusinessOrder.Shelves.IOPShelves>();
+            builder.RegisterType<BusinessOrder.MenDian.OPMenDian>().As<IBusinessOrder.MenDian.IOPMenDian>();
             
         }
         public static IBusinessOrder.User.ILogon GetILogon()

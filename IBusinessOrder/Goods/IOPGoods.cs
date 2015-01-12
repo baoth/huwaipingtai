@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataModel.CMS.Models;
+using DataModel.Goods;
 
 namespace IBusinessOrder.Goods
 {
@@ -18,13 +19,13 @@ namespace IBusinessOrder.Goods
        /// </summary>
        /// <param name="goodsSKU"></param>
        /// <returns></returns>
-       List<GoodsSizeDto> GetGoodsSize(string goodsSKU);
+       IList<GoodsSizeDto> GetGoodsSize(string goodsSKU);
        /// <summary>
        /// 根据sku获取商品颜色
        /// </summary>
        /// <param name="goodsSKU"></param>
        /// <returns></returns>
-       List<GoodsColorDto> GetGoodsColor(string goodsSKU);
+       IList<GoodsColorDto> GetGoodsColor(string goodsSKU);
        /// <summary>
        /// 根据SKU获取商品信息
        /// </summary>

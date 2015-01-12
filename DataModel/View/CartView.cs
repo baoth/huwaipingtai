@@ -13,7 +13,8 @@ namespace DataModel.View
         /// <summary>
         /// 商品编码
         /// </summary>
-        public int Sku { get; set; }
+       [StringMaxLength(30, VarCharType.varchar)]
+        public string Sku { get; set; }
         /// <summary>
         /// 客户编码
         /// </summary>
@@ -36,6 +37,17 @@ namespace DataModel.View
         /// 商品单价
         /// </summary>
         public decimal Price { get; set; }
-
+        /// <summary>
+        /// 商品ID
+        /// </summary>
+        public int ShangPinId { set; get; }
+        /// <summary>
+        /// 图片名称
+        /// </summary>
+        public string ImgName { set; get; }
+        /// <summary>
+        /// 图片路径
+        /// </summary>
+        public string ImgUrl { set; get; }
     }
 }

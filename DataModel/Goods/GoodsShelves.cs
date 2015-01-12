@@ -27,7 +27,7 @@ namespace DataModel
     {
         [PrimaryKey]
         [StringMaxLength(30, VarCharType.nvarchar)]
-        public string Sku { get; set; } //fenleiId-shangpinid-mendianId-yanse-chima
+        public string Sku { get; set; } //mendianId-fenleiId-shangpinid-yanse-chima
         [StringMaxLength(50, VarCharType.nvarchar)]
         public string Description { get; set; }
         public decimal Price { get; set; }
@@ -46,13 +46,17 @@ namespace DataModel
         [AutoIncrement]
         public int Id { get; set; }
         [StringMaxLength(30, VarCharType.nvarchar)]
-        public string ImgKey { get; set; } //fenleiId-shangpinid-mendianId-yanse
+        public string ImgKey { get; set; } //mendianId-fenleiId-shangpinid-yanse
         [StringMaxLength(20, VarCharType.nvarchar)]
         public string ImgName { get; set; }
         /// <summary>
         /// 商品图册Id
         /// </summary>
         public int ShangJia_ShangPin_TuCeId { get; set; }
+        /// <summary>
+        /// 显示为默认值
+        /// </summary>
+        public bool IsDefault { set; get; }
     }
     /// <summary>
     /// 自定义模型（无表）

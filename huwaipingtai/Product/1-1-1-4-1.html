@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html>
+<html><head>
+    <title>商品详情</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+    <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+    <script src="../../Scripts/numeralInput.js" type="text/javascript"></script>
+    <link href="shelves01.css" rel="stylesheet" type="text/css">
+    <style>
+        ul,li{margin:0;padding:0;}
+        @media screen and (min-width:240px) {
+            html, body{
+                font-size:9px;
+            }
+        }
+        @media screen and (min-width:320px) {
+            html, body{
+                font-size:12px;
+            }
+        }
+        @media screen and (min-width:480px) {
+            html, body{
+            font-size:18px;
+            }
+        }
+        @media screen and (min-width:640px) {
+            html, body{
+                font-size:24px;
+            }
+        }
+        @media screen and (min-width:960px) {
+            html, body{
+                font-size:36px;
+            }
+        }
+        div.imgbox{width:25rem;height:16.5rem;overflow:hidden;margin:0 auto;}
+        div.imgbox ul{clear:both;width:75rem;}
+        div.imgbox ul li{float:left;width:25rem;height:16.5rem;overflow:hidden;text-align:center;}
+        div.imgbox ul li img{width:24rem;height:16.5rem;}     
+           
+    </style>
+    <script>
+        var imgCache = new Array(getAllImgs().split(",").length);
+        var currentImg = 0;
+        var preImgSize = 1;
+        var startX, startY, endX, endY, absX, absY;
+        function tStart(event) {
+            var touch = event.touches[0];
+            startX = touch.pageX;
+            startY = touch.pageY
+        }
+        function tMove(event) {
+            var touch = event.touches[0];
+            endX = touch.pageX;
+            endY = touch.pageY;
+            absX = Math.abs(startX - endX);
+            absY = Math.abs(startY - endY);
+            if (absX > absY) {
+                event.preventDefault()
+            }
+        }
+        function tEnd(event) {
+            if (absX > absY) {
+                if (startX > endX) {
+                    nextImg()
+                } else {
+                    prevImg()
+                }
+            }
+            startX = 0, startY = 0, endX = 0, endY = 0, absX = 0, absY = 0
+        }
+        function nextImg() {
+            var allImgs = getAllImgs();
+            currentImg++;
+            var imgArr = allImgs.split(",");
+            if (currentImg == imgArr.length) {
+                currentImg = 0;
+                window.location.href = "/ware/detail.action?wareId=" + $("#currentWareId").val()
+            }
+            preLoadImg();
+            loadImg(imgCache[currentImg], 1)
+        }
+        function prevImg() {
+            var allImgs = getAllImgs();
+            currentImg--;
+            var imgArr = allImgs.split(",");
+            if (currentImg < 0) {
+                currentImg = imgArr.length - 1
+            }
+            preLoadImg();
+            loadImg(imgCache[currentImg], 0)
+        }
+        function getAllImgs() {
+            var allImgs = $.trim($("#imgs").val());
+            if (allImgs.substring(allImgs.length - 1) == ",") {
+                allImgs = allImgs.substring(0, allImgs.length - 1)
+            }
+            return allImgs
+        }
+        function preLoadImg() {
+            var imgs = getAllImgs();
+            var imgArr = imgs.split(",");
+            var tmp;
+            if (!imgCache[currentImg]) {
+                imgCache[currentImg] = (createImg(imgArr[currentImg], 200, 200))
+            }
+            for (var i = 0; i < preImgSize; i++) {
+                tmp = currentImg + (i + 1);
+                if (tmp < imgArr.length) {
+                    if (!imgCache[tmp]) {
+                        imgCache[tmp] = createImg(imgArr[tmp], 200, 200)
+                    }
+                }
+                tmp = currentImg - (i + 1);
+                if (tmp < 0) {
+                    tmp = imgArr.length + tmp;
+                    if (!imgCache[tmp]) {
+                        imgCache[tmp] = (createImg(imgArr[tmp], 200, 200))
+                    }
+                } else {
+                    if (!imgCache[tmp]) {
+                        imgCache[tmp] = (createImg(imgArr[tmp], 200, 200))
+                    }
+                }
+            }
+        }
+        function loadImg(img, rol) {
+            var imgs = getAllImgs();
+            if (imgs == "") {
+                return
+            }
+            var arrImg = imgs.split(",");
+            if (arrImg.length == 0) {
+                return
+            }
+            if (rol == undefined) {
+                $("#tips").empty();
+                var html = '<span class="tbl-cell"><img src="' + img.src + '" seq="' + currentImg + '" width="320" height="292"></span>';
+                $("#imgSlider").html(html);
+                $("#imgSlider").css("left", "0px")
+            } else {
+                if (1 == rol) {
+                    var prev = currentImg - 1 < 0 ? arrImg.length - 1 : currentImg - 1;
+                    $('#imgSlider img[seq="' + prev + '"]').parent("span").siblings().remove();
+                    $("#tips").empty();
+                    var html = '<span class="tbl-cell"><img src="' + imgCache[currentImg].src + '" seq="' + currentImg + '" width="320" height="292"></span>';
+                    $("#imgSlider").append(html);
+                    if (currentImg + 1 == arrImg.length) {
+                        var htm = currentImg + 1 + "/" + arrImg.length;
+                        $("#tips").html("\u7ee7\u7eed\u53f3\u5212\u8fdb\u5165\u5546\u54c1\u8be6\u60c5\u9875")
+                    }
+                    var htm = currentImg + 1 + "/" + arrImg.length;
+                    $("#imgpage").html(htm);
+                    $("#imgSlider").css("left", "0px");
+                    if (arrImg.length != 1) {
+                        setTimeout(function () {
+                            $("#imgSlider").animate({ left: "-320px" }, 200)
+                        }, 10)
+                    }
+                } else {
+                    if (0 == rol) {
+                        var prev = currentImg + 1 > arrImg.length - 1 ? 0 : currentImg + 1;
+                        $('#imgSlider img[seq="' + prev + '"]').parent("span").siblings().remove();
+                        $("#tips").empty();
+                        var html = '<span class="tbl-cell"><img src="' + imgCache[currentImg].src + '" seq="' + currentImg + '" width="320" height="292"></span>';
+                        $("#imgSlider").prepend(html);
+                        if (currentImg + 1 == arrImg.length) {
+                            $("#tips").html("\u7ee7\u7eed\u53f3\u5212\u8fdb\u5165\u5546\u54c1\u8be6\u60c5\u9875")
+                        }
+                        var htm = currentImg + 1 + "/" + arrImg.length;
+                        $("#imgpage").html(htm);
+                        $("#imgSlider").css("left", "-320px");
+                        setTimeout(function () {
+                            $("#imgSlider").animate({ left: "0px" }, 200)
+                        }, 10)
+                    }
+                }
+            }
+        }
+        function createImg(url, width, height) {
+            var img = new Image();
+            img.src = url;
+            img.width = width;
+            img.height = height;
+            img.ontouchstart = tStart;
+            img.ontouchmove = tMove;
+            img.ontouchend = tEnd;
+            return img
+        }
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
+            $('.i-a-bh').on('click', function () {
+                var tg = $('.i-bh-tab');
+                if (tg.hasClass('on')) {
+                    tg.removeClass('on');
+                }
+                else {
+                    tg.addClass('on');
+                }
+            });
+            $('#allinfos').on($.clickAction, function () {
+                var me = $(this);
+                if (me.hasClass('on')) {
+                    me.removeClass('on');
+                    $('#infos-detail').hide();
+                }
+                else {
+                    me.addClass('on');
+                    $('#infos-detail').show();
+                }
+            });
+            /*数量加减*/
+            $("#number").numeral();
+            $("#number").on('blur', function () {
+                var value = $(this).val();
+                if (value) {
+                    value = parseInt(value);
+                    if (value > 0) {
+                        $(this).val(q);
+                    }
+                    else {
+                        $(this).val("1");
+                    }
+                }
+                else {
+                    $(this).val("1");
+                }
+            });
+            $('#plus').on($.clickAction, function () {
+                var $number = $('#number');
+                var value = $number.val();
+                if (value) {
+                    value = parseInt(value);
+                    if (value >= 0) {
+                        value++;
+                        $number.val(value);
+                    }
+                }
+                else {
+                    $number.val("1");
+                }
+            });
+            $('#minus').on($.clickAction, function () {
+                var $number = $('#number');
+                var value = $number.val();
+                if (value) {
+                    value = parseInt(value);
+                    if (value > 1) {
+                        value--;
+                        $number.val(value);
+                    }
+                }
+                else {
+                    $number.val("1");
+                }
+            });
+
+            //添加购物车directbuy addcart
+            $("#addcart").bind("click", function () {
+                var sku = $("#ProductId").val();
+                var quantity = $("#number").val();
+                $(this).attr("href", "/Cart/Add?sku=" + sku + "&quantity=" + quantity);
+            });
+            $("#directbuy").bind("click", function () {
+                window.location = window.location.origin + '/Cart/index'
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="i-bh-header">
+            <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
+            <h2>商品详细</h2>
+            <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
+        </div>
+        <div class="i-bh-tab">
+            <div class="i-tbl-type">
+                <a href="/Home/Index" class="i-tbl-cell">
+                    <span></span>
+                    <p style="color:#6e6e6e;">首页</p>
+                </a>
+                <a href="#" class="i-tbl-cell">
+                    <span style="width:26px;background-position:0 -25px;"></span>
+                    <p style="color:#6e6e6e;">分类搜索</p>
+                </a>
+                <a href="/cart/Index" class="i-tbl-cell">
+                    <span style="width:25px;background-position:-29px -25px"></span>
+                    <p style="color:#6e6e6e;">购物车</p>
+                </a>
+                <a href="/User/Home" class="i-tbl-cell">
+                    <span style="width:22px;background-position:-85px -25px"></span>
+                    <p style="color:#6e6e6e;">我的易购</p>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <ul>
+            <li>
+                <div id="tabpages" class="qsm-mui-tab" style="overflow: hidden;">
+                    <div i class="imgbox">
+                        <ul>
+                        
+                        
+                         <li><img src="http://localhost:28342/Product/Images/n1/1/65b8a042-6f34-4243-bf4c-eac4a96919d5.jpg"></img> </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="price-detail">
+            	        <span class="price" id="price">¥368.00</span>
+                        <a class="btn-attention" id="attention"><span></span></a>
+                    </div>   
+                </div> 
+                <ul id="nav-content"><li id="nav-0" style="left:0%;width:20%;" class="on"></li><li id="nav-1" style="left:20%;width:20%;" class=""></li><li id="nav-2" style="left:40%;width:20%;" class=""></li><li id="nav-3" style="left:60%;width:20%;" class=""></li><li id="nav-4" style="left:80%;width:20%;" class=""></li></ul>                                          
+            </li>
+            <li class="info-detail">
+                <div class="info">
+                    <a href="#">
+                        <span class="text">商品信息</span>
+                    </a>
+                    <span class="icon-arr"></span>
+                </div>
+                <p class="detail-title" id="title"><span>123123123213123&nbsp;&nbsp;&nbsp;&nbsp;白色&nbsp;&nbsp;&nbsp;&nbsp;S</span></p>
+                <p class="pi" id="promotion" style=" ">促销信息：<span> </span></p>
+                <p class="pi-detail" id="vender" style="">服务：<span>由&nbsp;北京服装经销商-北京大红门服装店&nbsp;负责发货，并提供售后服务。</span></p>
+                <div class="info gifts">
+                    <span class="gift-content">
+                        <span id="giftslist" style="display:none">
+                            <span class="title12">赠品：</span>
+                            <span class="content"><a href="" data-sku="" class="link-event btn-hf"></a></span>
+                        </span>
+				        <span id="couponslist"  style="display:none">
+                            <span class="title12">赠券：</span>
+                            <span class="content"></span>
+                        </span>
+				    </span> 
+                   
+                </div>
+            </li>
+            <li class="bg-skape"></li>
+            <li class="info-detail selector">
+                <div class="info border-b-none">
+                    <a class="btn-switch" id="allinfos">
+                        <span class="s-block">
+                            <span class="title12">库存：</span>
+                            <span class="content"><span class="to-text3" style="color:#c00">现货</span></span>
+                        </span>
+				        <span class="s-block">
+                            <span class="title12">颜色：</span>
+                            <span class="content"><span class="to-text3" id="sh-color">白色</span></span>
+                        </span>
+					    <span class="s-block">
+                            <span class="title12">尺寸：</span>
+                            <span class="content"><span class="to-text3" id="sh-size">S</span></span>
+                        </span>  
+				        <span class="icon-arr"></span>
+                    </a>
+                    <div class="detail-option" id="infos-detail" style="display:block;">
+					    <div class="option-section mt-10">
+                            <span class="titlef1">颜色：</span>
+                             
+                            <div class="option" id="color">
+                                 
+                                    
+                                         <a href="1-1-1-1-1.html" data-sku="1" title="红色" class="btn-hf btn-color-op mb-10">红色</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-2-1.html" data-sku="2" title="黑色" class="btn-hf btn-color-op mb-10">黑色</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-3-1.html" data-sku="3" title="藏蓝色" class="btn-hf btn-color-op mb-10">藏蓝色</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="#" data-sku="4" title="白色" class="btn-hf btn-color-op mb-10 on">白色</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-5-1.html" data-sku="5" title="墨绿色" class="btn-hf btn-color-op mb-10">墨绿色</a>&nbsp;
+                                    
+                                
+                            </div>
+                        </div>
+						<div class="option-section mt-10">
+                            <span class="titlef1">尺寸：</span> 
+                            
+                            <div class="option" id="size">
+                               
+                                    
+                                         <a href="#" data-sku="1" title="S" class="btn-hf btn-color-op mb-10 on">S</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-4-2.html" data-sku="2" title="M" class="btn-hf btn-color-op mb-10">M</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-4-3.html" data-sku="3" title="L" class="btn-hf btn-color-op mb-10">L</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-4-4.html" data-sku="4" title="XL" class="btn-hf btn-color-op mb-10">XL</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-1-4-5.html" data-sku="5" title="XXL" class="btn-hf btn-color-op mb-10">XXL</a>&nbsp;
+                                    
+                                
+                            </div>
+                        </div>
+                        <div class="option-section mt-10" style="padding-bottom:20px;">
+                            <span class="titlef1">数量：</span>
+                            <div class="option">
+                                <span class="add-del">
+                                    <a class="btn-del" id="minus" "=""><span></span></a>
+                                    <input type="text" class="new-input" value="1" id="number"/>
+                                    <a class="btn-add" id="plus" "=""><span></span></a>
+                                </span>
+                            </div>
+                        </div>
+                
+                </div>
+                </div>
+            </li>
+            <li class="bg-skape"></li>
+            <li>
+           <!--     <footer>
+                    <div class="i-footer">
+                        <div class="i-f-login">
+                            <a rel="nofollow" href="">baoth</a>
+                            <span class="i-bar2">|</span>
+                            <a rel="nofollow" href="">退出</a>
+                            <span class="i-back-top">
+                                <a href="/FeedBack/Advice">反馈</a>
+                                <span class="i-bar2">|</span>
+                                <a href="#top">回到顶部</a>
+                            </span>
+                        </div>
+                        <div class="i-f-section">
+                            <a href="#">标准版</a>
+                            <a href="#" class="on">触屏版</a>
+                            <a href="#" id="toPcHome">电脑版</a>
+                        </div>
+                        <div class="i-f-section2">Copyright © 2014-2015 baoth.com 版权所有</div>
+                    </div> /*directbuy addcart */    
+                </footer>-->      
+            </li>
+
+        </ul>
+    </div>
+    <!--数据读取区域  -->
+      <input id="ProductId" type="hidden" value="1-1-1-4-1"/>
+    <!--数据读取区域  -->
+    <div class="tbl-type btns">
+    	<div class="tbl-cell">  
+            <a id="directbuy" class="btn-dbuy"><span></span>立即购买</a>
+        </div>
+        <div class="tbl-cell">                    
+            <a id="addcart" class="btn-acart"><span></span>加入购物车</a>
+        </div>
+    </div>
+
+
+
+
+</body></html>

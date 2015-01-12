@@ -16,7 +16,8 @@ namespace DataModel.Order
         /// <summary>
         /// 商品编码
         /// </summary>
-        public int Sku { get; set; }
+        [StringMaxLength(30,VarCharType.varchar)]
+        public string Sku { get; set; }
         /// <summary>
         /// 客户编码
         /// </summary>

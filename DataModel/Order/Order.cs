@@ -75,7 +75,7 @@ namespace DataModel.Order
         [AutoIncrement]
         public int Id { get; set; }
         public int OrderId { get; set; }
-        public int Sku { get; set; }
+        public string Sku { get; set; }
         public int Quantity { get; set; }
     }
 

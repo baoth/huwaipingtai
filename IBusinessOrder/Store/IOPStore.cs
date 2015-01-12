@@ -13,6 +13,6 @@ namespace IBusinessOrder.Store
         /// </summary>
         /// <param name="listSKU">sku集合</param>
         /// <returns></returns>
-        List<SKUStore> GetGoodsStore(List<int> listSKU);
+        List<SKUStore> GetGoodsStore(List<string> listSKU);
     }
 }

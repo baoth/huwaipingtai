@@ -1,22 +1,23 @@
 ﻿@{
     Layout = null;
 }
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <script src="../../Scripts/JsExtend.js" type="text/javascript"></script>
-        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        <link href="../../Content/Header.css" rel="stylesheet" type="text/css" />
+
         <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        <script src="../../Scripts/JsExtend.js" type="text/javascript"></script>
         
         <style type="text/css">
         body {
-        min-width: 320px;
         font-size: 1em;
         font-family: 'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;
         color: #000;
@@ -24,148 +25,53 @@
         }
         
       
-        </style>
-        @*功能样式*@
-        <style type="text/css">
-            .shortcut-navs {
-            font-size: 14px;
+       
+            .menu-list {
+                padding: 5px;
+                margin: 5px;
+                background-color: #FFF;
+                overflow: hidden;
+            }  
+            ol, ul {
+                list-style: none;
+             } 
+             html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font-size: 100%;
+                font: inherit;
+                vertical-align: baseline;
             }
-            .shortcut-nav {
-                width: 100%;
-                display: block;
-                height: 300px;
-            }
-            ul, ol {
-            list-style: none;
-            }
-            .shortcut-nav:first-child li {
-                border-bottom: 0;
-            }
-            .shortcut-nav li {
-               
-                background: #fff;
-                text-align: left;
-                width: 33%;
-                overflow: hidden;                
-                display: block;
-                height: 70px;
-                float:left;
-               
-            }
-            .shortcut-nav * {
-                -webkit-tap-highlight-color: rgba(0,0,0,0);
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                -ms-box-sizing: border-box;
-                box-sizing: border-box;
-            }
-            
-            .shortcut-nav .link {
-                display: inline-block;
-                width: 100%;
+            .menu-list li {
                 float: left;
-                margin-left: 20px;
-                position: relative;
-            }
-            .link .tip_num {
-                color: #fff;
-                display: block;
-                background: #e4393c;
-                width: 16px;
-                height: 16px;
-                position: absolute;
-                top: -1px;
-                left: 16px;
-                -webkit-border-radius: 9px;
-                font-size: 10px;
-                line-height: 17px;
+                width: 33%;                
                 text-align: center;
+                margin-top: 10px;
+            }
+            .menu-list li a {
+                display: block;
+                width: 100%;
+                text-decoration: none;
+            }
+            a, button, input {
+                outline: 0 none;
+                text-decoration: none;
             }
             a {
                 color: #000;
                 text-decoration: none;
-                top: 15px;
             }
-            .shortcut-nav .defaultlink:before {
+            .menu-list li a img {
+                width: 2.5em;
+                height: 2.5em;
                 display: block;
-                content: '';
-                height: 25px;
-                width: 25px;
-                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
-                background-size: 223px 25px;
-                background-position: -50px 0;
-               margin-left: 10px;
+                margin: 0 auto .75em;
             }
-            
-            .shortcut-nav .link1:before {
-                display: block;
-                content: '';
-                height: 25px;
-                width: 25px;
-                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
-                background-size: 222px 25px;
-                background-position: 0 0;
-               margin-left: 10px;
-            }
-           .shortcut-nav .link2:before {
-                display: block;
-                content: '';
-                height: 25px;
-                width: 25px;
-                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
-                background-size: 222px 25px;
-                background-position: -25px 0;
-               margin-left: 10px;
-            }
-            .shortcut-nav .link3:before {
-                display: block;
-                content: '';
-                height: 25px;
-                width: 25px;
-                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
-                background-size: 223px 25px;
-                background-position: -50px 0;
-               margin-left: 10px;
-            }
-            .shortcut-nav .link5:before {
-                display: block;
-                content: '';
-                height: 25px;
-                width: 25px;
-                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
-                background-size: 222px 25px;
-                background-position: -123px 0;
-               margin-left: 10px;
-            }
-            .shortcut-nav .link6:before {
-                display: block;
-                content: '';
-                height: 25px;
-                width: 25px;
-                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
-                background-size: 221px 25px;
-                background-position: -147px 0;
-               margin-left: 10px;
-            }
-            .shortcut-nav .link7:before {
-                display: block;
-                content: '';
-                height: 25px;
-                width: 25px;
-                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
-                background-size: 222px 25px;
-                background-position: -172px 0;
-               margin-left: 10px;
-            }
-            .shortcut-nav .link8:before {
-                display: block;
-                content: '';
-                height: 25px;
-                width: 25px;
-                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
-                background-size: 222px 25px;
-                background-position: -197px -1px;
-                margin-left: 10px;
+            img {
+                border: 0 none;
+                vertical-align: bottom;
+                -ms-interpolation-mode: bicubic;
             }
         </style>
         <script type="text/javascript">
@@ -213,13 +119,20 @@
             var GetHtml = function (obj, cssClassName) {
                 var functionName = obj["FunctionName"] == null ? "" : obj["FunctionName"];
                 var functionUrl = obj["FunctionUrl"];
+                var imageUrl=obj["ImgUrl"];
 
+                //                var divs = '<li>'
+                //			               + ' <a class="{2}" href="{1}">'
+                //				           + '     {0}'
+                //				           + ' </a>'
+                //		                   + '</li> ';
                 var divs = '<li>'
-			               + ' <a class="{2}" href="{1}">'
-				           + '     {0}'
-				           + ' </a>'
-		                   + '</li> ';
-                return divs.format(functionName, functionUrl, cssClassName);
+            	           +'    <a href="{0}">'
+    				       +'        <img src="{2}" alt="">'
+            		       +'        <p>{1}</p>'
+            	           +'    </a>'
+                           +'</li>';
+                return divs.format(functionUrl, functionName,imageUrl);
             };
 
             var GetEmptyLi = function (iCount) {
@@ -238,12 +151,12 @@
 
         <div class="shortcut-navs">
 
-          <ul class="shortcut-nav" id="functionList">
-            
+          <ul class="menu-list" id="functionList">
+               
 		  </ul>
 
         </div>
-        @Html.Partial("_FooterTypical")
+        @*@Html.Partial("_FooterTypical")*@
     </body>
 
 </html>

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using QSmart.Core.DataBase;
 using QSmart.Core.Object;
 using DataModel;
+using Toolkit.Ext;
 
 namespace FZ.Controllers
 {
@@ -21,32 +22,32 @@ namespace FZ.Controllers
         {
 
             QSmartDatabaseClient db = DataBaseProvider.Create("db");
-            db.CreateTable<ShangJia_ShangPin_TuCe>(QSmartTableType.InnoDB);
-            db.CreateTable<ShangJia_Sku_Info>(QSmartTableType.InnoDB);
-            db.CreateTable<ShangJia_Sku_TuTou>(QSmartTableType.InnoDB);
-            db.CreateTable<YanSeZu>(QSmartTableType.InnoDB);
-            db.CreateTable<YanSeZuMingXi>(QSmartTableType.InnoDB);
-            db.CreateTable<YanSe>(QSmartTableType.InnoDB);
-            db.CreateTable<ChiMaZu>(QSmartTableType.InnoDB);
-            db.CreateTable<ChiMaZuMingXi>(QSmartTableType.InnoDB);
-            db.CreateTable<ChiMa>(QSmartTableType.InnoDB);
+            //db.CreateTable<ShangJia_ShangPin_TuCe>(QSmartTableType.InnoDB);
+            //db.CreateTable<ShangJia_Sku_Info>(QSmartTableType.InnoDB);
+            //db.CreateTable<ShangJia_Sku_TuTou>(QSmartTableType.InnoDB);
+            //db.CreateTable<YanSeZu>(QSmartTableType.InnoDB);
+            //db.CreateTable<YanSeZuMingXi>(QSmartTableType.InnoDB);
+            //db.CreateTable<YanSe>(QSmartTableType.InnoDB);
+            //db.CreateTable<ChiMaZu>(QSmartTableType.InnoDB);
+            //db.CreateTable<ChiMaZuMingXi>(QSmartTableType.InnoDB);
+            //db.CreateTable<ChiMa>(QSmartTableType.InnoDB);
 
-            db.CreateTable<PinPai>(QSmartTableType.InnoDB);
-            db.CreateTable<ShangPin>(QSmartTableType.InnoDB);
-            db.CreateTable<ShangPinFenLei>(QSmartTableType.InnoDB);
+            //db.CreateTable<PinPai>(QSmartTableType.InnoDB);
+           db.CreateTable<ShangPin>(QSmartTableType.InnoDB);
+            //db.CreateTable<ShangPinFenLei>(QSmartTableType.InnoDB);
 
-            db.CreateTable<JingXiaoShang>(QSmartTableType.InnoDB);
+            //db.CreateTable<JingXiaoShang>(QSmartTableType.InnoDB);
             
 
-            db.CreateTable<CaoZuoYuan>(QSmartTableType.InnoDB);
-            db.CreateTable<MenDian>(QSmartTableType.InnoDB);
-            //db.CreateTable<MenDian_CanZuoYuan_GuanLian>(QSmartTableType.InnoDB);
+            //db.CreateTable<CaoZuoYuan>(QSmartTableType.InnoDB);
+            //db.CreateTable<MenDian>(QSmartTableType.InnoDB);
+            ////db.CreateTable<MenDian_CanZuoYuan_GuanLian>(QSmartTableType.InnoDB);
 
-            db.CreateTable<CangKu>(QSmartTableType.InnoDB);
-            db.CreateTable<HuoWei>(QSmartTableType.InnoDB);
+            //db.CreateTable<CangKu>(QSmartTableType.InnoDB);
+            //db.CreateTable<HuoWei>(QSmartTableType.InnoDB);
             
-            db.CreateTable<RuKu>(QSmartTableType.InnoDB);
-            db.CreateTable<RuKuMingXi>(QSmartTableType.InnoDB);
+            //db.CreateTable<RuKu>(QSmartTableType.InnoDB);
+            //db.CreateTable<RuKuMingXi>(QSmartTableType.InnoDB);
             return Content("ok");
         }
 
@@ -238,11 +239,19 @@ namespace FZ.Controllers
             db.SaveChange();
             return Content("ok");
         }
+        /// <summary>
+        /// 商品
+        /// </summary>
+        /// <returns></returns>
         public ActionResult shangpin()
         {
             QSmartDatabaseClient db = DataBaseProvider.Create("db");
-            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "男士长袖圆韩版上衣" }.CreateQSmartObject());
-            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "V领T恤上衣" }.CreateQSmartObject());
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "中长款连帽棉服男装" }.CreateQSmartObject());
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "韩版修身男装棉袄" }.CreateQSmartObject());
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "时尚羊羔绒棉服外套" }.CreateQSmartObject());
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "可脱卸大毛领连帽棉衣" }.CreateQSmartObject());
+            db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 1, YanSeZuId = 1, PinPaiId = 1, Name = "时尚连帽棉服" }.CreateQSmartObject());
+
 
             db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 2, YanSeZuId = 2, PinPaiId = 2, Name = "保暖情侣潮上衣" }.CreateQSmartObject());
             db.InsertEntity(new ShangPin { ShangPinFenLeiId = 1, ChiMaZuId = 2, YanSeZuId = 2, PinPaiId = 2, Name = "男士长袖POLO衣" }.CreateQSmartObject());
@@ -250,6 +259,80 @@ namespace FZ.Controllers
 
             db.SaveChange();
             return Content("ok");
+        }
+        /// <summary>
+        /// 经销商
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult jingxiaoshang()
+        {
+            QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            db.InsertEntity(new JingXiaoShang { Name = "北京服装经销商",Address="北京 海淀",Phone="010-666666" }.CreateQSmartObject());
+            
+            db.SaveChange();
+            return Content("ok");
+        }
+        /// <summary>
+        /// 门店
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult mendian()
+        {
+            QSmartDatabaseClient db = DataBaseProvider.Create("db");
+            db.InsertEntity(new MenDian { Name = "北京大红门服装店", JingXiaoShangId=1, Address = "北京", Phone = "010-666666" }.CreateQSmartObject());
+            db.InsertEntity(new MenDian { Name = "北京西单服装店", JingXiaoShangId = 1, Address = "北京", Phone = "010-666666" }.CreateQSmartObject());
+            db.SaveChange();
+            return Content("ok");
+        }
+
+        public ActionResult UploadImage()
+        {
+            return View("UploadImage");
+        }
+        public ActionResult FileUpLoad(HttpPostedFileBase imageUpLoad)
+        {
+            try
+            {
+                var width = Request["imgWidth"];
+                int w;
+                int.TryParse(width,out w);
+                var heith = Request["imgHeigth"];
+                int h;
+                int.TryParse(heith,out h);
+
+                List<ShangJia_ShangPin_TuCe> list = new List<ShangJia_ShangPin_TuCe>();
+                string fileName = imageUpLoad.FileName;
+                string expandName = fileName.Substring(fileName.LastIndexOf('.') + 1);
+                Guid guid = Guid.NewGuid();
+                var saveFileName = guid + "." + expandName;
+                
+                var saveOrgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebOrgImgRealPath"]+"test\\";//;WebOrgImgRealPath
+                //原图
+                var savePath = saveOrgPath;//物理路径
+                if (!System.IO.Directory.Exists(savePath))
+                {
+                    System.IO.Directory.CreateDirectory(savePath);
+                }
+                //保存到相对路径下。               
+                var saveFilePath = savePath + "/" + saveFileName;
+                imageUpLoad.SaveAs(saveFilePath);
+                //缩小图    
+                var saveRootPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"] + "test\\";
+                var saveSmallPath = saveRootPath;//物理路径
+                if (!System.IO.Directory.Exists(saveSmallPath))
+                {
+                    System.IO.Directory.CreateDirectory(saveSmallPath);
+                }
+                var saveSmallFilePath = saveSmallPath + "/" + saveFileName;
+                ImageSmall.MakeThumbnail(saveFilePath, saveSmallFilePath, w, h, "HW");
+
+                return Content("OK");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("UploadImage");
+            }
+
         }
 
     }

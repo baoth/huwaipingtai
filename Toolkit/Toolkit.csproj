@@ -51,11 +51,13 @@
     <Compile Include="CommonModel\CResult.cs" />
     <Compile Include="Ext\Common.cs" />
     <Compile Include="Ext\HttpRequestBaseExt.cs" />
+    <Compile Include="Ext\ImageOperate.cs" />
     <Compile Include="Ext\ObjectExt.cs" />
     <Compile Include="Fun\FunResult.cs" />
     <Compile Include="Fun\VerifyCode.cs" />
     <Compile Include="HtmlFileCreator\MobileCreator.cs" />
     <Compile Include="JsonHelp\JsonHelp.cs" />
+    <Compile Include="Log\Logger.cs" />
     <Compile Include="Path\PathConfig.cs" />
     <Compile Include="PubCms\Document.cs" />
   </ItemGroup>

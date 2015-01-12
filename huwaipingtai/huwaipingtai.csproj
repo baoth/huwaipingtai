@@ -309,6 +309,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="List\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -341,6 +342,7 @@
     <Content Include="Views\FeedBack\Advice.cshtml" />
     <Content Include="Views\FeedBack\AdviceSubmited.cshtml" />
     <Content Include="Views\Home\functionHome.cshtml" />
+    <Content Include="Views\Home\index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

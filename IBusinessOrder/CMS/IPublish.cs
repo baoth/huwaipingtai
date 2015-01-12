@@ -13,6 +13,7 @@ namespace IBusinessOrder.CMS
         /// </summary>
        CResult PublishGoods(string goodsSKU);
        /// <summary>
+       CResult PublishGoods(string goodsSKU,string publishPath);
        /// 发布目录模版
        /// </summary>
        /// <returns></returns>

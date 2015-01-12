@@ -9,6 +9,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <script src="../../Scripts/JsExtend.js" type="text/javascript"></script>
+        <link href="../../Content/Header.css" rel="stylesheet" type="text/css" />
 
         <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
@@ -34,7 +35,7 @@
                     
                     var url = "/Shelves/SaveShangJia_Sku_TuTou";
                     var dataRow = [];
-                    var sku = $("#txt_sku").val();
+                    var imgKey = $("#txt_sku").val();
                     $("#RowContent a").each(function () {
                         var aObj = $(this)
                         var checked = aObj.attr("checked");
@@ -42,7 +43,7 @@
                             var row = {};
                             row.ShangJia_ShangPin_TuCeId = aObj.attr("tuceid");
                             row.ImgName = $(aObj.find("img")).attr("v");
-                            row.ImgKey = sku.substring(0, sku.lastIndexOf('-')); //截取 sku
+                            row.ImgKey = imgKey; //.substring(0, sku.lastIndexOf('-')); //截取 sku
                             dataRow.push(row);
                         }
 
@@ -55,11 +56,11 @@
             }
             var LoadData = function () {
                 var url = "/Shelves/GetProductPhotoList";
-                var sku = $("#txt_sku").val();
-                sku = sku.substring(0, sku.lastIndexOf('-'));
+                var imgKey = $("#txt_sku").val();
+                
                 var shangpinid = $("#txt_shangpinid").val();
                 var ShangJia_ShangPin_TuCeId = $("#");
-                var para = { ImgKey: sku, ShangPinId: shangpinid };
+                var para = { ImgKey: imgKey, ShangPinId: shangpinid };
                 submitAjax(url, para);
             }
 
@@ -69,22 +70,12 @@
                 var ishasImg = data["ImgKey"]; //判断是否选择图片标示
                 var checked = ishasImg == null ? 0 : 1;
                 var className = checked == 1 ? "span-checkbox checked" : "";
-                var sku = $("#txt_sku").val();
+                var shangpinid = $("#txt_shangpinid").val();
                 var rootPath = $("#txt_imgPth").val();
-                var imgFullPath = "../.." + rootPath + "/" + sku + "/" + imgName;
+                var imgFullPath =rootPath + shangpinid + "/" + imgName;
                 var shangJia_ShangPin_TuCeId = data["ShangJia_ShangPin_TuCeId"];
-//                var divs = '<div class="module">'
-//                         + '     <a href="#" onclick="changeSelected(this)" tuceid={5} checked={1} >'
-//                         + '         <p class="img">'
-//                         + '             <img class="imageLoad" v={4} src="{2}">'
-//                         + '             <span id="checkIcon{0}" class="{3}"></span>'
-//                         + '         </p>'
-//                         + '         <p class="g-title"> </p>'
-//                         + '     </a>'
-//                         + '</div>';
-
                 var divs = ' <li> '                           
-                           + '    <a href="#" onclick="changeSelected(this)" tuceid={5} checked={1} >'
+                           + '    <a href="javascription:;" onclick="changeSelected(this)" tuceid={5} checked={1} >'
                            +'        <span id="checkIcon{0}" class="{3}"></span> ' 
                            + '       <img v={4} src="{2}" alt="">'
                            + '     </a>'                          
@@ -126,7 +117,7 @@
                             objul.html("");
                         }
                         var count = CountSelectImg();
-                        $("#selectCount").html("<font color='red'>已择" + count + "张</font>");
+                        $("#selectCount").html("<font color='red'>已选择" + count + "张</font>");
 
                     },
                     error: function () {
@@ -144,7 +135,7 @@
                     obj.removeAttr("class");
                     $(e).removeAttr("checked");
                     count--;
-                    $("#selectCount").html("<font color='red'>已择" + count + "张</font>");       
+                    $("#selectCount").html("<font color='red'>已选择" + count + "张</font>");       
                 }
                 else {                   
                     if (count >= 5) {
@@ -155,7 +146,7 @@
                     obj.addClass("span-checkbox checked");
                     $(e).attr("checked", 1);
                     count++;
-                    $("#selectCount").html("<font color='red'>已择" + count + "张</font>");          
+                    $("#selectCount").html("<font color='red'>已选择" + count + "张</font>");          
                 }               
             }
 
@@ -461,63 +452,6 @@
             
             <section class="box box2">
 	          <ul id="RowContent" >
-                 
-
-                <li> 
-                    <a href="http://m.kankan.com/v/86/86894.shtml?new=1">
-                        <span id="checkIcon" class="span-checkbox checked"></span>
-                        <img src="http://images.movie.xunlei.com/gallery/1240/c2c50ec033627fa41c337a2f2eb743f6.jpg" alt="风云再起">
-                                           
-                     </a>                			         
-                    
-			    </li>
-
-                <li>
-				     <a href="http://m.kankan.com/v/86/86894.shtml?new=1">
-                     <span id="checkIcon" class="span-checkbox checked"></span> 
-                     <span>
-                     <img src="http://images.movie.xunlei.com/gallery/1240/c2c50ec033627fa41c337a2f2eb743f6.jpg" alt="风云再起">
-                    
-                     </span>
-                     </a>
-			    </li>
-                <li>
-				     <a href="http://m.kankan.com/v/86/86894.shtml?new=1">
-                     <span>
-                     <img src="http://images.movie.xunlei.com/gallery/1240/c2c50ec033627fa41c337a2f2eb743f6.jpg" alt="风云再起">
-                    
-                     </span>
-                     </a>
-			    </li>
-
-                
-                <li>
-				     <a href="http://m.kankan.com/v/86/86894.shtml?new=1">
-                     <span>
-                     <img src="http://images.movie.xunlei.com/gallery/1240/c2c50ec033627fa41c337a2f2eb743f6.jpg" alt="风云再起">
-                    
-                     </span>
-                     </a>
-			    </li>
-
-                <li>
-				     <a href="http://m.kankan.com/v/86/86894.shtml?new=1">
-                     <span>
-                     <img src="http://images.movie.xunlei.com/gallery/1240/c2c50ec033627fa41c337a2f2eb743f6.jpg" alt="风云再起">
-                    
-                     </span>
-                     </a>
-			    </li>
-                <li>
-				     <a href="http://m.kankan.com/v/86/86894.shtml?new=1">
-                     <span>
-                     <img src="http://images.movie.xunlei.com/gallery/1240/c2c50ec033627fa41c337a2f2eb743f6.jpg" alt="风云再起">
-                    
-                     </span>
-                     </a>
-			    </li>
-
-                
               </ul>  
              </section> 
          </div>
@@ -532,7 +466,7 @@
       </div>
 
        <div style="display:none">
-          <input type="hidden" id="txt_sku" value="@ViewData["Sku"]" />
+          <input type="hidden" id="txt_sku" value="@ViewData["ImgKey"]" />
           <input type="hidden" id="txt_shangpinid" value="@ViewData["ShangPinId"]" />
           <input  type="hidden" id="txt_imgPth" value="@ViewData["imgPath"]"/>
         

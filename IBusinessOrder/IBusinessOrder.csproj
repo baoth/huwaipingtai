@@ -50,6 +50,7 @@
     <Compile Include="CMS\IOPGoodsCatalog.cs" />
     <Compile Include="GoodsSize\IOPGoodsSize.cs" />
     <Compile Include="Goods\IOPGoods.cs" />
+    <Compile Include="MenDian\IOPMenDian.cs" />
     <Compile Include="Order\IOPCustomerOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shelves\IOPShelves.cs" />

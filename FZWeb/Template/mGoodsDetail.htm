@@ -52,7 +52,7 @@
                 var imgArr = allImgs.split(",");
                 if (currentImg == imgArr.length) {
                     currentImg = 0;
-                    window.location.href = "/ware/detail.action?wareId=" + $("#currentWareId").val()
+                   // window.location.href = "/ware/detail.action?wareId=" + $("#currentWareId").val()
                 }
                 preLoadImg();
                 loadImg(imgCache[currentImg], 1)
@@ -124,7 +124,7 @@
                         $("#imgSlider").append(html);
                         if (currentImg + 1 == arrImg.length) {
                             var htm = currentImg + 1 + "/" + arrImg.length;
-                            $("#tips").html("\u7ee7\u7eed\u53f3\u5212\u8fdb\u5165\u5546\u54c1\u8be6\u60c5\u9875")
+                           // $("#tips").html("\u7ee7\u7eed\u53f3\u5212\u8fdb\u5165\u5546\u54c1\u8be6\u60c5\u9875")
                         }
                         var htm = currentImg + 1 + "/" + arrImg.length;
                         $("#imgpage").html(htm);
@@ -142,7 +142,7 @@
                             var html = '<span class="tbl-cell"><img src="' + imgCache[currentImg].src + '" seq="' + currentImg + '" width="320" height="292"></span>';
                             $("#imgSlider").prepend(html);
                             if (currentImg + 1 == arrImg.length) {
-                                $("#tips").html("\u7ee7\u7eed\u53f3\u5212\u8fdb\u5165\u5546\u54c1\u8be6\u60c5\u9875")
+                                //$("#tips").html("\u7ee7\u7eed\u53f3\u5212\u8fdb\u5165\u5546\u54c1\u8be6\u60c5\u9875")
                             }
                             var htm = currentImg + 1 + "/" + arrImg.length;
                             $("#imgpage").html(htm);

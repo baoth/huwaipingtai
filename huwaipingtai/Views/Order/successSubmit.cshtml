@@ -62,7 +62,7 @@
         .btn-jd-gray {
             color: #fff;
             display: inline-block;
-            background: #bfbfbf;
+            background: rgb(236, 52, 52);
             border-radius: 3px;
             padding: 4px 12px;
             line-height: 1.2em;
@@ -95,18 +95,16 @@
        </style>
     </head>
     <body>
-        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "加入购物车" } })
+        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "订单提交" } })
        <div id="addMsgCart">
             
-            <div class="success-b"><p>已加入购物车！</p></div>
+            <div class="success-b"><p>提交订单成功！</p></div>
             <div class="empty-btn-wrapper">
                 <div>
-                <a href="javascript:GoWalk()" class="btn-jd-gray btn-large">继续购物</a>
+                  <a href="javascript:GoWalk()" class="btn-jd-gray btn-large">继续购物</a>
                 </div>
                <div>
-               <a href="/Cart/Index" class="btn-jd-darkred btn-large"></a>     
-               </div>
-                      
+              
             </div>
        </div>
         @Html.Partial("_FooterTypical")

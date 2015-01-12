@@ -44,5 +44,14 @@ namespace Toolkit.Path
            var path = System.Configuration.ConfigurationManager.AppSettings["WebOrgImgPath"];
            return path;
        }
+       /// <summary>
+       /// 生成的HTML页面
+       /// </summary>
+       /// <returns></returns>
+       public static string WebGenerateHtmlPath()
+       {
+           var path = System.Configuration.ConfigurationManager.AppSettings["WebGenerateHtmlPath"];
+           return path;
+       }
     }
 }

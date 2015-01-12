@@ -38,9 +38,9 @@
                 submitAjax(url, para);               
             }
 
-            var getHtml = function (data) {
-                var carId=data["Id"];
-                var sku = data["Sku"]+"";
+            var getHtml = function (data, imgPath) {
+                var carId = data["Id"];
+                var sku = data["Sku"] + "";
                 var price = data["Price"] + "";
                 price = price.formatCurrency();
                 var quantity = data["Quantity"];
@@ -56,21 +56,22 @@
                     Description = "";
                 }
                 var cartId = data["Id"];
-                var imgUrl = data["ImgUrl"] ==null ? "" : data["ImgUrl"];
+                var imgUrl = data["ImgUrl"] == null ? "" : data["ImgUrl"];
+                var htmlPath = imgPath + sku + ".html";
                 var li = '<li id="product{0}">'
 	            + '<div class="items">'
                 + ' <div class="cart-check-wrapper"> '
-                + ' <span id="checkIcon{0}" class="cart-checkbox {3}" onclick="changeSelected(this,{0},1)"></span> '
+                + ' <span id="checkIcon{0}" class="cart-checkbox {3}" onclick="changeSelected(this,\'{0}\',1)"></span> '
                 + ' </div> '
                 + ' <div class="cart-item-core"> '
                 + '  <div class="cart-product-cell-3"> '
                 + '      <span class="cart-item-price" id="price{0}">￥{1}</span> '
                 + '  </div> '
-                + '  <a class="cart-product-cell-1" href="/product/{0}/index.html?sid=a0b43b56f4431a58b6e78b635837359c"> '
+                + '  <a class="cart-product-cell-1" href="javascript:"> '
                 + '      <img class="cart-photo-thumb" alt="" src="{6}" onerror="lib/skin/e/i/error-jd.gif"> '
                 + '  </a> '
                 + '  <div class="cart-product-cell-2"> '
-                + '      <div class="cart-product-name"><a href="/product/{0}/index.html?pid=a0b43b56f4431a58b6e78b635837359c"><span>{4}</span></a></div>  '
+                + '      <div class="cart-product-name"><a href="'+htmlPath+'"><span>{4}</span></a></div>  '
                 + '       <div class="cart-opt"> '
                 + '          <div class="cart-quantity-wrapper"> '
                 + '              <input type="hidden" id="limitSukNum{0}" value="200"> '
@@ -85,7 +86,7 @@
                 + ' <div class="cart-diver-hr-dashed"></div> '
 	            + '</div> '
                 + ' </li>'
-                var liHtml = li.format(sku, price, quantity, Actived, Description, cartId,imgUrl);
+                var liHtml = li.format(sku, price, quantity, Actived, Description, cartId, imgUrl);
                 return liHtml;
             }
 
@@ -99,8 +100,9 @@
 
                         var lis = "";
                         if (data && data.length > 0) {
+                            var imgPath = $("#imgPath").val();
                             for (var i = 0, j = data.length; i < j; i++) {
-                                lis += getHtml(data[i]);
+                                lis += getHtml(data[i],imgPath);
                             }
                         }
                         var objul = $("#notEmptyMyCart ul");
@@ -147,8 +149,9 @@
                 var para = {pid: productId };
                 submitAjax(url,para);              
             }
-           
-            function changeSelected(e,id) {
+
+            function changeSelected(e, id) {
+                debugger
                 var obj = $(e);
                 var check = 0;
                 if (obj.hasClass("checked")) {
@@ -740,6 +743,7 @@
 
        <div style="display:none">
           <input type="hidden" id="NickName" value="@ViewData["NickName"]" />
+          <input  type="hidden" id="imgPath" value="@ViewData["ImgPath"]"/>
         
       </div>
     </body>

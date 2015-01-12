@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.Configuration;
+using Toolkit.Path;
 
 namespace huwaipingtai.Controllers
 {
@@ -26,6 +27,8 @@ namespace huwaipingtai.Controllers
                 {
                     ViewData["NickName"] = this.CurrentUserInfo.NickName;
                 }
+                string webImgPath = PathConfig.WebGenerateHtmlPath();
+                ViewData["ImgPath"] = webImgPath;
             }
            
             return View("cart");

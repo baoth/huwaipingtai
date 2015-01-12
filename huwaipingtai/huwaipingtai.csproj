@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FeedBackController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -293,6 +294,7 @@
     <Content Include="Scripts\qsm-mui\zepto.touch.js" />
     <Content Include="Scripts\Spin\spin-min.js" />
     <Content Include="Scripts\Spin\spin.js" />
+    <Content Include="Views\Category\all.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -343,6 +345,8 @@
     <Content Include="Views\FeedBack\AdviceSubmited.cshtml" />
     <Content Include="Views\Home\functionHome.cshtml" />
     <Content Include="Views\Home\index1.cshtml" />
+    <Content Include="Views\Category\Products_000.cshtml" />
+    <Content Include="Views\Category\Copy of Products_000.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

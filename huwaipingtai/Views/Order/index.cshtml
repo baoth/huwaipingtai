@@ -52,11 +52,12 @@
                         debugger
                         //  var msg = action.IsSuccess?action.Msg"
                         if (action.IsSuccess) {
-                            alert("提交订单成功");
+                            //alert("提交订单成功");
+                            window.location = window.location.origin + "/Order/successSubmit";
                         } else {
                             /*页面跳转支付*/
                             alert(action.Msg);
-                           
+
                         }
                     }
                 });

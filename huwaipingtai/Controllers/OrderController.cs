@@ -92,7 +92,10 @@ namespace huwaipingtai.Controllers
         {
             return View("courier");
         }
-      
+        public ActionResult successSubmit()
+        {
+            return View("successSubmit");
+        }
 
     }
 

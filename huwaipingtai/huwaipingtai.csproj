@@ -362,7 +362,7 @@
     <Content Include="Views\Home\functionHome.cshtml" />
     <Content Include="Views\Home\index1.cshtml" />
     <Content Include="Views\Category\Products_000.cshtml" />
-    <Content Include="Views\Category\Copy of Products_000.cshtml" />
+    <Content Include="Views\Order\successSubmit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

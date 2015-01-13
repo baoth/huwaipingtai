@@ -85,6 +85,9 @@ namespace BusinessOrder.Order
                 var sqlOrderGoods = string.Format(sqlOrderGoodsFormat, orderId, goods.Sku, goods.Quantity);
                 listOrderReSql.Add(sqlOrderGoods);
             }
+            //删除购物车
+            var deleteCatSql = iOpCat.GetDeleteActivedSql(customerOrder.CustomerId);
+            listOrderReSql.Add(deleteCatSql);
             var dbSession = Common.DbFactory.CreateDbSession();
             dbSession.Context.ExcuteNoQuery(listOrderReSql);
             return FunResult.GetSuccess();

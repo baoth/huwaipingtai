@@ -57,6 +57,10 @@ namespace DataModel
         /// 显示为默认值
         /// </summary>
         public bool IsDefault { set; get; }
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public int Sort { set; get; }
     }
     /// <summary>
     /// 自定义模型（无表）

@@ -57,7 +57,7 @@ namespace BusinessOrder.Shelves
             sqlList.Add("delete from ShangJia_Sku_TuTou where ImgKey='" + sku + "'");
             foreach(DataModel.ShangJia_Sku_TuTou item in list )
             {
-                sqlList.Add(string.Format(" insert into ShangJia_Sku_TuTou(ShangJia_ShangPin_TuCeId,ImgKey,ImgName) values('{0}','{1}','{2}')", item.ShangJia_ShangPin_TuCeId, item.ImgKey, item.ImgName));
+                sqlList.Add(string.Format(" insert into ShangJia_Sku_TuTou(ShangJia_ShangPin_TuCeId,ImgKey,ImgName,Sort) values('{0}','{1}','{2}',{3})", item.ShangJia_ShangPin_TuCeId, item.ImgKey, item.ImgName,item.Sort));
             }
             dbSession.Context.ExcuteNoQuery(sqlList);
             return true;

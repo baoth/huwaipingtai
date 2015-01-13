@@ -559,7 +559,7 @@
         }
   </style>
  <script type="text/javascript">
-     document.tab = new QsmartTab('tabpages', { 'callback': dd });
+     document.tab = new QsmartTab('tabpages', { 'callback': function () { alert(1)} });
     
      function dd(a) {
          console.log(a);

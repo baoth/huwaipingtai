@@ -53,6 +53,8 @@
     <Compile Include="Ext\HttpRequestBaseExt.cs" />
     <Compile Include="Ext\ImageOperate.cs" />
     <Compile Include="Ext\ObjectExt.cs" />
+    <Compile Include="Fun\GetStringSpell.cs" />
+    <Compile Include="Fun\SpellCodeHelper.cs" />
     <Compile Include="Fun\FunResult.cs" />
     <Compile Include="Fun\VerifyCode.cs" />
     <Compile Include="HtmlFileCreator\MobileCreator.cs" />

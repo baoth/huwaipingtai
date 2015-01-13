@@ -17,11 +17,8 @@
 
 //            var myScroll;
             $(document).ready(function () {
-//                $("#wrapper").css('top', $("header").height());
-//                myScroll = new IScroll('#wrapper', { mouseWheel: true });
-               // document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
                 $(".bt-category-lst .bt-category-a").on($.clickAction, function () {
-                    debugger
+
                     var $el = $(this);
                     if (!$el.hasClass("bt-on")) {
                         //先隐藏其他列 
@@ -34,7 +31,7 @@
                     myScroll.refresh();
                 });
                 $('.btn-switch').on($.clickAction, function () {
-                    debugger
+
                     var me = $(this);
                     var refId = me.attr('refId');
                     if (me.hasClass('on')) {
@@ -47,7 +44,7 @@
                     }
                 });
                 $('li .btn-shangjia').on($.clickAction, function () {
-                    debugger
+
                     /*描述*/
                     var desc = $('#titleDescId').val();
                     /*sku*/
@@ -60,6 +57,7 @@
                         alert("请填写" + errorMsg + "的上架价格！");
                         return;
                     }
+
                     $.ajax({
                         url: '/Shelves/SetShelves',
                         type: 'post',
@@ -88,6 +86,7 @@
                 $('#addAllcart').bind($.clickAction, function () {
                     var shangjia = $('li .btn-shangjia');
                     var data = [];
+                    var bFalg = true;
                     $.each(shangjia, function (key, value) {
                         /*描述*/
                         var desc = $('#titleDescId').val();
@@ -97,28 +96,32 @@
                         var id = "p-" + sku;
                         var price = $('#' + id).val();
                         if (!price) {
+                            bFalg = false;
                             var errorMsg = $(this).attr("errormsg");
                             alert("请填写" + errorMsg + "的上架价格！");
                             return;
                         }
                         data.push({ desc: desc, sku: sku, price: price });
+
                     });
                     if (data.length == 0) {
                         alert('没有要上架的产品！');
                         return;
                     }
-                    $.ajax({
-                        url: '/Shelves/SetAllShelves',
-                        type: 'post',
-                        data: { data: JSON.stringify(data) },
-                        success: function () {
-                            alert("上架成功！");
-                            window.location.reload();
-                        },
-                        error: function () {
-                            alert("上架失败")
-                        }
-                    });
+                    if (bFalg) {
+                        $.ajax({
+                            url: '/Shelves/SetAllShelves',
+                            type: 'post',
+                            data: { data: JSON.stringify(data) },
+                            success: function () {
+                                alert("上架成功！");
+                                window.location.reload();
+                            },
+                            error: function () {
+                                alert("上架失败")
+                            }
+                        });
+                    }
                 });
                 /*全部下架*/
                 $('#addAllxiacart').bind($.clickAction, function () {

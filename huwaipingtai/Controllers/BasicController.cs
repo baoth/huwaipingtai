@@ -19,6 +19,32 @@ namespace huwaipingtai.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
+            var idtO=Request.Cookies["idt"];
+            var idt = string.IsNullOrEmpty(idtO + "") ? "" : idtO.Value;
+            if (idt == "wx")
+            {
+                WXOnActionExecuting(filterContext);
+            }
+            else {
+                WebOnActionExecuting(filterContext);
+            }
+        }
+
+        private void SetFooter()
+        {
+            if (this.CurrentUserInfo != null)
+            {
+                ViewData["NameL"] = this.CurrentUserInfo.NickName; ViewData["ActionL"] = "/User/Home";
+                ViewData["NameR"] = "退出"; ViewData["ActionR"] = "/User/LogOut";
+            }
+            else
+            {
+                ViewData["NameL"] = "登陆"; ViewData["ActionL"] = "/User/logon?t=direct_l";
+                ViewData["NameR"] = "注册"; ViewData["ActionR"] = "#";
+            }
+        }
+        private void WebOnActionExecuting(ActionExecutingContext filterContext)
+        {
             this.CurrentUserInfo = Session[RequestCommand.SESSION_USERINFO] as UserInfo;
             if (!RequestCommand.Intercepts.Contains(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower() +
                 filterContext.ActionDescriptor.ActionName.ToLower()))
@@ -55,21 +81,16 @@ namespace huwaipingtai.Controllers
             }
             SetFooter();
         }
-
-        private void SetFooter()
+        private void WXOnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (this.CurrentUserInfo != null)
-            {
-                ViewData["NameL"] = this.CurrentUserInfo.NickName; ViewData["ActionL"] = "/User/Home";
-                ViewData["NameR"] = "退出"; ViewData["ActionR"] = "/User/LogOut";
-            }
-            else
-            {
-                ViewData["NameL"] = "登陆"; ViewData["ActionL"] = "/User/logon?t=direct_l";
-                ViewData["NameR"] = "注册"; ViewData["ActionR"] = "#";
-            }
+            //this.CurrentUserInfo = Session[RequestCommand.SESSION_USERINFO] as UserInfo;
+            //if (this.CurrentUserInfo == null)
+            //{
+            //    var sid = Request.Cookies["sid"];
+            //    //存
+            //}
+            this.CurrentUserInfo = new UserInfo { Id = Request.Cookies["sid"].Value, NickName = "游客" };
         }
-        
     }
 
     public class UserInfo

@@ -43,3 +43,4 @@ X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\Toolkit.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.csprojResolveAssemblyReference.cache
 X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.dll
 X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\obj\Debug\BusinessOrder.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\BusinessOrder\bin\Debug\QSmart.Weixin.Core.dll

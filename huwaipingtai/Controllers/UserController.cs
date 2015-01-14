@@ -181,7 +181,7 @@ namespace huwaipingtai.Controllers
             if (!obj.IsExist(weixinId))
             {
                 Customer model = new Customer();
-                model.Id = Guid.NewGuid().ToString();
+                model.Id = Guid.NewGuid().ToString().Replace("-","");
                 model.WXID = weixinId;
                 model.NikeName = "游客";
                 obj.Add(model);

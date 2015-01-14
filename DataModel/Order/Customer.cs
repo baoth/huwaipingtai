@@ -11,7 +11,7 @@ namespace DataModel.Order
     public class Customer : QSmartEntity          
     {
         [PrimaryKey]
-        [StringMaxLength(32,VarCharType.nvarchar)]
+        [StringMaxLength(50,VarCharType.nvarchar)]
         public string Id { get; set; }
         [StringMaxLength(50, VarCharType.nvarchar)]
         public string RealName { get; set; }
@@ -25,6 +25,8 @@ namespace DataModel.Order
         public string Password { get; set; }
         [StringMaxLength(50, VarCharType.nvarchar)]
         public string Mail { get; set; }
+        [StringMaxLength(50, VarCharType.nvarchar)]
+        public String WXID { set; get; }
     }
 
     /// <summary>

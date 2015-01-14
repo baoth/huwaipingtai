@@ -20,39 +20,39 @@ namespace huwaipingtai.Controllers
         {
             base.OnActionExecuting(filterContext);
             this.CurrentUserInfo = Session[RequestCommand.SESSION_USERINFO] as UserInfo;
-            if (!RequestCommand.Intercepts.Contains(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower() +
-                filterContext.ActionDescriptor.ActionName.ToLower()))
-            {
-                if (CurrentUserInfo == null)
-                {
-                    var userName = Request.Cookies[RequestCommand.COOKIE_LOGONNAME];
+            //if (!RequestCommand.Intercepts.Contains(filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower() +
+            //    filterContext.ActionDescriptor.ActionName.ToLower()))
+            //{
+            //    if (CurrentUserInfo == null)
+            //    {
+            //        var userName = Request.Cookies[RequestCommand.COOKIE_LOGONNAME];
 
-                    if (userName == null)
-                    {
-                        Session[RequestCommand.LOGON_JUMP_URL] = this.Request.RawUrl;
-                        //重定向
-                        filterContext.Result = new RedirectResult("/User/logon");
-                        return;
-                    }
-                    else
-                    {
-                        var password = Request.Cookies[RequestCommand.COOKIE_LOGONPASSWORD];
-                        var user = iLogon.Logon(userName.Value, password.Value);
-                        if (user == null)
-                        {
-                            Session[RequestCommand.LOGON_JUMP_URL] = this.Request.RawUrl;
-                            //重定向
-                            filterContext.Result = new RedirectResult("/User/logon");
-                            return;
-                        }
-                        else
-                        {
-                            Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = user.Id, NickName = user.NikeName };
-                            filterContext.Result = new RedirectResult(this.Request.RawUrl);
-                        }
-                    }
-                }
-            }
+            //        if (userName == null)
+            //        {
+            //            Session[RequestCommand.LOGON_JUMP_URL] = this.Request.RawUrl;
+            //            //重定向
+            //            filterContext.Result = new RedirectResult("/User/logon");
+            //            return;
+            //        }
+            //        else
+            //        {
+            //            var password = Request.Cookies[RequestCommand.COOKIE_LOGONPASSWORD];
+            //            var user = iLogon.Logon(userName.Value, password.Value);
+            //            if (user == null)
+            //            {
+            //                Session[RequestCommand.LOGON_JUMP_URL] = this.Request.RawUrl;
+            //                //重定向
+            //                filterContext.Result = new RedirectResult("/User/logon");
+            //                return;
+            //            }
+            //            else
+            //            {
+            //                Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = user.Id, NickName = user.NikeName };
+            //                filterContext.Result = new RedirectResult(this.Request.RawUrl);
+            //            }
+            //        }
+            //    }
+            //}
             SetFooter();
         }
 

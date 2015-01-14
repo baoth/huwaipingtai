@@ -199,7 +199,9 @@ namespace huwaipingtai.Controllers
                
                 Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = user.Id, NickName = user.NikeName };
                 var jumpurl = Session[RequestCommand.LOGON_JUMP_URL] as string;
-                Session[RequestCommand.LOGON_JUMP_URL] = null;               
+                Session[RequestCommand.LOGON_JUMP_URL] = null;
+
+                this.CurrentUserInfo = Session[RequestCommand.SESSION_USERINFO] as UserInfo;
             }
         }
 

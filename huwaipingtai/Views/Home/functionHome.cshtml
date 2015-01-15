@@ -10,6 +10,7 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <link href="../../Content/Header.css" rel="stylesheet" type="text/css" />
 
+        <script src="../../Scripts/jsWindow.js" type="text/javascript"></script>
         <script src="../../Scripts/JsExtend.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
@@ -187,12 +188,12 @@
                             $("#functionList").html("");
                             $("#functionList").html(divs);
                         }
-                        else {
-                            alert("返回数据失败！");
+                        else {                            
+                            sAlert("提示", "返回数据失败");
                         }
                     },
-                    error: function (s) {
-                        alert("请求数据失败！");
+                    error: function (s) {                        
+                        sAlert("提示", "请求数据失败！");
                     }
                 });
             };

@@ -91,6 +91,16 @@ namespace huwaipingtai.Controllers
             //    //存
             //}
             SetCustomerInfo(Request.Cookies["sid"].Value);
+            if (this.CurrentUserInfo != null)
+            {
+                ViewData["NameL"] = this.CurrentUserInfo.NickName; ViewData["ActionL"] = "/User/Home";
+                ViewData["NameR"] = "  "; ViewData["ActionR"] = "#";
+            }
+            else
+            {
+                ViewData["NameL"] = "登陆"; ViewData["ActionL"] = "/User/logon?t=direct_l";
+                ViewData["NameR"] = "注册"; ViewData["ActionR"] = "#";
+            }
         }
         /// <summary>
         /// 设置用户信息

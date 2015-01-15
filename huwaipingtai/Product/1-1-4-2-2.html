@@ -280,14 +280,14 @@
 				<div class="detail-img">
 					<div id="_zoom" class="imgbox">
 						<div id="imgSlider" class="imgbox-i" style="position:relative;left:0px;"> 
-							<span class="tbl-cell"><img width="320" height="292" seq="0" src="{$GoodsTuTou.FirstPath}"></span>
+							<span class="tbl-cell"><img width="320" height="292" seq="0" src="http://localhost:28342/Product/Images/n1/4/0ab06f7d-fe79-4cdb-a0f2-33d81c14108e.jpg"></span>
 						</div>
 					    <div class="last-msg-txt" id="tips"></div>
 				    </div>
-					<input type="hidden" value="{$GoodsTuTou.Paths}" id="imgs"/>
+					<input type="hidden" value="http://localhost:28342/Product/Images/n1/4/0ab06f7d-fe79-4cdb-a0f2-33d81c14108e.jpg,http://localhost:28342/Product/Images/n1/4/585c0b91-5155-40d3-b03a-13ed08191908.jpg,http://localhost:28342/Product/Images/n1/4/332d7306-d787-4376-bc89-7c99d37eb880.jpg" id="imgs"/>
 					<div class="detail-price"> 
-                        <span id="price" class="p-price">{$Goods.DiapalyPrice}</span> 
-                        <span id="imgpage" class="pagenum">1/{$GoodsTuTou.Count}</span>
+                        <span id="price" class="p-price">¥159.00</span> 
+                        <span id="imgpage" class="pagenum">1/3</span>
                         <a id="attention" class="btn-sc"></a> 
                      </div>
 				</div>
@@ -301,18 +301,18 @@
                     </a>
                     <span class="icon-arr"></span>
                 </div>
-                <p class="detail-title" id="title"><span>{$Goods.Description}&nbsp;&nbsp;&nbsp;&nbsp;{$Goods.Color}&nbsp;&nbsp;&nbsp;&nbsp;{$Goods.Size}</span></p>
+                <p class="detail-title" id="title"><span>女士上衣&nbsp;&nbsp;&nbsp;&nbsp;黑色&nbsp;&nbsp;&nbsp;&nbsp;M</span></p>
                 <p class="pi" id="promotion" style=" ">促销信息：<span> </span></p>
-                <p class="pi-detail" id="vender" style="">服务：<span>由&nbsp;{$Goods.JingXiaoShang}-{$Goods.MenDianName}&nbsp;负责发货，并提供售后服务。</span></p>
+                <p class="pi-detail" id="vender" style="">服务：<span>由&nbsp;北京服装经销商-北京大红门服装店&nbsp;负责发货，并提供售后服务。</span></p>
                 <div class="info gifts">
                     <span class="gift-content">
-                        <span id="giftslist" style="display:{$Goods.IsDispalyDonationDesc}">
+                        <span id="giftslist" style="display:none">
                             <span class="title12">赠品：</span>
-                            <span class="content"><a href="" data-sku="" class="link-event btn-hf">{$Goods.DonationDesc}</a></span>
+                            <span class="content"><a href="" data-sku="" class="link-event btn-hf"></a></span>
                         </span>
-				        <span id="couponslist"  style="display:{$Goods.IsDispalyEcoupons}">
+				        <span id="couponslist"  style="display:none">
                             <span class="title12">赠券：</span>
-                            <span class="content">{$Goods.Ecoupons}</span>
+                            <span class="content"></span>
                         </span>
 				    </span> 
                    
@@ -328,39 +328,67 @@
                         </span>
 				        <span class="s-block">
                             <span class="title12">颜色：</span>
-                            <span class="content"><span class="to-text3" id="sh-color">{$Goods.Color}</span></span>
+                            <span class="content"><span class="to-text3" id="sh-color">黑色</span></span>
                         </span>
 					    <span class="s-block">
                             <span class="title12">尺寸：</span>
-                            <span class="content"><span class="to-text3" id="sh-size">{$Goods.Size}</span></span>
+                            <span class="content"><span class="to-text3" id="sh-size">M</span></span>
                         </span>  
 				        <span class="icon-arr"></span>
                     </a>
                     <div class="detail-option" id="infos-detail" style="display:block;">
 					    <div class="option-section mt-10">
                             <span class="titlef1">颜色：</span>
-                             <vt:function var="data" method="GetGoodsColor" name="给商品颜色" v="1" />
+                             
                             <div class="option" id="color">
-                                 <vt:foreach item="pic" from="$data" index="i">
-                                    <vt:if var="pic.Id" value="$Goods.ColorId">
-                                         <a href="javascript:void(0)" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10 on">{$pic.Name}</a>&nbsp;
-                                    <vt:else>
-                                         <a href="{$Goods.PrGoodsSKU}-{$pic.Id}-{$Goods.SizeId}.html?v={$Version.V}" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10">{$pic.Name}</a>&nbsp;
-                                    </vt:if>
-                                </vt:foreach>
+                                 
+                                    
+                                         <a href="1-1-4-1-2.html" data-sku="1" title="红色" class="btn-hf btn-color-op mb-10">红色</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="javascript:void(0)" data-sku="2" title="黑色" class="btn-hf btn-color-op mb-10 on">黑色</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-4-3-2.html" data-sku="3" title="藏蓝色" class="btn-hf btn-color-op mb-10">藏蓝色</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-4-4-2.html" data-sku="4" title="白色" class="btn-hf btn-color-op mb-10">白色</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-4-5-2.html" data-sku="5" title="墨绿色" class="btn-hf btn-color-op mb-10">墨绿色</a>&nbsp;
+                                    
+                                
                             </div>
                         </div>
 						<div class="option-section mt-10">
                             <span class="titlef1">尺寸：</span> 
-                            <vt:function var="data" method="GetGoodsSize" name="给商品尺码" v="1" />
+                            
                             <div class="option" id="size">
-                               <vt:foreach item="pic" from="$data" index="i">
-                                    <vt:if var="pic.Id" value="$Goods.SizeId">
-                                         <a href="javascript:void(0)" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10 on">{$pic.Name}</a>&nbsp;
-                                    <vt:else>
-                                         <a href="{$Goods.PrGoodsSKU}-{$Goods.ColorId}-{$pic.Id}.html?v={$Version.V}" data-sku="{$pic.Id}" title="{$pic.Name}" class="btn-hf btn-color-op mb-10">{$pic.Name}</a>&nbsp;
-                                    </vt:if>
-                                </vt:foreach>
+                               
+                                    
+                                         <a href="1-1-4-2-1.html" data-sku="1" title="S" class="btn-hf btn-color-op mb-10">S</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="javascript:void(0)" data-sku="2" title="M" class="btn-hf btn-color-op mb-10 on">M</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-4-2-3.html" data-sku="3" title="L" class="btn-hf btn-color-op mb-10">L</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-4-2-4.html" data-sku="4" title="XL" class="btn-hf btn-color-op mb-10">XL</a>&nbsp;
+                                    
+                                
+                                    
+                                         <a href="1-1-4-2-5.html" data-sku="5" title="XXL" class="btn-hf btn-color-op mb-10">XXL</a>&nbsp;
+                                    
+                                
                             </div>
                         </div>
                         <div class="option-section mt-10" style="padding-bottom:20px;">
@@ -404,7 +432,7 @@
         </ul>
     </div>
     <!--数据读取区域  -->
-      <input id="ProductId" type="hidden" value="{$Goods.SKU}"/>
+      <input id="ProductId" type="hidden" value="1-1-4-2-2"/>
     <!--数据读取区域  -->
     <div class="tbl-type btns">
     	<div class="tbl-cell">  

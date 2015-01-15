@@ -22,7 +22,8 @@ namespace huwaipingtai.Controllers
                 Response.Cookies.Set(new HttpCookie("idt", idt));
                 Response.Cookies.Set(new HttpCookie("sid", Request["sid"]));
             }
-     
+            ViewData["NameL"] = "登陆"; ViewData["ActionL"] = "/User/logon?t=direct_l";
+            ViewData["NameR"] = "注册"; ViewData["ActionR"] = "#";
             return View("index");
         }
         public ActionResult FunctionHome()

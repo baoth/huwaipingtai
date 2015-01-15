@@ -292,6 +292,7 @@
     <Content Include="Product\goods.css" />
     <Content Include="Product\List.html" />
     <Content Include="Product\shelves01.css" />
+    <Content Include="Scripts\jsWindow.js" />
     <Content Include="Scripts\ImagePayer.js" />
     <Content Include="Scripts\JsExtend.js" />
     <Content Include="Scripts\json2.js" />

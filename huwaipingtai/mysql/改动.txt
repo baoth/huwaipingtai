@@ -1,0 +1,2 @@
+﻿ALTER TABLE `outsports`.`customer` 
+ADD COLUMN `WXID` VARCHAR(45) NULL AFTER `Mail`;

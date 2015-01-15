@@ -8,7 +8,16 @@ namespace Log
 {
     public class Logger
     {
+        private static string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log\\");
+        internal static string getLogPath()
+        {
 
+            if (!System.IO.Directory.Exists(logPath))
+            {
+                System.IO.Directory.CreateDirectory(logPath);
+            }
+            return (logPath +"log"+DateTime.Now.ToString("yyyyMMdd") + ".txt");
+        }
         // 用于存放写日志任务的队列
         private Queue<Action> _queue;
 
@@ -78,7 +87,7 @@ namespace Log
             lock (_queue)
             { // todo: 这里存在线程安全问题，可能会发生阻塞。
                 // 将任务加到队列
-                _queue.Enqueue(() => File.AppendAllText("log.txt", content));
+                _queue.Enqueue(() => File.AppendAllText(getLogPath(), content + "\r\n"));
             }
 
             // 打开“信号”

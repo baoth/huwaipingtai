@@ -14,6 +14,15 @@ namespace huwaipingtai.Controllers
 
         public ActionResult Index()
         {
+            var idt = Request["idt"];
+            
+           
+            if (idt == "wx")
+            {
+                Response.Cookies.Set(new HttpCookie("idt", idt));
+                Response.Cookies.Set(new HttpCookie("sid", Request["sid"]));
+            }
+     
             return View("index");
         }
         public ActionResult FunctionHome()

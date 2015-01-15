@@ -69,3 +69,4 @@ E:\户外运动平台\huwaipingtai\FZWeb\obj\Debug\FZ.dll
 E:\户外运动平台\huwaipingtai\FZWeb\obj\Debug\FZ.pdb
 F:\GithubMobile\huwaipingtai\FZWeb\bin\Autofac.xml
 X:\FuZhuangPingTai2014\huwaipingtai\FZWeb\bin\QSmart.Weixin.Core.dll
+F:\GithubMobile\huwaipingtai\FZWeb\bin\QSmart.Weixin.Core.dll

@@ -62,3 +62,4 @@ E:\户外运动平台\huwaipingtai\Tools\obj\Debug\ResolveAssemblyReference.cach
 E:\户外运动平台\huwaipingtai\Tools\obj\Debug\BusinessTemplate.dll
 E:\户外运动平台\huwaipingtai\Tools\obj\Debug\BusinessTemplate.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\Tools\bin\Debug\QSmart.Weixin.Core.dll
+F:\GithubMobile\huwaipingtai\Tools\bin\Debug\QSmart.Weixin.Core.dll

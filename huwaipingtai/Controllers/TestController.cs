@@ -14,7 +14,7 @@ namespace huwaipingtai.Controllers
     public class TestController : Controller
     {
         // GET: /Test/
-   
+        [HttpGet]
         public JsonResult Index()
             
         {

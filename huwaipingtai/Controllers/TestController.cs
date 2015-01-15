@@ -7,6 +7,7 @@ using QSmart.Core.DataBase;
 using DataModel;
 using DataModel.Order;
 using QSmart.Core.Object;
+using Log;
 
 namespace huwaipingtai.Controllers
 {
@@ -15,7 +16,10 @@ namespace huwaipingtai.Controllers
         // GET: /Test/
    
         public JsonResult Index()
+            
         {
+            Logger.Write("进入方法");
+            Logger.Write("进入方法");
             return Json(new {UserName="123123",Org="test"},JsonRequestBehavior.AllowGet);
         }
         public ActionResult CreateTable() 

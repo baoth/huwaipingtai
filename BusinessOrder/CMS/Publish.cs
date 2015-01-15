@@ -40,7 +40,7 @@ namespace BusinessOrder.CMS
             var colorSKU = goodsSKU.Substring(0, goodsSKU.LastIndexOf('-'));
             Document document = new Document(fileName, Encoding.UTF8);
             document.SetValue("Goods", opGoods.GetGoods(goodsSKU));
-
+            document.SetValue("Version", new { V=Guid.NewGuid().ToString().Replace("-","") });
             var imgs = iOPShelves.GetSelectImgByImgkey(colorSKU);
             if (imgs.Count > 0)
             {

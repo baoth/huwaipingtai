@@ -15,8 +15,7 @@ namespace huwaipingtai.Controllers
         public ActionResult Index()
         {
             var idt = Request["idt"];
-            
-           
+             
             if (idt == "wx")
             {
                 Response.Cookies.Set(new HttpCookie("idt", idt));
@@ -24,6 +23,7 @@ namespace huwaipingtai.Controllers
             }
             ViewData["NameL"] = "登陆"; ViewData["ActionL"] = "/User/logon?t=direct_l";
             ViewData["NameR"] = "注册"; ViewData["ActionR"] = "#";
+            ViewData["V"] = Guid.NewGuid().ToString();
             return View("index");
         }
         public ActionResult FunctionHome()

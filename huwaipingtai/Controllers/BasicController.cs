@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DataModel.Order;
 
 namespace huwaipingtai.Controllers
 {
@@ -89,7 +90,40 @@ namespace huwaipingtai.Controllers
             //    var sid = Request.Cookies["sid"];
             //    //存
             //}
-            this.CurrentUserInfo = new UserInfo { Id = Request.Cookies["sid"].Value, NickName = "游客" };
+            SetCustomerInfo(Request.Cookies["sid"].Value);
+        }
+        /// <summary>
+        /// 设置用户信息
+        /// </summary>
+        public void SetCustomerInfo(string weixinId)
+        {
+            if (string.IsNullOrEmpty(weixinId)) return;
+            var obj = iLogon;
+            if (!obj.IsExist(weixinId))
+            {
+                var model = new Customer();
+                model.Id = Guid.NewGuid().ToString().Replace("-","");
+                model.WXID = weixinId;
+                model.NikeName = "游客";
+                obj.Add(model);
+            }
+            var user = obj.GetCustomerByWXID(weixinId);
+            if (user != null)
+            {
+
+                var ncookie = new HttpCookie(RequestCommand.COOKIE_LOGONNAME, user.LoginName);
+                ncookie.Expires = DateTime.Now.AddMonths(1);
+                var pcookie = new HttpCookie(RequestCommand.COOKIE_LOGONPASSWORD, user.Password);
+                pcookie.Expires = DateTime.Now.AddMonths(1);
+                Response.SetCookie(ncookie);
+                Response.SetCookie(pcookie);
+
+                Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = user.Id, NickName = user.NikeName };
+                var jumpurl = Session[RequestCommand.LOGON_JUMP_URL] as string;
+                Session[RequestCommand.LOGON_JUMP_URL] = null;
+
+                this.CurrentUserInfo = Session[RequestCommand.SESSION_USERINFO] as UserInfo;
+            }
         }
     }
 

@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FeedBackController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -132,6 +133,7 @@
     <Content Include="Content\images\bg_line3.png" />
     <Content Include="Content\images\defaultLink.jpg" />
     <Content Include="Content\images\home-icons.png" />
+    <Content Include="Content\images\icon-fov.png" />
     <Content Include="Content\images\icon-shp-cart-remove.png" />
     <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\icon2b.png" />
@@ -272,7 +274,22 @@
     <Content Include="Product\1000000022\shelves01.js" />
     <Content Include="Product\1000000022\indexTemplate.html" />
     <Content Include="Product\1000000022\storeInDoc.html" />
+    <Content Include="Product\1010.html" />
+    <Content Include="Product\1011.html" />
+    <Content Include="Product\1012.html" />
+    <Content Include="Product\1013.html" />
+    <Content Include="Product\1014.html" />
+    <Content Include="Product\1015.html" />
+    <Content Include="Product\1016.html" />
+    <Content Include="Product\1017.html" />
+    <Content Include="Product\1018.html" />
+    <Content Include="Product\1019.html" />
+    <Content Include="Product\Catalog.css" />
+    <Content Include="Product\Catalog2.css" />
+    <Content Include="Product\goods.css" />
+    <Content Include="Product\List.html" />
     <Content Include="Product\shelves01.css" />
+    <Content Include="Scripts\ImagePayer.js" />
     <Content Include="Scripts\JsExtend.js" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\numeralInput.js" />
@@ -293,6 +310,7 @@
     <Content Include="Scripts\qsm-mui\zepto.touch.js" />
     <Content Include="Scripts\Spin\spin-min.js" />
     <Content Include="Scripts\Spin\spin.js" />
+    <Content Include="Views\Category\all.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -343,6 +361,8 @@
     <Content Include="Views\FeedBack\AdviceSubmited.cshtml" />
     <Content Include="Views\Home\functionHome.cshtml" />
     <Content Include="Views\Home\index1.cshtml" />
+    <Content Include="Views\Category\Products_000.cshtml" />
+    <Content Include="Views\Order\successSubmit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

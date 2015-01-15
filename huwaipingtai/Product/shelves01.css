@@ -503,3 +503,63 @@ a
 {
 	background-position: -60px -27px;
 }
+/*新增*/
+.new-p-re {
+    position: relative;
+}
+
+.detail-img {
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    width: 320px;
+}
+
+.detail-price {
+    height: 30px;
+    line-height: 30px;
+    background-color: rgba(255,255,255,0.7);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#goods-img-box .p-price {
+    font-size: 16px;
+    color: #f24b48;
+    position: absolute;
+    left: 11px;
+}
+
+.btn-sc {
+    position: absolute;
+    background: url("../../../Content/images/icon-fov.png");
+    background-size: 45px 70px;
+    width: 21px;
+    height: 20px;
+    right: 11px;
+    top: 5px;
+}
+
+.btn-sc.on {
+    background-position: -23px 0;
+}
+
+.pagenum {
+    color: #252525;
+    font-size: 8px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #ff6b6b;
+    line-height: 17px;
+}
+.p-price {
+font-size: 16px;
+color: #f24b48;
+position: absolute;
+left: 11px;
+}

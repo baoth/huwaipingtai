@@ -32,23 +32,26 @@
 
             var BindEvent = function () {
                 $("#btn_save").bind("click", function () {
-                    
+
                     var url = "/Shelves/SaveShangJia_Sku_TuTou";
                     var dataRow = [];
                     var imgKey = $("#txt_sku").val();
+                    var sort = 0;
                     $("#RowContent a").each(function () {
                         var aObj = $(this)
                         var checked = aObj.attr("checked");
                         if (checked == "1") {
+                            sort++;
                             var row = {};
                             row.ShangJia_ShangPin_TuCeId = aObj.attr("tuceid");
                             row.ImgName = $(aObj.find("img")).attr("v");
                             row.ImgKey = imgKey; //.substring(0, sku.lastIndexOf('-')); //截取 sku
+                            row.Sort = sort;
                             dataRow.push(row);
                         }
 
                     })
-                    
+
                     var dataJson = JSON.stringify(dataRow);
                     var para = { data: dataJson };
                     SaveAjax(url, para);
@@ -75,7 +78,7 @@
                 var imgFullPath =rootPath + shangpinid + "/" + imgName;
                 var shangJia_ShangPin_TuCeId = data["ShangJia_ShangPin_TuCeId"];
                 var divs = ' <li> '                           
-                           + '    <a href="javascription:;" onclick="changeSelected(this)" tuceid={5} checked={1} >'
+                           + '    <a href="javascription:" onclick="changeSelected(this)" tuceid={5} checked={1} >'
                            +'        <span id="checkIcon{0}" class="{3}"></span> ' 
                            + '       <img v={4} src="{2}" alt="">'
                            + '     </a>'                          

@@ -40,6 +40,17 @@ namespace BusinessOrder.CMS
             var colorSKU = goodsSKU.Substring(0, goodsSKU.LastIndexOf('-'));
             Document document = new Document(fileName, Encoding.UTF8);
             document.SetValue("Goods", opGoods.GetGoods(goodsSKU));
+
+            var imgs = iOPShelves.GetSelectImgByImgkey(colorSKU);
+            if (imgs.Count > 0)
+            {
+                var imgStrs = "";
+                foreach (var item in imgs)
+                {
+                    imgStrs = imgStrs + (string.IsNullOrEmpty(imgStrs) ? item : "," + item);
+                }
+                document.SetValue("GoodsTuTou", new { FirstPath = imgs[0], Paths = imgStrs,Count=imgs.Count });
+            }
             //注册商品尺码对象
             UserDefinedFunction GetGoodsSize = (o) =>
             {
@@ -51,18 +62,18 @@ namespace BusinessOrder.CMS
                 return opGoods.GetGoodsSize(goodsSKU);
             };
             document.RegisterGlobalFunction("GetGoodsSize", GetGoodsSize);
-            UserDefinedFunction GetTuTou = (o) =>
-            {
-                /*预留吧 有可能根据商品分类来读取数据*/
-                var d = TemplateDocument.CurrentRenderingDocument;
-                var tag = d == null ? null : d.CurrentRenderingTag;
-                var goodsName = tag.Attributes.GetValue("name");
-                var goodsId = tag.Attributes.GetValue("id");
-                var imgs = iOPShelves.GetSelectImgByImgkey(colorSKU);
-                return imgs;
-            };
+            //UserDefinedFunction GetTuTou = (o) =>
+            //{
+            //    /*预留吧 有可能根据商品分类来读取数据*/
+            //    var d = TemplateDocument.CurrentRenderingDocument;
+            //    var tag = d == null ? null : d.CurrentRenderingTag;
+            //    var goodsName = tag.Attributes.GetValue("name");
+            //    var goodsId = tag.Attributes.GetValue("id");
+            //    var imgs = iOPShelves.GetSelectImgByImgkey(colorSKU);
+            //    return imgs;
+            //};
 
-            document.RegisterGlobalFunction("GetTuTou", GetTuTou);
+            //document.RegisterGlobalFunction("GetTuTou", GetTuTou);
             //注册商品颜色对象
             UserDefinedFunction GetGoodsColor = (o) =>
             {

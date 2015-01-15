@@ -61,14 +61,14 @@
                 var li = '<li id="product{0}">'
 	            + '<div class="items">'
                 + ' <div class="cart-check-wrapper"> '
-                + ' <span id="checkIcon{0}" class="cart-checkbox {3}" onclick="changeSelected(this,\'{0}\',1)"></span> '
+                + ' <span id="checkIcon{0}" class="cart-checkbox {3}" onclick="changeSelected(this,\'{0}\')"></span> '
                 + ' </div> '
                 + ' <div class="cart-item-core"> '
                 + '  <div class="cart-product-cell-3"> '
                 + '      <span class="cart-item-price" id="price{0}">￥{1}</span> '
                 + '  </div> '
                 + '  <a class="cart-product-cell-1" href="javascript:"> '
-                + '      <img class="cart-photo-thumb" alt="" src="{6}" onerror="lib/skin/e/i/error-jd.gif"> '
+                + '      <img class="cart-photo-thumb" onclick="ImgChangeSelected(\'{0}\')" alt="" src="{6}" onerror="lib/skin/e/i/error-jd.gif"> '
                 + '  </a> '
                 + '  <div class="cart-product-cell-2"> '
                 + '      <div class="cart-product-name"><a href="'+htmlPath+'"><span>{4}</span></a></div>  '
@@ -168,6 +168,22 @@
 
                 submitAjax(url,para);
             }
+            function ImgChangeSelected(id) {
+                debugger
+                var obj = $("#checkIcon"+id);
+                var check = 0;
+                if (obj.hasClass("checked")) {                   
+                    check = 0;
+                }
+                else {                    
+                    check = 1;
+                }
+                var url = "/Cart/UpdateActived";
+                var pStr = id + "," + check;
+                var para = { para: pStr };
+
+                submitAjax(url, para);
+            }
 
             function checkAllProduct(e) {
 
@@ -181,7 +197,7 @@
                     obj.addClass("checked");
                 }
 
-                var url = "UpdateActived";
+                var url = "/Cart/UpdateActived";
                 var para = { type: "all", actived: actived };
 
                 submitAjax(url, para);     
@@ -726,10 +742,10 @@
                 <span onclick="checkAllProduct(this);" class="cart-checkbox checked"  id="checkIcon-1"></span>
             </div>
             <div class="shp-cart-info">
-                <strong class="shp-cart-total">总计:￥<span class="" id="cart_realPrice">60.40</span></strong>
+                <strong class="shp-cart-total">总计:￥<span class="" id="cart_realPrice">0.00</span></strong>
                 <span class="sale-off">商品总额:￥<span class="bottom-bar-price" id="cart_oriPrice">60.40</span> 返现:￥<span class="bottom-bar-price" id="cart_rePrice">0.00</span></span>
             </div>
-             <a class="btn-right-block" id="submit" href="#" onclick="SettleAccounts()" style="background: rgb(192, 0, 0);">结算(<span id="checkedNum"> 1 </span>)</a>
+             <a class="btn-right-block" id="submit" href="#" onclick="SettleAccounts()" style="background: rgb(192, 0, 0);">结算(<span id="checkedNum">0</span>)</a>
        </div>
 
        <div id="emptyCart" style="display:none">

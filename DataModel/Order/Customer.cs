@@ -25,6 +25,8 @@ namespace DataModel.Order
         public string Password { get; set; }
         [StringMaxLength(50, VarCharType.nvarchar)]
         public string Mail { get; set; }
+        [StringMaxLength(50, VarCharType.nvarchar)]
+        public String WXID { set; get; }
     }
 
     /// <summary>

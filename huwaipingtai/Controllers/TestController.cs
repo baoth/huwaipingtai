@@ -13,11 +13,11 @@ namespace huwaipingtai.Controllers
     public class TestController : Controller
     {
         // GET: /Test/
-        public ActionResult Index()
+   
+        public JsonResult Index()
         {
-            return View();
+            return Json(new {UserName="123123",Org="test"},JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult CreateTable() 
         {
             QSmartDatabaseClient db = DataBaseProvider.Create("db");

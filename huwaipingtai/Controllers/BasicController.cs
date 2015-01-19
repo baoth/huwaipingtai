@@ -98,8 +98,8 @@ namespace huwaipingtai.Controllers
             }
             else
             {
-                ViewData["NameL"] = "登陆"; ViewData["ActionL"] = "/User/logon?t=direct_l";
-                ViewData["NameR"] = "注册"; ViewData["ActionR"] = "#";
+                //ViewData["NameL"] = "登陆"; ViewData["ActionL"] = "/User/logon?t=direct_l";
+                //ViewData["NameR"] = "注册"; ViewData["ActionR"] = "#";
             }
         }
         /// <summary>

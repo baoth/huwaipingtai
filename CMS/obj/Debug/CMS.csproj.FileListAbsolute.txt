@@ -66,3 +66,4 @@ E:\户外运动平台\huwaipingtai\CMS\obj\Debug\CMS.dll
 E:\户外运动平台\huwaipingtai\CMS\obj\Debug\CMS.pdb
 F:\GithubMobile\huwaipingtai\CMS\bin\Autofac.xml
 F:\GithubMobile\huwaipingtai\CMS\bin\QSmart.Weixin.Core.dll
+X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\QSmart.Weixin.Core.dll

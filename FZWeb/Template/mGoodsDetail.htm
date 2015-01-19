@@ -242,8 +242,11 @@
                 var quantity = $("#number").val();
                 $(this).attr("href", "/Cart/Add?sku=" + sku + "&quantity=" + quantity);
             });
+
             $("#directbuy").bind("click", function () {
-                window.location = window.location.origin + '/Cart/index'
+                var sku = $("#ProductId").val();
+                var quantity = $("#number").val();
+                $(this).attr("href", "/Cart/BuyDirect?sku=" + sku + "&quantity=" + quantity);
             });
         });
     </script>

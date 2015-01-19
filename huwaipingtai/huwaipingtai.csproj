@@ -70,8 +70,6 @@
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 3\Assemblies\System.Web.Mvc.dll</HintPath>
@@ -294,6 +292,7 @@
     <Content Include="Product\goods.css" />
     <Content Include="Product\List.html" />
     <Content Include="Product\shelves01.css" />
+    <Content Include="Scripts\jsWindow.js" />
     <Content Include="Scripts\ImagePayer.js" />
     <Content Include="Scripts\JsExtend.js" />
     <Content Include="Scripts\json2.js" />

@@ -242,8 +242,11 @@
                 var quantity = $("#number").val();
                 $(this).attr("href", "/Cart/Add?sku=" + sku + "&quantity=" + quantity);
             });
+
             $("#directbuy").bind("click", function () {
-                window.location = window.location.origin + '/Cart/index'
+                var sku = $("#ProductId").val();
+                var quantity = $("#number").val();
+                $(this).attr("href", "/Cart/BuyDirect?sku=" + sku + "&quantity=" + quantity);
             });
         });
     </script>
@@ -347,19 +350,19 @@
                                     
                                 
                                     
-                                         <a href="1-1-1-2-2.html?v=de7d47dc2c09490ea29c3d961276d617" data-sku="2" title="黑色" class="btn-hf btn-color-op mb-10">黑色</a>&nbsp;
+                                         <a href="1-1-1-2-2.html?v=ac216d770af6448e94d82d68b64ef827" data-sku="2" title="黑色" class="btn-hf btn-color-op mb-10">黑色</a>&nbsp;
                                     
                                 
                                     
-                                         <a href="1-1-1-3-2.html?v=de7d47dc2c09490ea29c3d961276d617" data-sku="3" title="藏蓝色" class="btn-hf btn-color-op mb-10">藏蓝色</a>&nbsp;
+                                         <a href="1-1-1-3-2.html?v=ac216d770af6448e94d82d68b64ef827" data-sku="3" title="藏蓝色" class="btn-hf btn-color-op mb-10">藏蓝色</a>&nbsp;
                                     
                                 
                                     
-                                         <a href="1-1-1-4-2.html?v=de7d47dc2c09490ea29c3d961276d617" data-sku="4" title="白色" class="btn-hf btn-color-op mb-10">白色</a>&nbsp;
+                                         <a href="1-1-1-4-2.html?v=ac216d770af6448e94d82d68b64ef827" data-sku="4" title="白色" class="btn-hf btn-color-op mb-10">白色</a>&nbsp;
                                     
                                 
                                     
-                                         <a href="1-1-1-5-2.html?v=de7d47dc2c09490ea29c3d961276d617" data-sku="5" title="墨绿色" class="btn-hf btn-color-op mb-10">墨绿色</a>&nbsp;
+                                         <a href="1-1-1-5-2.html?v=ac216d770af6448e94d82d68b64ef827" data-sku="5" title="墨绿色" class="btn-hf btn-color-op mb-10">墨绿色</a>&nbsp;
                                     
                                 
                             </div>
@@ -370,7 +373,7 @@
                             <div class="option" id="size">
                                
                                     
-                                         <a href="1-1-1-1-1.html?v=de7d47dc2c09490ea29c3d961276d617" data-sku="1" title="S" class="btn-hf btn-color-op mb-10">S</a>&nbsp;
+                                         <a href="1-1-1-1-1.html?v=ac216d770af6448e94d82d68b64ef827" data-sku="1" title="S" class="btn-hf btn-color-op mb-10">S</a>&nbsp;
                                     
                                 
                                     
@@ -378,15 +381,15 @@
                                     
                                 
                                     
-                                         <a href="1-1-1-1-3.html?v=de7d47dc2c09490ea29c3d961276d617" data-sku="3" title="L" class="btn-hf btn-color-op mb-10">L</a>&nbsp;
+                                         <a href="1-1-1-1-3.html?v=ac216d770af6448e94d82d68b64ef827" data-sku="3" title="L" class="btn-hf btn-color-op mb-10">L</a>&nbsp;
                                     
                                 
                                     
-                                         <a href="1-1-1-1-4.html?v=de7d47dc2c09490ea29c3d961276d617" data-sku="4" title="XL" class="btn-hf btn-color-op mb-10">XL</a>&nbsp;
+                                         <a href="1-1-1-1-4.html?v=ac216d770af6448e94d82d68b64ef827" data-sku="4" title="XL" class="btn-hf btn-color-op mb-10">XL</a>&nbsp;
                                     
                                 
                                     
-                                         <a href="1-1-1-1-5.html?v=de7d47dc2c09490ea29c3d961276d617" data-sku="5" title="XXL" class="btn-hf btn-color-op mb-10">XXL</a>&nbsp;
+                                         <a href="1-1-1-1-5.html?v=ac216d770af6448e94d82d68b64ef827" data-sku="5" title="XXL" class="btn-hf btn-color-op mb-10">XXL</a>&nbsp;
                                     
                                 
                             </div>

@@ -12,6 +12,7 @@ using IBusinessOrder.Cart;
 using IBusinessOrder.Store;
 using Toolkit.Fun;
 using IBusinessOrder.User;
+using Toolkit.Ext;
 namespace BusinessOrder.Order
 {
     public class OPCustomerOrder : IOPCustomerOrder
@@ -124,7 +125,39 @@ namespace BusinessOrder.Order
             
             return string.IsNullOrEmpty(msg)?FunResult.GetSuccess(): FunResult.GetError(msg);
         }
+
+
+        public List<OrderGoodsDto> GetUserAllOrderList(string customerId)
+        {
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var sql = string.Format(@"
+                                     select   a.Id,a.Sku,a.CustomerId,a.Quantity,a.Description,b.Price,a.ShangPinId,a.ImgName from
+                                    `order` as o 
+                                     left join ordergoods  b on o.id=b.orderid
+                                     left join cartview a  on a.sku=b.sku where a.CustomerId='{0}'
+                                    ", customerId);
+
+            var dt = dbSession.Context.QueryTable(sql);
+            var list = dt.ToList<OrderGoodsDto>() as List<OrderGoodsDto>;
+            return list;
+        }
+
+
+        public List<OrderGoodsDto> GetUserAllOrderList(string customerId, int pageSize, int pageIndex)
+        {
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var sql = string.Format(@"
+                                    select   a.Id,a.Sku,a.CustomerId,a.Quantity,a.Description,b.Price,a.ShangPinId,a.ImgName from
+                                    `order` as o 
+                                     left join ordergoods  b on o.id=b.orderid
+                                     left join cartview a  on a.sku=b.sku where a.CustomerId='{0}' limit {1}
+                                    ", customerId,pageIndex*pageSize);
+            var dt = dbSession.Context.QueryTable(sql);
+            var list = dt.ToList<OrderGoodsDto>() as List<OrderGoodsDto>;
+            return list;
+        }
     }
 
-    
+
+   
 }

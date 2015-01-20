@@ -30,5 +30,20 @@ namespace IBusinessOrder.Order
         /// <param name="customerId"></param>
         /// <returns></returns>
         List<DataModel.View.CartView> GetActivedCarts(string customerId);
+        /// <summary>
+        /// 获取客户对应的所有订单信息
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
+        List<DataModel.Order.OrderGoodsDto> GetUserAllOrderList(string customerId);
+        /// <summary>
+        /// 获取客户对应的所有订单信息
+        /// </summary>
+        /// <param name="customerId">客户ID</param>
+        /// <param name="pageSize">分页长度</param>
+        /// <param name="pageIndex">页码Index</param>
+        /// <returns>OrderGoodsDto List</returns>
+        List<DataModel.Order.OrderGoodsDto> GetUserAllOrderList(string customerId,int pageSize,int pageIndex);
+
     }
 }

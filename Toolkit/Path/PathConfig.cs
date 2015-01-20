@@ -48,7 +48,7 @@ namespace Toolkit.Path
        /// 生成的HTML页面
        /// </summary>
        /// <returns></returns>
-       public static string WebGenerateHtmlPath()
+       public static string GetWebGenerateHtmlPath()
        {
            var path = System.Configuration.ConfigurationManager.AppSettings["WebGenerateHtmlPath"];
            return path;

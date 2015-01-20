@@ -77,6 +77,46 @@ namespace DataModel.Order
         public int OrderId { get; set; }
         public string Sku { get; set; }
         public int Quantity { get; set; }
+        public decimal Price { set; get; }
+    }
+    /// <summary>
+    /// 临时实体
+    /// </summary>
+    public class OrderGoodsDto
+    {       
+        public int Id { get; set; }
+        /// <summary>
+        /// 商品编码
+        /// </summary>        
+        public string Sku { get; set; }
+        /// <summary>
+        /// 客户编码
+        /// </summary>        
+        public string CustomerId { get; set; }       
+        /// <summary>
+        /// 商品数量
+        /// </summary>
+        public int Quantity { get; set; }
+        /// <summary>
+        /// 商品描述
+        /// </summary>        
+        public string Description { get; set; }
+        /// <summary>
+        /// 商品单价
+        /// </summary>
+        public decimal Price { get; set; }
+        /// <summary>
+        /// 商品ID
+        /// </summary>
+        public int ShangPinId { set; get; }
+        /// <summary>
+        /// 图片名称
+        /// </summary>
+        public string ImgName { set; get; }
+        /// <summary>
+        /// 图片路径
+        /// </summary>
+        public string ImgUrl { set; get; }
     }
 
 }

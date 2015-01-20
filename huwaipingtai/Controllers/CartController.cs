@@ -27,7 +27,7 @@ namespace huwaipingtai.Controllers
                 {
                     ViewData["NickName"] = this.CurrentUserInfo.NickName;
                 }
-                string webImgPath = PathConfig.WebGenerateHtmlPath();
+                string webImgPath = PathConfig.GetWebGenerateHtmlPath();
                 ViewData["ImgPath"] = webImgPath;
             }
            

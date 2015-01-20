@@ -16,6 +16,7 @@ using QSmart.Core.DataBase;
 using System.Data;
 using Toolkit.CommonModel;
 using Toolkit.Fun;
+using Toolkit.Path;
 namespace huwaipingtai.Controllers
 {
     public class OrderController : BasicController
@@ -95,6 +96,36 @@ namespace huwaipingtai.Controllers
         public ActionResult successSubmit()
         {
             return View("successSubmit");
+        }
+        public ActionResult userAllOrderList()
+        {
+           var imagePath= PathConfig.GetWebSmallImagPath();
+            if(!string.IsNullOrEmpty(imagePath))
+            {
+                ViewData["imagepath"]=imagePath;
+            }
+            var htmlPath=PathConfig.GetWebGenerateHtmlPath();
+           if(!string.IsNullOrEmpty(htmlPath))
+           {
+              ViewData["htmlpath"]=htmlPath;        
+           }
+            
+            return View("userAllOrderList");
+        }
+        public ActionResult GetUserAllOrderList()
+        {
+            if (this.CurrentUserInfo == null) return null;
+           var customerid = this.CurrentUserInfo.Id;           
+           int index = 1 ;
+            var pageIndex=Request["pageindex"];
+            if (!int.TryParse(pageIndex, out index))
+            {
+                index = 1;
+            }
+            var list = customerOrder.GetUserAllOrderList(customerid, 5, index);
+           var json = JsonHelp.objectToJson(list);
+           return Content(json);
+           
         }
 
     }

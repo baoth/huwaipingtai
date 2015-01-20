@@ -49,7 +49,7 @@
                     },
                     type: 'post',
                     success: function (action, response) {
-                        debugger
+                        
                         //  var msg = action.IsSuccess?action.Msg"
                         if (action.IsSuccess) {
                             //alert("提交订单成功");
@@ -63,25 +63,29 @@
                 });
             }
             function initCourier() {
+                
                 if (window.sessionStorage.courierDate == undefined || window.sessionStorage.courierDate == '') {
-                    var d = getcookie("order_courierDate") || new Date().DateAdd('d', 1).Format('YYYY-M-D');
+
+                    var d = new Date().DateAdd('d', 1).Format('YYYY-M-D'); // getcookie("order_courierDate") || 
                     window.sessionStorage.courierDate = d;
 
                 } else {
-                    setcookie("order_courierDate", window.sessionStorage.courierDate);
+                   // setcookie("order_courierDate", window.sessionStorage.courierDate);
                 }
                 var defaultDate = new Date().StringToDate(window.sessionStorage.courierDate);
                 if (window.sessionStorage.courierTimeSect == undefined || window.sessionStorage.courierTimeSect == '') {
-                    var d = getcookie("order_courierTimeSect") || '9:00-15:00';
+                    var d = '9:00-15:00'; //getcookie("order_courierTimeSect") || 
+                    
                     window.sessionStorage.courierTimeSect = d;
-                  
+
                 } else {
+                    
                     setcookie("order_courierDate", window.sessionStorage.courierTimeSect);
                 }
                 var defaultTimeSect = window.sessionStorage.courierTimeSect;
 
                 if (window.sessionStorage.courierSend == undefined || window.sessionStorage.courierSend == 'undefined' || window.sessionStorage.courierSend == '') {
-                    var d = getcookie("order_courierSendt") || '1';
+                    var d = '1'; // getcookie("order_courierSendt") || 
                     window.sessionStorage.courierSend = d;
                   
                 } else {
@@ -104,7 +108,8 @@
             };
             function initInvoice() {
                 if (window.sessionStorage.invoiceTitle == undefined || window.sessionStorage.invoiceTitle == '') {
-                    var d = getcookie("order_invoiceTitle") || '1';
+
+                    var d =unescape(getcookie("order_invoiceTitle")) || '1';
                     window.sessionStorage.invoiceTitle = d;
 
                 } else {
@@ -115,11 +120,11 @@
                     window.sessionStorage.invoiceContent = '1';
                    
                 } else {
-                    setcookie("order_invoiceContent", window.sessionStorage.invoiceContent);
+                   setcookie("order_invoiceContent", window.sessionStorage.invoiceContent);
                 }
                 if (window.sessionStorage.invoiceCompany == undefined) {
-                    var d = getcookie("order_invoiceCompany") || '';
-                    window.sessionStorage.invoiceCompany = d;
+                    var d = unescape(getcookie("order_invoiceCompany")) || '';
+                    window.sessionStorage.invoiceCompany =d;
                 } else {
                     setcookie("order_invoiceCompany", window.sessionStorage.invoiceCompany);
                 }
@@ -136,16 +141,16 @@
             function initPay() {
                 if (window.sessionStorage.payType == undefined || window.sessionStorage.payType == '') {
                     var d = getcookie("order_payType") || '1';
-                    window.sessionStorage.payType = '1';
+                    window.sessionStorage.payType = d;
                  
                 } else {
                     setcookie("order_payType", window.sessionStorage.payType);
                 }
                 if (window.sessionStorage.payText == undefined || window.sessionStorage.payText == '') {
-                    var d = getcookie("order_payText") || '线下支付';
-                    window.sessionStorage.payText = d;
+                    var d = unescape(getcookie("order_payText")) || '线下支付';
+                    window.sessionStorage.payText =d;
                 } else {
-                    setcookie("order_payType", window.sessionStorage.payText);
+                    setcookie("order_payText",unescape(window.sessionStorage.payText));
                 }
                 $('#pay').data('paytype', window.sessionStorage.payType)
                          .text(window.sessionStorage.payText);
@@ -155,17 +160,17 @@
                     window.sessionStorage.payText = $(this).text();
                     $(this).parent('a').trigger($.clickAction);
                 });
-            };
+            };/*cookie*/
             function initDelivery() {
                 if (window.sessionStorage.DeliveryType == undefined || window.sessionStorage.DeliveryType == '') {
                     var d = getcookie("order_DeliveryType") || '1';
-                    window.sessionStorage.DeliveryType = d;
+                    window.sessionStorage.DeliveryType =d;
                 } else {
                     setcookie("order_DeliveryType", window.sessionStorage.DeliveryType);
                 }
                 if (window.sessionStorage.DeliveryText == undefined || window.sessionStorage.DeliveryText == '') {
-                    var d = getcookie("order_DeliveryText") || '门店自提';
-                    window.sessionStorage.DeliveryText = d;
+                    var d =unescape(getcookie("order_DeliveryText")) || '门店自提';
+                    window.sessionStorage.DeliveryText =d;
                 } else {
                     setcookie("order_DeliveryText", window.sessionStorage.DeliveryText);
                 }
@@ -202,20 +207,20 @@
             function initAddress() {
                 window.sessionStorage.backurl = document.URL;
                 if (!window.sessionStorage.addressDetailId) {
-                    var d = getcookie("order_shiperNameId") || " ";
-                    var d1 = getcookie("order_phoneNumId") || "选择收货人";
-                    var d2 = getcookie("order_addressDetailId") || "";
+                    var d = " "; //getcookie("order_shiperNameId") ||
+                    var d1 = "选择收货人"; // getcookie("order_phoneNumId") || 
+                    var d2 = ""; //getcookie("order_addressDetailId") ||
                     $('#shiperNameId').text(d);
                     $('#phoneNumId').text(d1);
                     $('#addressDetailId').text(d2);
                 }
                 else {
                     $('#shiperNameId').text(window.sessionStorage.shiperName);
-                    setcookie("order_shiperNameId", window.sessionStorage.shiperName)
+//                    setcookie("order_shiperNameId", window.sessionStorage.shiperName)
                     $('#phoneNumId').text(window.sessionStorage.phoneNum);
-                    setcookie("order_phoneNumId", window.sessionStorage.phoneNum)
+//                    setcookie("order_phoneNumId", window.sessionStorage.phoneNum)
                     $('#addressDetailId').text(window.sessionStorage.addressDetail);
-                    setcookie("order_addressDetailId", window.sessionStorage.addressDetail)
+//                    setcookie("order_addressDetailId", window.sessionStorage.addressDetail)
                     var href = $('#address').attr('href');
                     $('#address').attr('href', href + "?Id=" + window.sessionStorage.addressDetailId);
                     $('#address').data('addressDetailId', window.sessionStorage.addressDetailId);

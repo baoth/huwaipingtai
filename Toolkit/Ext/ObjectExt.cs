@@ -56,9 +56,9 @@ namespace Toolkit.Ext
                     continue;
                 }
                 object value = row[column.ColumnName];
-                if (value == DBNull.Value) value = null;
+                if (value == DBNull.Value) value = "";
 
-                property.SetValue(obj, value, null);
+                property.SetValue(obj,ParseObj(property.PropertyType,value.ToString()), null);
 
             }
             return obj;
@@ -110,6 +110,107 @@ namespace Toolkit.Ext
             catch
             {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// 字符串值转换成类型值
+        /// </summary>
+        /// <param name="PropertyType">类型</param>
+        /// <param name="value">字符串值</param>
+        /// <returns>类型值</returns>
+        public static object ParseObj(Type PropertyType, string value)
+        {
+            if (PropertyType == typeof(String))
+            {
+                return value;
+            }
+            else if (PropertyType.IsEnum)
+            {
+                return int.Parse(value);
+            }
+            else if (PropertyType == typeof(Int16) || PropertyType == typeof(Nullable<Int16>))
+            {
+                Int16 result = 0;
+                Int16.TryParse(value, out result);
+                return result;
+            }
+            else if (PropertyType == typeof(Int32) || PropertyType == typeof(Nullable<Int32>))
+            {
+                Int32 result = 0;
+                Int32.TryParse(value, out result);
+                return result;
+            }
+            else if (PropertyType == typeof(Int64) || PropertyType == typeof(Nullable<Int64>))
+            {
+                Int64 result = 0;
+                Int64.TryParse(value, out result);
+                return result;
+            }
+            else if (PropertyType == typeof(float) || PropertyType == typeof(Nullable<float>))
+            {
+                float result = 0;
+                float.TryParse(value, out result);
+                return result;
+            }
+            else if (PropertyType == typeof(double) || PropertyType == typeof(Nullable<double>))
+            {
+                double result = 0;
+                double.TryParse(value, out result);
+                return result;
+            }
+            else if (PropertyType == typeof(decimal) || PropertyType == typeof(Nullable<decimal>))
+            {
+                decimal result = 0;
+                decimal.TryParse(value, out result);
+                return result;
+            }
+            else if (PropertyType == typeof(Boolean) || PropertyType == typeof(Nullable<Boolean>))
+            {
+                bool result = false;
+                value = value.ToLower();
+                //加上是 和 1 hanyx 2012.5.30
+                value = (value == "on" || value == "true" || value == "是" || value == "1" ? "true" : "false");
+                Boolean.TryParse(value, out result);
+                return result;
+            }
+            else if (PropertyType == typeof(Double) || PropertyType == typeof(Nullable<Double>))
+            {
+                double result = 0.0;
+                Double.TryParse(value, out  result);
+                return result;
+            }
+            else if (PropertyType == typeof(Array))
+            {
+                string[] arr = value.Split(',');
+                return arr;
+            }
+            else if (PropertyType == typeof(String[]))
+            {
+                string[] arr = value.Split(',');
+                return arr;
+            }
+            else if (PropertyType == typeof(DateTime) || PropertyType == typeof(Nullable<DateTime>))
+            {
+                DateTime dateTime = DateTime.Now;
+                DateTime.TryParse(value, out dateTime);
+                return dateTime;
+            }
+            else if (PropertyType == typeof(Guid) || PropertyType == typeof(Nullable<Guid>))
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    value = Guid.Empty.ToString();
+                }
+                return new Guid(value);
+            }
+            else if (PropertyType == typeof(byte[]))
+            {
+                return null;
+            }
+            else
+            {
+                throw new Exception("不支持的类型解析");
             }
         }
     }

@@ -44,6 +44,13 @@ namespace IBusinessOrder.Order
         /// <param name="pageIndex">页码Index</param>
         /// <returns>OrderGoodsDto List</returns>
         List<DataModel.Order.OrderGoodsDto> GetUserAllOrderList(string customerId,int pageSize,int pageIndex);
+        /// <summary>
+        /// 获取订单清单列表
+        /// </summary>
+        /// <param name="customerId">客户ID</param>
+        /// <returns>List OrderGoodsDto</returns>
+        List<DataModel.Order.OrderGoodsDto> GetOrderGoodsList(string customerId);
+
 
     }
 }

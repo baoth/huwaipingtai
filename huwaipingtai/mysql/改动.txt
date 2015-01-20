@@ -1,2 +1,10 @@
 ﻿ALTER TABLE `outsports`.`customer` 
 ADD COLUMN `WXID` VARCHAR(45) NULL AFTER `Mail`;
+
+
+ALTER TABLE `outsports`.`ordergoods` 
+ADD COLUMN `Price` DECIMAL(18,2) NULL AFTER `Quantity`;
+
+
+ALTER TABLE `outsports`.`order` 
+ADD COLUMN `OrderDate` DATETIME NULL AFTER `Status`;

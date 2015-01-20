@@ -80,3 +80,7 @@ E:\户外运动平台\huwaipingtai\huwaipingtai\obj\Debug\huwaipingtai.dll
 E:\户外运动平台\huwaipingtai\huwaipingtai\obj\Debug\huwaipingtai.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\huwaipingtai\bin\QSmart.Weixin.Core.dll
 F:\GithubMobile\huwaipingtai\huwaipingtai\bin\QSmart.Weixin.Core.dll
+X:\FuZhuangPingTai2014\huwaipingtai\huwaipingtai\bin\RestSharp.dll
+X:\FuZhuangPingTai2014\huwaipingtai\huwaipingtai\bin\Newtonsoft.Json.dll
+X:\FuZhuangPingTai2014\huwaipingtai\huwaipingtai\bin\RestSharp.xml
+X:\FuZhuangPingTai2014\huwaipingtai\huwaipingtai\bin\Newtonsoft.Json.xml

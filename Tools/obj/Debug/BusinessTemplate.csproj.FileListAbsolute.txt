@@ -63,3 +63,7 @@ E:\户外运动平台\huwaipingtai\Tools\obj\Debug\BusinessTemplate.dll
 E:\户外运动平台\huwaipingtai\Tools\obj\Debug\BusinessTemplate.pdb
 X:\FuZhuangPingTai2014\huwaipingtai\Tools\bin\Debug\QSmart.Weixin.Core.dll
 F:\GithubMobile\huwaipingtai\Tools\bin\Debug\QSmart.Weixin.Core.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Tools\bin\Debug\RestSharp.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Tools\bin\Debug\Newtonsoft.Json.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Tools\bin\Debug\RestSharp.xml
+X:\FuZhuangPingTai2014\huwaipingtai\Tools\bin\Debug\Newtonsoft.Json.xml

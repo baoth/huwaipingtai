@@ -131,10 +131,13 @@ namespace BusinessOrder.Order
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format(@"
-                                     select   a.Id,a.Sku,a.CustomerId,a.Quantity,a.Description,b.Price,a.ShangPinId,a.ImgName from
-                                    `order` as o 
-                                     left join ordergoods  b on o.id=b.orderid
-                                     left join cartview a  on a.sku=b.sku where a.CustomerId='{0}'
+                                    select  o.Id, info.Sku,info.Description,info.ShangPinId,c.CustomerId,b.Quantity,b.Price,a.ImgName, c.CreateDate from
+                                     `order` as o 
+                                    left join ordergoods  b on o.id=b.orderid
+                                    left join customerorder c on c.id=o.customerorderid           
+                                    left join shangjia_sku_info info on info.SKu=b.Sku    
+                                    left join `shangjia_sku_tutou` `a` on(((substring_index(info.`Sku`,'-',4) = `a`.`ImgKey`) and (`a`.`Sort` = 1) ))                   
+                                    where c.CustomerId='{0}' order by c.createdate desc
                                     ", customerId);
 
             var dt = dbSession.Context.QueryTable(sql);
@@ -147,10 +150,13 @@ namespace BusinessOrder.Order
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format(@"
-                                    select   a.Id,a.Sku,a.CustomerId,a.Quantity,a.Description,b.Price,a.ShangPinId,a.ImgName from
-                                    `order` as o 
-                                     left join ordergoods  b on o.id=b.orderid
-                                     left join cartview a  on a.sku=b.sku where a.CustomerId='{0}' limit {1}
+                                     select  o.Id, info.Sku,info.Description,info.ShangPinId,c.CustomerId,b.Quantity,b.Price,a.ImgName, c.CreateDate from
+                                     `order` as o 
+                                    left join ordergoods  b on o.id=b.orderid
+                                    left join customerorder c on c.id=o.customerorderid           
+                                    left join shangjia_sku_info info on info.SKu=b.Sku    
+                                    left join `shangjia_sku_tutou` `a` on(((substring_index(info.`Sku`,'-',4) = `a`.`ImgKey`) and (`a`.`Sort` = 1) ))                   
+                                    where c.CustomerId='{0}' order by c.createdate desc  limit {1}
                                     ", customerId,pageIndex*pageSize);
             var dt = dbSession.Context.QueryTable(sql);
             var list = dt.ToList<OrderGoodsDto>() as List<OrderGoodsDto>;

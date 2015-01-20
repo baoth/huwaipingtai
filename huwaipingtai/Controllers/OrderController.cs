@@ -127,6 +127,28 @@ namespace huwaipingtai.Controllers
            return Content(json);
            
         }
+        public ActionResult goodlisting()
+        {
+            var imagePath= PathConfig.GetWebSmallImagPath();
+            if(!string.IsNullOrEmpty(imagePath))
+            {
+                ViewData["ImgPath"]=imagePath;
+            }
+            var htmlPath=PathConfig.GetWebGenerateHtmlPath();
+           if(!string.IsNullOrEmpty(htmlPath))
+           {
+              ViewData["HtmlPath"]=htmlPath;        
+           }           
+           return View("goodlisting");
+        }
+
+        public ActionResult GetOrderGoodsList()
+        {
+            if (this.CurrentUserInfo.Id == null) return null;
+            var list = customerOrder.GetOrderGoodsList(this.CurrentUserInfo.Id);
+            var json = JsonHelp.objectToJson(list);
+            return Content(json);
+        }
 
     }
 

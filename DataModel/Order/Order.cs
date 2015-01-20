@@ -117,6 +117,10 @@ namespace DataModel.Order
         /// 图片路径
         /// </summary>
         public string ImgUrl { set; get; }
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public string CreateDate { set; get; }
     }
 
 }

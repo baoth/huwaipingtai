@@ -211,8 +211,8 @@
             var GetHtml = function (obj) {
                 var description = obj["Description"] == null ? "" : obj["Description"];
                 var quantity = obj["Quantity"];
-                var price = obj["Price"];
-                var datetime = "";
+                var price = (obj["Price"] + "").formatCurrency();
+                var datetime = obj["CreateDate"];
                 var shangPinId = obj["ShangPinId"];
                 var imgName = obj["ImgName"];
                 var sku = obj["Sku"];

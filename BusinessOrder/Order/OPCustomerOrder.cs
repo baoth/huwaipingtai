@@ -156,6 +156,19 @@ namespace BusinessOrder.Order
             var list = dt.ToList<OrderGoodsDto>() as List<OrderGoodsDto>;
             return list;
         }
+
+
+        public List<OrderGoodsDto> GetOrderGoodsList(string customerId)
+        {
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var sql = string.Format(@"
+                                    select   a.Id,a.Sku,a.CustomerId,a.Quantity,a.Description,a.Price,a.ShangPinId,a.ImgName from
+                                    cartview a  where a.actived='1' and a.CustomerId='{0}'
+                                    ",customerId);
+            var dt = dbSession.Context.QueryTable(sql);
+            var list = dt.ToList<OrderGoodsDto>() as List<OrderGoodsDto>;
+            return list;
+        }
     }
 
 

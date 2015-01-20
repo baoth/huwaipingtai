@@ -1,5 +1,567 @@
 ﻿@{
-    ViewBag.Title = "goodlisting";
+    Layout = null;
 }
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link href="../../Content/Header.css" rel="stylesheet" type="text/css" />
+        <script src="../../Scripts/jsWindow.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/iscroll.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                SetScroll();
+                LoadData();
 
-<h2>goodlisting</h2>
+            });
+
+            var SetScroll = function () {
+                $("#wrapper").css('top', $("header").height());
+                myScroll = new IScroll('#wrapper', { mouseWheel: true });
+                document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+            }
+
+           
+
+            var LoadData = function () {
+                var url = "/Order/GetOrderGoodsList";
+                var customerorderid=$("#customerorderid").val();
+                var para = {};
+                submitAjax(url, para);
+            }
+
+            var getHtml = function (data, htmlpath, imgPath) {
+                var sku = data["Sku"] + "";
+                var price = data["Price"] + "";
+                price = price.formatCurrency();
+                var quantity = data["Quantity"];
+                var Description = data["Description"];
+                if (!Description) {
+                    Description = "";
+                }
+                var imageName = data["ImgName"];
+                var shangpinId = data["ShangPinId"];
+
+                var cartId = data["Id"];
+                var imgUrl = imgPath + shangpinId + "/" + imageName;
+                var htmlPath = htmlpath + sku + ".html";
+
+                var li = ' <li id="product{0}">'
+	                      + '  <div class="items">'
+                          + '   <div class="cart-item-core">'
+                          + '    <a class="cart-product-cell-1" href="javascript:"> '
+                          + '        <img class="cart-photo-thumb" onclick="ShowDetailPage(\'{2}\')"  alt="" src="{1}" onerror="lib/skin/e/i/error-jd.gif"> '
+                          + '    </a> '
+                          + '    <div class="cart-product-cell-2">'
+                          + '        <div class="cart-product-name"><a href="{2}"><span>{3}</span></a></div> '
+                          + '         <div class="cart-opt"> '
+                          + '            <div class="cart-quantity-wrapper"> '
+                          + '                  <span>数量:{4}</span>'
+                          + '            </div>'
+                          + '            <span class="cart-item-price" id="price{0}">￥{5}</span>'
+                          + '        </div> '
+                          + '    </div> '
+                          + '    </div> '
+                          + '   <div class="cart-diver-hr-dashed"></div>'
+	                      + '  </div> '
+                          + ' </li>'
+                var liHtml = li.format(sku, imgUrl, htmlPath, Description, quantity, price);
+                return liHtml;
+            }
+
+            var submitAjax = function (url, para) {
+                $.ajax({
+                    url: url,
+                    data: para,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+
+                        var lis = "";
+                        if (data && data.length > 0) {
+                            var imgPath = $("#imgPath").val();
+                            var htmlPath = $("#htmlPath").val();
+                            for (var i = 0, j = data.length; i < j; i++) {
+                                lis += getHtml(data[i],htmlPath,imgPath);
+                            }
+                        }
+                        var objul = $("#notEmptyMyCart ul");
+                        if (lis) {
+                            var li = objul.find("li:last");
+                            if (li && li.length > 0) {
+                                objul.children().remove();
+                                objul.html(lis);
+                            }
+                            else {
+                                objul.html(lis);
+                            }
+                            //显示购物车
+                            $("#notEmptyMyCart").show();
+                            $("#payment").show();
+                            //隐藏购物车
+                            $("#emptyCart").hide();
+                        }
+                        else {
+                            objul.html("");
+
+                            //隐藏购物车
+                            $("#notEmptyMyCart").hide();
+                            $("#payment").hide();
+                            //显示购物车
+                            $("#emptyCart").show();
+                        }
+                        SetTotal(data);
+                    },
+                    error: function () {
+                        sAlert("提示", "请求错误！");
+                    }
+
+                });
+            }
+            
+
+           
+          
+            function cartSumPrice(data) {
+                var sumTotal = 0.00;
+                for (var i = 0, j = data.length; i < j; i++) {
+                    var row = data[i];
+                    if (row["Actived"] == "1") {
+                        var quantity = row["Quantity"];
+                        if (quantity) {
+                            quantity = parseInt(quantity);
+                        }
+                        var price = row["Price"];
+                        if (price) {
+                            price = parseFloat(price);
+                        }
+                        sumTotal += quantity * price;
+                    }
+                }
+                return sumTotal;
+
+            }
+
+            function cartProductCount(data) {
+                var count = 0;
+                for (var i = 0, j = data.length; i < j; i++) {
+                    var row = data[i];
+                    if (row["Actived"] == "1") {
+                        var quantity = row["Quantity"];
+                        if (quantity) {
+                            quantity = parseInt(quantity);
+                            count += quantity;
+                        }
+                    }
+                }
+                return count;
+            }
+
+            
+            function GoWalk() {
+                window.location = window.location.origin + "/Home/Index";
+            }
+            function GoLogin() {
+                window.location = window.location.origin + "/User/Logon";
+            }
+            var ShowDetailPage = function (url) {
+                window.location = url;
+            }
+        </script>
+
+        <script type="text/javascript">
+            String.prototype.format = function (args) {
+                var result = this;
+                if (arguments.length > 0) {
+                    if (arguments.length == 1 && typeof (args) == "object") {
+                        for (var key in args) {
+                            if (args[key] != undefined) {
+                                var reg = new RegExp("({" + key + "})", "g");
+                                result = result.replace(reg, args[key]);
+                            }
+                        }
+                    }
+                    else {
+                        for (var i = 0; i < arguments.length; i++) {
+                            if (arguments[i] != undefined) {
+                                var reg = new RegExp("({)" + i + "(})", "g");
+                                result = result.replace(reg, arguments[i]);
+                            }
+                        }
+                    }
+                }
+                return result;
+            }
+
+            /**
+            * 将数值四舍五入(保留2位小数)后格式化成金额形式
+            *
+            * param num 数值(Number或者String)
+            * return 金额格式的字符串,如'1,234,567.45'
+            * type String
+            */
+            String.prototype.formatCurrency = function () {
+                var num = this.toString();
+                if (num == undefined || num == "") return "0.00";
+                num = num.toString().replace(/\$|\,/g, '');
+                if (isNaN(num))
+                    num = "0";
+                var sign = (num == (num = Math.abs(num)));
+                num = Math.floor(num * 100 + 0.50000000001);
+                var cents = num % 100;
+                num = Math.floor(num / 100).toString();
+                if (cents < 10)
+                    cents = "0" + cents;
+                for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+                    num = num.substring(0, num.length - (4 * i + 3)) + ',' +
+                     num.substring(num.length - (4 * i + 3));
+                return (((sign) ? '' : '-') + num + '.' + cents);
+            }
+
+        </script>
+        <style type="text/css">
+           .new-ct 
+            {
+                min-height: 203px;
+                background-color: #fff;
+            }
+            .title 
+            {
+                padding: 13px 10px 7px;
+                border-bottom: 1px solid #c8c7cc;
+                background: #f1f1f5;
+                font-size: 14px;
+                color: #666;
+            }
+            .cart-list
+            {
+                padding-left: 10px;
+                border-bottom: 1px solid #c8c7cc;
+            }
+            .info-delv
+            {
+                padding: 13px 10px 12px;
+                border-bottom: 1px solid #c8c7cc;
+            }
+            .info-delv.b-b-n
+            {
+                border-bottom: none;
+            }
+            .btn-radio 
+            {
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                padding: 0;
+                /*background: url(../Content/images/icon_order.png) -79px -50px no-repeat; */     
+                background: url(../Content/images/icon_order.png) -29px -57px no-repeat;             
+                background-size: 100px 100px;
+                vertical-align: -5px;
+            }
+            .btn-radio.on 
+            {
+                /*background-position: -55px -50px;*/
+                background-position:0px -56px
+            }
+            .mgn 
+            {
+                margin: 15px 10px;
+            }
+            .new-abtn-type
+            {
+                display: block;
+                padding: 8px;
+                border-radius: 2px;
+                background-color: #c00;
+                font-size: 14px;
+                color: #fff;
+                text-align: center;
+            }
+        </style>
+       
+       <style>
+           * {
+            margin: 0;
+            padding: 0;
+            }
+          ul, ol {
+            list-style: none;
+            }
+            
+          
+           .cart-check-wrapper {
+            height: 20px;
+            width: 20px;
+            margin-left: -29px;
+            margin-top: 19px;
+            display: block;
+            position: absolute;
+           }
+           .items {
+            text-align: left;
+            padding-top: 10px;
+           }
+          
+           
+           .cart-item-core {
+            min-height: 60px;
+            }
+            .cart-product-cell-3 {
+                width: 80px;
+                position: absolute;
+                right: 0;
+                background: rgba(255,255,255,1);
+                white-space: nowrap;
+                margin-right: 10px;
+                text-align: right;
+                margin-top: -2px;
+            }
+            .cart-item-price {
+                font-size: 13px;
+                color: #555;
+                position: absolute;
+                right: 0;
+                margin-right: 15px;
+            }
+            
+            
+
+            .cart-product-cell-1, .cart-product-cell-additional {
+                width: 70px;
+                height: 70px;
+                display: block;
+                float: left;
+            }
+            a {
+            color: #000;
+            text-decoration: none;
+            }
+            
+            .cart-photo-thumb {
+            width: 59px;
+            height: 59px;
+            border: 1px solid #dddcdc;
+            background: url('/images/cart/error-jd.gif') no-repeat center center;
+            background-size: 25px 10px;
+            }
+            img, img a {
+            border: 0;
+            vertical-align: middle;
+            }
+            
+            .cart-product-cell-2 {
+            min-width: 118px;
+            width: 40%;
+            float: left;
+            }
+            
+            .cart-product-name {
+            font-size: 13px;
+            line-height: 1.2em;
+            color: #666;
+            margin-bottom: 5px;
+            vertical-align: top;
+            height: 2.4em;
+            }
+            .cart-quantity-wrapper {
+            display: inline-block;
+            }
+           
+             body, input, textarea, select, button, table {
+                font-size: 16px;
+                line-height: 1.25em;
+             }
+             
+             body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select {
+                margin: 0;
+                padding: 0;
+             }
+             input, textarea, keygen, select, button, meter, progress {
+                -webkit-writing-mode: horizontal-tb;
+             }
+            
+            
+            .items .cart-diver-hr-dashed {
+            margin-left: 0;
+            }
+            .cart-diver-hr-dashed {
+            height: 1px;
+            overflow: hidden;
+            clear: both;
+            border-width: 0 0 1px 0;
+            -webkit-border-image: url("data:image/png;base64,R0lGODlhBgAEAIABANfW2v///yH/C1hNUCBEYXRhWE1QPD94cGFj…ZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQBAAABACwAAAAABgAEAAACBoSDqWuQBQA7") 2 0 repeat;
+           }
+       </style>
+      @* 底部合计样式*@
+       <style type="text/css">
+           
+          .payment-total-bar {
+            width: 100%;
+            height: 50px;
+            overflow: hidden;
+            position: fixed;
+            background: #eaedf1;
+            bottom: 0;
+          }  
+          .shp-chk {
+            width: 38px;
+            float: left;
+            text-align: center;
+            overflow: hidden;
+            padding-top: 15px;
+          } 
+          .shp-cart-info {
+            display: block;
+            float: left;
+            min-width: 200px;
+            margin-top: 3px;
+          }
+          .payment-total-bar strong, .shp-cart-total span {
+            color: #e4393c;
+            font-size: 14px;
+            font-weight: normal;
+            } 
+            .shp-cart-total {
+            margin-top: 6px;
+            display: block;
+          } 
+          
+          .payment-total-bar strong, .shp-cart-total span {
+            color: #e4393c;
+            font-size: 14px;
+            font-weight: normal;
+          }
+         .payment-total-bar span {
+            color: #999;
+            font-size: 10px;
+          }   
+         .btn-right-block {
+            display: block;
+            width: 70px;
+            padding: 0 8px;
+            line-height: 50px;
+            text-align: center;
+            background: #e4393c;
+            color: #fff;
+            font-size: 14px;
+            float: right;
+            font-weight: normal;
+            position: absolute;
+            right: 0;
+          }
+       </style> 
+       
+      @* 空购物车*@
+       <style type="text/css">
+        .empty-sign {
+            background: url('../../Content/images/empty-cart.png') no-repeat center center;
+            background-size: 100px 100px;
+            height: 110px;
+            margin-top: 33px;
+        }
+        .empty-warning-text {
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+            line-height: 18px;
+            min-height: 50px;
+        }
+        .empty-btn-wrapper {
+            margin-top: 15px;
+            text-align: center;
+        }
+        .btn-jd-red.btn-large, .btn-jd-gray.btn-large, .btn-jd-darkred.btn-large {
+            font-size: 14px;
+            padding: 12px 40px;
+        }
+        .empty-btn-wrapper .btn-large {
+              margin: 0 10px;
+        }
+        .btn-jd-darkred {
+            color: #fff;
+            display: inline-block;
+            background: #c00000;
+            border-radius: 3px;
+            padding: 4px 12px;
+            line-height: 1.2em;
+        }
+        
+        .btn-jd-gray {
+            color: #fff;
+            display: inline-block;
+            background: #bfbfbf;
+            border-radius: 3px;
+            padding: 4px 12px;
+            line-height: 1.2em;
+        }
+       </style>
+        <style type="text/css">
+        #wrapper 
+        {	       
+	        z-index: 1;
+	        top: 90px;
+	        bottom:0;
+	        left: 0;
+	        width: 100%;
+	        background: #fff;
+	        overflow: hidden;
+        }
+        #scroller 
+        {
+	        position: absolute;
+	        z-index: 100;
+	        -webkit-tap-highlight-color: rgba(0,0,0,0);
+	        width: 100%;
+	        -webkit-transform: translateZ(0);
+	        -moz-transform: translateZ(0);
+	        -ms-transform: translateZ(0);
+	        -o-transform: translateZ(0);
+	        transform: translateZ(0);
+	        -webkit-touch-callout: none;
+	        -webkit-user-select: none;
+	        -moz-user-select: none;
+	        -ms-user-select: none;
+	        user-select: none;
+	        -webkit-text-size-adjust: none;
+	        -moz-text-size-adjust: none;
+	        -ms-text-size-adjust: none;
+	        -o-text-size-adjust: none;
+	        text-size-adjust: none;
+        }
+        </style>
+    </head>
+    <body>
+        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "订单明细" } })
+         <div id="wrapper">
+             <div id="notEmptyMyCart" style="display:block">
+	              <ul class="cart-list">
+                 
+                  </ul>   
+             </div>
+        </div>
+       <div id="emptyCart" style="display:none">
+            <div class="empty-sign"></div>
+            <div class="empty-warning-text">亲！无宝贝吆！快去购物吧</div>
+            <div class="empty-btn-wrapper">
+              <a href="javascript:GoWalk()" class="btn-jd-darkred btn-large">去逛逛</a>
+             
+            </div>
+       </div>
+
+       <div style="display:none">
+          <input type="hidden" id="NickName" value="@ViewData["NickName"]" />
+          <input  type="hidden" id="imgPath" value="@ViewData["ImgPath"]"/>
+          <input  type="hidden" id="htmlPath" value="@ViewData["HtmlPath"]" />
+          <input  type="hidden" id="customerorderid" value="@ViewData["customerorderid"]"/>
+        
+      </div>
+    </body>
+
+</html>

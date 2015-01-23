@@ -109,7 +109,7 @@
                 SetScroll();
                 LoadData();
             });
-
+            
             var SetScroll = function () {
                 $("#wrapper").css('top', $("header").height());
                 myScroll = new IScroll('#wrapper', { mouseWheel: true });
@@ -128,6 +128,9 @@
                             var divs = CreateHtmlData(d);
                             $("#ulContent").html("");
                             $("#ulContent").html(divs);
+                            $('li.li-herf').on($.clickAction, function () {
+                                window.location = $(this).data('link');
+                            });
                         }
                         else {
                             alert("返回数据失败！");
@@ -150,13 +153,17 @@
             var GetHtml = function (obj) {
                 var name = obj["Name"] == null ? "" : obj["Name"];
                 var id = obj["JingXiaoShangId"];
-                var divs = ' <a href="/Shelves/BrandList?JingXiaoShangId={0}">'
-			               +'    <li class="first">'
-				           +'        <input type="hidden" class="str1" value="{1}">'
-				           +'        <strong class="name1">{1}</strong>'
-				           +'        <span class="menu-botton-arrow"></span>'
-			               +'    </li>'
-		                   + '</a> ';
+//                var divs = ' <a href="/Shelves/BrandList?JingXiaoShangId={0}">'
+//			               +'    <li class="first">'
+//				           +'        <input type="hidden" class="str1" value="{1}">'
+//				           +'        <strong class="name1">{1}</strong>'
+//				           +'        <span class="menu-botton-arrow"></span>'
+//			               +'    </li>'
+//		                   + '</a> ';
+                var divs = ' <li class="first li-herf" data-link="/Shelves/BrandList?JingXiaoShangId={0}">'
+				           + '        <strong class="name1">{1}</strong>'
+				           + '        <span class="menu-botton-arrow"></span>'
+		                   + '</li> ';
                 return divs.format(id, name);
             };
 

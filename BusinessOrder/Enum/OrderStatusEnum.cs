@@ -11,15 +11,15 @@ namespace BusinessOrder.Enum
     /// </summary>
     public enum OrderStatusEnum
     {
-       [Description("生成订单")]
-        Generate = 5,
-
        [Description("未付款")]
         NoPayment= 10,
 
        [Description("已取消")]
-       Cancel = 15,
+       Generate = 13,
 
+       [Description("已付款")]
+       Payment = 15,
+    
        [Description("正在出库")]
        StoreBefore = 20,
 

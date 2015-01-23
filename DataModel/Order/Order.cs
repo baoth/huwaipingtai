@@ -63,10 +63,18 @@ namespace DataModel.Order
     {
         [PrimaryKey]
         [AutoIncrement]
-        public int Id { get; set; }
-        public bool SubOrder { get; set; }
+        public int Id              { get; set; }
+        public bool SubOrder       { get; set; }
         public int CustomerOrderId { get; set; }
-        public short Status { get; set; }
+        public short Status        { get; set; }
+        /*为发货*/
+        public string ExpressCompany{get;set;}
+        public string Expresser    {get;set;}
+        public string ExpressPhone {get;set;}
+        /*快递公司  快递员 快递电话 快递单号 发货时间  */
+        public string ExpressNum   {get;set;}
+        public DateTime ExpressDateTime{get;set;}
+      
     }
 
     public class OrderGoods : QSmartEntity

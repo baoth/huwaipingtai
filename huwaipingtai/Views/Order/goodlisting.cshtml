@@ -125,15 +125,26 @@
 
                 });
             }
-            
 
+            function SetTotal(data) {
+                 
+                var sumPrice = cartSumPrice(data);
+                sumPrice = (sumPrice + "").formatCurrency();
+                $("#cart_realPrice").html(sumPrice);
+
+
+                //商品总额
+                $("#cart_oriPrice").html(sumPrice);
+                //返现
+                $("#cart_rePrice").html("0.00");
+                
+            }
            
           
             function cartSumPrice(data) {
                 var sumTotal = 0.00;
                 for (var i = 0, j = data.length; i < j; i++) {
-                    var row = data[i];
-                    if (row["Actived"] == "1") {
+                    var row = data[i];                    
                         var quantity = row["Quantity"];
                         if (quantity) {
                             quantity = parseInt(quantity);
@@ -143,7 +154,7 @@
                             price = parseFloat(price);
                         }
                         sumTotal += quantity * price;
-                    }
+                  
                 }
                 return sumTotal;
 
@@ -444,7 +455,7 @@
             font-weight: normal;
           }
          .payment-total-bar span {
-            color: #999;
+           
             font-size: 10px;
           }   
          .btn-right-block {
@@ -551,6 +562,16 @@
                   </ul>   
              </div>
         </div>
+         <div class="payment-total-bar" id="payment">
+            <div class="shp-chk">
+                <span onclick="checkAllProduct(this);" class="cart-checkbox checked"  id="checkIcon-1"></span>
+            </div>
+            <div class="shp-cart-info">
+                <strong class="shp-cart-total">总计:￥<span class="" id="cart_realPrice">0.00</span></strong>
+                <span class="sale-off">商品总额:￥<span class="bottom-bar-price" id="cart_oriPrice"></span> 返现:￥<span class="bottom-bar-price" id="cart_rePrice">0.00</span></span>
+            </div>
+            
+       </div>
        <div id="emptyCart" style="display:none">
             <div class="empty-sign"></div>
             <div class="empty-warning-text">亲！无宝贝吆！快去购物吧</div>

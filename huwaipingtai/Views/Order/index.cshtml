@@ -14,6 +14,7 @@
         <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+        <script src="../../Scripts/cookie.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 initCourier();
@@ -25,7 +26,6 @@
             });
 
             function submitOrder() {
-                debugger
                 //提交
                 var payType = $('#pay').data('paytype'); //支付方式
                 var delType = $('#delivery').data('deltype'); //发货方式
@@ -49,7 +49,7 @@
                     },
                     type: 'post',
                     success: function (action, response) {
-                        debugger
+                        
                         //  var msg = action.IsSuccess?action.Msg"
                         if (action.IsSuccess) {
                             //alert("提交订单成功");
@@ -63,17 +63,33 @@
                 });
             }
             function initCourier() {
+                
                 if (window.sessionStorage.courierDate == undefined || window.sessionStorage.courierDate == '') {
-                    window.sessionStorage.courierDate = new Date().DateAdd('d', 1).Format('YYYY-M-D');
+
+                    var d = new Date().DateAdd('d', 1).Format('YYYY-M-D'); // getcookie("order_courierDate") || 
+                    window.sessionStorage.courierDate = d;
+
+                } else {
+                   // setcookie("order_courierDate", window.sessionStorage.courierDate);
                 }
                 var defaultDate = new Date().StringToDate(window.sessionStorage.courierDate);
                 if (window.sessionStorage.courierTimeSect == undefined || window.sessionStorage.courierTimeSect == '') {
-                    window.sessionStorage.courierTimeSect = '9:00-15:00';
+                    var d = '9:00-15:00'; //getcookie("order_courierTimeSect") || 
+                    
+                    window.sessionStorage.courierTimeSect = d;
+
+                } else {
+                    
+                    setcookie("order_courierDate", window.sessionStorage.courierTimeSect);
                 }
                 var defaultTimeSect = window.sessionStorage.courierTimeSect;
-                
+
                 if (window.sessionStorage.courierSend == undefined || window.sessionStorage.courierSend == 'undefined' || window.sessionStorage.courierSend == '') {
-                    window.sessionStorage.courierSend = '1';
+                    var d = '1'; // getcookie("order_courierSendt") || 
+                    window.sessionStorage.courierSend = d;
+                  
+                } else {
+                    setcookie("order_courierSendt", window.sessionStorage.courierSend);
                 }
                 var TimeIndex = window.sessionStorage.courierTimeType || 1;
                 var PhoneIndex = window.sessionStorage.courierPoneType || 1;
@@ -91,22 +107,32 @@
                 });
             };
             function initInvoice() {
-                debugger
                 if (window.sessionStorage.invoiceTitle == undefined || window.sessionStorage.invoiceTitle == '') {
-                    window.sessionStorage.invoiceTitle = '1';
+
+                    var d =unescape(getcookie("order_invoiceTitle")) || '1';
+                    window.sessionStorage.invoiceTitle = d;
+
+                } else {
+                    setcookie("order_invoiceTitle", window.sessionStorage.invoiceTitle);
                 }
                 if (window.sessionStorage.invoiceContent == undefined || window.sessionStorage.invoiceContent == '') {
+                    var d = getcookie("order_invoiceContent") || '1';
                     window.sessionStorage.invoiceContent = '1';
+                   
+                } else {
+                   setcookie("order_invoiceContent", window.sessionStorage.invoiceContent);
                 }
                 if (window.sessionStorage.invoiceCompany == undefined) {
-                    window.sessionStorage.invoiceCompany = '';
+                    var d = unescape(getcookie("order_invoiceCompany")) || '';
+                    window.sessionStorage.invoiceCompany =d;
+                } else {
+                    setcookie("order_invoiceCompany", window.sessionStorage.invoiceCompany);
                 }
                 $('#invoice').data('title', window.sessionStorage.invoiceTitle)
                              .data('company', window.sessionStorage.invoiceCompany)
                              .data('content', window.sessionStorage.invoiceContent)
                              .text('普通发票');
                 $('#invoice').on($.clickAction, function () {
-                    
                     window.sessionStorage.invoiceTitle = $(this).data('title');
                     window.sessionStorage.invoiceContent = $(this).data('content');
                     $(this).parent('a').trigger($.clickAction);
@@ -114,10 +140,17 @@
             };
             function initPay() {
                 if (window.sessionStorage.payType == undefined || window.sessionStorage.payType == '') {
-                    window.sessionStorage.payType = '1';
+                    var d = getcookie("order_payType") || '1';
+                    window.sessionStorage.payType = d;
+                 
+                } else {
+                    setcookie("order_payType", window.sessionStorage.payType);
                 }
                 if (window.sessionStorage.payText == undefined || window.sessionStorage.payText == '') {
-                    window.sessionStorage.payText = '线下支付';
+                    var d = unescape(getcookie("order_payText")) || '线下支付';
+                    window.sessionStorage.payText =d;
+                } else {
+                    setcookie("order_payText",unescape(window.sessionStorage.payText));
                 }
                 $('#pay').data('paytype', window.sessionStorage.payType)
                          .text(window.sessionStorage.payText);
@@ -127,13 +160,19 @@
                     window.sessionStorage.payText = $(this).text();
                     $(this).parent('a').trigger($.clickAction);
                 });
-            };
+            };/*cookie*/
             function initDelivery() {
                 if (window.sessionStorage.DeliveryType == undefined || window.sessionStorage.DeliveryType == '') {
-                    window.sessionStorage.DeliveryType = '1';
+                    var d = getcookie("order_DeliveryType") || '1';
+                    window.sessionStorage.DeliveryType =d;
+                } else {
+                    setcookie("order_DeliveryType", window.sessionStorage.DeliveryType);
                 }
                 if (window.sessionStorage.DeliveryText == undefined || window.sessionStorage.DeliveryText == '') {
-                    window.sessionStorage.DeliveryText = '门店自提';
+                    var d =unescape(getcookie("order_DeliveryText")) || '门店自提';
+                    window.sessionStorage.DeliveryText =d;
+                } else {
+                    setcookie("order_DeliveryText", window.sessionStorage.DeliveryText);
                 }
                 
                 $('#delivery').data('deltype', window.sessionStorage.DeliveryType)
@@ -154,7 +193,7 @@
                 }
             };
             function initGoodListing() {
-                window.sessionStorage.GoodListing = ['111-111-11','22a-2222d-22'];
+                window.sessionStorage.GoodListing = ['111-111-11', '22a-2222d-22'];
                 if (window.sessionStorage.GoodListing == undefined || window.sessionStorage.GoodListing.length == 0) {
                     $('#goodlisting').data('list', '');
                     $('.goodlisting').hide();
@@ -168,14 +207,20 @@
             function initAddress() {
                 window.sessionStorage.backurl = document.URL;
                 if (!window.sessionStorage.addressDetailId) {
-                    $('#shiperNameId').text(" ");
-                    $('#phoneNumId').text("选择收货人");
-                    $('#addressDetailId').text("");
+                    var d = " "; //getcookie("order_shiperNameId") ||
+                    var d1 = "选择收货人"; // getcookie("order_phoneNumId") || 
+                    var d2 = ""; //getcookie("order_addressDetailId") ||
+                    $('#shiperNameId').text(d);
+                    $('#phoneNumId').text(d1);
+                    $('#addressDetailId').text(d2);
                 }
                 else {
                     $('#shiperNameId').text(window.sessionStorage.shiperName);
+//                    setcookie("order_shiperNameId", window.sessionStorage.shiperName)
                     $('#phoneNumId').text(window.sessionStorage.phoneNum);
+//                    setcookie("order_phoneNumId", window.sessionStorage.phoneNum)
                     $('#addressDetailId').text(window.sessionStorage.addressDetail);
+//                    setcookie("order_addressDetailId", window.sessionStorage.addressDetail)
                     var href = $('#address').attr('href');
                     $('#address').attr('href', href + "?Id=" + window.sessionStorage.addressDetailId);
                     $('#address').data('addressDetailId', window.sessionStorage.addressDetailId);

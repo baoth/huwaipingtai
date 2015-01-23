@@ -76,14 +76,14 @@ namespace BusinessOrder.Order
 
             //生成订单表
             var orderId = Framework.GetOrderNum();
-            var sqlOrderFormat = @"insert into `order`(Id,SubOrder,CustomerOrderId,Status) values ('{0}','{1}','{2}','{3}')";
-            var sqlOrder = string.Format(sqlOrderFormat, orderId, 0, orderCustomerId, (int)OrderStatusEnum.Generate);
+            var sqlOrderFormat = @"insert into `order`(Id,SubOrder,CustomerOrderId,Status,OrderDate) values ('{0}','{1}','{2}','{3}','{4}')";
+            var sqlOrder = string.Format(sqlOrderFormat, orderId, 0, orderCustomerId, (int)OrderStatusEnum.Generate, customerOrder.CreateDate);
             listOrderReSql.Add(sqlOrder);
             //生成订单商品表
             foreach (var goods in products)
-            { 
-                var sqlOrderGoodsFormat = @"insert into ordergoods(OrderId,Sku,Quantity) values ('{0}','{1}','{2}')";
-                var sqlOrderGoods = string.Format(sqlOrderGoodsFormat, orderId, goods.Sku, goods.Quantity);
+            {
+                var sqlOrderGoodsFormat = @"insert into ordergoods(OrderId,Sku,Quantity,Price) value('{0}','{1}','{2}','{3}')";
+                var sqlOrderGoods = string.Format(sqlOrderGoodsFormat, orderId, goods.Sku, goods.Quantity,goods.Price);
                 listOrderReSql.Add(sqlOrderGoods);
             }
             //删除购物车

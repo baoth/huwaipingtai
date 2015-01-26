@@ -100,6 +100,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\GoodsSizeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\DeliverGoodsController.cs" />
     <Compile Include="Controllers\SizeGroupsController.cs" />
     <Compile Include="Controllers\StorageInController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
@@ -316,6 +317,8 @@
     <Content Include="Views\Shelves\UploadImage.cshtml" />
     <Content Include="Views\MenDian\List.cshtml" />
     <Content Include="Views\Test\UploadImage.cshtml" />
+    <Content Include="Views\DeliverGoods\Index.cshtml" />
+    <Content Include="Views\DeliverGoods\DeliverGoods.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

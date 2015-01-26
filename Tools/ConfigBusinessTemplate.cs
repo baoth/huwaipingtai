@@ -32,6 +32,8 @@ namespace BusinessTemplate
             builder.RegisterType<BusinessOrder.SizeGroups.OPSizeGroups>().As<IBusinessOrder.SizeGroups.IOPSizeGroups>();
             builder.RegisterType<BusinessOrder.Shelves.OPShelves>().As<IBusinessOrder.Shelves.IOPShelves>();
             builder.RegisterType<BusinessOrder.MenDian.OPMenDian>().As<IBusinessOrder.MenDian.IOPMenDian>();
+            builder.RegisterType<BusinessOrder.DeliverGoods.OPDeliverGoods>().As<IBusinessOrder.DeliverGoods.IDeliverGoods>();
+
             
         }
         public static IBusinessOrder.User.ILogon GetILogon()

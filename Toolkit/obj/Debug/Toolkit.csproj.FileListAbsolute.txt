@@ -21,4 +21,3 @@ X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\bin\Debug\Newtonsoft.Json.dll
 X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\bin\Debug\RestSharp.dll
 X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\bin\Debug\Newtonsoft.Json.xml
 X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\bin\Debug\RestSharp.xml
-X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\obj\Debug\Toolkit.csprojResolveAssemblyReference.cache

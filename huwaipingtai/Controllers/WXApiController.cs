@@ -153,7 +153,7 @@ namespace huwaipingtai.Controllers
         /// <summary>
         /// 微信统一支付请求地址
         /// </summary>
-        public static const string post_url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
+        public  const string post_url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
 
         /// <summary>
         /// 用户标识

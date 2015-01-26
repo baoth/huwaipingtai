@@ -1,0 +1,5 @@
+X:\FuZhuangPingTai2014\huwaipingtai\DataModel\bin\Debug\DataModel.dll
+X:\FuZhuangPingTai2014\huwaipingtai\DataModel\bin\Debug\DataModel.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\DataModel\bin\Debug\MySql.Data.dll
+X:\FuZhuangPingTai2014\huwaipingtai\DataModel\obj\Debug\DataModel.dll
+X:\FuZhuangPingTai2014\huwaipingtai\DataModel\obj\Debug\DataModel.pdb

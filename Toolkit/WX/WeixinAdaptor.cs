@@ -9,6 +9,8 @@ namespace Toolkit
 {
     public static class WeixinAdaptor
     {
+        public const string API密钥 = "5ded26c2550f4c76bb8399aade46f168";
+        public const string MchId = "1228373802";
         public const string Token = "tiantian315";
         public const string AppId = "wxadcc12090e7138b3";
         public const string AppSecret = "722dfaf58953c47ffd9ac9548c727461";//vUCeU6wEImFjM9oo3JgjfZ6nHXQMz8yhIoPdUjRECLl

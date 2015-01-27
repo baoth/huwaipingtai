@@ -84,3 +84,4 @@ X:\FuZhuangPingTai2014\huwaipingtai\huwaipingtai\bin\RestSharp.dll
 X:\FuZhuangPingTai2014\huwaipingtai\huwaipingtai\bin\Newtonsoft.Json.dll
 X:\FuZhuangPingTai2014\huwaipingtai\huwaipingtai\bin\RestSharp.xml
 X:\FuZhuangPingTai2014\huwaipingtai\huwaipingtai\bin\Newtonsoft.Json.xml
+X:\FuZhuangPingTai2014\huwaipingtai\huwaipingtai\bin\Senparc.Weixin.MP.dll

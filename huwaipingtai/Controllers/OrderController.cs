@@ -17,6 +17,7 @@ using System.Data;
 using Toolkit.CommonModel;
 using Toolkit.Fun;
 using Toolkit.Path;
+using Common.Weixin;
 namespace huwaipingtai.Controllers
 {
     public class OrderController : BasicController
@@ -144,7 +145,7 @@ namespace huwaipingtai.Controllers
 
         public ActionResult GetOrderGoodsList()
         {
-            if (this.CurrentUserInfo.Id == null) return null;
+            if (this.CurrentUserInfo== null) return null;
             var list = customerOrder.GetOrderGoodsList(this.CurrentUserInfo.Id);
             var json = JsonHelp.objectToJson(list);
             return Content(json);

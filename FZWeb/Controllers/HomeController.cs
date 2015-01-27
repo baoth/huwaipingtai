@@ -57,6 +57,12 @@ namespace FZ.Controllers
             model5.FunctionUrl = "/MenDian/List";
             model5.ImgUrl = "../../Content/images/FuncDefault.png";
             list.Add(model5);
+
+            FunctionModel model6 = new FunctionModel();
+            model6.FunctionName = "发货";
+            model6.FunctionUrl = "/DeliverGoods/Index";
+            model6.ImgUrl = "../../Content/images/FuncDefault.png";
+            list.Add(model6 );
             return list;
         }
     }

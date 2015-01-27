@@ -150,14 +150,46 @@ namespace BusinessOrder.Order
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format(@"
-                                     select  o.Id, info.Sku,info.Description,info.ShangPinId,c.CustomerId,b.Quantity,b.Price,a.ImgName, c.CreateDate from
-                                     `order` as o 
-                                    left join ordergoods  b on o.id=b.orderid
-                                    left join customerorder c on c.id=o.customerorderid           
-                                    left join shangjia_sku_info info on info.SKu=b.Sku    
-                                    left join `shangjia_sku_tutou` `a` on(((substring_index(info.`Sku`,'-',4) = `a`.`ImgKey`) and (`a`.`Sort` = 1) ))                   
-                                    where c.CustomerId='{0}' order by c.createdate desc  limit {1}
-                                    ", customerId,pageIndex*pageSize);
+                SELECT 
+                    o.Id,
+                    info.Sku,
+                    info.ImgName,
+                    c.CustomerId,
+                    b.Quantity,
+                    b.Price,
+                    c.CreateDate,
+                    info.ShangPinId
+                FROM
+                    `order` AS o
+                        LEFT JOIN
+                    (SELECT 
+                        SUM(price) AS Price,
+                            SUM(Quantity) AS Quantity,
+                            MAX(Id) AS Id,
+                            OrderId
+                    FROM
+                        ordergoods
+                    GROUP BY OrderId) b ON o.id = b.orderid
+                        LEFT JOIN
+                    customerorder c ON c.Id = o.customerorderid
+                        LEFT JOIN
+                    (SELECT 
+                        f.*, a.ImgName, m.Description, m.FenLeiId,m.ShangPinId
+                    FROM
+                        ordergoods f
+                    LEFT JOIN shangjia_sku_info m ON f.sku = m.sku
+                    LEFT JOIN shangjia_sku_tutou a ON SUBSTRING_INDEX(f.`Sku`, '-', 4) = a.ImgKey
+                        AND (`a`.`Sort` = 1)) info ON info.Id = b.id
+             where c.CustomerId='{0}' order by c.createdate desc  limit {1} ", customerId, pageIndex * pageSize);
+//            var sql = string.Format(@"
+//                                     select  o.Id, info.Sku,info.Description,info.ShangPinId,c.CustomerId,b.Quantity,b.Price,a.ImgName, c.CreateDate from
+//                                     `order` as o 
+//                                    left join ordergoods  b on o.id=b.orderid
+//                                    left join customerorder c on c.id=o.customerorderid           
+//                                    left join shangjia_sku_info info on info.SKu=b.Sku    
+//                                    left join `shangjia_sku_tutou` `a` on(((substring_index(info.`Sku`,'-',4) = `a`.`ImgKey`) and (`a`.`Sort` = 1) ))                   
+//                                    where c.CustomerId='{0}' order by c.createdate desc  limit {1}
+//                                    ", customerId,pageIndex*pageSize);
             var dt = dbSession.Context.QueryTable(sql);
             var list = dt.ToList<OrderGoodsDto>() as List<OrderGoodsDto>;
             return list;

@@ -74,7 +74,7 @@ namespace huwaipingtai.Controllers
                         }
                         else
                         {
-                            Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = user.Id, NickName = user.NikeName };
+                            Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = user.Id, NickName = user.NikeName, DeviceType = 1 };
                             filterContext.Result = new RedirectResult(this.Request.RawUrl);
                         }
                     }
@@ -128,7 +128,7 @@ namespace huwaipingtai.Controllers
                 Response.SetCookie(ncookie);
                 Response.SetCookie(pcookie);
 
-                Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = user.Id, NickName = user.NikeName };
+                Session[RequestCommand.SESSION_USERINFO] = new UserInfo { Id = user.Id, NickName = user.NikeName,DeviceType=2,WXOpenId=weixinId };
                 var jumpurl = Session[RequestCommand.LOGON_JUMP_URL] as string;
                 Session[RequestCommand.LOGON_JUMP_URL] = null;
 
@@ -141,6 +141,14 @@ namespace huwaipingtai.Controllers
     {
         public string Id { get; set; }
         public string NickName { get; set; }
+        public string WXOpenId { get; set; }
+        public int DeviceType { get; set; }
+    }
+    public enum DeviceType 
+    {
+        PC=1,
+        Phone=2
+     
     }
 
     public static class RequestCommand

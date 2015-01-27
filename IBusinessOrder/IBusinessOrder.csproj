@@ -48,6 +48,7 @@
     <Compile Include="Cart\IOPCart.cs" />
     <Compile Include="CMS\IPublish.cs" />
     <Compile Include="CMS\IOPGoodsCatalog.cs" />
+    <Compile Include="DeliverGoods\IDeliverGoods.cs" />
     <Compile Include="GoodsSize\IOPGoodsSize.cs" />
     <Compile Include="Goods\IOPGoods.cs" />
     <Compile Include="MenDian\IOPMenDian.cs" />

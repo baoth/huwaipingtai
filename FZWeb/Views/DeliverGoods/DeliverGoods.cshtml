@@ -1,0 +1,234 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+         <link href=@Url.Content("../../Content/Shelves.css")  rel="stylesheet" type="text/css" />
+        <script src=@Url.Content("../../Scripts/qsm-mui/zepto-1.1.4.min.js") type="text/javascript"></script>
+        <script src=@Url.Content("../../Scripts/qsm-mui/fx.js") type="text/javascript"></script>
+        <script src=@Url.Content("../../Scripts/qsm-mui/zepto.selector.js") type="text/javascript"></script>
+        <script src=@Url.Content("../../Scripts/qsm-mui/zepto.touch.js") type="text/javascript"></script>
+        <script src=@Url.Content("../../Scripts/json2.js") type="text/javascript"></script>
+        <link href="../../Content/Header.css" rel="stylesheet" type="text/css" />
+        <style>
+            p.detail-title {
+                padding: 10px;
+            }
+            .btn-dbuy1 span{
+                display: inline-block;
+                width: 15px;
+                height: 15px;
+                margin-right: 5px;
+                background: url(../../../Content/images/icon_detail.png) -74px 0 no-repeat;
+                background-size: 100px 100px;
+                vertical-align: -2px;
+            }
+            label
+            {
+                color:Black;
+                }
+                .info-detail .info .title12 {
+            float: left;
+            font-size: 18px;
+            color: #333;
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                $('.btn-switch').on($.clickAction, function () {
+
+                    var me = $(this);
+                    var refId = me.attr('refId');
+                    if (me.hasClass('on')) {
+                        me.removeClass('on');
+                        $('#' + refId).hide();
+                    }
+                    else {
+                        me.addClass('on');
+                        $('#' + refId).show();
+                    }
+                });
+                /*expressNo  expressCompany  expressor  expressPhone*/
+                $('#btnComplate').bind($.clickAction, function () {
+                    var shiper = {};
+                    shiper.ExpressNo = $('#expressNo').val();
+                    shiper.ExpressCompany = $('#expressCompany').val();
+                    shiper.Expressor = $('#expressor').val();
+                    shiper.ExpressPhone = $('#expressPhone').val();
+                    shiper.OrderId = $('#orderId').val();
+                    $.ajax({
+                        url: '/DeliverGoods/SetDeliver',
+                        type: 'post',
+                        data: { data: JSON.stringify(shiper) },
+                        success: function () {
+                            alert("发货成功！");
+                            window.location = window.location.origin + "/DeliverGoods/Index";
+//                            window.location.reload();
+                        },
+                        error: function () {
+                            alert("发货失败")
+                        }
+                    });
+                });
+            })
+        </script>
+</head>
+<body>
+   @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "发货订单" } })
+      <div id="wrapper">
+	        <div id="scroller" class="bt-category">
+            
+                    
+                <ul style="padding-bottom:32px">
+                  
+                    @{
+                        var shiperInfo = @ViewData["ShiperInfo"] as DataModel.Order.OrderShiperDto;
+                        <li id="tupianLi" class="info-detail">
+                            <div class="info">
+                                <a id="tupiankuId" href="#">
+                                    <span class="text" style="color:Black">订单号:@ViewData["OrderId"]</span>
+                                    <input type="hidden" id="orderId" value="@ViewData["OrderId"]"/>
+                                </a>
+                            </div>
+                  
+                        </li>
+                        <li class="bg-skape"></li>
+                         <li class="info-detail selector">
+                                                                                                                                                                                                                                    <div class="info border-b-none">
+                            <a class="btn-switch on" href="javascript:void(0)" refid="shrxxdiv">
+				                <span class="s-block">
+                                    <span class="title12">收货人信息</span>
+                                    <span class="content"><span class="to-text3" id="sh-color" ></span></span>  
+                                    <span class="icon-arr"></span>
+                                </span>
+                            </a>
+                            <div class="detail-option" style="display:block" id="shrxxdiv">
+                                    <div class="info splitLine">
+                                    <a href="javascript:void(0)" style="padding-bottom: 10px;padding-top: 10px;">
+                                        <span class="text">客户名称</span>
+                                        <label style="width: 70%;line-height: 25px;margin-left: 20px;">@shiperInfo.ShiperName</label>
+
+                                    </a>
+                                
+                                    </div>
+                                    <div class="info splitLine">
+                                    <a href="javascript:void(0)" style="padding-bottom: 10px;padding-top: 10px;">
+                                        <span class="text">客户电话</span>
+                                        <label style="width: 70%;line-height: 25px;margin-left: 20px;">@shiperInfo.ShiperPhone</label>
+
+                                    </a>
+                                
+                                    </div>
+                                      <div class="info splitLine">
+                                    <a href="javascript:void(0)" style="padding-bottom: 10px;padding-top: 10px;">
+                                        <span class="text">送货地址</span>
+                                        <label style="width: 70%;line-height: 25px;margin-left: 20px;">@shiperInfo.Address</label>
+
+                                    </a>
+                                
+                                    </div>
+                                      <div class="info splitLine">
+                                    <a href="javascript:void(0)" style="padding-bottom: 10px;padding-top: 10px;">
+                                        <span class="text">送货日期</span>
+                                        <label style="width: 70%;line-height: 25px;margin-left: 20px;">@shiperInfo.ShiperDate</label>
+
+                                    </a>
+                                
+                                    </div>
+                            </div>
+                        </li>
+                    }
+                    <li class="bg-skape"></li>  
+                    @{
+                        var DeliverGoods = ViewData["DeliverGoods"] as List<DataModel.DeliverGoods.DeliverOrderGoods>;
+                        foreach (var item in DeliverGoods)
+                        {
+                            var refid = "temp-" + item.Id;
+                        <li class="info-detail selector">
+                                                                                                                                                                                                                                    <div class="info border-b-none">
+                            <a class="btn-switch on" href="javascript:void(0)" refid="@refid">
+				                <span class="s-block">
+                                    <span class="title12">商品名称</span>
+                                    <span class="content"><span class="to-text3" id="sh-color" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@item.Description</span></span>  
+                                    <span class="icon-arr"></span>
+                                </span>
+                            </a>
+                            <div class="detail-option" style="display:block" id="@refid">
+                                    <div class="info splitLine">
+                                    <a href="javascript:void(0)" style="padding-bottom: 10px;padding-top: 10px;">
+                                        <span class="text">尺码</span>
+                                        <label style="width: 70%;line-height: 25px;margin-left: 20px;">@item.Size</label>
+
+                                    </a>
+                                
+                                    </div>
+                                    <div class="info splitLine">
+                                    <a href="javascript:void(0)" style="padding-bottom: 10px;padding-top: 10px;">
+                                        <span class="text">颜色</span>
+                                        <label style="width: 70%;line-height: 25px;margin-left: 20px;">@item.Color</label>
+
+                                    </a>
+                                
+                                    </div>
+                            </div>
+                        </li>
+                        <li class="bg-skape"></li>      
+                        }
+                    }
+
+                    <li class="info-detail selector">
+                                                                                                                                                                                                                                <div class="info border-b-none">
+                        <a class="btn-switch on" href="javascript:void(0)" refid="fhxxdiv" >
+				            <span class="s-block">
+                                <span class="title12">发货信息</span>
+                                <span class="content"><span class="to-text3" id="sh-color"></span></span>
+                                <span class="icon-arr"></span>
+                            </span>
+                        </a>
+                        <div class="detail-option" style="display:block" id="fhxxdiv">
+                                <div class="info splitLine">
+                                    <a href="javascript:void(0)" style="width:100%; padding-bottom: 10px;padding-top: 10px;">
+                                        <span class="text">快递单号</span>
+                                        <input type="text" id="expressNo"  style="width: 60%;line-height: 25px;margin-left: 20px;"/>
+                                    </a>
+                                      <a href="javascript:void(0)" style="width:100%;padding-bottom: 10px;padding-top: 10px;">
+                                        <span class="text">快递公司</span>
+                                        <select id="expressCompany"  style="width: 60%;height: 28px;margin-left: 20px;">
+                                            <option id="option_add_72" value="72">    顺丰快递</option>
+                                            <option id="option_add_2800" value="2800">邮政EMS</option>
+                                            <option id="option_add_2801" value="2801">圆通速递</option>
+                                            <option id="option_add_2801" value="2801">申通速递</option>
+                                        </select>
+                                    </a>
+                                     <a href="javascript:void(0)" style="width:100%;padding-bottom: 10px;padding-top: 10px;">
+                                        <span class="text">&nbsp;快递员&nbsp;&nbsp;</span>
+                                        <input type="text" id="expressor"  style="width: 60%;line-height: 25px;margin-left: 20px;"/>
+                                    </a>
+                                     <a href="javascript:void(0)" style="width:100%;padding-bottom: 10px;padding-top: 10px;">
+                                        <span class="text">联系电话</span>
+                                        <input type="text" id="expressPhone"  style="width: 60%;line-height: 25px;margin-left: 20px;"/>
+                                    </a>
+                                </div>
+                                
+                                </div>
+                        </div>
+                    </li>
+                  
+                </ul>
+
+            </div>
+            <div class="tbl-type btns">
+                <div class="tbl-cell">                    
+                <a id="btnComplate" class="btn-dbuy">
+                   @* <span></span>*@
+                    完成</a>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

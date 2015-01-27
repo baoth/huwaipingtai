@@ -108,5 +108,11 @@ namespace huwaipingtai.Controllers
             return View();
         }
 
+        public ActionResult Notify()
+        {
+            Response.Write("call back notify");
+            return View();
+        }
+
     }
 }

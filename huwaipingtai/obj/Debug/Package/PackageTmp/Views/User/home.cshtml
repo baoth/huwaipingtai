@@ -1,0 +1,214 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link href="../../Content/Header.css" rel="stylesheet" type="text/css" />
+
+        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+        
+        <style type="text/css">
+        body {
+        min-width: 320px;
+        font-size: 1em;
+        font-family: 'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;
+        color: #000;
+        -webkit-text-size-adjust: none;
+        }
+        
+      
+        </style>
+        @*功能样式*@
+        <style type="text/css">
+            .shortcut-navs {
+            font-size: 14px;
+            }
+            .shortcut-nav {
+               
+                background: #f1f1f5;
+                width: 100%;
+                display: block;
+            }
+            ul, ol {
+            list-style: none;
+            }
+            .shortcut-nav:first-child li {
+                border-bottom: 0;
+            }
+            .shortcut-nav li {
+                border-top: 1px solid #c8c7cc;
+                border-bottom: 1px solid #c8c7cc;
+                background: #fff;
+                text-align: left;
+                width: 100%;
+                overflow: hidden;                
+                display: block;
+                height: 70px;
+               
+            }
+            .shortcut-nav * {
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -ms-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            
+            .shortcut-nav .link {
+                display: inline-block;
+                width: 100%;
+                float: left;
+                margin-left: 20px;
+                position: relative;
+            }
+            .link .tip_num {
+                color: #fff;
+                display: block;
+                background: #e4393c;
+                width: 16px;
+                height: 16px;
+                position: absolute;
+                top: -1px;
+                left: 16px;
+                -webkit-border-radius: 9px;
+                font-size: 10px;
+                line-height: 17px;
+                text-align: center;
+            }
+            a {
+                color: #000;
+                text-decoration: none;
+                top: 15px;
+            }
+            .shortcut-nav .link1:before {
+                display: block;
+                content: '';
+                height: 25px;
+                width: 25px;
+                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
+                background-size: 222px 25px;
+                background-position: 0 0;
+               
+            }
+           .shortcut-nav .link2:before {
+                display: block;
+                content: '';
+                height: 25px;
+                width: 25px;
+                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
+                background-size: 222px 25px;
+                background-position: -25px 0;
+               
+            }
+            .shortcut-nav .link3:before {
+                display: block;
+                content: '';
+                height: 25px;
+                width: 25px;
+                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
+                background-size: 223px 25px;
+                background-position: -50px 0;
+               
+            }
+            .shortcut-nav .link5:before {
+                display: block;
+                content: '';
+                height: 25px;
+                width: 25px;
+                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
+                background-size: 222px 25px;
+                background-position: -123px 0;
+               
+            }
+            .shortcut-nav .link6:before {
+                display: block;
+                content: '';
+                height: 25px;
+                width: 25px;
+                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
+                background-size: 221px 25px;
+                background-position: -147px 0;
+               
+            }
+            .shortcut-nav .link7:before {
+                display: block;
+                content: '';
+                height: 25px;
+                width: 25px;
+                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
+                background-size: 222px 25px;
+                background-position: -172px 0;
+               
+            }
+            .shortcut-nav .link8:before {
+                display: block;
+                content: '';
+                height: 25px;
+                width: 25px;
+                background: url(../../Content/images/shortcut-nav-icons.png) no-repeat;
+                background-size: 222px 25px;
+                background-position: -197px -1px;
+                
+            }
+        </style>
+    </head>
+    <body>
+        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "我的账户" } })
+       
+
+        <div class="shortcut-navs">
+
+          <ul class="shortcut-nav">
+            <li>
+			    <a class="link link1" href="/user/waite4Payment.action?sid=2522b1a01c942a1cb55c5a635f2cb57d">
+				    待付款
+				</a>
+		    </li>
+            <li>
+			    <a class="link link2" href="/user/waitDeliveryOrderList.action?sid=2522b1a01c942a1cb55c5a635f2cb57d">
+				    待收货
+									    <span class="tip_num">1</span>
+							    </a>
+		    </li>
+            <li>
+			    <a class="link link3" href="/Order/userAllOrderList">
+				    全部订单
+			    </a>
+		    </li>
+			<li>
+        			<a class="link link5" href="/user/jingBeanBalance.action?sid=2522b1a01c942a1cb55c5a635f2cb57d">
+        				我的资产
+        			</a>
+        	</li>
+		 
+		     <li>
+			    <a class="link link6" href="/user/accountCenter.action?sid=2522b1a01c942a1cb55c5a635f2cb57d">
+				    帐户中心
+			    </a>
+		    </li>
+            <li>
+			    <a class="link link7" href="/user/services.action?sid=2522b1a01c942a1cb55c5a635f2cb57d">
+				    客户服务
+			    </a>
+		    </li>
+			  <li>
+    			    <a class="link link8" href="/user/preSells.action?sid=2522b1a01c942a1cb55c5a635f2cb57d">
+    				    我的预约
+    			    </a>
+    		  </li>
+			 
+		   </ul>
+
+        </div>
+        @Html.Partial("_FooterTypical")
+    </body>
+
+</html>

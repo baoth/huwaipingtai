@@ -1,0 +1,124 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link href="../../Content/Header.css" rel="stylesheet" type="text/css" />
+
+        <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.chooseDelvType').on($.clickAction, chooseDelvType);
+                initDelivery();
+            });
+            function chooseDelvType() {
+                var index = $(this).data('index');
+                $("#iddelvType").val(index);
+                $("[name='delvlist']").removeClass("on");
+                $('#delvType' + index).addClass("on");
+            };
+            function initDelivery() {
+                if (window.sessionStorage.DeliveryType == undefined || window.sessionStorage.DeliveryType == '') {
+                    window.sessionStorage.DeliveryType = '1';
+                }
+                if (window.sessionStorage.DeliveryText == undefined || window.sessionStorage.DeliveryText == '') {
+                    window.sessionStorage.DeliveryText = '门店自提';
+                }
+                $('#delvType' + window.sessionStorage.DeliveryType).parent().trigger($.clickAction);
+            };
+            function submitForm() {
+                
+                window.sessionStorage.DeliveryType = $('#iddelvType').val();
+                window.sessionStorage.DeliveryText = $('#delvType' + window.sessionStorage.DeliveryType).next().text();
+                $('.i-a-back').trigger($.clickAction);
+            };
+        </script>
+        <style type="text/css">
+           .new-ct 
+            {
+                min-height: 203px;
+                background-color: #fff;
+            }
+            .title 
+            {
+                padding: 13px 10px 7px;
+                border-bottom: 1px solid #c8c7cc;
+                background: #f1f1f5;
+                font-size: 14px;
+                color: #666;
+            }
+            .info-delv-t
+            {
+                padding-left: 10px;
+                border-bottom: 1px solid #c8c7cc;
+            }
+            .info-delv
+            {
+                padding: 13px 10px 12px;
+                border-bottom: 1px solid #c8c7cc;
+            }
+            .info-delv.b-b-n
+            {
+                border-bottom: none;
+            }
+            .btn-radio 
+            {
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                padding: 0;
+                background: url(../Content/images/icon_order.png) -79px -50px no-repeat;
+                background-size: 100px 100px;
+                vertical-align: -5px;
+            }
+            .btn-radio.on 
+            {
+                background-position: -55px -50px;
+            }
+            .mgn 
+            {
+                margin: 15px 10px;
+            }
+            .new-abtn-type
+            {
+                display: block;
+                padding: 8px;
+                border-radius: 2px;
+                background-color: #c00;
+                font-size: 14px;
+                color: #fff;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "选择发货方式" } })
+        <div class='i-bd' style='width:100%'>
+            <div class='new-ct' style='width:100%;height:100%;float:left;'>
+                <div class='title'>发货信息</div>
+                <div class="info-delv-t">
+			        <div class="info-delv chooseDelvType" data-index='1'>
+                        <a name="delvlist" id="delvType1" class="btn-radio on"></a>
+					    <span>门店自提</span>
+                    </div>
+				    <div class="info-delv chooseDelvType b-b-n" data-index='2'>
+                        <a name="delvlist" id="delvType2" class="btn-radio"></a>
+					    <span>送货上门</span>
+                    </div>
+                </div>
+                <a href="javascript:submitForm()" class="new-abtn-type mgn">确认</a>
+                <input type="hidden" name="iddelvType" id="iddelvType" value="1">
+            </div>
+        </div>
+        @Html.Partial("_FooterTypical")
+    </body>
+
+</html>

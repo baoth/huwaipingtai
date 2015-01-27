@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Toolkit.Path;
 using DataModel.DeliverGoods;
+using Toolkit.Fun;
 
 namespace FZ.Controllers
 {
@@ -55,6 +56,7 @@ namespace FZ.Controllers
             var shiperInfo = idelivergoods.GetShiperByOrderNo(id);
             var goods = idelivergoods.GetGoodsByOrderNo(id);
             ViewData["ShiperInfo"] = shiperInfo;
+            ViewData["OrderId"] = orderId;
             ViewData["DeliverGoods"] = goods;
            return View("DeliverGoods");
         }
@@ -66,9 +68,18 @@ namespace FZ.Controllers
         public JsonResult SetDeliver() 
         {
             var data = Request["data"];
-            var expressDto = Toolkit.JsonHelp.JsonHelp.josnToObject<ExpressDto>(data);
-            var cresult = idelivergoods.SetDeliver(expressDto);
-            return Json(cresult, JsonRequestBehavior.AllowGet);
+            try
+            {
+                var expressDto = Toolkit.JsonHelp.JsonHelp.josnToObject<ExpressDto>(data);
+                var cresult = idelivergoods.SetDeliver(expressDto);
+                return Json(cresult, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(FunResult.GetError(ex.Message));
+            }
+           
+           
         }
     }
 }

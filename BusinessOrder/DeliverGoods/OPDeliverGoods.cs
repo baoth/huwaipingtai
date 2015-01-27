@@ -49,7 +49,7 @@ namespace BusinessOrder.DeliverGoods
                                     LEFT JOIN shangjia_sku_info m ON f.sku = m.sku
                                     LEFT JOIN shangjia_sku_tutou a ON SUBSTRING_INDEX(f.`Sku`, '-', 4) = a.ImgKey
                                         AND (`a`.`Sort` = 1)) info ON info.Id = b.id
-	                                 where 1=1 and  o.Status<>'{0}' order by c.createdate desc  limit {1}
+	                                 where 1=1 and  o.Status='{0}' order by c.createdate desc  limit {1}
                                     ", (int)OrderStatusEnum.Payment, pageSize * pageIndex);//无测试数据 记得将o.Status<>'{0}' 改为等于
 
             var dt = dbSession.Context.QueryTable(sql);
@@ -111,7 +111,7 @@ namespace BusinessOrder.DeliverGoods
         {
             var sql = string.Format(@"update `order` set ExpressCompany='{0}',
             Expresser='{1}',ExpressPhone='{2}',ExpressNum='{3}',ExpressDateTime='{4}',Status='{5}'
-            where Id='{6}'",expressDto.ExpressCompany,expressDto.Expressor,expressDto.ExpressPhone,expressDto.ExpressNo,DateTime.Now,(int)OrderStatusEnum.DeliverGoods);
+            where Id='{6}'",expressDto.ExpressCompany,expressDto.Expressor,expressDto.ExpressPhone,expressDto.ExpressNo,DateTime.Now,(int)OrderStatusEnum.DeliverGoods,expressDto.OrderId);
             var dbSession = Common.DbFactory.CreateDbSession();
             dbSession.Context.ExcuteNoQuery(sql);
             return FunResult.GetSuccess();

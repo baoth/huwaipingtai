@@ -10,11 +10,12 @@ using wxPay;
 using System.IO;
 using System.Text;
 using System.Xml;
+using IBusinessOrder.Order;
 
 namespace huwaipingtai.Controllers
 {
     public class WeixinPayController : Controller
-    {
+    {   
         //
         // GET: /WeixinPay/
         private TenPayV3Info _tenPayInfo;
@@ -34,6 +35,7 @@ namespace huwaipingtai.Controllers
             }
         }
 
+
         public ActionResult Index()
         {
             string timeStamp = TenPayUtil.GetTimestamp();
@@ -43,6 +45,7 @@ namespace huwaipingtai.Controllers
             string openid = Request.Cookies["sid"].Value;
             string body = Request["good_body"].ToString();
             string fee = Request["fee"].ToString();
+            //根据订单号获取从数据库中body fee 等信息
             //附加数据
             string attach = sp_billno;
             //当前时间 yyyyMMdd
@@ -117,31 +120,57 @@ namespace huwaipingtai.Controllers
         public void Notify()
         {
 
-            var qcount = Request.QueryString.Count;
-            for (int i = 0; i < qcount; i++)
-            {
-                Log.Logger.Write("weixinpay_notify_get_" + i + ":" + Request.QueryString[i]);
-            }
-            
+            XmlDocument xd = new XmlDocument();
+
             Stream postdata = Request.InputStream;
             if (postdata != null)
             {
-                byte[] b = new byte[postdata.Length];
-                postdata.Read(b, 0, (int)postdata.Length);
-                string postStr = Encoding.UTF8.GetString(b);
-                Log.Logger.Write("weixinpay_notify_post:" + postStr);
+                var res = XDocument.Load(postdata);
+                if (res.Element("xml").Element("return_code").Value == "SUCCESS")
+                {
+                    string out_trade_no = res.Element("xml").Element("out_trade_no").Value;
+                    string openid = res.Element("xml").Element("openid").Value;
+                    string transaction_id = res.Element("xml").Element("transaction_id").Value;
+                    //在数据库中检查out_trade_no是否已经支付过了如果支付过了直接返回SUCCESS
+                    //修改数据库中该out_trade_no单据的状态为已支付返回SUCCESS
+                    xd.LoadXml("<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
+                    Log.Logger.Write(string.Format("Notify:transaction_id->{0},openid->{1},out_trade_no->{2}", transaction_id, openid, out_trade_no));
+                }
+                else
+                {
+                    string error_msg = res.Element("xml").Element("err_code_des").Value;
+                    xd.LoadXml("<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[" + error_msg + "]]></return_msg></xml>");
+                }
             }
-            XmlDocument xd = new XmlDocument();
-            xd.LoadXml("<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
-            Response.Clear();
-            Response.ContentType = "text/xml";
-            Response.Charset = "UTF-8";
-            XmlTextWriter writer = new XmlTextWriter(Response.OutputStream, System.Text.Encoding.UTF8);
-            writer.Formatting = Formatting.Indented;
-            xd.WriteTo(writer);
-            writer.Flush();
-            Response.End();
+            else
+            {
+                xd.LoadXml("<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[no notify params]]></return_msg></xml>");
+            }
+            //if (postdata != null)
+            //{
+            //    byte[] b = new byte[postdata.Length];
+            //    postdata.Read(b, 0, (int)postdata.Length);
+            //    string postStr = Encoding.UTF8.GetString(b);
+            //    Log.Logger.Write("weixinpay_notify_post:" + postStr);
+            //}
+            try
+            {
+                Response.Clear();
+                Response.ContentType = "text/xml";
+                Response.Charset = "UTF-8";
+                XmlTextWriter writer = new XmlTextWriter(Response.OutputStream, System.Text.Encoding.UTF8);
+                writer.Formatting = Formatting.Indented;
+                xd.WriteTo(writer);
+                writer.Flush();
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Write(string.Format("Notify:response_errror->{0}", ex.Message));
+            }
         }
+
+        
 
     }
 }

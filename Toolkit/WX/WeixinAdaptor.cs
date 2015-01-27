@@ -9,6 +9,7 @@ namespace Toolkit
 {
     public static class WeixinAdaptor
     {
+        public const string PayNotify = "http://test.nkwang.cn/WXApi/CommonPayNotify";
         public const string API密钥 = "5ded26c2550f4c76bb8399aade46f168";
         public const string MchId = "1228373802";
         public const string Token = "tiantian315";

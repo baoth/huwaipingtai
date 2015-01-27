@@ -52,5 +52,12 @@ namespace IBusinessOrder.Order
         List<DataModel.Order.OrderGoodsDto> GetOrderGoodsList(string customerId);
 
 
+        /// <summary>
+        /// 根据订单号 获取订单 给支付用
+        /// </summary>
+        /// <param name="orderNo"></param>
+        /// <returns></returns>
+        DataModel.Order.OrderGoodsPayDto GetOrderById(int orderNo);
+
     }
 }

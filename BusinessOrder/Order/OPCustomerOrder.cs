@@ -207,6 +207,20 @@ namespace BusinessOrder.Order
             var list = dt.ToList<OrderGoodsDto>() as List<OrderGoodsDto>;
             return list;
         }
+
+
+        public OrderGoodsPayDto GetOrderById(int orderNo)
+        {
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var sql = string.Format(@"
+                                   select a.*,b.Description from `ordergoods` a
+left join shangjia_sku_info b on  a.sku=b.Sku where  a.OrderId='{0}'
+                                    ", orderNo);
+            var dt = dbSession.Context.QueryTable(sql);
+            if (dt.Rows.Count == 0) return null;
+            var list = dt.ToList<OrderGoodsPayDto>() as List<OrderGoodsPayDto>;
+            return  list[0];
+        }
     }
 
 

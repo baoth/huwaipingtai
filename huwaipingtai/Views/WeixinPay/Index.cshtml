@@ -16,8 +16,9 @@
     <script type="text/javascript">
            $(document).ready(function(){
            if (WeixinJSBridge==undefined) alert("不支持weixin jsapi");
+           
             //公众号支付
-            $('a#getBrandWCPayRequest').on($.clickAction,function (e) {
+            $('#getBrandWCPayRequest').on($.clickAction,function (e) {
                 WeixinJSBridge.invoke('getBrandWCPayRequest', {
                     "appId": "@ViewData["appId"]", //公众号名称，由商户传入
                     "timeStamp": "@ViewData["timeStamp"]", //时间戳
@@ -46,6 +47,15 @@
 </head>
 <body>
     @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "微信支付" } })
+    <br />
+    <br />
+    <br />
+    <a>@ViewData["error"]</a>
+    <a>appId:@ViewData["appId"]</a>
+    <a>timeStamp:@ViewData["timeStamp"]</a>
+    <a>nonceStr:@ViewData["nonceStr"]</a>
+    <a>package:@ViewData["package"].ToString()</a>
+    <a>paySign:@ViewData["paySign"]</a>
     <a id="getBrandWCPayRequest">立即支付</a>
 </body>
 </html>

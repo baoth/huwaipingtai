@@ -15,6 +15,7 @@
     <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
     <script type="text/javascript">
            $(document).ready(function(){
+           if (WeixinJSBridge==undefined) alert("不支持weixin jsapi");
             //公众号支付
             $('a#getBrandWCPayRequest').on($.clickAction,function (e) {
                 WeixinJSBridge.invoke('getBrandWCPayRequest', {
@@ -45,5 +46,6 @@
 </head>
 <body>
     @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "微信支付" } })
+    <a id="getBrandWCPayRequest">立即支付</a>
 </body>
 </html>

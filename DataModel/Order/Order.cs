@@ -131,4 +131,15 @@ namespace DataModel.Order
         public string CreateDate { set; get; }
     }
 
+    ///订单下商品的实体类 为显示支付的body用
+    public class OrderGoodsPayDto 
+    {
+        public int Id { get; set; }
+        public int OrderId { get; set; }
+        public string Sku { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+        public string Description { get; set; }
+    }
+    
 }

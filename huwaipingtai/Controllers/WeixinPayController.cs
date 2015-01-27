@@ -17,6 +17,8 @@ namespace huwaipingtai.Controllers
     {
         //
         // GET: /WeixinPay/
+
+         
         private TenPayV3Info _tenPayInfo;
         public TenPayV3Info TenPayInfo
         {

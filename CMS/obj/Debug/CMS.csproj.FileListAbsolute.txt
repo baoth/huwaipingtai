@@ -71,3 +71,8 @@ X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\RestSharp.dll
 X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\Newtonsoft.Json.dll
 X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\RestSharp.xml
 X:\FuZhuangPingTai2014\huwaipingtai\CMS\bin\Newtonsoft.Json.xml
+E:\户外运动平台\huwaipingtai\CMS\bin\QSmart.Weixin.Core.dll
+E:\户外运动平台\huwaipingtai\CMS\bin\RestSharp.dll
+E:\户外运动平台\huwaipingtai\CMS\bin\Newtonsoft.Json.dll
+E:\户外运动平台\huwaipingtai\CMS\bin\RestSharp.xml
+E:\户外运动平台\huwaipingtai\CMS\bin\Newtonsoft.Json.xml

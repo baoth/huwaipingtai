@@ -7,6 +7,9 @@ using wxPay.TenPayLibV3;
 using Toolkit;
 using System.Xml.Linq;
 using wxPay;
+using System.IO;
+using System.Text;
+using System.Xml;
 
 namespace huwaipingtai.Controllers
 {
@@ -51,7 +54,7 @@ namespace huwaipingtai.Controllers
                 sp_billno = DateTime.Now.ToString("HHmmss") + TenPayUtil.BuildRandomStr(28);
             }
 
-
+            sp_billno = DateTime.Now.ToString("HHmmss") + TenPayUtil.BuildRandomStr(28);
 
             //创建支付应答对象
             RequestHandler packageReqHandler = new RequestHandler(null);
@@ -74,9 +77,11 @@ namespace huwaipingtai.Controllers
             string sign = packageReqHandler.CreateMd5Sign("key", TenPayInfo.Key);
             packageReqHandler.SetParameter("sign", sign);	                    //交易类型
             string data = packageReqHandler.ParseXML();
+            ViewData["createdata"] = data;
             var result = TenPayV3.Unifiedorder(data);
+            ViewData["resultdata"] = result;
             var res = XDocument.Parse(result);
-
+            
             string prepayId = "";
             try
             {
@@ -85,6 +90,7 @@ namespace huwaipingtai.Controllers
             }
             catch (Exception ex)
             {
+                ViewData["error"] = ex.Message;
                 return View();
             }
             string package = string.Format("prepay_id={0}", prepayId);
@@ -108,10 +114,33 @@ namespace huwaipingtai.Controllers
             return View();
         }
 
-        public ActionResult Notify()
+        public void Notify()
         {
-            Response.Write("call back notify");
-            return View();
+
+            var qcount = Request.QueryString.Count;
+            for (int i = 0; i < qcount; i++)
+            {
+                Log.Logger.Write("weixinpay_notify_get_" + i + ":" + Request.QueryString[i]);
+            }
+            
+            Stream postdata = Request.InputStream;
+            if (postdata != null)
+            {
+                byte[] b = new byte[postdata.Length];
+                postdata.Read(b, 0, (int)postdata.Length);
+                string postStr = Encoding.UTF8.GetString(b);
+                Log.Logger.Write("weixinpay_notify_post:" + postStr);
+            }
+            XmlDocument xd = new XmlDocument();
+            xd.LoadXml("<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
+            Response.Clear();
+            Response.ContentType = "text/xml";
+            Response.Charset = "UTF-8";
+            XmlTextWriter writer = new XmlTextWriter(Response.OutputStream, System.Text.Encoding.UTF8);
+            writer.Formatting = Formatting.Indented;
+            xd.WriteTo(writer);
+            writer.Flush();
+            Response.End();
         }
 
     }

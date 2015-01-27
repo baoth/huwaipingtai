@@ -1,0 +1,43 @@
+﻿<a name="top"></a>
+<header>
+    <div class='i-bh-header'>
+        <a href="javascript:void(0);" class="i-a-back"><span>返回</span></a>
+        <h2>@ViewData["title"]</h2>
+        <a href="javascript:void(0);" class="i-a-bh"><span>易购键</span></a>
+    </div>
+    <div class='i-bh-tab'>
+        <div class='i-tbl-type'>
+            <a href='/Home/Index' class='i-tbl-cell'>
+                <span></span>
+                <p style='color:#6e6e6e;'>首页</p>
+            </a>
+            <a href='#' class='i-tbl-cell'>
+                <span style='width:26px;background-position:0 -25px;'></span>
+                <p style='color:#6e6e6e;'>分类搜索</p>
+            </a>
+            <a href='/Cart/Index' class='i-tbl-cell'>
+                <span style='width:25px;background-position:-29px -25px'></span>
+                <p style='color:#6e6e6e;'>去购物车</p>
+            </a>
+            <a href='/User/Home' class='i-tbl-cell'>
+                <span style='width:22px;background-position:-85px -25px'></span>
+                <p style='color:#6e6e6e;'>账户</p>
+            </a>
+        </div>
+    </div>
+</header>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.i-a-bh').on($.clickAction, function () {
+            var tg = $('.i-bh-tab');
+            if (tg.hasClass('on')) {
+                tg.removeClass('on');
+            }
+            else {
+                tg.addClass('on');
+            }
+        });
+        $('.i-a-back').on($.clickAction, function () { window.history.back(-1); });
+    });
+</script>
+

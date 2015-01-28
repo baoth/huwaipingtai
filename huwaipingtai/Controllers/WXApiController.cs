@@ -36,14 +36,13 @@ namespace huwaipingtai.Controllers
         [ActionName("Index")]
         public ActionResult PostIndex(string signature, string timestamp, string nonce, string echostr)
         {
-            Logger.Write("进入方法");
+
             WeixinCore wc =WeixinAdaptor.CreateWeixinCore();
             if (!wc.Check(signature, timestamp, nonce, WeixinAdaptor.Token))
             {
-                Logger.Write("参数错误");
+
                 return Content("参数错误！");
             }
-            Logger.Write("进入方法通过");
             if (Request.InputStream != null)
             {
                 XDocument doc = XDocument.Load(Request.InputStream);
@@ -51,13 +50,13 @@ namespace huwaipingtai.Controllers
                 if (baseinfo != null && baseinfo.IsEvent)
                 {
                     var context = WeixinAdaptor.GetWxMessage(baseinfo.ToUserName, baseinfo.FromUserName, "");
+                    baseinfo.EventKey=doc.Element("xml").Element("EventKey").Value;
                     switch (baseinfo.EventType)
                     {
                         case EventType.subscribe:
-                            Logger.Write("关注");
                             return Content(context);
                         case EventType.click:
-                            if (baseinfo.EventKey == "V_HOME_INDEX")
+                            if (baseinfo.EventKey == "home")
                             {
                                 return Content(context);
                             }
@@ -71,19 +70,17 @@ namespace huwaipingtai.Controllers
                                 item.Title = "支付测试";
                                 item.Description = "支付测试";
                                 item.PicUrl = "http://test.nkwang.cn/Product/Images/n1/test/9b839728-d085-468e-acb8-88eb9eb008b8.jpg";
-                                item.Url = "http://test.nkwang.cn/WeixinPay/Index?order_no=5&good_body=bai se 上衣&fee=1&showwxpaytitle=1";
+                                item.Url = "http://test.nkwang.cn/WeixinPay/Index?order_no=5";
                                 rnm.Articles.Add(item);
                                 return Content(rnm.GetReplyMessage());
                             }
                             
-                            // Logger.Write("关注");
                             //var context = WeixinAdaptor.GetWxMessage(baseinfo.ToUserName,baseinfo.FromUserName,"");
                             //return Content(context);
                     }
                 }
                 else if (baseinfo != null && !baseinfo.IsEvent)
                 {
-                    Logger.Write("xiaoxi");
                     switch (baseinfo.MsgType)
                     {
                         case MsgType.text:
@@ -108,11 +105,11 @@ namespace huwaipingtai.Controllers
         /// <returns></returns>
         public ActionResult CreateMenu()
         {
-            var jsonMenu = "{\"button\":[{\"name\":\"首页\", \"type\":\"click\", \"key\":\"V_HOME_INDEX\"}, {\"name\":\"支付\", \"type\":\"click\", \"key\":\"V_JSPAY_INDEX\"},{" +
+            var jsonMenu = "{\"button\":[{\"name\":\"首页\", \"type\":\"CLICK\", \"key\":\"home\"}, {\"name\":\"支付\", \"type\":\"CLICK\", \"key\":\"jspay\"},{" +
              
            " \"name\": \"发送位置\", "+
          "   \"type\": \"location_select\", "+
-            "\"key\": \"V_USER_POSTION\"" +
+            "\"key\": \"location\"" +
         "}]}";
             var context = Common.Weixin.WeixinApi.CreateMenuByStream(jsonMenu);
             return Content(context);

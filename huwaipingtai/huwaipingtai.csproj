@@ -158,7 +158,6 @@
     <Content Include="Content\images\bg_line.png" />
     <Content Include="Content\images\bg_line2.png" />
     <Content Include="Content\images\bg_line3.png" />
-    <Content Include="Content\images\defaultLink.jpg" />
     <Content Include="Content\images\home-icons.png" />
     <Content Include="Content\images\icon-fov.png" />
     <Content Include="Content\images\icon-shp-cart-remove.png" />

@@ -386,6 +386,7 @@
     <Content Include="Views\Order\userAllOrderList.cshtml" />
     <Content Include="Views\WeixinPay\Index.cshtml" />
     <Content Include="Views\Order\failureSubmit.cshtml" />
+    <Content Include="Views\WeixinPay\payIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

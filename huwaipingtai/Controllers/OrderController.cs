@@ -9,11 +9,7 @@ using BusinessOrder;
 using QSmart.Core.DataBase;
 using QSmart.Core.Object;
 using IBusinessOrder.Order;
-using BusinessOrder;
-using DataModel.Order;
 using Toolkit.Ext;
-using QSmart.Core.DataBase;
-using System.Data;
 using Toolkit.CommonModel;
 using Toolkit.Fun;
 using Toolkit.Path;
@@ -149,7 +145,6 @@ namespace huwaipingtai.Controllers
            }           
            return View("goodlisting");
         }
-
         public ActionResult GetOrderGoodsList()
         {
             if (this.CurrentUserInfo== null) return null;

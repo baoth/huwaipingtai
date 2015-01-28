@@ -70,7 +70,7 @@ namespace huwaipingtai.Controllers
                                 item.Title = "支付测试";
                                 item.Description = "支付测试";
                                 item.PicUrl = "http://test.nkwang.cn/Product/Images/n1/test/9b839728-d085-468e-acb8-88eb9eb008b8.jpg";
-                                item.Url = "http://test.nkwang.cn/WeixinPay/Index?order_no=5";
+                                item.Url = "http://test.nkwang.cn/WeixinPay/Index?orderId=100000000000000";
                                 rnm.Articles.Add(item);
                                 return Content(rnm.GetReplyMessage());
                             }

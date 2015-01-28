@@ -46,9 +46,9 @@ namespace huwaipingtai.Controllers
         public ActionResult Index()
         {
 
-            string sp_billno = Request["order_no"].ToString();
+            string sp_billno = Request["orderId"].ToString();
 
-            ViewData["OrderNo"] = sp_billno;
+            ViewData["orderId"] = sp_billno;
             string timeStamp = TenPayUtil.GetTimestamp();
             string nonceStr = TenPayUtil.GetNoncestr();
             string paySign = "";
@@ -70,7 +70,7 @@ namespace huwaipingtai.Controllers
                 var integerpart = decimal.Truncate(totalfee);
                 var decimalpart = decimal.Floor((totalfee - integerpart)*100);
                 fee = (integerpart * 100 + decimalpart).ToString();
-                ViewData["Fee"] = fee;
+                ViewData["Fee"] = totalfee;
             }
             catch (Exception ex)
             {
@@ -222,14 +222,14 @@ namespace huwaipingtai.Controllers
         public ActionResult FailurePay() {
 
             ViewData["Msg"] = Request["Msg"];
-            ViewData["OrderNo"] = Request["OrderNo"];
+            ViewData["orderId"] = Request["orderId"];
             return View("failurePay");
         }
         public ActionResult SuccessPay()
         {
 
             ViewData["Msg"] = Request["Msg"];
-            ViewData["OrderNo"] = Request["OrderNo"];
+            ViewData["orderId"] = Request["orderId"];
             return View("successPay");
         }
 

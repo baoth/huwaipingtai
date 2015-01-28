@@ -50,11 +50,26 @@ namespace huwaipingtai.Controllers
             string paySign = "";
             string sp_billno = Request["order_no"].ToString();
             string openid = Request.Cookies["sid"].Value;
-            string body = Request["good_body"].ToString();
-            string fee = Request["fee"].ToString();
+            string body = string.Empty;
+            string fee = string.Empty;
+            decimal totalfee = 0;
             //根据订单号获取从数据库中body fee 等信息
-            
-     
+            try
+            {
+                var goodsinfos = this.customerOrder.GetOrderById(int.Parse(sp_billno));
+                foreach (var goodinfo in goodsinfos)
+                {
+                    totalfee += goodinfo.Price * goodinfo.Quantity;
+                }
+                body = "商品数量" + goodsinfos.Count;
+                var integerpart = decimal.Truncate(totalfee);
+                var decimalpart = decimal.Floor((totalfee - integerpart)*100);
+                fee = (integerpart * 100 + decimalpart).ToString();
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
             //附加数据
             string attach = sp_billno;
             //当前时间 yyyyMMdd
@@ -89,9 +104,7 @@ namespace huwaipingtai.Controllers
             string sign = packageReqHandler.CreateMd5Sign("key", TenPayInfo.Key);
             packageReqHandler.SetParameter("sign", sign);	                    //交易类型
             string data = packageReqHandler.ParseXML();
-            ViewData["createdata"] = data;
             var result = TenPayV3.Unifiedorder(data);
-            ViewData["resultdata"] = result;
             var res = XDocument.Parse(result);
             
             string prepayId = "";
@@ -128,7 +141,7 @@ namespace huwaipingtai.Controllers
 
         public void Notify()
         {
-
+            string Logmsg = string.Empty;
             XmlDocument xd = new XmlDocument();
 
             Stream postdata = Request.InputStream;
@@ -142,18 +155,30 @@ namespace huwaipingtai.Controllers
                     string transaction_id = res.Element("xml").Element("transaction_id").Value;
                     //在数据库中检查out_trade_no是否已经支付过了如果支付过了直接返回SUCCESS
                     //修改数据库中该out_trade_no单据的状态为已支付返回SUCCESS
-                    xd.LoadXml("<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
-                    Log.Logger.Write(string.Format("Notify:transaction_id->{0},openid->{1},out_trade_no->{2}", transaction_id, openid, out_trade_no));
+                    try
+                    {
+                        this.customerOrder.UpdateOrderPayStatus(int.Parse(out_trade_no));
+                        xd.LoadXml("<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
+                    }
+                    catch(Exception ex)
+                    {
+                        xd.LoadXml("<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[updateorderpaystatus error]]></return_msg></xml>");
+                        Logmsg = string.Format("Notify:transaction_id->{0},openid->{1},out_trade_no->{2},error->{3}", transaction_id, openid, out_trade_no, ex.Message);
+                    }
+                    
+                    
                 }
                 else
                 {
                     string error_msg = res.Element("xml").Element("err_code_des").Value;
-                    xd.LoadXml("<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[" + error_msg + "]]></return_msg></xml>");
+                    xd.LoadXml("<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[return error]]></return_msg></xml>");
+                    Logmsg = string.Format("Notify:return_error->code->{0},msg->{1}", res.Element("xml").Element("err_code").Value, res.Element("xml").Element("err_code_des").Value);
                 }
             }
             else
             {
-                xd.LoadXml("<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[no notify params]]></return_msg></xml>");
+                xd.LoadXml("<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[no post data]]></return_msg></xml>");
+                Logmsg = string.Format("Notify:no post data");
             }
             //if (postdata != null)
             //{
@@ -175,7 +200,11 @@ namespace huwaipingtai.Controllers
             }
             catch (Exception ex)
             {
-                Log.Logger.Write(string.Format("Notify:response_errror->{0}", ex.Message));
+                Logmsg = string.Format("Notify:response_errror->{0}", ex.Message);
+            }
+            finally
+            {
+                if (Logmsg != string.Empty) Log.Logger.Write(Logmsg);
             }
         }
 

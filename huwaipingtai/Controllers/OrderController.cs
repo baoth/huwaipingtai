@@ -45,6 +45,7 @@ namespace huwaipingtai.Controllers
             }
             catch (Exception ex)
             {
+                Log.Logger.Write("ordersubmit:error->" + ex.Message);
                 return Json(FunResult.GetError(ex.Message));
             }
           

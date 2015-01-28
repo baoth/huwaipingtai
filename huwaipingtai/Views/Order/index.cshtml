@@ -58,11 +58,11 @@
                                 //alert("提交订单成功");
                                 window.location = window.location.origin + "/Order/successSubmit?orderId="+orderId;
                             } else {
+                                /*页面跳转支付*/
                                 window.location = window.location.origin + "/WeixinPay/Index?orderId="+orderId;
                             }
                         } else {
-                            /*页面跳转支付*/
-                            alert(action.Msg);
+                            window.location = window.location.origin + "/Order/failureSubmit?orderId=" + orderId;
 
                         }
                     }

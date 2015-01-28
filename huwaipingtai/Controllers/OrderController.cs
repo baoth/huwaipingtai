@@ -44,7 +44,7 @@ namespace huwaipingtai.Controllers
                    return Json(checkResult); 
                }
                //提交订单
-               var result= customerOrder.SubmitOrder(entity);
+               var result = customerOrder.SubmitOrder(entity);
                return Json(result);
             }
             catch (Exception ex)

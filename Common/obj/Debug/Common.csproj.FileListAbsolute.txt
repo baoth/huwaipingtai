@@ -14,3 +14,11 @@ E:\户外运动平台\huwaipingtai\Common\bin\Debug\DataModel.pdb
 E:\户外运动平台\huwaipingtai\Common\obj\Debug\ResolveAssemblyReference.cache
 E:\户外运动平台\huwaipingtai\Common\obj\Debug\Common.dll
 E:\户外运动平台\huwaipingtai\Common\obj\Debug\Common.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\Common\bin\Debug\Toolkit.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Common\bin\Debug\VTemplate.Engine.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Common\bin\Debug\QSmart.Weixin.Core.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Common\bin\Debug\RestSharp.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Common\bin\Debug\Newtonsoft.Json.dll
+X:\FuZhuangPingTai2014\huwaipingtai\Common\bin\Debug\Toolkit.pdb
+X:\FuZhuangPingTai2014\huwaipingtai\Common\bin\Debug\RestSharp.xml
+X:\FuZhuangPingTai2014\huwaipingtai\Common\bin\Debug\Newtonsoft.Json.xml

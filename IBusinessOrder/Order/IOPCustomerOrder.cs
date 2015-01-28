@@ -17,7 +17,7 @@ namespace IBusinessOrder.Order
         /// 提交订单
         /// </summary>
         /// <returns></returns>
-        CResult SubmitOrder(CustomerOrder customerOrder);
+        CResultCode SubmitOrder(CustomerOrder customerOrder);
         /// <summary>
         /// 验证实体合法
         /// </summary>
@@ -57,7 +57,7 @@ namespace IBusinessOrder.Order
         /// </summary>
         /// <param name="orderNo"></param>
         /// <returns></returns>
-        DataModel.Order.OrderGoodsPayDto GetOrderById(int orderNo);
+        List<DataModel.Order.OrderGoodsPayDto> GetOrderById(int orderNo);
 
     }
 }

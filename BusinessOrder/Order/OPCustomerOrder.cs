@@ -209,7 +209,7 @@ namespace BusinessOrder.Order
         }
 
 
-        public OrderGoodsPayDto GetOrderById(int orderNo)
+        public List<OrderGoodsPayDto> GetOrderById(int orderNo)
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format(@"
@@ -219,7 +219,7 @@ left join shangjia_sku_info b on  a.sku=b.Sku where  a.OrderId='{0}'
             var dt = dbSession.Context.QueryTable(sql);
             if (dt.Rows.Count == 0) return null;
             var list = dt.ToList<OrderGoodsPayDto>() as List<OrderGoodsPayDto>;
-            return  list[0];
+            return  list;
         }
     }
 

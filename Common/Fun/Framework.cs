@@ -12,7 +12,7 @@ namespace Common.Fun
        /// 给的全局数值型唯一码
        /// </summary>
        /// <returns></returns>
-       public static int GetOrderNum() 
+       public static long GetOrderNum() 
        {
            lock (locker)//锁 
            {
@@ -21,7 +21,7 @@ namespace Common.Fun
                    var db = DbFactory.CreateDbSession();
                    db.Context.ExcuteNoQuery("INSERT INTO   ordernum ()values ()");
                    var dataTable = db.Context.QueryTable("select last_insert_id()");
-                   return int.Parse(dataTable.Rows[0][0].ToString());
+                   return long.Parse(dataTable.Rows[0][0].ToString());
                }
                catch (Exception ex)
                {

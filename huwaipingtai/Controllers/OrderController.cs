@@ -96,7 +96,14 @@ namespace huwaipingtai.Controllers
         }
         public ActionResult successSubmit()
         {
+            ViewData["OrderId"] = Request["orderId"];
             return View("successSubmit");
+        }
+        /*支付失败*/
+        public ActionResult failureSubmit()
+        {
+            ViewData["OrderId"] = Request["orderId"];
+            return View("failureSubmit");
         }
         public ActionResult userAllOrderList()
         {

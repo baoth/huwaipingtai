@@ -16,3 +16,6 @@ ADD COLUMN `Expresser` VARCHAR(45) NULL AFTER `ExpressCompany`,
 ADD COLUMN `ExpressPhone` VARCHAR(45) NULL AFTER `Expresser`,
 ADD COLUMN `ExpressNum` VARCHAR(45) NULL AFTER `ExpressPhone`,
 ADD COLUMN `ExpressDateTime` DATE NULL AFTER `ExpressNum`;
+
+
+alter TABLE ordernum AUTO_INCREMENT=100000000000000

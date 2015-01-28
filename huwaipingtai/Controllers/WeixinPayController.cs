@@ -68,9 +68,10 @@ namespace huwaipingtai.Controllers
                 }
                 body = "商品数量" + goodsinfos.Count;
                 var integerpart = decimal.Truncate(totalfee);
+                ViewData["Fee"] = totalfee;
                 var decimalpart = decimal.Floor((totalfee - integerpart)*100);
                 fee = (integerpart * 100 + decimalpart).ToString();
-                ViewData["Fee"] = fee;
+               
             }
             catch (Exception ex)
             {

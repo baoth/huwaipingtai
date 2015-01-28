@@ -1,61 +1,125 @@
-﻿@{
+﻿ @{
     Layout = null;
 }
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link href="../../Content/Header.css" rel="stylesheet" type="text/css" />
-    <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
-    <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
-    <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
-    <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
-    <script type="text/javascript">
-           $(document).ready(function(){
-           if (WeixinJSBridge==undefined) alert("不支持weixin jsapi");
-           
-            //公众号支付
-            $('#getBrandWCPayRequest').on($.clickAction,function (e) {
-                WeixinJSBridge.invoke('getBrandWCPayRequest', {
-                    "appId": "@ViewData["appId"]", //公众号名称，由商户传入
-                    "timeStamp": "@ViewData["timeStamp"]", //时间戳
-                    "nonceStr": "@ViewData["nonceStr"]", //随机串
-                    "package": "@Html.Raw(ViewData["package"].ToString())",//扩展包
-                    "signType": "MD5", //微信签名方式:1.sha1
-                    "paySign": "@ViewData["paySign"]" //微信签名
-                }, function (res) {
-                    if (res.err_msg == "get_brand_wcpay_request:ok") {
-                    alert("微信支付成功!");  
-	            }else if(res.err_msg == "get_brand_wcpay_request:cancel"){  
-	                alert("用户取消支付!");  
-	            }else{  
-                 alert(res.err_msg);
-	               alert("支付失败!");  
-	            }  
-                    // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
-                    //因此微信团队建议，当收到ok返回时，向商户后台询问是否收到交易成功的通知，若收到通知，前端展示交易成功的界面；若此时未收到通知，商户后台主动调用查询订单接口，查询订单的当前状态，并反馈给前端展示相应的界面。
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+         <link href=@Url.Content("../../Content/Shelves.css")  rel="stylesheet" type="text/css" />
+        <script src=@Url.Content("../../Scripts/qsm-mui/zepto-1.1.4.min.js") type="text/javascript"></script>
+        <script src=@Url.Content("../../Scripts/qsm-mui/fx.js") type="text/javascript"></script>
+        <script src=@Url.Content("../../Scripts/qsm-mui/zepto.selector.js") type="text/javascript"></script>
+        <script src=@Url.Content("../../Scripts/qsm-mui/zepto.touch.js") type="text/javascript"></script>
+        <script src=@Url.Content("../../Scripts/json2.js") type="text/javascript"></script>
+        <link href="../../Content/Header.css" rel="stylesheet" type="text/css" />
+        <script>
+            $(document).ready(function () {
+                $('.btn-switch').on($.clickAction, function () {
+
+                    var me = $(this);
+                    var refId = me.attr('refId');
+                    if (me.hasClass('on')) {
+                        me.removeClass('on');
+                        $('#' + refId).hide();
+                    }
+                    else {
+                        me.addClass('on');
+                        $('#' + refId).show();
+                    }
                 });
+                $('#addAllxiacart').on($.clickAction, function () {
+                     WeixinJSBridge.invoke('getBrandWCPayRequest', {
+                        "appId": "@ViewData["appId"]", //公众号名称，由商户传入
+                        "timeStamp": "@ViewData["timeStamp"]", //时间戳
+                        "nonceStr": "@ViewData["nonceStr"]", //随机串
+                        "package": "@Html.Raw(ViewData["package"].ToString())",//扩展包
+                        "signType": "MD5", //微信签名方式:1.sha1
+                        "paySign": "@ViewData["paySign"]" //微信签名
+                    }, function (res) {
+                        if (res.err_msg == "get_brand_wcpay_request:ok") {
+                               window.location = window.location.origin + "/WeixinPay/SuccessPay?OrderNo="+@ViewData["OrderNo"]+"&Msg="+ encodeURIComponent('支付成功');
+	                }else if(res.err_msg == "get_brand_wcpay_request:cancel"){  
+                       window.location = window.location.origin + "/WeixinPay/FailurePay?OrderNo="+@ViewData["OrderNo"]+"&Msg="+ encodeURIComponent('用户取消支付');
+	                }else{  
+//                    alert(res.err_msg);
+//	                   alert("支付失败!");  
+                         window.location = window.location.origin + "/WeixinPay/FailurePay?OrderNo="+@ViewData["OrderNo"]+"&Msg="+ encodeURIComponent(res.err_msg);
+	                }  
+                        // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+                        //因此微信团队建议，当收到ok返回时，向商户后台询问是否收到交易成功的通知，若收到通知，前端展示交易成功的界面；若此时未收到通知，商户后台主动调用查询订单接口，查询订单的当前状态，并反馈给前端展示相应的界面。
+                    });
 
+                })
             });
+        </script>
+   </head>
+    <body>
+        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "支付确认" } })
+         <div id="wrapper">
+	        <div id="scroller" class="bt-category">
+                <ul style="padding-bottom:32px">
+                    <li id="tupianLi" class="info-detail">
+                        <div class="info">
+                            <a id="tupiankuId" href="#">
+                                <span class="text" style="color:Black">订单号:@ViewData["OrderNo"]</span>
+                            </a>
+                            <span class="menu-botton-arrow"></span>
+                        </div>
+                  
+                    </li>
+                    <li class="bg-skape"></li>
+                    <li class="info-detail selector">
+                                                                                                                                                                                                                                        <div class="info border-b-none">
+                        <a class="btn-switch on" href="javascript:void(0)"  refid="idGoods">
+				            <span class="s-block">
+                                <span class="title12">商品信息</span>
+                                <span class="content"><span class="to-text3" id="sh-color" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;合计:@ViewData["Fee"]</span></span>
+                                <span class="icon-arr"></span>
+                            </span>
+                        </a>
+                      
+                        <div class="detail-option" id="idGoods" style="display:block">
+                          @{
+                              var goods = ViewData["Goods"] as List<DataModel.Order.OrderGoodsPayDto>;
+                              foreach (var item in goods)
+                              {
+                                   <div class="info splitLine">
+                                        <a href="javascript:void(0)" style="padding-bottom: 10px;padding-top: 10px;">
+                                            <span class="text">商品描述</span>
+                                            <span   style="width: 70%;line-height: 25px;margin-left: 20px;">@item.Description</span>
+                                        </a>
+                                    </div>
+                                     <div class="info splitLine">
+                                        <a href="javascript:void(0)" style="padding-bottom: 10px;padding-top: 10px;">
+                                            <span class="text">价格</span>
+                                            <span   style="width: 70%;line-height: 25px;margin-left: 20px;">@item.Price </span>
+                                        </a>
+                                    </div>
+                                    <div class="info splitLine">
+                                        <a href="javascript:void(0)" style="padding-bottom: 10px;padding-top: 10px;">
+                                            <span class="text">数量</span>
+                                            <span   style="width: 70%;line-height: 25px;margin-left: 20px;">@item.Quantity </span>
+                                        </a>
+                                    </div>
+                                  
+                              }
+                                
+                              }
+                        </div>
+                     </div>    
+                    </li>
+                    </ul>
+                </div>
+        </div>
+           <div class="tbl-type btns">
+              
+                 <div class="tbl-cell">                    
+                <a id="addAllxiacart" class="btn-dbuy"><span></span>确认</a>
+                </div>
+            </div>
+    </body>
 
-        });
-    
-    </script>
-</head>
-<body>
-    @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "微信支付" } })
-    <br />
-    <br />
-    <br />
-    <a>@ViewData["error"]</a>
-    <a>appId:@ViewData["appId"]</a>
-    <a>timeStamp:@ViewData["timeStamp"]</a>
-    <a>nonceStr:@ViewData["nonceStr"]</a>
-    <a>package:@ViewData["package"].ToString()</a>
-    <a>paySign:@ViewData["paySign"]</a>
-    <a id="getBrandWCPayRequest">立即支付</a>
-</body>
 </html>
+
+

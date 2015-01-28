@@ -45,18 +45,23 @@ namespace huwaipingtai.Controllers
 
         public ActionResult Index()
         {
+
+            string sp_billno = Request["order_no"].ToString();
+
+            ViewData["OrderNo"] = sp_billno;
             string timeStamp = TenPayUtil.GetTimestamp();
             string nonceStr = TenPayUtil.GetNoncestr();
             string paySign = "";
-            string sp_billno = Request["order_no"].ToString();
-            string openid = Request.Cookies["sid"].Value;
+       
+         
             string body = string.Empty;
             string fee = string.Empty;
             decimal totalfee = 0;
             //根据订单号获取从数据库中body fee 等信息
             try
             {
-                var goodsinfos = this.customerOrder.GetOrderById(int.Parse(sp_billno));
+                var goodsinfos = this.customerOrder.GetOrderById(Int64.Parse(sp_billno));
+                ViewData["Goods"] = goodsinfos;
                 foreach (var goodinfo in goodsinfos)
                 {
                     totalfee += goodinfo.Price * goodinfo.Quantity;
@@ -65,11 +70,14 @@ namespace huwaipingtai.Controllers
                 var integerpart = decimal.Truncate(totalfee);
                 var decimalpart = decimal.Floor((totalfee - integerpart)*100);
                 fee = (integerpart * 100 + decimalpart).ToString();
+                ViewData["Fee"] = fee;
             }
             catch (Exception ex)
             {
-                return View();
+                ViewData["Msg"] = ex.Message;
+                return View("failurePay");
             }
+
             //附加数据
             string attach = sp_billno;
             //当前时间 yyyyMMdd
@@ -78,10 +86,12 @@ namespace huwaipingtai.Controllers
             if (string.IsNullOrEmpty(sp_billno))
             {
                 //生成订单10位序列号，此处用时间和随机数生成，商户根据自己调整，保证唯一
-                sp_billno = DateTime.Now.ToString("HHmmss") + TenPayUtil.BuildRandomStr(28);
+                //sp_billno = DateTime.Now.ToString("HHmmss") + TenPayUtil.BuildRandomStr(28);
+                ViewData["Msg"] ="订单生成错误";
+                return View("failurePay");
             }
 
-            sp_billno = DateTime.Now.ToString("HHmmss") + TenPayUtil.BuildRandomStr(28);
+            //sp_billno = DateTime.Now.ToString("HHmmss") + TenPayUtil.BuildRandomStr(28);
 
             //创建支付应答对象
             RequestHandler packageReqHandler = new RequestHandler(null);
@@ -89,6 +99,7 @@ namespace huwaipingtai.Controllers
             //packageReqHandler.Init();
             //packageReqHandler.SetKey(TenPayInfo.Key);
             //设置package订单参数
+            string openid = Request.Cookies["sid"].Value;
             packageReqHandler.SetParameter("appid", TenPayInfo.AppId);		  //公众账号ID
             packageReqHandler.SetParameter("body", body);
             packageReqHandler.SetParameter("mch_id", TenPayInfo.Mchid);		  //商户号
@@ -115,8 +126,8 @@ namespace huwaipingtai.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["error"] = ex.Message;
-                return View();
+                ViewData["Msg"] = ex.Message;
+                return View("failurePay");
             }
             string package = string.Format("prepay_id={0}", prepayId);
             timeStamp = TenPayUtil.GetTimestamp();
@@ -208,7 +219,19 @@ namespace huwaipingtai.Controllers
             }
         }
 
-        
+        public ActionResult FailurePay() {
+
+            ViewData["Msg"] = Request["Msg"];
+            ViewData["OrderNo"] = Request["OrderNo"];
+            return View("failurePay");
+        }
+        public ActionResult SuccessPay()
+        {
+
+            ViewData["Msg"] = Request["Msg"];
+            ViewData["OrderNo"] = Request["OrderNo"];
+            return View("successPay");
+        }
 
     }
 }

@@ -59,5 +59,12 @@ namespace IBusinessOrder.Order
         /// <returns></returns>
         List<DataModel.Order.OrderGoodsPayDto> GetOrderById(int orderNo);
 
+        /// <summary>
+        /// 修改订单支付状态
+        /// </summary>
+        /// <param name="orderNo"></param>
+        /// <returns></returns>
+        bool UpdateOrderPayStatus(int orderNo);
+
     }
 }

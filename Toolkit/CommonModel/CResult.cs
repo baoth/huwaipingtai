@@ -18,7 +18,7 @@ namespace Toolkit.CommonModel
    /// </summary>
    public class CResultCode : CResult 
    {
-       public int Code { get; set; }
+       public Int64 Code { get; set; }
    }
     /// <summary>
     /// 带回实体集合

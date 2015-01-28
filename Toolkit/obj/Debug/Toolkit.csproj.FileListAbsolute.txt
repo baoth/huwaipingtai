@@ -26,4 +26,3 @@ E:\户外运动平台\huwaipingtai\Toolkit\bin\Debug\QSmart.Weixin.Core.dll
 E:\户外运动平台\huwaipingtai\Toolkit\bin\Debug\RestSharp.dll
 E:\户外运动平台\huwaipingtai\Toolkit\bin\Debug\Newtonsoft.Json.xml
 E:\户外运动平台\huwaipingtai\Toolkit\bin\Debug\RestSharp.xml
-X:\FuZhuangPingTai2014\huwaipingtai\Toolkit\obj\Debug\Toolkit.csprojResolveAssemblyReference.cache

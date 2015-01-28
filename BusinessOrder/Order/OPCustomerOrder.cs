@@ -25,14 +25,13 @@ namespace BusinessOrder.Order
             iOpStore = iopstore;
         }
         //提交客户订单
-        public CResult SubmitOrder(CustomerOrder customerOrder)
+        public CResultCode SubmitOrder(CustomerOrder customerOrder)
         {
 
-            var CResult = new CResult();
             //1、调用购物车查询所有这次提交要买的商品
             var products = iOpCat.CartActivedList(customerOrder.CustomerId);
             if (products.Count == 0) {
-                return FunResult.GetError("亲，购物车中没有商品，不能生成订单呦！");
+                return FunResult<CResultCode>.GetError("亲，购物车中没有商品，不能生成订单呦！");
             }
             //2、获得商品库存状况
             var goodsCount = iOpStore.GetGoodsStore(products.Select(e => e.Sku).ToList());
@@ -91,8 +90,15 @@ namespace BusinessOrder.Order
             listOrderReSql.Add(deleteCatSql);
             var dbSession = Common.DbFactory.CreateDbSession();
             dbSession.Context.ExcuteNoQuery(listOrderReSql);
-            return FunResult.GetSuccess();
+            var result = FunResult<CResultCode>.GetSuccess();
+            result.Code = orderId;
+            return result;
         }
+
+        //CResultCode IOPCustomerOrder.SubmitOrder(CustomerOrder customerOrder)
+        //{
+        //    throw new NotImplementedException();
+        //}
         /// <summary>
         /// 获取购物车中激活的商品
         /// </summary>
@@ -220,6 +226,17 @@ left join shangjia_sku_info b on  a.sku=b.Sku where  a.OrderId='{0}'
             if (dt.Rows.Count == 0) return null;
             var list = dt.ToList<OrderGoodsPayDto>() as List<OrderGoodsPayDto>;
             return  list;
+        }
+
+
+
+
+        public bool UpdateOrderPayStatus(int orderNo)
+        {
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var sql = string.Format(@"update `order` set Status='{1}' where Id='{0}'", orderNo,OrderStatusEnum.Payment);
+            dbSession.Context.ExcuteNoQuery(sql);
+            return true;
         }
     }
 

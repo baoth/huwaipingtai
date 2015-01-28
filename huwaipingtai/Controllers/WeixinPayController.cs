@@ -18,7 +18,7 @@ namespace huwaipingtai.Controllers
     {   
         //
         // GET: /WeixinPay/
-
+        private IBusinessOrder.Order.IOPCustomerOrder customerOrder;
          
         private TenPayV3Info _tenPayInfo;
         public TenPayV3Info TenPayInfo
@@ -37,6 +37,11 @@ namespace huwaipingtai.Controllers
             }
         }
 
+        public WeixinPayController(IOPCustomerOrder customerOrder)
+        {
+            this.customerOrder = customerOrder;
+        }
+
 
         public ActionResult Index()
         {
@@ -48,6 +53,8 @@ namespace huwaipingtai.Controllers
             string body = Request["good_body"].ToString();
             string fee = Request["fee"].ToString();
             //根据订单号获取从数据库中body fee 等信息
+            
+     
             //附加数据
             string attach = sp_billno;
             //当前时间 yyyyMMdd

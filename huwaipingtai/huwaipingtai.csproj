@@ -167,9 +167,7 @@
     <Content Include="Content\images\userdefaul.png" />
     <Content Include="Content\mobile\base.css" />
     <Content Include="Content\mobile\order.css" />
-    <Content Include="Content\mobile\btn.css" />
     <Content Include="Content\mobile\regMobile.css" />
-    <Content Include="Content\mobiscroll-master\.gitignore" />
     <Content Include="Content\mobiscroll-master\css\mobiscroll.animation.css" />
     <Content Include="Content\mobiscroll-master\css\mobiscroll.icons.css" />
     <Content Include="Content\mobiscroll-master\css\mobiscroll.scroller.android-holo.css" />

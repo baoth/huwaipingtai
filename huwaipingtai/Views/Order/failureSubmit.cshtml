@@ -85,7 +85,7 @@
         padding-left: 56px;
         background: url(../../Content/images/failure.png) no-repeat 0 -100px;
         font-size:large;
-        color: #7ABD54;
+        color: red;
         margin: auto;
         }
         .empty-btn-wrapper div
@@ -99,8 +99,8 @@
        <div id="addMsgCart">
             
             <div class="success-b">
-                <p>提交订单失败！</p>
-                <p>订单号:@ViewData["OrderId"]！</p>
+                <p>订单提交失败！</p>
+                <p style="display:none;">订单号:@ViewData["OrderId"]！</p>
             </div>
             <div class="empty-btn-wrapper">
                 <div>

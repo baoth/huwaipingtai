@@ -50,19 +50,20 @@
                     },
                     type: 'post',
                     success: function (action, response) {
-                    debugger
+                        debugger
                         //  var msg = action.IsSuccess?action.Msg"
                         if (action.IsSuccess) {
                             var orderId = action.Code;
                             if (payType == 1) {
                                 //alert("提交订单成功");
-                                window.location = window.location.origin + "/Order/successSubmit?orderId="+orderId;
+                                window.location = window.location.origin + "/Order/successSubmit?orderId=" + orderId;
                             } else {
                                 /*页面跳转支付*/
-                                window.location = window.location.origin + "/WeixinPay/Index?orderId="+orderId;
+                                window.location = window.location.origin + "/WeixinPay/Index?orderId=" + orderId;
                             }
                         } else {
-                            window.location = window.location.origin + "/Order/failureSubmit?orderId=" + orderId;
+                            alert(action.Msg);
+//                            window.location = window.location.origin + "/Order/failureSubmit?orderId=" + orderId;
 
                         }
                     }

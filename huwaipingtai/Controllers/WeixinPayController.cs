@@ -50,11 +50,26 @@ namespace huwaipingtai.Controllers
             string paySign = "";
             string sp_billno = Request["order_no"].ToString();
             string openid = Request.Cookies["sid"].Value;
-            string body = Request["good_body"].ToString();
-            string fee = Request["fee"].ToString();
+            string body = string.Empty;
+            string fee = string.Empty;
+            decimal totalfee = 0;
             //根据订单号获取从数据库中body fee 等信息
-            
-     
+            try
+            {
+                var goodsinfos = this.customerOrder.GetOrderById(int.Parse(sp_billno));
+                foreach (var goodinfo in goodsinfos)
+                {
+                    totalfee += goodinfo.Price * goodinfo.Quantity;
+                }
+                body = "商品数量" + goodsinfos.Count;
+                var integerpart = decimal.Truncate(totalfee);
+                var decimalpart = decimal.Floor((totalfee - integerpart)*100);
+                fee = (integerpart * 100 + decimalpart).ToString();
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
             //附加数据
             string attach = sp_billno;
             //当前时间 yyyyMMdd
@@ -142,6 +157,14 @@ namespace huwaipingtai.Controllers
                     string transaction_id = res.Element("xml").Element("transaction_id").Value;
                     //在数据库中检查out_trade_no是否已经支付过了如果支付过了直接返回SUCCESS
                     //修改数据库中该out_trade_no单据的状态为已支付返回SUCCESS
+                    try
+                    {
+
+                    }
+                    catch
+                    {
+                        return;
+                    }
                     xd.LoadXml("<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
                     Log.Logger.Write(string.Format("Notify:transaction_id->{0},openid->{1},out_trade_no->{2}", transaction_id, openid, out_trade_no));
                 }

@@ -215,7 +215,7 @@ namespace BusinessOrder.Order
         }
 
 
-        public List<OrderGoodsPayDto> GetOrderById(int orderNo)
+        public List<OrderGoodsPayDto> GetOrderById(Int64 orderNo)
         {
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format(@"
@@ -231,10 +231,15 @@ left join shangjia_sku_info b on  a.sku=b.Sku where  a.OrderId='{0}'
 
 
 
-        public bool UpdateOrderPayStatus(int orderNo)
+        public bool UpdateOrderPayStatus(Int64 orderNo)
         {
+            var iStatus=(int )OrderStatusEnum.Payment;
             var dbSession = Common.DbFactory.CreateDbSession();
-            var sql = string.Format(@"update `order` set Status='{1}' where Id='{0}'", orderNo,OrderStatusEnum.Payment);
+            var dt = dbSession.Context.QueryTable(string.Format("select * from `order`  where Id='{0}' and Status='{1}'",orderNo,iStatus));
+            if (dt!=null&&dt.Rows.Count > 0) {
+                return false;
+            }
+            var sql = string.Format(@"update `order` set Status='{1}' where Id='{0}'", orderNo, iStatus);
             dbSession.Context.ExcuteNoQuery(sql);
             return true;
         }

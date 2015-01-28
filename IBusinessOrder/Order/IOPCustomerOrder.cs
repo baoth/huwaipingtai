@@ -57,14 +57,14 @@ namespace IBusinessOrder.Order
         /// </summary>
         /// <param name="orderNo"></param>
         /// <returns></returns>
-        List<DataModel.Order.OrderGoodsPayDto> GetOrderById(int orderNo);
+        List<DataModel.Order.OrderGoodsPayDto> GetOrderById(Int64 orderNo);
 
         /// <summary>
         /// 修改订单支付状态
         /// </summary>
         /// <param name="orderNo"></param>
         /// <returns></returns>
-        bool UpdateOrderPayStatus(int orderNo);
+        bool UpdateOrderPayStatus(Int64 orderNo);
 
     }
 }

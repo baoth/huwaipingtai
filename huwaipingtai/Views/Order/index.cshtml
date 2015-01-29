@@ -117,7 +117,7 @@
                     $(this).parent('a').trigger($.clickAction);
                 });
             };
-            function initInvoice() {
+            function initInvoice() {debugger
                 if (window.sessionStorage.IsInvoice == undefined || window.sessionStorage.IsInvoice == '') {
 
                     var d = unescape(getcookie("order_IsInvoice")) || 0;
@@ -159,6 +159,9 @@
                     window.sessionStorage.invoiceContent = $(this).data('content');
                     $(this).parent('a').trigger($.clickAction);
                 });
+                if (!window.sessionStorage.IsInvoice || window.sessionStorage.IsInvoice == 0) { 
+                     $('#invoice').text('无发票');
+                }
             };
             function initPay() {
                 if (window.sessionStorage.payType == undefined || window.sessionStorage.payType == '') {

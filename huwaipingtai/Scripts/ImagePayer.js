@@ -9,11 +9,11 @@ $.extend(palyer, {
         this.isShowOldData = false;
         this.oldkeyword = "";
         this.sliderImgList = [{
-            url: 'javascript:void(0)', img: 'http://localhost:12156/Product/Images/n1/test/9b839728-d085-468e-acb8-88eb9eb008b8.jpg', title: '无乐不作嗨翻周末9.9元起'
+            url: 'javascript:void(0)', img: 'http://localhost:12156/Product/Images/n1/test/9b839728-d085-468e-acb8-88eb9eb008b8.jpg?v=2015129', title: '无乐不作嗨翻周末9.9元起'
         }, {
-            url: 'javascript:void(0)', img: 'http://localhost:12156/Product/Images/n1/test/13586d56-2df9-45db-89a4-577a3e009c32.jpg', title: 'test1'
+            url: 'javascript:void(0)', img: 'http://localhost:12156/Product/Images/n1/test/13586d56-2df9-45db-89a4-577a3e009c32.jpgv=2015129', title: 'test1'
         }, {
-            url: 'javascript:void(0)', img: 'http://localhost:12156/Product/Images/n1/test/66946b59-c0f8-4414-b777-f0c02c302c20.jpg', title: 'test2'
+            url: 'javascript:void(0)', img: 'http://localhost:12156/Product/Images/n1/test/66946b59-c0f8-4414-b777-f0c02c302c20.jpgv=2015129', title: 'test2'
         }];
 
     },

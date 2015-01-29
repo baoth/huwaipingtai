@@ -35,7 +35,11 @@
                 var title = $('#invoice').data('title');
                 var content = $('#invoice').data('content');
                 var orgName = $('#invoice').data('company');
-                debugger
+                var idVoice = $('#IsUseInvoiceId').val();
+                if (idVoice == 1) {//不开发票
+                    title = 0;
+                    content = "";
+                }
                 $.ajax({
                     url: '/Order/SubmitOrder',
                     data: {
@@ -50,19 +54,20 @@
                     },
                     type: 'post',
                     success: function (action, response) {
-                    debugger
+                        debugger
                         //  var msg = action.IsSuccess?action.Msg"
                         if (action.IsSuccess) {
                             var orderId = action.Code;
                             if (payType == 1) {
                                 //alert("提交订单成功");
-                                window.location = window.location.origin + "/Order/successSubmit?orderId="+orderId;
+                                window.location = window.location.origin + "/Order/successSubmit?orderId=" + orderId;
                             } else {
                                 /*页面跳转支付*/
-                                window.location = window.location.origin + "/WeixinPay/Index?orderId="+orderId;
+                                window.location = window.location.origin + "/WeixinPay/Index?orderId=" + orderId;
                             }
                         } else {
-                            window.location = window.location.origin + "/Order/failureSubmit?orderId=" + orderId;
+                            alert(action.Msg);
+//                            window.location = window.location.origin + "/Order/failureSubmit?orderId=" + orderId;
 
                         }
                     }
@@ -113,6 +118,17 @@
                 });
             };
             function initInvoice() {
+                if (window.sessionStorage.IsInvoice == undefined || window.sessionStorage.IsInvoice == '') {
+
+                    var d = unescape(getcookie("order_IsInvoice")) || 0;
+                    window.sessionStorage.IsInvoice = d;
+                    $('#IsUseInvoiceId').val(d);
+
+                } else {
+                    setcookie("order_IsInvoice", window.sessionStorage.IsInvoice);
+                    $('#IsUseInvoiceId').val(window.sessionStorage.IsInvoice);
+                }
+
                 if (window.sessionStorage.invoiceTitle == undefined || window.sessionStorage.invoiceTitle == '') {
 
                     var d =unescape(getcookie("order_invoiceTitle")) || '1';
@@ -419,6 +435,7 @@
                     <span onclick="submitOrder()" id="submiOrder" class="new-abtn-type mgn">提交订单</span>
                 </div>
             </form>
+            <input type="hidden" id="IsUseInvoiceId" value="0"/>
         </div>
         @Html.Partial("_FooterTypical")
     </body>

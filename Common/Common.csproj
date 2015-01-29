@@ -54,6 +54,10 @@
       <Project>{E745AD0E-4BDA-4045-8D9E-C9357963E89F}</Project>
       <Name>DataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Toolkit\Toolkit.csproj">
+      <Project>{E5E25637-B3F7-49F3-A95A-A20F511270C3}</Project>
+      <Name>Toolkit</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="DLL\QSmart.Core.dll" />

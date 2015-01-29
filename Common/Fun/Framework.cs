@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Log;
 
 namespace Common.Fun
 {
@@ -18,13 +19,16 @@ namespace Common.Fun
            {
                try
                {
+                 
                    var db = DbFactory.CreateDbSession();
                    db.Context.ExcuteNoQuery("INSERT INTO   ordernum ()values ()");
                    var dataTable = db.Context.QueryTable("select last_insert_id()");
+                   Logger.Write("获取订单号" + dataTable.Rows[0][0].ToString());
                    return long.Parse(dataTable.Rows[0][0].ToString());
                }
                catch (Exception ex)
                {
+                   Logger.Write("获取订单号" + ex.Message);
                    return 0;
                   
                }

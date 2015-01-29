@@ -15,16 +15,17 @@
         <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
         <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(document).ready(function () {debugger
                 $('.chooseContent').on($.clickAction, chooseContent);
                 $('.chooseTitle').on($.clickAction, chooseTitle);
                 $('.chooseType').on($.clickAction, chooseType);
                 initInvoice();
             });
-            function initInvoice() {
-                if (window.sessionStorage.IsInvoice) {
-                    $('#f1,#f2,#f3,#f4').show();
-                    $('#IsInvoiceId').val(1);
+            function initInvoice() {debugger
+                if (window.sessionStorage.IsInvoice!="0") {
+//                    $('#f1,#f2,#f3,#f4').show();
+                    $('#use2Id').trigger($.clickAction);
+                    //$('#IsInvoiceId').val(1);
                 } else {
                     $('#f1,#f2,#f3,#f4').hide();
                     $('#IsInvoiceId').val(0);
@@ -169,11 +170,11 @@
                 <div class='title'>发票</div>
 
                 <div class="info-pay-t">
-			        <div class="info-pay chooseType" refid="xianshiId">
+			        <div class="info-pay chooseType" id="use1Id" refid="xianshiId">
                         <a name="ptlistTitle1" id="buxianshiId"  class="btn-radio on"></a>
 					    <span>不需要</span>
                     </div>
-				    <div class="info-pay chooseType b-b-n"  refid="buxianshiId">
+				    <div class="info-pay chooseType b-b-n" id="use2Id"  refid="buxianshiId">
                         <a name="ptlistTitle1" id="xianshiId"  class="btn-radio"></a>
 					    <span>需要</span>
                     </div>

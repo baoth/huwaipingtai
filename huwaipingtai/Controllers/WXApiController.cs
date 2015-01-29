@@ -105,12 +105,7 @@ namespace huwaipingtai.Controllers
         /// <returns></returns>
         public ActionResult CreateMenu()
         {
-            var jsonMenu = "{\"button\":[{\"name\":\"首页\", \"type\":\"click\", \"key\":\"home\"}, {\"name\":\"支付测试\", \"type\":\"click\", \"key\":\"jspay\"},{" +
-             
-           " \"name\": \"发送位置\", "+
-         "   \"type\": \"location_select\", "+
-            "\"key\": \"location\"" +
-        "}]}";
+            var jsonMenu = "{\"button\":[{\"name\":\"首页\", \"type\":\"click\", \"key\":\"home\"}]}";
             var context = Common.Weixin.WeixinApi.CreateMenuByStream(jsonMenu);
             return Content(context);
         }

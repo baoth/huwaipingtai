@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using QSmart.Core.Object;
+using System.ComponentModel;
 namespace DataModel.Order
 {
     public class CustomerOrder : QSmartEntity
@@ -63,7 +64,7 @@ namespace DataModel.Order
     {
         [PrimaryKey]
         [AutoIncrement]
-        public int Id              { get; set; }
+        public Int64 Id { get; set; }
         public bool SubOrder       { get; set; }
         public int CustomerOrderId { get; set; }
         public short Status        { get; set; }
@@ -82,7 +83,7 @@ namespace DataModel.Order
         [PrimaryKey]
         [AutoIncrement]
         public int Id { get; set; }
-        public int OrderId { get; set; }
+        public Int64 OrderId { get; set; }
         public string Sku { get; set; }
         public int Quantity { get; set; }
         public decimal Price { set; get; }
@@ -92,7 +93,7 @@ namespace DataModel.Order
     /// </summary>
     public class OrderGoodsDto
     {       
-        public int Id { get; set; }
+        public Int64 Id { get; set; }
         /// <summary>
         /// 商品编码
         /// </summary>        
@@ -140,6 +141,29 @@ namespace DataModel.Order
         public int Quantity { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
+    }
+    /// <summary>
+    /// 单据操作状态
+    /// </summary>
+    public enum OrderStatusEnum
+    {
+        [Description("未付款")]
+        NoPayment = 10,
+
+        [Description("已取消")]
+        Generate = 13,
+
+        [Description("已付款")]
+        Payment = 15,
+
+        [Description("正在出库")]
+        StoreBefore = 20,
+
+        [Description("已发货")]
+        DeliverGoods = 25,
+
+        [Description("已完成")]
+        Complete = 30
     }
     
 }

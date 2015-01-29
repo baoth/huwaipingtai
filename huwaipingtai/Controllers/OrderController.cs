@@ -96,7 +96,6 @@ namespace huwaipingtai.Controllers
             ViewData["OrderId"] = Request["orderId"];
             return View("successSubmit");
         }
-        /*支付失败*/
         public ActionResult failureSubmit()
         {
             ViewData["OrderId"] = Request["orderId"];
@@ -154,6 +153,26 @@ namespace huwaipingtai.Controllers
             return Content(json);
         }
 
+        /*未付款列表*/
+        public ActionResult NoPayOrderList()
+        {
+            if (this.CurrentUserInfo == null) return null;
+            var customerid = this.CurrentUserInfo.Id;
+            var payType = Request["p"]+"" != "1" ? 1 : 0;
+            if (payType == 1)
+            {
+                ViewData["onLine"] = "#";
+                ViewData["outLine"] = "/Order/NoPayOrderList?p=1";
+            }
+            else {
+                ViewData["onLine"] = "/Order/NoPayOrderList?p=0";
+                ViewData["outLine"] = "#";
+            }
+            var orders = customerOrder.GetUserAllOrderList(customerid, OrderStatusEnum.Generate, payType);
+            ViewData["Orders"] = orders;
+            ViewData["Path"] = Toolkit.Path.PathConfig.GetWebSmallImagPath();
+            return View("noPayOrderList");
+        }
     }
 
 }

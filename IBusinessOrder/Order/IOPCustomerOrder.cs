@@ -35,7 +35,7 @@ namespace IBusinessOrder.Order
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
-        List<DataModel.Order.OrderGoodsDto> GetUserAllOrderList(string customerId);
+        List<DataModel.Order.OrderGoodsDto> GetUserAllOrderList(string customerId,OrderStatusEnum orderStatus,int payType);
         /// <summary>
         /// 获取客户对应的所有订单信息
         /// </summary>

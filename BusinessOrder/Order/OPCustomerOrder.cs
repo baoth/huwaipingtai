@@ -133,8 +133,9 @@ namespace BusinessOrder.Order
         }
 
 
-        public List<OrderGoodsDto> GetUserAllOrderList(string customerId)
+        public List<OrderGoodsDto> GetUserAllOrderList(string customerId,OrderStatusEnum oderStatus,int payType)
         {
+            var opChar = payType == 1 ? "=" : "<>";
             var dbSession = Common.DbFactory.CreateDbSession();
             var sql = string.Format(@"
                                     select  o.Id, info.Sku,info.Description,info.ShangPinId,c.CustomerId,b.Quantity,b.Price,a.ImgName, c.CreateDate from
@@ -143,12 +144,13 @@ namespace BusinessOrder.Order
                                     left join customerorder c on c.id=o.customerorderid           
                                     left join shangjia_sku_info info on info.SKu=b.Sku    
                                     left join `shangjia_sku_tutou` `a` on(((substring_index(info.`Sku`,'-',4) = `a`.`ImgKey`) and (`a`.`Sort` = 1) ))                   
-                                    where c.CustomerId='{0}' order by c.createdate desc
-                                    ", customerId);
+                                    where c.CustomerId='{0}' and o.Status='{1}' and c.PayType{2}1 order by c.createdate desc
+                                    ", customerId, (int)oderStatus, opChar);
 
             var dt = dbSession.Context.QueryTable(sql);
             var list = dt.ToList<OrderGoodsDto>() as List<OrderGoodsDto>;
-            return list;
+
+            return list == null ? new List<OrderGoodsDto>() : list;
         }
 
 

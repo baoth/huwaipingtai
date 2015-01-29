@@ -117,6 +117,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Content Include="Content\bin\Senparc.Weixin.MP.dll" />
+    <Content Include="Content\images\bg_tab3.png" />
+    <Content Include="Content\images\bg_tab4.png" />
     <Content Include="Content\images\failure.png" />
     <Content Include="Content\images\Template\Catalog.css" />
     <Content Include="Content\images\Template\Catalog2.css" />
@@ -125,6 +127,7 @@
     <Content Include="Content\images\Template\shelves01.js" />
     <Content Include="Content\images\Template\TCatelog2.htm" />
     <Content Include="Content\images\Template\TCatelogAll.htm" />
+    <Content Include="Content\orderNoPay.css" />
     <Content Include="Content\Shelves.css" />
     <Content Include="mysql\改动.txt" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -396,6 +399,7 @@
     <Content Include="Views\WeixinPay\Index.cshtml" />
     <Content Include="Views\WeixinPay\successPay.cshtml" />
     <Content Include="Views\WeixinPay\failurePay.cshtml" />
+    <Content Include="Views\Order\noPayOrderList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

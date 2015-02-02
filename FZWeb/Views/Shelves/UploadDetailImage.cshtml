@@ -1,0 +1,438 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link href="../../Content/Header.css" rel="stylesheet" type="text/css" />
+
+        <script src="../../Scripts/JsExtend.js" type="text/javascript"></script>
+
+        <script src="../../Scripts/qsm-mui/zepto-1.1.4.min.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/fx.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.selector.js" type="text/javascript"></script>
+        <script src="../../Scripts/qsm-mui/zepto.touch.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {               
+
+                LoadData();
+                BindEvent();
+                SetScroll();
+            });
+
+            var SetScroll = function () {
+                $("#wrapper").css('top', $("header").height());
+                var myScroll = new IScroll('#wrapper', { mouseWheel: true });
+                document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+            }
+
+            var BindEvent = function () {
+                //上传
+                $("#btn_upload").bind("click", function () {
+                    if (CheckUpload()) {
+                        form.submit();
+                    }
+                });
+            }
+
+            var CheckUpload = function () {
+           
+                var value = $("#imageUpLoad").val();
+                if (value == "") {
+                    alert("请选择要上传的图片！");
+                    return false;
+                }
+                return true;
+            }
+            var LoadData = function () {
+                var url = "/Shelves/GetProductPhotoListByShangpinId";                
+                var shangpinid = $("#txt_shangpinid").val();
+                var ShangJia_ShangPin_TuCeId = $("#");
+                var para = {ShangPinId: shangpinid };
+                submitAjax(url, para);
+            }
+
+            var getHtml = function (data) {
+                var id = data["Id"];
+                var imgName = data["ImgName"];
+                var ishasImg = data["ImgKey"]; //判断是否选择图片标示
+                var checked = ishasImg == null ? 0 : 1;
+                var className = checked == 1 ? "span-checkbox checked" : "";
+                var shangpid = data["ShangPinId"];
+                var rootPath = $("#txt_imgPath").val();
+                var imgFullPath = rootPath+ shangpid + "/" + imgName;
+                var shangJia_ShangPin_TuCeId = data["ShangJia_ShangPin_TuCeId"];
+
+                var divs = ' <li> '                           
+                           + '    <a href="javascription:;"  tuceid={5} checked={1} >'
+                           +'        <span id="checkIcon{0}" class="{3}"></span> '
+                           + '       <img  v={4} src="{2}" alt="">'
+                           + '     </a>'                          
+			               +'</li>';
+                var divHtml = divs.format(id, checked, imgFullPath, className, imgName, shangJia_ShangPin_TuCeId);
+                return divHtml;
+            }
+            var getEmptyLi = function (icount) {
+                var li = "";
+                for (var i = 0; i < icount; i++) {
+                    li += "<li></li>";
+                }
+                return li;
+            }
+            var submitAjax = function (url, para) {
+                $.ajax({
+                    url: url,
+                    data: para,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+
+                        var lis = "";
+                        if (data && data.length > 0) {
+                            for (var i = 0, j = data.length; i < j; i++) {
+                                lis += getHtml(data[i]);
+                            }
+                        }
+
+                        var objul = $("#RowContent");
+                        if (lis) {
+                            objul.html("");
+                            var icount = 3 - data.length % 3
+                            var emptyLi = getEmptyLi(icount);
+                            lis += emptyLi;
+                            objul.html(lis);
+                        }
+                        else {
+                            objul.html("");
+                        }
+                        var count = CountSelectImg();
+                        //$("#selectCount").html("<font color='red'>已选择" + count + "张</font>");
+
+                    },
+                    error: function () {
+                        alert("请求错误！");
+                    }
+
+                });
+            }
+
+           
+
+            var CountSelectImg = function () {
+                
+                var count = 0;
+                $("#RowContent li a").each(function (e) {
+                    var checked = $(this).attr("checked")
+                    if (checked == "1") {
+                        count++;
+                    }
+                })
+                return count;
+            }
+            
+        </script>
+
+       
+       <style>
+           * {
+            margin: 0;
+            padding: 0;
+            }
+            
+          ul, ol {
+            list-style: none;
+          }
+         
+           .spanSize
+           {
+              margin-top: -20px;
+              margin-left: 50px;
+              position: absolute;
+               
+           }
+           .cart-check-wrapper .span-checkbox {
+            width: 20px;
+            height: 20px;
+           }
+           .span-checkbox.checked {
+            background-position: -25px 0;
+            }
+           .span-checkbox {
+            display: block;
+            width: 20px;
+            height: 20px;
+            margin-top: 10px;
+            background: url(/../../Content/images/shp-cart-icon-sprites.png?a=3) no-repeat 0 0;
+            background-size: 50px 100px;
+            position: absolute;
+            margin-left: 10px;
+           }         
+            
+           .rowli
+           {
+                            
+             text-align:center;
+           }
+           
+       </style>
+     
+      <!--底部按钮-->
+    <style type="text/css">
+        .detail-tbn2 .tbl-cell {
+        width: 50%;
+        text-align: center;
+        }
+        .tbl-cell {
+        display: table-cell;
+        } 
+        .detail-tbn2 {
+        padding: 5px 0;
+        background: #f1f1f5;
+        }   
+        .tbl-type {
+        display: table;
+        width: 100%;
+        }
+        .detail-tbn2 .tbl-cell a {
+        display: block;
+        height: 35px;
+        margin: 0 10px;
+        border-radius: 3px;
+        line-height: 35px;
+        color: #fff;
+        }  
+        
+        .btn-Save {
+        background: #c00;
+        }
+       
+       
+        
+        .btn-Save1 span {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+        background: url(../../Content/images/icon_detail.png) -74px 0 no-repeat;
+        background-size: 100px 100px;
+        vertical-align: -2px;
+        }
+       
+    </style>
+
+
+     <style type="text/css">       
+       
+        .content
+        {
+            margin: -10px 0px 0px -40px; 
+            text-align:left;  
+        }
+        ul
+        {
+           list-style-type:none;
+           left:3px;
+        }
+        li
+        {
+            width:100%;
+            text-align:left;
+        }
+          
+        a {        
+        text-decoration: none;
+        }
+        
+         #wrapper 
+        {	       
+	        z-index: 1;
+	        top: 90px;
+	        bottom:0;
+	        left: 0;
+	        width: 100%;
+	        background: #fff;
+	        overflow: hidden;
+        }
+        #scroller 
+        {
+	        position: absolute;
+	        z-index: 100;
+	        -webkit-tap-highlight-color: rgba(0,0,0,0);
+	        width: 100%;
+	        -webkit-transform: translateZ(0);
+	        -moz-transform: translateZ(0);
+	        -ms-transform: translateZ(0);
+	        -o-transform: translateZ(0);
+	        transform: translateZ(0);
+	        -webkit-touch-callout: none;
+	        -webkit-user-select: none;
+	        -moz-user-select: none;
+	        -ms-user-select: none;
+	        user-select: none;
+	        -webkit-text-size-adjust: none;
+	        -moz-text-size-adjust: none;
+	        -ms-text-size-adjust: none;
+	        -o-text-size-adjust: none;
+	        text-size-adjust: none;
+        }
+    </style>
+
+    <style type="text/css">
+        .module {        
+        float: left;
+        background-color: #FFF;        
+        width: 45%;        
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .2);       
+        margin-left: 2%;
+        margin-top: 1%;
+        margin-right: 2%;
+        border-bottom: 1px solid rgba(0, 0, 0, .2);
+       }
+       ul, menu, dir {
+        display: block;
+        list-style-type:none;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 8px;
+      }
+      li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+     }
+     .imageLoad
+     {
+         width:119px;
+         height:119px;    
+     }
+     
+     
+      
+    </style>
+
+    <style type="text/css">
+        *
+        {
+            margin: 0;
+            padding: 0;   
+         }
+        .box {
+            position: relative;           
+        }
+        section, nav, aside, menu {
+            display: block;
+        }
+        .box ul {
+            overflow: hidden;
+            padding: 0 5px;
+            width: 100%;
+            z-index: 2;
+            box-sizing: border-box;
+        }
+        ol, ul, li {
+            list-style: none;
+        }
+        .box li:nth-child(3n+1) {
+            clear: both;
+        }
+        .box2 li {
+             padding-bottom: 5px;
+        }
+        .box li {
+            float: left;
+            display: block;
+            width: 33.333%;
+            padding: 0 5px;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+        .box li a {
+        width: 100%;
+        }
+        a:link, a:visited, a:hover, a:active {
+            color: #727272;
+        }
+        a {
+            text-decoration: none!important;
+            color: #727272;
+            outline: none;
+        }
+        .box li span:nth-child(1) {
+            font-size: 0;
+            
+            display: block;
+        }
+        .box li img {
+            width: 100%;
+            min-height: 66px;
+        }
+        .box li span em {
+            font-size: 0.75rem;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            display: block;
+            width: 100%;
+            padding-right: 4px;
+            color: #FFFFFF;
+            text-align: right;
+            background: rgba(0,0,0,0.5);
+            box-sizing: border-box;
+        }
+        
+    </style>
+  
+    @*上传样式*@    
+    <style type="text/css">
+    .divUpload 
+    {
+        padding: 20px 10px;
+        border: 1px solid #c8c7cc;
+        margin: 10px;
+    }
+   
+    </style>
+    </head>
+    <body>
+        @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "上传商品图片" } })
+         <div class="divUpload">
+                <form id="form" runat="server" action="/Shelves/FileUpLoadDetail" method="post" enctype="multipart/form-data">
+                    <input type="file" id="imageUpLoad" name="imageUpLoad" />
+                    <input type="button"  id="btn_upload" value="上传" />   
+                    
+                     <div style="display:none">
+                      <input type="hidden" id="txt_sku" name="Sku" value="@ViewData["Sku"]" />
+                      <input type="hidden" id="txt_shangpinid" name="ShangPinId" value="@ViewData["ShangPinId"]" />
+                      <input  type="hidden" id="txt_imgPath" name="ImagPath" value="@ViewData["imgPath"]"/>
+        
+                    </div>              
+                </form> 
+         </div>
+
+         <div id="wrapper" style="display:block">
+            
+            <section class="box box2">
+	          <ul id="RowContent" >
+              </ul>  
+             </section> 
+         </div>
+
+        <div class="tbl-type detail-tbn2" id="cart1" style="position: fixed; left: 0px; bottom: 0px; z-index: 999; display: table;display:none; ">
+    	   <div class="tbl-cell">                   
+              <span id="selectCount"></span>
+           </div>
+           <div class="tbl-cell">                   
+               <a id="btn_save" class="btn-Save"><span></span>确定</a>
+           </div>
+      </div>
+
+      
+    </body>
+
+</html>

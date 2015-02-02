@@ -169,6 +169,28 @@ namespace FZ.Controllers
 
             return View("UploadImage");
         }
+     
+        /// <summary>
+        ///订单详细图片 
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult UploadDetailImage()
+        {
+
+            var shangpinid = Request["ShangPinId"];
+            if (!string.IsNullOrEmpty(shangpinid))
+            {
+                ViewData["ShangPinId"] = shangpinid;
+            }
+            var imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgPath"];
+            if (!string.IsNullOrEmpty(imgPath))
+            {
+                ViewData["imgPath"] = imgPath;
+            }
+
+            return View("UploadDetailImage");
+        }
+
         public ActionResult FileUpLoad(HttpPostedFileBase imageUpLoad)
         {
             try
@@ -219,6 +241,60 @@ namespace FZ.Controllers
             {
                 return RedirectToAction("UploadImage");
             }
+
+        }
+
+        /*上传明细*/
+        public ActionResult FileUpLoadDetail(HttpPostedFileBase imageUpLoad)
+        {
+            try{
+             List<ShangJia_ShangPin_TuCe> list = new List<ShangJia_ShangPin_TuCe>();
+                string fileName = imageUpLoad.FileName;
+                string expandName = fileName.Substring(fileName.LastIndexOf('.') + 1);
+                Guid guid = Guid.NewGuid();
+                var saveFileName = guid + "." + expandName;
+                var shangpinid = Request["ShangPinId"];
+
+                var saveOrgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebOrgImgRealPath"];//;WebOrgImgRealPath
+                //原图
+                var savePath = saveOrgPath + shangpinid;//物理路径
+                if (!System.IO.Directory.Exists(savePath))
+                {
+                    System.IO.Directory.CreateDirectory(savePath);
+                }
+                //保存到相对路径下。               
+                var saveFilePath = savePath + "/" + saveFileName;
+                imageUpLoad.SaveAs(saveFilePath);
+                //缩小图    
+                var saveRootPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgRealPath"];
+                var saveSmallPath = saveRootPath + shangpinid;//物理路径
+                if (!System.IO.Directory.Exists(saveSmallPath))
+                {
+                    System.IO.Directory.CreateDirectory(saveSmallPath);
+                }
+                var saveSmallFilePath = saveSmallPath + "/" + saveFileName;
+                ImageSmall.MakeThumbnail(saveFilePath, saveSmallFilePath, 220, 220, "Cut");
+
+               
+                ShangJia_ShangPin_TuCe model = new ShangJia_ShangPin_TuCe();
+                model.ImgName = saveFileName;
+
+                int spid = 0;
+                int.TryParse(shangpinid, out spid);
+                model.ShangPinId = spid;
+
+                list.Add(model);
+
+                iopshelves.SaveShangJia_ShangPin_TuCe(list);
+
+                //return RedirectToAction("action","controller",new {参数1=xx，参数2=xxx})               
+                return RedirectToAction("UploadDetailImage", "Shelves", new { ShangPinId = shangpinid });
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("UploadDetailImage");
+            }
+
 
         }
 

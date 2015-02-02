@@ -319,6 +319,7 @@
     <Content Include="Views\Test\UploadImage.cshtml" />
     <Content Include="Views\DeliverGoods\Index.cshtml" />
     <Content Include="Views\DeliverGoods\DeliverGoods.cshtml" />
+    <Content Include="Views\Shelves\UploadDetailImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

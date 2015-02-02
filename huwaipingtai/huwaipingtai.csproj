@@ -400,6 +400,7 @@
     <Content Include="Views\WeixinPay\successPay.cshtml" />
     <Content Include="Views\WeixinPay\failurePay.cshtml" />
     <Content Include="Views\Order\noPayOrderList.cshtml" />
+    <Content Include="Views\Order\waitDeliveryOrderList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

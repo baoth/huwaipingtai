@@ -130,6 +130,16 @@ namespace DataModel.Order
         /// 创建时间
         /// </summary>
         public string CreateDate { set; get; }
+        /// <summary>
+        /// 快递公司
+        /// </summary>
+        public string ExpressCompany { get; set; }
+        /// <summary>
+        /// 快递号
+        /// </summary>
+        public string ExpressNum { get; set; }
+
+        public DateTime ExpressDateTime { get; set; }
     }
 
     ///订单下商品的实体类 为显示支付的body用

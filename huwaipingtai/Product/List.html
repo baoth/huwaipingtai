@@ -30,6 +30,9 @@
                     }
                     myScroll.refresh();
                 });
+                $(".bt-category2-lst .bt-category2-a").on($.clickAction, function () { 
+                    window.location.href=$(this).attr("href")
+                })
             });
             widthchange = function () {
                 $("#wrapper").css('top', $("header").height());

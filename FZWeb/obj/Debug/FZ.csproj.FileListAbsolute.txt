@@ -60,7 +60,6 @@ E:\户外运动平台\huwaipingtai\FZWeb\bin\DataModel.pdb
 E:\户外运动平台\huwaipingtai\FZWeb\bin\IBusinessOrder.pdb
 E:\户外运动平台\huwaipingtai\FZWeb\bin\Toolkit.pdb
 E:\户外运动平台\huwaipingtai\FZWeb\bin\BusinessTemplate.pdb
-E:\户外运动平台\huwaipingtai\FZWeb\bin\Autofac.xml
 E:\户外运动平台\huwaipingtai\FZWeb\bin\EntityFramework.xml
 E:\户外运动平台\huwaipingtai\FZWeb\bin\BusinessOrder.pdb
 E:\户外运动平台\huwaipingtai\FZWeb\bin\Common.pdb

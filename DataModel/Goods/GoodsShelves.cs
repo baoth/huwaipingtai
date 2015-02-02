@@ -21,6 +21,24 @@ namespace DataModel
     }
 
     /// <summary>
+    /// 上架商品详情图片集
+    /// </summary>
+    public class ShangJia_ShangPin_DetailInfo : QSmartEntity
+    {
+        [AutoIncrement]
+        [PrimaryKey]
+        public int Id { get; set; }
+        public int FeiLeiId { get; set; }
+        public int ShangPinId { get; set; }
+        public int MenDianId { get; set; }
+        [StringMaxLength(20, VarCharType.nvarchar)]
+        //建议为GUID.Tostring()
+        public string ImgName { get; set; }
+        public int SortId { get; set; }
+    }
+
+
+    /// <summary>
     /// 详情页详情信息
     /// </summary>
     public class ShangJia_Sku_Info : QSmartEntity

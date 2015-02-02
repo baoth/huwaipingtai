@@ -58,7 +58,6 @@ E:\户外运动平台\huwaipingtai\CMS\bin\DataModel.pdb
 E:\户外运动平台\huwaipingtai\CMS\bin\IBusinessOrder.pdb
 E:\户外运动平台\huwaipingtai\CMS\bin\Toolkit.pdb
 E:\户外运动平台\huwaipingtai\CMS\bin\BusinessTemplate.pdb
-E:\户外运动平台\huwaipingtai\CMS\bin\Autofac.xml
 E:\户外运动平台\huwaipingtai\CMS\bin\BusinessOrder.pdb
 E:\户外运动平台\huwaipingtai\CMS\bin\Common.pdb
 E:\户外运动平台\huwaipingtai\CMS\obj\Debug\ResolveAssemblyReference.cache

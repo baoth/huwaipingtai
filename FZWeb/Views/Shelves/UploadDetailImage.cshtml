@@ -50,7 +50,7 @@
                 return true;
             }
             var LoadData = function () {
-                var url = "/Shelves/GetProductPhotoListByShangpinId";                
+                var url = "/Shelves/GetProductDetailListByShangpinId";                
                 var shangpinid = $("#txt_shangpinid").val();
                 var ShangJia_ShangPin_TuCeId = $("#");
                 var para = {ShangPinId: shangpinid };
@@ -408,7 +408,8 @@
                     
                      <div style="display:none">
                       <input type="hidden" id="txt_sku" name="Sku" value="@ViewData["Sku"]" />
-                      <input type="hidden" id="txt_shangpinid" name="ShangPinId" value="@ViewData["ShangPinId"]" />
+                      <input type="hidden" id="txt_shangpinid" name="ShangPinId" value="@ViewData["ShangPinId"]" />" 
+                          <input type="hidden" id="txt_mendianid" name="MenDianId" value="@ViewData["mendianid"]" />
                       <input  type="hidden" id="txt_imgPath" name="ImagPath" value="@ViewData["imgPath"]"/>
         
                     </div>              

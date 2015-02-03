@@ -86,7 +86,9 @@
                 /*商品详情页*/
                 $('#shangpinxqTukuId').bind($.clickAction, function () {
                     var shangpinId = $('#shangpinid').val(); //商品Id
-                    window.location = window.location.origin + "/Shelves/UploadDetailImage?ShangPinId=" + shangpinId;
+                    var mendianid = $('#mendianid').val(); //门店Id
+                    //                    var shangpinId = $('#mendianid').val(); //分类Id
+                    window.location = window.location.origin + "/Shelves/UploadDetailImage?ShangPinId=" + shangpinId + "&MenDianId="+mendianid;
 
                 });
                 /*全部上架*/

@@ -182,6 +182,11 @@ namespace FZ.Controllers
             {
                 ViewData["ShangPinId"] = shangpinid;
             }
+            var mendianid = Request["MenDianId"];
+            if (!string.IsNullOrEmpty(shangpinid))
+            {
+                ViewData["mendianid"] = mendianid;
+            }
             var imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgPath"];
             if (!string.IsNullOrEmpty(imgPath))
             {
@@ -194,14 +199,15 @@ namespace FZ.Controllers
         public ActionResult FileUpLoad(HttpPostedFileBase imageUpLoad)
         {
             try
-            {
+            {//http://localhost:28342/Shelves/UploadDetailImage?ShangPinId=1&MenDianId=1
+
                 List<ShangJia_ShangPin_TuCe> list = new List<ShangJia_ShangPin_TuCe>();
                 string fileName = imageUpLoad.FileName;
                 string expandName = fileName.Substring(fileName.LastIndexOf('.') + 1);
                 Guid guid = Guid.NewGuid();
                 var saveFileName = guid + "." + expandName;
                 var shangpinid = Request["ShangPinId"];
-
+              
                 var saveOrgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebOrgImgRealPath"];//;WebOrgImgRealPath
                 //原图
                 var savePath = saveOrgPath + shangpinid;//物理路径
@@ -248,13 +254,13 @@ namespace FZ.Controllers
         public ActionResult FileUpLoadDetail(HttpPostedFileBase imageUpLoad)
         {
             try{
-             List<ShangJia_ShangPin_TuCe> list = new List<ShangJia_ShangPin_TuCe>();
+                List<ShangJia_ShangPin_DetailInfo> list = new List<ShangJia_ShangPin_DetailInfo>();
                 string fileName = imageUpLoad.FileName;
                 string expandName = fileName.Substring(fileName.LastIndexOf('.') + 1);
                 Guid guid = Guid.NewGuid();
                 var saveFileName = guid + "." + expandName;
                 var shangpinid = Request["ShangPinId"];
-
+                var mendianid = Request["MenDianId"];
                 var saveOrgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebOrgImgRealPath"];//;WebOrgImgRealPath
                 //原图
                 var savePath = saveOrgPath + shangpinid;//物理路径
@@ -275,20 +281,21 @@ namespace FZ.Controllers
                 var saveSmallFilePath = saveSmallPath + "/" + saveFileName;
                 ImageSmall.MakeThumbnail(saveFilePath, saveSmallFilePath, 220, 220, "Cut");
 
-               
-                ShangJia_ShangPin_TuCe model = new ShangJia_ShangPin_TuCe();
+
+                ShangJia_ShangPin_DetailInfo model = new ShangJia_ShangPin_DetailInfo();
                 model.ImgName = saveFileName;
 
                 int spid = 0;
                 int.TryParse(shangpinid, out spid);
                 model.ShangPinId = spid;
-
+                int mdid = 0;
+                int.TryParse(mendianid, out mdid);
+                model.MenDianId = mdid;
                 list.Add(model);
-
-                iopshelves.SaveShangJia_ShangPin_TuCe(list);
+                iopshelves.SaveShangJia_ShangPin_DetailInfo(list);
 
                 //return RedirectToAction("action","controller",new {参数1=xx，参数2=xxx})               
-                return RedirectToAction("UploadDetailImage", "Shelves", new { ShangPinId = shangpinid });
+                return RedirectToAction("UploadDetailImage", "Shelves", new { ShangPinId = shangpinid, MenDianId=mendianid });
             }
             catch (Exception ex)
             {
@@ -308,6 +315,25 @@ namespace FZ.Controllers
 
                 int.TryParse(shangpinid, out id);
                 var list = iopshelves.GetProductPhotoList(id);
+                var json = JsonHelp.objectToJson(list);
+                return Content(json);
+            }
+            catch (Exception ex)
+            {
+                return Content("");
+            }
+
+        }
+        public ActionResult GetProductDetailListByShangpinId()
+        {
+            try
+            {
+
+                var shangpinid = Request["ShangPinId"];
+                int id;
+
+                int.TryParse(shangpinid, out id);
+                var list = iopshelves.GetProductDetailInfoList(id);
                 var json = JsonHelp.objectToJson(list);
                 return Content(json);
             }

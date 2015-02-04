@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using DataModel.CMS.Models;
 using DataModel.Goods;
+using DataModel;
 
 namespace IBusinessOrder.Goods
 {
@@ -32,6 +33,6 @@ namespace IBusinessOrder.Goods
        /// <param name="goodsSKU"></param>
        /// <returns></returns>
       GoodsDto GetGoods(string goodsSKU);
-
+      IList<ShangJia_ShangPin_DetailInfo> GetDetailImg(string goodsSKU);
     }
 }

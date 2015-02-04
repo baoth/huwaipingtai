@@ -54,7 +54,9 @@ namespace BusinessOrder.DeliverGoods
 
             var dt = dbSession.Context.QueryTable(sql);
             var list = dt.ToList<OrderGoodsDto>() as List<OrderGoodsDto>;
-          
+            if (list == null) {
+                list = new List<OrderGoodsDto>();
+            }
             return list;
         }
 
@@ -111,7 +113,7 @@ namespace BusinessOrder.DeliverGoods
         {
             var sql = string.Format(@"update `order` set ExpressCompany='{0}',
             Expresser='{1}',ExpressPhone='{2}',ExpressNum='{3}',ExpressDateTime='{4}',Status='{5}'
-            where Id='{6}'",expressDto.ExpressCompany,expressDto.Expressor,expressDto.ExpressPhone,expressDto.ExpressNo,DateTime.Now,(int)OrderStatusEnum.DeliverGoods,expressDto.OrderId);
+            where Id='{6}'",expressDto.ExpressCompany,"","",expressDto.ExpressNo,DateTime.Now,(int)OrderStatusEnum.DeliverGoods,expressDto.OrderId);
             var dbSession = Common.DbFactory.CreateDbSession();
             dbSession.Context.ExcuteNoQuery(sql);
             return FunResult.GetSuccess();

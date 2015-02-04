@@ -272,5 +272,29 @@ namespace BusinessOrder.Shelves
             }
             return "";
         }
+
+        public bool SaveShangJia_ShangPin_DetailInfo(List<DataModel.ShangJia_ShangPin_DetailInfo> list)
+        {
+            var dbSession = Common.DbFactory.CreateDbSession();
+            List<string> sqlList = new List<string>();
+            //foreach (DataModel.ShangJia_ShangPin_DetailInfo item in list)
+                for (int i = 0; i < list.Count; i++)
+            {
+                var item = list[i];
+                sqlList.Add(string.Format(" insert into shangjia_shangpin_detailinfo(ShangPinId,MenDianId,ImgName,SortId) values('{0}','{1}','{2}','{3}')",item.ShangPinId,item.MenDianId, item.ImgName,item.SortId));
+            }
+            dbSession.Context.ExcuteNoQuery(sqlList);
+            return true;
+        }
+
+
+        public List<DataModel.ShangJia_ShangPin_DetailInfo> GetProductDetailInfoList(int shangpinid)
+        {
+            var dbSession = Common.DbFactory.CreateDbSession();
+            var sql = string.Format("select * from  shangjia_shangpin_detailinfo where shangpinId='{0}'  order by SortId ", shangpinid);
+            var dt = dbSession.Context.QueryTable(sql);
+            var list = dt.ToList<DataModel.ShangJia_ShangPin_DetailInfo>() as List<DataModel.ShangJia_ShangPin_DetailInfo>;
+            return list;
+        }
     }
 }

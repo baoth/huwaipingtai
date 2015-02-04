@@ -66,5 +66,12 @@ namespace IBusinessOrder.Order
         /// <returns></returns>
         bool UpdateOrderPayStatus(Int64 orderNo);
 
+        /// <summary>
+        /// 获得待收货订单
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
+        List<DataModel.Order.OrderGoodsDto> GetWaitDeliveryOrderList(string customerId);
+
     }
 }

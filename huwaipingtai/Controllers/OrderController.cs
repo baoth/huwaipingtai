@@ -173,6 +173,17 @@ namespace huwaipingtai.Controllers
             ViewData["Path"] = Toolkit.Path.PathConfig.GetWebSmallImagPath();
             return View("noPayOrderList");
         }
+
+        /*待收货列表*/
+        public ActionResult WaitDeliveryOrderList() 
+        {
+            if (this.CurrentUserInfo == null) return null;
+            var customerid = this.CurrentUserInfo.Id;
+            var orders = customerOrder.GetWaitDeliveryOrderList(customerid);
+            ViewData["Orders"] = orders;
+            ViewData["Path"] = Toolkit.Path.PathConfig.GetWebSmallImagPath();
+            return View("waitDeliveryOrderList");
+        }
     }
 
 }

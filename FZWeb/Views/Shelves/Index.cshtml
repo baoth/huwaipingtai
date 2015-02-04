@@ -77,9 +77,18 @@
                     var shangpinId = $('#shangpinid').val(); //商品Id
                     window.location = window.location.origin + "/Shelves/SelectImage?ShangPinId=" + shangpinId + "&ImgKey=" + skuColor;
                 });
+                /*图库*/
                 $('#tupiankuId').bind($.clickAction, function () {
                     var shangpinId = $('#shangpinid').val(); //商品Id
                     window.location = window.location.origin + "/Shelves/UploadImage?ShangPinId=" + shangpinId;
+
+                });
+                /*商品详情页*/
+                $('#shangpinxqTukuId').bind($.clickAction, function () {
+                    var shangpinId = $('#shangpinid').val(); //商品Id
+                    var mendianid = $('#mendianid').val(); //门店Id
+                    //                    var shangpinId = $('#mendianid').val(); //分类Id
+                    window.location = window.location.origin + "/Shelves/UploadDetailImage?ShangPinId=" + shangpinId + "&MenDianId="+mendianid;
 
                 });
                 /*全部上架*/
@@ -178,6 +187,16 @@
                         <div class="info">
                             <a id="tupiankuId" href="#">
                                 <span class="text" style="color:Black">图片库</span>
+                            </a>
+                            <span class="menu-botton-arrow"></span>
+                        </div>
+                  
+                    </li>
+                    <li class="bg-skape"></li>
+                      <li id="shangpindetailId" class="info-detail">
+                        <div class="info">
+                            <a id="shangpinxqTukuId" href="#">
+                                <span class="text" style="color:Black">商品详情图库</span>
                             </a>
                             <span class="menu-botton-arrow"></span>
                         </div>

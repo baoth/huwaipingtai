@@ -62,6 +62,18 @@ namespace BusinessOrder.CMS
                 return opGoods.GetGoodsSize(goodsSKU);
             };
             document.RegisterGlobalFunction("GetGoodsSize", GetGoodsSize);
+
+            //给商品详细的图片
+            UserDefinedFunction GetDetailImg = (o) =>
+            {
+                /*预留吧 有可能根据商品分类来读取数据*/
+                var d = TemplateDocument.CurrentRenderingDocument;
+                var tag = d == null ? null : d.CurrentRenderingTag;
+                var goodsName = tag.Attributes.GetValue("name");
+                var goodsId = tag.Attributes.GetValue("id");
+                return opGoods.GetDetailImg(goodsSKU);
+            };
+            document.RegisterGlobalFunction("GetProductDetailImg", GetDetailImg);
             //UserDefinedFunction GetTuTou = (o) =>
             //{
             //    /*预留吧 有可能根据商品分类来读取数据*/

@@ -309,12 +309,12 @@
     <div class="content" style="margin-bottom:27px;">
         <ul>
             <li class="info-detail">
-                <div class="info">
+               <!-- <div class="info">
                     <a href="javascript:void(0)">
                         <span class="text">商品信息</span>
                     </a>
                     <span class="icon-arr"></span>
-                </div>
+                </div>-->
                 <p class="detail-title" id="title"><span>{$Goods.Description}&nbsp;&nbsp;&nbsp;&nbsp;{$Goods.Color}&nbsp;&nbsp;&nbsp;&nbsp;{$Goods.Size}</span></p>
                 <p class="pi" id="promotion" style=" ">促销信息：<span> </span></p>
                 <p class="pi-detail" id="vender" style="">服务：<span>由&nbsp;{$Goods.JingXiaoShang}-{$Goods.MenDianName}&nbsp;负责发货，并提供售后服务。</span></p>
@@ -334,25 +334,7 @@
             </li>
            
             <li class="bg-skape"></li>
-            <li class="info-detail selector">
-                <div class="info border-b-none">
-               
-                 <a href="javascript:void(0)" class="btn-switch" id="allinfos1">
-                        <span class="s-block">
-                            <span class="title12">商品详情</span>
-                           <!-- <span class="content"><span class="to-text3" style="color:#c00">现货</span></span>-->
-                        </span>
-				        <span class="icon-arr"></span>
-                </a>
-                 <div class="detail-option" id="infos-detail1" style="  padding:10px;display:none;">
-                     <vt:function var="data" method="GetProductDetailImg" name="给商品颜色" v="1" />
-                     <vt:foreach item="detailImg" from="$data" index="i">
-                        <img width="100%" height="200px" style="border-bottom:1px;" src="{$detailImg.ImgName}" />
-                     </vt:foreach>
-                </div>
-                </div>
-             </li>
-             <li class="bg-skape"></li>
+          
 
             <li class="info-detail selector">
                 <div class="info border-b-none">
@@ -411,6 +393,25 @@
                 
                 </div>
                 </div>
+            </li>
+            <li class="bg-skape"></li>
+            <li class="info-detail selector">
+            <div class="info border-b-none">
+               
+                <a href="javascript:void(0)" class="btn-switch" id="allinfos1">
+                    <span class="s-block">
+                        <span class="title12">商品详情</span>
+                        <!-- <span class="content"><span class="to-text3" style="color:#c00">现货</span></span>-->
+                    </span>
+				    <span class="icon-arr"></span>
+            </a>
+                <div class="detail-option" id="infos-detail1" style="  padding:10px;display:none;">
+                    <vt:function var="data" method="GetProductDetailImg" name="给商品颜色" v="1" />
+                    <vt:foreach item="detailImg" from="$data" index="i">
+                    <img width="100%" height="200px" style="border-bottom:1px;" src="{$detailImg.ImgName}" />
+                    </vt:foreach>
+            </div>
+            </div>
             </li>
             <li class="bg-skape"></li>
             <li>

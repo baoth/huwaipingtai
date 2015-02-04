@@ -78,3 +78,4 @@ E:\户外运动平台\huwaipingtai\FZWeb\bin\RestSharp.dll
 E:\户外运动平台\huwaipingtai\FZWeb\bin\Newtonsoft.Json.dll
 E:\户外运动平台\huwaipingtai\FZWeb\bin\RestSharp.xml
 E:\户外运动平台\huwaipingtai\FZWeb\bin\Newtonsoft.Json.xml
+E:\户外运动平台\huwaipingtai\FZWeb\bin\Autofac.xml

@@ -180,6 +180,7 @@ namespace huwaipingtai.Controllers
             if (this.CurrentUserInfo == null) return null;
             var customerid = this.CurrentUserInfo.Id;
             var orders = customerOrder.GetWaitDeliveryOrderList(customerid);
+            if (orders == null) orders = new List<OrderGoodsDto>();
             ViewData["Orders"] = orders;
             ViewData["Path"] = Toolkit.Path.PathConfig.GetWebSmallImagPath();
             return View("waitDeliveryOrderList");

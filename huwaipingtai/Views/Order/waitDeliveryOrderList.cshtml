@@ -34,17 +34,18 @@
             var s = @ViewData["outLine"];
             foreach (var item in orders)
             {
-                
-             
+
+                var dt = @item.ExpressDateTime;
                   <li>   
                  <div class="order-box">
                     <div class="order-msg">            
                             <img src=" @ViewData["Path"]@item.ShangPinId/@item.ImgName">            
                             <div class="order-msg">	            
-                                <p class="title">订单号:@item.Id</p>	
-                                <p class="title">已由 @item.ExpressCompany,@item.ExpressDateTime 时间发货，快递号为 @item.ExpressNum</p>	            
-                                <p class="price">¥@item.Price<span></span></p>	            
-                                <p class="order-data">@item.CreateDate</p>            
+                                <p class="title">订单号:<span style="color:green">@item.Id</span></p>	
+                                <p class="title">已由<span style="color:blue"> @item.ExpressCompany </span>于 @string.Format("{0}年{1}月{2}日 {3}点{4}分", dt.Year,dt.Month,dt.Day,dt.Hour,dt.Minute) 发货</p>
+                                <p class="title">快递单号:<span style="color:blue"> @item.ExpressNum</span></p>	            
+                                <p class="price">¥@item.Price<span style="display:none;"></span></p>	            
+                                <p class="order-data" style="display:none;">@item.CreateDate</p>            
                             </div>           
                     </div>  
                  </div>

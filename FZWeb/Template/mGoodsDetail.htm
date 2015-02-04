@@ -190,6 +190,17 @@
                     $('#infos-detail').show();
                 }
             });
+            $('#allinfos1').on($.clickAction, function () {
+                var me = $(this);
+                if (me.hasClass('on')) {
+                    me.removeClass('on');
+                    $('#infos-detail1').hide();
+                }
+                else {
+                    me.addClass('on');
+                    $('#infos-detail1').show();
+                }
+            });
             /*数量加减*/
             $("#number").numeral();
             $("#number").on('blur', function () {
@@ -321,7 +332,28 @@
                    
                 </div>
             </li>
+           
             <li class="bg-skape"></li>
+            <li class="info-detail selector">
+                <div class="info border-b-none">
+               
+                 <a href="javascript:void(0)" class="btn-switch" id="allinfos1">
+                        <span class="s-block">
+                            <span class="title12">商品详情</span>
+                           <!-- <span class="content"><span class="to-text3" style="color:#c00">现货</span></span>-->
+                        </span>
+				        <span class="icon-arr"></span>
+                </a>
+                 <div class="detail-option" id="infos-detail1" style="  padding:10px;display:none;">
+                     <vt:function var="data" method="GetProductDetailImg" name="给商品颜色" v="1" />
+                     <vt:foreach item="detailImg" from="$data" index="i">
+                        <img width="100%" height="200px" style="border-bottom:1px;" src="{$detailImg.ImgName}" />
+                     </vt:foreach>
+                </div>
+                </div>
+             </li>
+             <li class="bg-skape"></li>
+
             <li class="info-detail selector">
                 <div class="info border-b-none">
                     <a href="javascript:void(0)" class="btn-switch on" id="allinfos">

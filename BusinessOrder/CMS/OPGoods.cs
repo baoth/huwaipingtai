@@ -5,6 +5,8 @@ using System.Text;
 using IBusinessOrder.Goods;
 using DataModel.CMS.Models;
 using Toolkit.Ext;
+using DataModel;
+using System.Data;
 namespace BusinessOrder.CMS
 {
     public class OPGoods : IOPGoods
@@ -103,6 +105,31 @@ select YanSeZuId from  shangpin where Id='{0}'))", colorId);
             o.IsDispalyDonationDesc = string.IsNullOrEmpty(o.DonationDesc) ? "none" : "block";
             o.IsDispalyEcoupons = string.IsNullOrEmpty(o.Ecoupons) ? "none" : "block";
             return o;
+        }
+
+
+
+
+        public IList<ShangJia_ShangPin_DetailInfo> GetDetailImg(string goodsSKU)
+        {
+            //缩放图
+            var imgPath = System.Web.Configuration.WebConfigurationManager.AppSettings["WebImgPath"];
+
+            var arrIds = goodsSKU.Split('-');
+            var sql = string.Format(@"select * from  shangjia_shangpin_detailinfo   where ShangPinId='{0}'  order by SortId", arrIds[2]);
+            var db = Common.DbFactory.CreateDbSession();
+            var dt = db.Context.QueryTable(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            { 
+                var list1=dt.ToList<ShangJia_ShangPin_DetailInfo>();
+                foreach (var item in list1)
+                {
+                   item.ImgName = (imgPath + item.ShangPinId+ "/" +item.ImgName).Replace("\\", "/");
+                  
+                }
+                return list1;
+            }
+            return  new List<ShangJia_ShangPin_DetailInfo>();
         }
     }
 }

@@ -392,20 +392,71 @@
     <style type="text/css">
     .divUpload 
     {
-        padding: 20px 10px;
-        border: 1px solid #c8c7cc;
-        margin: 10px;
+        line-height:30px;
+        padding:20px 10px;
+        display:block;
+        text-align:center;
+        border-bottom: 1px solid #c8c7cc;
+        margin-top: 40px;
     }
-   
+    .file-box 
+    {
+        position:relative;
+        width:100%
+    } 
+    .txt{ height:22px; border:1px solid #cdcdcd;width:56%} 
+    .btn 
+    {
+        background-color: #FFF;
+        border: 1px solid #CDCDCD;
+        height: 30px;
+       width: 30%;
+           color: #fff;
+        font-size: 14px; 
+    } 
+    .add
+    {
+       background-color: #4DB849;
+    }
+    .save
+    {
+       background-color:#35CBF3; 
+    }
+    .delete
+    {
+        background:#E7463E;
+    }
+    .disable
+    {
+        background:#DEE1E7;
+    }
+    .file 
+    {
+        position: absolute;
+        right: 10px;
+        left: 10px;
+        background-color: Red;
+        height: 30px;
+        filter: alpha(opacity:0);
+        opacity: 1;
+        width: 32%; 
+    } 
     </style>
+ 
     </head>
     <body>
         @Html.Partial("_HeaderTypical", new ViewDataDictionary { { "title", "上传商品图片" } })
          <div class="divUpload">
                 <form id="form" runat="server" action="/Shelves/FileUpLoad" method="post" enctype="multipart/form-data">
-                    <input type="file" id="imageUpLoad" name="imageUpLoad" />
+              @*      <input type="file" id="imageUpLoad" name="imageUpLoad" />
                     <input type="button"  id="btn_upload" value="上传" />   
-                    
+                    *@
+                   @* <input type='text' name='textfield' readonly=readonly id='textfield' class='txt' /> *@
+                    <input type='button' class='btn save' value='浏览...' /> 
+                    <input type="file"  name="imageUpLoad" class="file" id="imageUpLoad" size="28" /> 
+                    <input type="submit" name="submit" class="btn add" id="btn_upload" value="上传" /> 
+                    <input type="button"  class="btn delete " id="btn_delete"  value="删除" />
+
                      <div style="display:none">
                       <input type="hidden" id="txt_sku" name="Sku" value="@ViewData["Sku"]" />
                       <input type="hidden" id="txt_shangpinid" name="ShangPinId" value="@ViewData["ShangPinId"]" />
